@@ -1,2 +1,6 @@
+core_blog:
+    resource: "@CoreBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 
