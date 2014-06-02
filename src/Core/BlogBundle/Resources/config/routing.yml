@@ -1,0 +1,4 @@
+
+index:
+    pattern: /index
+    defaults: { _controller: CoreBlogBundle:Main:index }
