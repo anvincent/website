@@ -6,7 +6,8 @@
     "autoload": {
         "psr-0": { 
             "": "src/",
-            "Acme": "src/" }
+            "Acme": "src/",
+            "Core": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
