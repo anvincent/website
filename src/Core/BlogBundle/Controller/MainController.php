@@ -8,6 +8,7 @@ class MainController extends Controller
 {
     public function indexAction()
     {
+    	return $this->render('CoreBlogBundle:Main:index.html.twig',array('name' => $name));
     }
 
 }
