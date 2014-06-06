@@ -1,4 +1,6 @@
 
-index:
+CoreBlogBundle_homepage:
     pattern: /index
-    defaults: { _controller: CoreBlogBundle:Main:index }
+    defaults: { _controller: CoreBlogBundle:Page:index }
+    requirements:
+        _method:  GET
