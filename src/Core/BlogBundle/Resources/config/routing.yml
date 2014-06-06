@@ -4,3 +4,11 @@ CoreBlogBundle_homepage:
     defaults: { _controller: CoreBlogBundle:Page:index }
     requirements:
         _method:  GET
+
+
+CoreBlogBundle_about:
+    pattern: /about
+    defaults: { _controller: CoreBlogBundle:Page:about }
+    requirements:
+        _method:  GET
+        
