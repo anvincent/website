@@ -1,12 +1,12 @@
 <?php
-// src/Blogger/BlogBundle/Controller/PageController.php
+// src/Core/BlogBundle/Controller/PageController.php
 
 namespace Core\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // Import new namespaces
-use Blogger\BlogBundle\Entity\Enquiry;
-use Blogger\BlogBundle\Form\EnquiryType;
+use Core\BlogBundle\Entity\Enquiry;
+use Core\BlogBundle\Form\EnquiryType;
 
 class PageController extends Controller
 {
