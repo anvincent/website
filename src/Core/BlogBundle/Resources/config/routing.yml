@@ -5,7 +5,6 @@ CoreBlogBundle_homepage:
     requirements:
         _method:  GET
 
-
 CoreBlogBundle_about:
     pattern: /about
     defaults: { _controller: CoreBlogBundle:Page:about }
