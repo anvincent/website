@@ -1,4 +1,4 @@
-
+# src/Core/BlogBundle/Resources/config/routing.yml
 CoreBlogBundle_homepage:
     pattern: /index
     defaults: { _controller: CoreBlogBundle:Page:index }
@@ -11,4 +11,9 @@ CoreBlogBundle_about:
     defaults: { _controller: CoreBlogBundle:Page:about }
     requirements:
         _method:  GET
-        
+
+CoreBlogBundle_contact:
+    pattern:  /contact
+    defaults: { _controller: CoreBlogBundle:Page:contact }
+    requirements:
+        _method:  GET

@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
-        <title>{% block title %}kaisernet{% endblock %} - kaisernet</title>
+        <title>{% block title %}kaisernet{% endblock %} - der kaiser netz</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -24,7 +24,7 @@
                             <ul class="navigation">
                                 <li><a href="{{ path('CoreBlogBundle_homepage') }}">Home</a></li>
                                 <li><a href="{{ path('CoreBlogBundle_about') }}">About</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{ path('CoreBlogBundle_contact') }}">Contact</a></li>
                             </ul>
                         </nav>
                     {% endblock %}
