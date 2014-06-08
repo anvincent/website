@@ -15,12 +15,9 @@ class PageController extends Controller
     	$em = $this->getDoctrine()
     			   ->getManager();
     	
-    	$blogs = $em->createQueryBuilder()
-    	->select('b')
-    	->from('CoreBlogBundle:Blog',  'b')
-    	->addOrderBy('b.created', 'DESC')
-    	->getQuery()
-    	->getResult();
+    	
+    	$blogs = $em->getRepository('CoreBlogBundle:Blog')
+    				->getLatestBlogs();
     	
     	return $this->render('CoreBlogBundle:Page:index.html.twig', array(
     			'blogs' => $blogs
