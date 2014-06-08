@@ -4,11 +4,12 @@
 namespace Core\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Core\BlogBundle\Entity\Repository\BlogRepository")
  * @ORM\Table(name="blog")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\HasLifecycleCallbacks
  */
 class Blog
 {
@@ -44,6 +45,9 @@ class Blog
      */
     protected $tags;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
+     */
     protected $comments = array();
     
     /**
