@@ -48,7 +48,7 @@ class Blog
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
      */
-    protected $comments = array();
+    protected $comments;
     
     /**
      * @ORM\Column(type="datetime")
@@ -62,6 +62,8 @@ class Blog
     
     public function __construct()
     {
+    	$this->comments = new ArrayCollection();
+    	
     	$this->setCreated(new \DateTime());
     	$this->setUpdated(new \DateTime());
     }
