@@ -259,4 +259,14 @@ class Blog
     {
         return $this->updated;
     }
+
+    /**
+     * Remove comments
+     *
+     * @param \Core\BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Core\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
 }
