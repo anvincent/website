@@ -7,7 +7,7 @@ namespace Core\BlogBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Blogger\BlogBundle\Entity\Blog;
+use Core\BlogBundle\Entity\Blog;
 
 class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
