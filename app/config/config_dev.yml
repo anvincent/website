@@ -33,5 +33,5 @@ assetic:
     use_controller: true
 
 swiftmailer:
-	delivery_address:  development@symblog.dev
-	disable_delivery: true
+    delivery_address:  development@symblog.dev
+    disable_delivery: true
