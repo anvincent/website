@@ -1,0 +1,4 @@
+# src/Core/BlogBundle/Resources/config/config.yml
+parameters:
+    # Blogger contact email address
+    core_blog.emails.contact_email: gkenterprises@live.com

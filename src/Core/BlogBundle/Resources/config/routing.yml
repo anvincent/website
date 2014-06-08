@@ -15,4 +15,4 @@ CoreBlogBundle_contact:
     pattern:  /contact
     defaults: { _controller: CoreBlogBundle:Page:contact }
     requirements:
-        _method:  GET
+        _method:  GET|POST
