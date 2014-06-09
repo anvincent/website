@@ -68,6 +68,11 @@ class Blog
     	$this->setUpdated(new \DateTime());
     }
     
+    public function __toString()
+    {
+    	return $this->getTitle();
+    }
+    
     /**
      * @ORM\PreUpdate
      */
