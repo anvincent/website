@@ -1,3 +1,52 @@
 core_accounting_homepage:
-    pattern:  /hello/{name}
+    pattern:  /accounting/index
     defaults: { _controller: CoreAccountingBundle:Default:index }
+    requirements:
+        _method:  GET
+
+
+
+
+core_accounting_transactions:
+    pattern:  /accounting/transactions
+    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+    
+core_accounting_transactions_single:
+    pattern:  /accounting/transactions/single
+    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+    
+core_accounting_transactions_batch:
+    pattern:  /accounting/transactions/batch
+    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+
+
+
+
+
+
+
+core_accounting_maintenance:
+    pattern:  /accounting/maintenance
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
+core_accounting_maintenance_importdefinitions:
+    pattern:  /accounting/maintenance/importdefinitions
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
+core_accounting_maintenance_importdefinitions_create:
+    pattern:  /accounting/maintenance/importdefinitions
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
+core_accounting_maintenance_importdefinitions_edit:
+    pattern:  /accounting/maintenance/importdefinitions
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
+core_accounting_maintenance_importdefinitions_delete:
+    pattern:  /accounting/maintenance/importdefinitions
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
+    
+core_accounting_maintenance_chartofaccounts:
+    pattern:  /accounting/maintenance/chartofaccounts
+    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    
