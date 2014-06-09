@@ -21,6 +21,6 @@
             {% include 'CoreBlogBundle:Comment:index.html.twig' with { 'comments': comments } %}
         </section>
         <h3>Add Comment</h3>
-        {% render 'CoreBlogBundle:Comment:new' with { 'blog_id': blog.id } %}
+        {% render controller('CoreBlogBundle:Comment:new',{ 'blog_id': blog.id }) %}
     </section>
 {% endblock %}
