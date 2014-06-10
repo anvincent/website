@@ -27,4 +27,50 @@ class Periods
 	
 	
 	
+
+    /**
+     * Set periono
+     *
+     * @param integer $periono
+     * @return Periods
+     */
+    public function setPeriono($periono)
+    {
+        $this->periono = $periono;
+
+        return $this;
+    }
+
+    /**
+     * Get periono
+     *
+     * @return integer 
+     */
+    public function getPeriono()
+    {
+        return $this->periono;
+    }
+
+    /**
+     * Set lastdateinperiod
+     *
+     * @param \DateTime $lastdateinperiod
+     * @return Periods
+     */
+    public function setLastdateinperiod($lastdateinperiod)
+    {
+        $this->lastdateinperiod = $lastdateinperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get lastdateinperiod
+     *
+     * @return \DateTime 
+     */
+    public function getLastdateinperiod()
+    {
+        return $this->lastdateinperiod;
+    }
 }

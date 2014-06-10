@@ -31,4 +31,73 @@ class Chartmaster
 	protected $group;
 	
 	
+
+    /**
+     * Set accountcode
+     *
+     * @param integer $accountcode
+     * @return Chartmaster
+     */
+    public function setAccountcode($accountcode)
+    {
+        $this->accountcode = $accountcode;
+
+        return $this;
+    }
+
+    /**
+     * Get accountcode
+     *
+     * @return integer 
+     */
+    public function getAccountcode()
+    {
+        return $this->accountcode;
+    }
+
+    /**
+     * Set accountname
+     *
+     * @param string $accountname
+     * @return Chartmaster
+     */
+    public function setAccountname($accountname)
+    {
+        $this->accountname = $accountname;
+
+        return $this;
+    }
+
+    /**
+     * Get accountname
+     *
+     * @return string 
+     */
+    public function getAccountname()
+    {
+        return $this->accountname;
+    }
+
+    /**
+     * Set group
+     *
+     * @param string $group
+     * @return Chartmaster
+     */
+    public function setGroup($group)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return string 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
 }

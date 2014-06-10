@@ -26,4 +26,50 @@ class Accountsection
 
 	
 	
+
+    /**
+     * Set sectionid
+     *
+     * @param integer $sectionid
+     * @return Accountsection
+     */
+    public function setSectionid($sectionid)
+    {
+        $this->sectionid = $sectionid;
+
+        return $this;
+    }
+
+    /**
+     * Get sectionid
+     *
+     * @return integer 
+     */
+    public function getSectionid()
+    {
+        return $this->sectionid;
+    }
+
+    /**
+     * Set sectionname
+     *
+     * @param string $sectionname
+     * @return Accountsection
+     */
+    public function setSectionname($sectionname)
+    {
+        $this->sectionname = $sectionname;
+
+        return $this;
+    }
+
+    /**
+     * Get sectionname
+     *
+     * @return string 
+     */
+    public function getSectionname()
+    {
+        return $this->sectionname;
+    }
 }

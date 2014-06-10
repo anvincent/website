@@ -28,37 +28,4 @@ class Tags
 	
 	
 	
-
-    /**
-     * Get tagref
-     *
-     * @return integer 
-     */
-    public function getTagref()
-    {
-        return $this->tagref;
-    }
-
-    /**
-     * Set tagdescription
-     *
-     * @param string $tagdescription
-     * @return Tags
-     */
-    public function setTagdescription($tagdescription)
-    {
-        $this->tagdescription = $tagdescription;
-
-        return $this;
-    }
-
-    /**
-     * Get tagdescription
-     *
-     * @return string 
-     */
-    public function getTagdescription()
-    {
-        return $this->tagdescription;
-    }
 }
