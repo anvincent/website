@@ -16,6 +16,7 @@ class Accountgroups
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="string", length=30)
+	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="accountgroups")
 	 */
 	protected $groupname;
 	
