@@ -3,6 +3,9 @@
 
 namespace Core\AccountingBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\ChartdetailsRepository")
  * @ORM\Table(name="chartdetails")

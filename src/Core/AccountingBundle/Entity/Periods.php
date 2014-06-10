@@ -3,8 +3,11 @@
 
 namespace Core\AccountingBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
- * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\Periods")
+ * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\PeriodsRepository")
  * @ORM\Table(name="periods")
  * @ORM\HasLifecycleCallbacks
  */

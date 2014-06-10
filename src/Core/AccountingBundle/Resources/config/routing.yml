@@ -4,20 +4,23 @@ CoreAccountingBundle_homepage:
     requirements:
         _method:  GET
 
-
-
-
 CoreAccountingBundle_transactions:
     pattern:  /accounting/transactions
-    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+    defaults: { _controller: CoreAccountingBundle:Page:transactions }
+    requirements:
+        _method:  GET
+
+
+
+
     
 CoreAccountingBundle_transactions_single:
     pattern:  /accounting/transactions/single
-    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+    defaults: { _controller: CoreAccountingBundle:Transactions:single }
     
 CoreAccountingBundle_transactions_batch:
     pattern:  /accounting/transactions/batch
-    defaults: { _controller: CoreAccountingBundle:Transactions:index }
+    defaults: { _controller: CoreAccountingBundle:Transactions:batch }
 
 
 
@@ -27,7 +30,10 @@ CoreAccountingBundle_transactions_batch:
 
 CoreAccountingBundle_maintenance:
     pattern:  /accounting/maintenance
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
+    defaults: { _controller: CoreAccountingBundle:Page:maintenance }
+
+
+
     
 CoreAccountingBundle_maintenance_importdefinitions:
     pattern:  /accounting/maintenance/importdefinitions

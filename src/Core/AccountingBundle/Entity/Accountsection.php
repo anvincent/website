@@ -1,7 +1,10 @@
 <?php
-// src/Core/AccountingBundle/Entity/Accountgroups.php
+// src/Core/AccountingBundle/Entity/Accountsection.php
 
 namespace Core\AccountingBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\AccountsectionRepository")
