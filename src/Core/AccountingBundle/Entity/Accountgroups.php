@@ -41,6 +41,11 @@ class Accountgroups
 	protected $parentgroupname;
 	
 	
+	
+	public function __construct()
+	{
+		$this->groupname = new ArrayCollection();
+	}
 
     /**
      * Set groupname
