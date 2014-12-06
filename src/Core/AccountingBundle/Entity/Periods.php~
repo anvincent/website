@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Periods
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="smallint", length=6)
@@ -24,7 +26,71 @@ class Periods
 	 */
 	protected $lastdateinperiod;
 	
+	// Associations
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="periodref")
+	 */
+	protected $chartdetails;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="periodref")
+	 */
+	protected $gltrans;
 	
 	
 	
+	// Methods
+	
+	public function __construct()
+	{
+		$this->chartdetails = new ArrayCollection();
+		$this->gltrans = new ArrayCollection();
+	}
+
+    /**
+     * Set periono
+     *
+     * @param integer $periono
+     * @return Periods
+     */
+    public function setPeriono($periono)
+    {
+        $this->periono = $periono;
+
+        return $this;
+    }
+
+    /**
+     * Get periono
+     *
+     * @return integer 
+     */
+    public function getPeriono()
+    {
+        return $this->periono;
+    }
+
+    /**
+     * Set lastdateinperiod
+     *
+     * @param \DateTime $lastdateinperiod
+     * @return Periods
+     */
+    public function setLastdateinperiod($lastdateinperiod)
+    {
+        $this->lastdateinperiod = $lastdateinperiod;
+
+        return $this;
+    }
+
+    /**
+     * Get lastdateinperiod
+     *
+     * @return \DateTime 
+     */
+    public function getLastdateinperiod()
+    {
+        return $this->lastdateinperiod;
+    }
 }

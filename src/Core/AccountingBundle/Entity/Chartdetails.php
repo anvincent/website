@@ -200,4 +200,50 @@ class Chartdetails
     {
         return $this->bfwdbudget;
     }
+
+    /**
+     * Set chartmaster
+     *
+     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmaster
+     * @return Chartdetails
+     */
+    public function setChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmaster = null)
+    {
+        $this->chartmaster = $chartmaster;
+
+        return $this;
+    }
+
+    /**
+     * Get chartmaster
+     *
+     * @return \Core\AccountingBundle\Entity\Chartmaster 
+     */
+    public function getChartmaster()
+    {
+        return $this->chartmaster;
+    }
+
+    /**
+     * Set periodref
+     *
+     * @param \Core\AccountingBundle\Entity\Periods $periodref
+     * @return Chartdetails
+     */
+    public function setPeriodref(\Core\AccountingBundle\Entity\Periods $periodref = null)
+    {
+        $this->periodref = $periodref;
+
+        return $this;
+    }
+
+    /**
+     * Get periodref
+     *
+     * @return \Core\AccountingBundle\Entity\Periods 
+     */
+    public function getPeriodref()
+    {
+        return $this->periodref;
+    }
 }

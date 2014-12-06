@@ -127,4 +127,93 @@ class Chartmaster
     {
         return $this->group;
     }
+
+    /**
+     * Set accountgroup
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroup
+     * @return Chartmaster
+     */
+    public function setAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroup = null)
+    {
+        $this->accountgroup = $accountgroup;
+
+        return $this;
+    }
+
+    /**
+     * Get accountgroup
+     *
+     * @return \Core\AccountingBundle\Entity\Accountgroups 
+     */
+    public function getAccountgroup()
+    {
+        return $this->accountgroup;
+    }
+
+    /**
+     * Add chartdetails
+     *
+     * @param \Core\AccountingBundle\Entity\Chartdetails $chartdetails
+     * @return Chartmaster
+     */
+    public function addChartdetail(\Core\AccountingBundle\Entity\Chartdetails $chartdetails)
+    {
+        $this->chartdetails[] = $chartdetails;
+
+        return $this;
+    }
+
+    /**
+     * Remove chartdetails
+     *
+     * @param \Core\AccountingBundle\Entity\Chartdetails $chartdetails
+     */
+    public function removeChartdetail(\Core\AccountingBundle\Entity\Chartdetails $chartdetails)
+    {
+        $this->chartdetails->removeElement($chartdetails);
+    }
+
+    /**
+     * Get chartdetails
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChartdetails()
+    {
+        return $this->chartdetails;
+    }
+
+    /**
+     * Add gltrans
+     *
+     * @param \Core\AccountingBundle\Entity\Gltrans $gltrans
+     * @return Chartmaster
+     */
+    public function addGltran(\Core\AccountingBundle\Entity\Gltrans $gltrans)
+    {
+        $this->gltrans[] = $gltrans;
+
+        return $this;
+    }
+
+    /**
+     * Remove gltrans
+     *
+     * @param \Core\AccountingBundle\Entity\Gltrans $gltrans
+     */
+    public function removeGltran(\Core\AccountingBundle\Entity\Gltrans $gltrans)
+    {
+        $this->gltrans->removeElement($gltrans);
+    }
+
+    /**
+     * Get gltrans
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGltrans()
+    {
+        return $this->gltrans;
+    }
 }

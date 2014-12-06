@@ -169,4 +169,60 @@ class Accountgroups
     {
         return $this->parentgroupname;
     }
+
+    /**
+     * Set accountsection
+     *
+     * @param \Core\AccountingBundle\Entity\Accountsection $accountsection
+     * @return Accountgroups
+     */
+    public function setAccountsection(\Core\AccountingBundle\Entity\Accountsection $accountsection = null)
+    {
+        $this->accountsection = $accountsection;
+
+        return $this;
+    }
+
+    /**
+     * Get accountsection
+     *
+     * @return \Core\AccountingBundle\Entity\Accountsection 
+     */
+    public function getAccountsection()
+    {
+        return $this->accountsection;
+    }
+
+    /**
+     * Add chartmasters
+     *
+     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmasters
+     * @return Accountgroups
+     */
+    public function addChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmasters)
+    {
+        $this->chartmasters[] = $chartmasters;
+
+        return $this;
+    }
+
+    /**
+     * Remove chartmasters
+     *
+     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmasters
+     */
+    public function removeChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmasters)
+    {
+        $this->chartmasters->removeElement($chartmasters);
+    }
+
+    /**
+     * Get chartmasters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChartmasters()
+    {
+        return $this->chartmasters;
+    }
 }

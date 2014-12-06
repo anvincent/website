@@ -24,6 +24,59 @@ class Accountsection
 	 */
 	protected $sectionname;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="accountsection")
+	 */
+	protected $accountgroups;
 	
-	
+	public function __construct()
+	{
+		$this->accountgroups = new ArrayCollection();
+	}
+
+    /**
+     * Set sectionid
+     *
+     * @param integer $sectionid
+     * @return Accountsection
+     */
+    public function setSectionid($sectionid)
+    {
+        $this->sectionid = $sectionid;
+
+        return $this;
+    }
+
+    /**
+     * Get sectionid
+     *
+     * @return integer 
+     */
+    public function getSectionid()
+    {
+        return $this->sectionid;
+    }
+
+    /**
+     * Set sectionname
+     *
+     * @param string $sectionname
+     * @return Accountsection
+     */
+    public function setSectionname($sectionname)
+    {
+        $this->sectionname = $sectionname;
+
+        return $this;
+    }
+
+    /**
+     * Get sectionname
+     *
+     * @return string 
+     */
+    public function getSectionname()
+    {
+        return $this->sectionname;
+    }
 }

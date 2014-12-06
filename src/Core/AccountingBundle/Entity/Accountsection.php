@@ -79,4 +79,37 @@ class Accountsection
     {
         return $this->sectionname;
     }
+
+    /**
+     * Add accountgroups
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroups
+     * @return Accountsection
+     */
+    public function addAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroups)
+    {
+        $this->accountgroups[] = $accountgroups;
+
+        return $this;
+    }
+
+    /**
+     * Remove accountgroups
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroups
+     */
+    public function removeAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroups)
+    {
+        $this->accountgroups->removeElement($accountgroups);
+    }
+
+    /**
+     * Get accountgroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAccountgroups()
+    {
+        return $this->accountgroups;
+    }
 }
