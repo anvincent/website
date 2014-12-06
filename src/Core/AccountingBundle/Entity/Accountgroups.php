@@ -16,7 +16,6 @@ class Accountgroups
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="string", length=30)
-	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="accountgroups")
 	 */
 	protected $groupname;
 	
@@ -40,11 +39,20 @@ class Accountgroups
 	 */
 	protected $parentgroupname;
 	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
+	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
+	 */
+	protected $accountsection;
 	
+	/**
+	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="accountgroup")
+	 */
+	protected $chartmasters;
 	
 	public function __construct()
 	{
-		$this->groupname = new ArrayCollection();
+		$this->chartmasters = new ArrayCollection();
 	}
 
     /**

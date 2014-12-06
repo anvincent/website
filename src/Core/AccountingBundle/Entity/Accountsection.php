@@ -24,8 +24,15 @@ class Accountsection
 	 */
 	protected $sectionname;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="accountsection")
+	 */
+	protected $accountgroups;
 	
-	
+	public function __construct()
+	{
+		$this->accountgroups = new ArrayCollection();
+	}
 
     /**
      * Set sectionid

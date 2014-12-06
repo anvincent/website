@@ -45,7 +45,11 @@ class Chartdetails
 	 */
 	protected $bfwdbudget;
 
-	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
+	 */
+	protected $chartmaster;
 	
 
     /**

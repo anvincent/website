@@ -27,11 +27,24 @@ class Chartmaster
 	
 	/**
 	 * @ORM\Column(name="group_", type="string", length=30)
-	 * @ManyToOne(targetEntity="accountgroups", inversedBy="groupname")
-     * @JoinColumn(name="group", referencedColumnName="id")
 	 */
 	protected $group;
 	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
+	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
+	 */
+	protected $accountgroup;
+	
+	/**
+	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="chartmaster")
+	 */
+	protected $chartdetails;
+	
+	public function __construct()
+	{
+		$this->chartdetails = new ArrayCollection();
+	}
 	
 
     /**
