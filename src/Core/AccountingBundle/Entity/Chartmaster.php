@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Chartmaster
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
@@ -30,6 +32,8 @@ class Chartmaster
 	 */
 	protected $group;
 	
+	// Associations
+	
 	/**
 	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
 	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
@@ -41,9 +45,17 @@ class Chartmaster
 	 */
 	protected $chartdetails;
 	
+	/**
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="")
+	 */
+	protected $gltrans;
+	
+	// Methods
+	
 	public function __construct()
 	{
 		$this->chartdetails = new ArrayCollection();
+		$this->gltrans = new ArrayCollection();
 	}
 	
 

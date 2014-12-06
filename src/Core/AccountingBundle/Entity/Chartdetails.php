@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Chartdetails
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
@@ -44,6 +46,8 @@ class Chartdetails
 	 * @ORM\Column(type="float")
 	 */
 	protected $bfwdbudget;
+	
+	// Associations
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
@@ -51,6 +55,13 @@ class Chartdetails
 	 */
 	protected $chartmaster;
 	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
+	 */
+	protected $periodref;
+	
+	// Methods
 
     /**
      * Set accountcode

@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Gltrans
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
@@ -75,9 +77,21 @@ class Gltrans
 	 */
 	protected $tag;
 	
+	// Associations
 	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="gltrans")
+	 * @ORM\JoinColumn(name="periodno", referencedColumnName="periodno")
+	 */
+	protected $period;
 	
+	/**
+	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="gltrans")
+	 * @ORM\JoinColumn(name="account", referencedColumnName="accountcode")
+	 */
+	protected $chartmaster;
 	
+	// Methods
 
     /**
      * Get counterindex
