@@ -22,6 +22,12 @@ class PageController extends Controller
         return $this->render('CoreAccountingBundle:Page:maintenance.html.twig');
     }
     
+    
+    
+    
+    
+    
+    
     public function testAction()
     {
     	$em = $this->getDoctrine()
