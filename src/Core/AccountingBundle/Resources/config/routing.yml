@@ -11,6 +11,12 @@ CoreAccountingBundle_transactions:
         _method:  GET
 
 
+CoreAccountingBundle_test:
+    pattern:  /accounting/test
+    defaults: { _controller: CoreAccountingBundle:Page:test }
+    requirements:
+        _method:  GET
+
 
 
     

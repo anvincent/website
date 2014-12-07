@@ -21,4 +21,19 @@ class PageController extends Controller
     {
         return $this->render('CoreAccountingBundle:Page:maintenance.html.twig');
     }
+    
+    public function testAction()
+    {
+    	$em = $this->getDoctrine()
+    			   ->getManager();
+    	
+    	$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
+    						  ->findAll();
+    	
+    	return $this->render('CoreAccountingBundle:Page:test.html.twig', array(
+    			'accounts' => $transactionData
+    	));
+    }
+    
+    
 }
