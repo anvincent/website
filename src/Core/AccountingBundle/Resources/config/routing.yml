@@ -11,6 +11,38 @@ CoreAccountingBundle_transactions:
         _method:  GET
 
 
+
+
+
+
+
+CoreAccountingBundle_maintenance_chartmaster_show:
+	pattern:	/accounting/maintenance/chartmaster
+	defaults:	{ _controller:CoreAccountingBundle:Maintenance:showchartmaster }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_chartmaster_edit:
+	pattern:	/accounting/maintenance/chartmaster/edit/{account_id}
+	defaults:	{ _controller:CoreAccountingBundle:Maintenance:editchartmaster }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_chartmaster_delete:
+	pattern:	/accounting/maintenance/chartmaster/delete/{account_id}
+	defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletechartmaster }
+    requirements:
+        _method:  GET
+
+
+
+
+
+
+
+
+
+
 CoreAccountingBundle_test:
     pattern:  /accounting/test
     defaults: { _controller: CoreAccountingBundle:Page:test }

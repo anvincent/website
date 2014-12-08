@@ -28,7 +28,7 @@ class PageController extends Controller
     
     
     
-    public function testAction()
+    public function chartmasterAction($account_id=null)
     {
     	$em = $this->getDoctrine()
     			   ->getManager();
@@ -40,6 +40,15 @@ class PageController extends Controller
     			'accounts' => $transactionData
     	));
     }
+    
+    
+    
+    public function editAction($page,$id=null) {
+    	
+    }
+    
+    
+    
     
     
 }

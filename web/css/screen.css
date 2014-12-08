@@ -52,12 +52,10 @@ th {
 td {
 	text-align: right;
 	height: 50px;
-	vertical-align: bottom;
-	padding: 5px;
+	vertical-align: center;
 }
 
 table, th td { 
 	border: 1px solid #0078FF;
-	 
 }
 
