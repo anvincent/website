@@ -17,20 +17,20 @@ CoreAccountingBundle_transactions:
 
 
 CoreAccountingBundle_maintenance_chartmaster_show:
-	pattern:	/accounting/maintenance/chartmaster
-	defaults:	{ _controller:CoreAccountingBundle:Maintenance:showchartmaster }
+    pattern:	/accounting/maintenance/chartmaster
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showchartmaster }
     requirements:
         _method:  GET
 
 CoreAccountingBundle_maintenance_chartmaster_edit:
-	pattern:	/accounting/maintenance/chartmaster/edit/{account_id}
-	defaults:	{ _controller:CoreAccountingBundle:Maintenance:editchartmaster }
+    pattern:	/accounting/maintenance/chartmaster/edit/{account_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editchartmaster }
     requirements:
         _method:  GET
 
 CoreAccountingBundle_maintenance_chartmaster_delete:
-	pattern:	/accounting/maintenance/chartmaster/delete/{account_id}
-	defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletechartmaster }
+    pattern:	/accounting/maintenance/chartmaster/delete/{account_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletechartmaster }
     requirements:
         _method:  GET
 
