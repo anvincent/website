@@ -36,6 +36,16 @@ class MaintenanceController extends Controller
 	
 	public function editchartmasterAction($account_id=null)
 	{
+		$em = $this->getDoctrine()
+		->getManager();
+			
+		$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
+		->findBy(array('accountcode' => $account_id));
+		
+		
+		
+		
+		
 		
 		// currently only displays the selected account
 		$em = $this->getDoctrine()
@@ -48,6 +58,16 @@ class MaintenanceController extends Controller
 				'title' => 'Chart of Accounts',
 				'accounts' => $transactionData
 		));
+	}
+	
+	public function createchartmasterAction()
+	{
+		$chartmaster = new Chartmaster();
+		//$request = $this->getRequest();
+		$form    = $this->createForm(new ChartmasterType(), $chartmaster);
+		
+		
+		
 	}
 	
 	public function deletechartmasterAction($account_id=null)

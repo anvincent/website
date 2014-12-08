@@ -15,6 +15,9 @@ CoreAccountingBundle_transactions:
 
 
 
+CoreAccountingBundle_maintenance:
+    pattern:  /accounting/maintenance
+    defaults: { _controller: CoreAccountingBundle:Page:maintenance }
 
 CoreAccountingBundle_maintenance_chartmaster_show:
     pattern:	/accounting/maintenance/chartmaster
@@ -66,9 +69,6 @@ CoreAccountingBundle_transactions_batch:
 
 
 
-CoreAccountingBundle_maintenance:
-    pattern:  /accounting/maintenance
-    defaults: { _controller: CoreAccountingBundle:Page:maintenance }
 
 
 
