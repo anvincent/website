@@ -50,7 +50,6 @@ class MaintenanceController extends Controller
 				'chartmaster' => $chartmaster,
 				'form'        => $form->createView()
 		));
-		
 	}
 	
 	protected function getChartmaster($account_id) 
@@ -68,36 +67,25 @@ class MaintenanceController extends Controller
 		return $chartmaster;
 	}
 	
-	public function postchartmasterAction($blog_id)
+	public function postchartmasterAction(Request $request)
 	{
-		
-		
-        $blog = $this->getBlog($blog_id);
-
-        $comment  = new Comment();
-        $comment->setBlog($blog);
+		$chartmaster = new Chartmaster();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CommentType(), $comment);
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
         $form->bind($request);
-
-        if ($form->isValid()) {
+		
+		if ($form->isValid()) {
         	$em = $this->getDoctrine()
         			   ->getManager();
-        	$em->persist($comment);
+        	$em->persist($chartmaster);
         	$em->flush();
-        	
-            return $this->redirect($this->generateUrl('CoreBlogBundle_blog_show', array(
-                'id' => $comment->getBlog()->getId())) .
-                '#comment-' . $comment->getId()
-            );
-        }
-
-        return $this->render('CoreBlogBundle:Comment:create.html.twig', array(
-            'comment' => $comment,
-            'form'    => $form->createView()
-        ));
-        
-        
+		
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'));
+		}
+		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+				'chartmaster' => $chartmaster,
+				'form'        => $form->createView()
+		));
 	}
 	
 	
