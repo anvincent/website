@@ -111,7 +111,7 @@ class Chartmaster
      * @param string $group
      * @return Chartmaster
      */
-    public function setGroup($group)
+    public function setGroup_($group)
     {
         $this->group = $group;
 
@@ -123,7 +123,7 @@ class Chartmaster
      *
      * @return string 
      */
-    public function getGroup()
+    public function getGroup_()
     {
         return $this->group;
     }
