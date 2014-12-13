@@ -28,7 +28,7 @@ class MaintenanceController extends Controller
 		$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
 		->findAll();
 		 
-		return $this->render('CoreAccountingBundle:Maintenance:show.html.twig', array(
+		return $this->render('CoreAccountingBundle:Maintenance:chartmastershow.html.twig', array(
 				'title' => 'Chart of Accounts',
 				'accounts' => $transactionData
 		));
@@ -60,11 +60,23 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function createchartmasterAction()
+	
+	
+	
+	
+	public function newchartmasterAction()
 	{
 		$chartmaster = new Chartmaster();
-		//$request = $this->getRequest();
-		$form    = $this->createForm(new ChartmasterType(), $chartmaster);
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
+		return $this->render('CoreAccountingBundle:Maintenance:chartmaster.form.html.twig', array(
+				'chartmaster' => $chartmaster,
+				'form'        => $form->createView()
+		));
+	}
+	
+	public function createchartmasterAction()
+	{
+		
 		
 		
 		
