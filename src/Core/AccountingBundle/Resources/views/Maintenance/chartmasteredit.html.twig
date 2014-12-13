@@ -1,0 +1,13 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/chartmasteredit.html.twig #}
+{% extends 'CoreAccountingBundle::layout.html.twig' %}
+
+{% block title %}Accounting - Chart of Accounts{% endblock %}
+
+{% block body %}
+
+<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit') }}" 
+		method="post" {{ form_enctype(form) }} class="core">
+    {{ form_widget(form) }}
+</form>
+
+{% endblock %}

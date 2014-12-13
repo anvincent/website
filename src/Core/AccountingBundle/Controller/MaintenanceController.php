@@ -34,39 +34,45 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function editchartmasterAction($account_id=null)
+	public function editchartmasterAction($account_id)
+	{
+		$chartmaster = $this->getChartmaster($account_id);
+		
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
+		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+				'chartmaster' => $chartmaster,
+				'form'        => $form->createView()
+		));
+		
+	}
+	
+	
+	protected function getChartmaster($chartmaster=null) 
 	{
 		$em = $this->getDoctrine()
 		->getManager();
 			
-		$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
+		$chartmaster = $em->getRepository('CoreAccountingBundle:Chartmaster')
 		->findBy(array('accountcode' => $account_id));
 		
+		if (!$chartmaster) {
+			throw $this->createNotFoundException('Unable to find Account.');
+		}
 		
-		
-		
-		
-		
-		// currently only displays the selected account
-		$em = $this->getDoctrine()
-		->getManager();
-		 
-		$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
-		->findBy(array('accountcode' => $account_id));
-		 
-		return $this->render('CoreAccountingBundle:Maintenance:show.html.twig', array(
-				'title' => 'Chart of Accounts',
-				'accounts' => $transactionData
-		));
+		return $chartmaster;
 	}
 	
 	
 	
 	
 	
-	public function newchartmasterAction()
+	
+	
+	public function newchartmasterAction($chartmaster=null)
 	{
-		$chartmaster = new Chartmaster();
+		if(isset($data)) {
+			$chartmaster = new Chartmaster();
+		}
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
 		return $this->render('CoreAccountingBundle:Maintenance:chartmaster.form.html.twig', array(
 				'chartmaster' => $chartmaster,

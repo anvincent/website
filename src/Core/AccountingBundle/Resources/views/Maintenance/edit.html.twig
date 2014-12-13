@@ -4,26 +4,7 @@
 {% block title %}Accounting - Chart of Accounts{% endblock %}
 
 {% block body %}
-<table>
-	<tr>
-		<th>Account Nr.</th>
-		<th>Account Name</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-	{% for account in accounts %}
-    <tr>
-    	<td>{{ account.accountcode }}</td>
-    	<td>{{ account.accountname }}</td>
-    	<td><a href="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':account.accountcode}) }}">
-    		<img src="{{ asset('images/file_edit.png') }}" alt="Edit Account" />
-    	</a></td>
-    	<td><a href="{{ path('CoreAccountingBundle_maintenance_chartmaster_delete',{'account_id':account.accountcode}) }}">
-    		<img src="{{ asset('images/file_delete.png') }}" alt="Delete Account" />
-    	</a></td>
-	</tr>
-    {% else %}
-        <p>There are no accounts within the chart</p>
-    {% endfor %}
-</table>
+
+
+
 {% endblock %}

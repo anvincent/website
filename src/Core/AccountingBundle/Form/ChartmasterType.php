@@ -18,7 +18,7 @@ class ChartmasterType extends AbstractType
             ->add('accountcode')
             ->add('accountname')
             ->add('group_')
-            ->add('Add Account','submit')
+            ->add('Confirm','submit')
         ;
     }
     
