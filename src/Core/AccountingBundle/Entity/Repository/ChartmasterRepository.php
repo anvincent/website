@@ -16,7 +16,7 @@ class ChartmasterRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					"SELECT * FROM AccountingBundle:Chartmaster t WHERE t.accountcode = $accountcode"
+					"SELECT t FROM AccountingBundle:Chartmaster t WHERE t.accountcode = $accountcode"
 					)
 			->getResult();
 	}
