@@ -21,7 +21,13 @@ class MaintenanceController extends Controller
 	
 	/* Account Groups - accountgroups */
 	
-	/* Chart of Accounts - chartmaster */
+	/* Chart of Accounts - chartmaster 
+	 * 		show
+	 * 		edit
+	 * 		get
+	 * 		post
+	 * 		delete
+	 */
 	public function showchartmasterAction()
 	{
 		$em = $this->getDoctrine()
@@ -39,7 +45,6 @@ class MaintenanceController extends Controller
 	public function editchartmasterAction($account_id)
 	{
 		$chartmaster = $this->getChartmaster($account_id);
-		
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 				'chartmaster' => $chartmaster,
