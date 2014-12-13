@@ -30,7 +30,7 @@ class Chartmaster
 	/**
 	 * @ORM\Column(name="group_", type="string", length=30)
 	 */
-	protected $group;
+	protected $group_;
 	
 	// Associations
 	
@@ -113,7 +113,7 @@ class Chartmaster
      */
     public function setGroup_($group)
     {
-        $this->group = $group;
+        $this->group_ = $group;
 
         return $this;
     }
@@ -125,7 +125,7 @@ class Chartmaster
      */
     public function getGroup_()
     {
-        return $this->group;
+        return $this->group_;
     }
 
     /**
