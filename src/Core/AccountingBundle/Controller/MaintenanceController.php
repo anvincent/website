@@ -47,7 +47,7 @@ class MaintenanceController extends Controller
 	}
 	
 	
-	protected function getChartmaster($chartmaster=null) 
+	protected function getChartmaster($account_id) 
 	{
 		$em = $this->getDoctrine()
 		->getManager();
