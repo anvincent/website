@@ -48,7 +48,6 @@ class MaintenanceController extends Controller
 		
 	}
 	
-	
 	protected function getChartmaster($account_id) 
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -62,6 +61,38 @@ class MaintenanceController extends Controller
 		}
 		
 		return $chartmaster;
+	}
+	
+	public function postchartmasterAction($blog_id)
+	{
+		
+		
+        $blog = $this->getBlog($blog_id);
+
+        $comment  = new Comment();
+        $comment->setBlog($blog);
+        $request = $this->getRequest();
+        $form    = $this->createForm(new CommentType(), $comment);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+        	$em = $this->getDoctrine()
+        			   ->getManager();
+        	$em->persist($comment);
+        	$em->flush();
+        	
+            return $this->redirect($this->generateUrl('CoreBlogBundle_blog_show', array(
+                'id' => $comment->getBlog()->getId())) .
+                '#comment-' . $comment->getId()
+            );
+        }
+
+        return $this->render('CoreBlogBundle:Comment:create.html.twig', array(
+            'comment' => $comment,
+            'form'    => $form->createView()
+        ));
+        
+        
 	}
 	
 	

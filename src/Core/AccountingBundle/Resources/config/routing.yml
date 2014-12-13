@@ -31,6 +31,12 @@ CoreAccountingBundle_maintenance_chartmaster_edit:
     requirements:
         _method:  GET
 
+CoreAccountingBundle_maintenance_chartmaster_edit:
+    pattern:	/accounting/maintenance/chartmaster/edit/{account_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:postchartmaster }
+    requirements:
+        _method:  POST
+
 CoreAccountingBundle_maintenance_chartmaster_delete:
     pattern:	/accounting/maintenance/chartmaster/delete/{account_id}
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletechartmaster }
