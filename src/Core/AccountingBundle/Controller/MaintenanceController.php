@@ -54,7 +54,8 @@ class MaintenanceController extends Controller
 		$em = $this->getDoctrine()->getManager();
 			
 		$chartmaster = $em->getRepository('CoreAccountingBundle:Chartmaster')
-			->findChartmasterByAccountcode($account_id);
+			//->findChartmasterByAccountcode($account_id);
+			->findOneByaccountcode($account_id);
 		
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find Account.');
