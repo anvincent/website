@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class ChartmasterRepository extends EntityRepository
 {
+	public function findChartmasterByAccountcode($accountcode)
+	{
+		return $this->getEntityManager()
+			->createQuery(
+					"SELECT * FROM AccountingBundle:Chartmaster t WHERE t.accountcode = $accountcode"
+					)
+			->getResult();
+	}
 }

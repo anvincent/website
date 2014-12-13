@@ -51,11 +51,10 @@ class MaintenanceController extends Controller
 	
 	protected function getChartmaster($account_id) 
 	{
-		$em = $this->getDoctrine()
-		->getManager();
+		$em = $this->getDoctrine()->getManager();
 			
 		$chartmaster = $em->getRepository('CoreAccountingBundle:Chartmaster')
-		->findBy(array('accountcode' => $account_id));
+			->findChartmasterByAccountcode($account_id);
 		
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find Account.');
