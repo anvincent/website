@@ -13,6 +13,9 @@ class ChartmasterType extends AbstractType
 	public function __construct($foo=null)
 	{
 		$this->foo = $foo;
+		echo "<p>";
+		print_r($test);
+		echo "</p>";
 	}
      /**
      * @param FormBuilderInterface $builder
