@@ -48,7 +48,7 @@ class MaintenanceController extends Controller
 		$chartmaster = $this->getChartmaster($account_id);
 		$defaultgroup = $chartmaster->getGroup_();
 		$form = $this->createForm(new ChartmasterType($defaultgroup), $chartmaster);
-		$form->setData($chartmaster);
+	//	$form->get('CoreAccountingBundle:Accountgroups')->setData($Accountgroups);
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 				'chartmaster' => $chartmaster,
 				'form'        => $form->createView()

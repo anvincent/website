@@ -23,13 +23,27 @@ class ChartmasterType extends AbstractType
         $builder
             ->add('accountcode','integer')
             ->add('accountname','text')
-            ->add('group_','entity',array(
-            		'class' => 'CoreAccountingBundle:Accountgroups',
-            		'property' => 'groupname',
-            		'data' => $this->foo,
-            		'empty_value' => 'Choose an option'
-            		))
+     //       ->add('group_','entity',array(
+     //       		'class' => 'CoreAccountingBundle:Accountgroups',
+     //       		'property' => 'groupname',
+     //       		'data' => $this->foo,
+     //       		'empty_value' => 'Choose an option'))
             ->add('Confirm','submit');
+    }
+    
+    protected function buildgroupnames()
+    {
+    	$choices = array();
+    	$em = $this->getDoctrine()->getManager();
+    		
+    	$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
+    		->findAll();
+    	
+    	$choices[$this-foo] = $this-foo;
+    	foreach($accountgroups as $group) {
+    		$choices[$group->getGroupname()] = $group->getGroupname();
+    	}
+    	return $choices;
     }
     
     /**
