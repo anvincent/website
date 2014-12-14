@@ -54,6 +54,11 @@ class Accountgroups
 	{
 		$this->chartmasters = new ArrayCollection();
 	}
+	
+	public function __toString()
+	{
+		return $this->groupname;
+	}
 
     /**
      * Set groupname
