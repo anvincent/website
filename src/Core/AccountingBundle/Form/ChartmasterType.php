@@ -23,17 +23,17 @@ class ChartmasterType extends AbstractType
         $builder
             ->add('accountcode','integer')
             ->add('accountname','text')
-     //       ->add('group_','entity',array(
-     //       		'class' => 'CoreAccountingBundle:Accountgroups',
-     //       		'property' => 'groupname',
-     //       		'data' => $this->foo,
-     //       		'empty_value' => 'Choose an option'))
-        	->add('group_','entity',array(
-        			'property' => $this->buildgroupnames()))
+            ->add('group_','entity',array(
+            		'class' => 'CoreAccountingBundle:Accountgroups',
+            		'property' => 'groupname',
+            		'data' => $this->foo,
+            		'empty_value' => 'Choose an option'))
+     //   	->add('group_','entity',array(
+     //   			'property' => $this->buildgroupnames()))
             ->add('Confirm','submit');
     }
     
-    protected function buildgroupnames()
+/*    protected function buildgroupnames()
     {
     	$choices = array();
     //	$em = $this->getDoctrine()->getManager();
@@ -48,7 +48,7 @@ class ChartmasterType extends AbstractType
     	}
     	return $choices;
     }
-    
+*/    
     /**
      * @param OptionsResolverInterface $resolver
      */
