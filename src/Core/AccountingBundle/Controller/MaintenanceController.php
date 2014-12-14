@@ -60,8 +60,9 @@ class MaintenanceController extends Controller
 	public function editchartmasterAction($account_id)
 	{
 		$chartmaster = $this->getChartmaster($account_id);
+		$groupstage = $chartmaster->getGroup_();
 		$grouplist = array();
-		$grouplist[$chartmaster->getGroup_()] = $chartmaster->getGroup_();
+		$grouplist[$groupstage] = $groupstage;
 		$accountgroups = $this->getAccountgroups();
 		foreach($accountgroups as $group) {
 			$grouplist[$group->getGroupname()] = $group->getGroupname();
