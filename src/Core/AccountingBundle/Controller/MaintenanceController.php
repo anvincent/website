@@ -49,7 +49,7 @@ class MaintenanceController extends Controller
 		$chartmaster = $this->getChartmaster($account_id);
 		
 		echo "<p>";
-		print_r($chartmaster);
+		print_r($chartmaster->getGroup_());
 		echo "</p>";
 		
 		$defaultgroup = $chartmaster->getGroup_();
