@@ -26,8 +26,8 @@ class ChartmasterType extends AbstractType
             ->add('group_','entity',array(
             		'class' => 'CoreAccountingBundle:Accountgroups',
             		'choices' => 'groupname',
-            		'empty_value' => 'Choose an option',
-            		'data' => $this->foo
+            		'data' => $this->foo,
+            		'empty_value' => 'Choose an option'
             		))
             ->add('Confirm','submit')
         ;
