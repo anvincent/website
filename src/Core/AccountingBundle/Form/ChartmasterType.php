@@ -28,6 +28,8 @@ class ChartmasterType extends AbstractType
      //       		'property' => 'groupname',
      //       		'data' => $this->foo,
      //       		'empty_value' => 'Choose an option'))
+        	->add('group_','entity',array(
+        			'property' => $this->buildgroupnames()))
             ->add('Confirm','submit');
     }
     
