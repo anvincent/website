@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ChartmasterType extends AbstractType
 {
+	protected $foo;
+	
 	public function __construct($foo=null)
 	{
 		$this->foo = $foo;
