@@ -13,9 +13,6 @@ class ChartmasterType extends AbstractType
 	public function __construct($foo=null)
 	{
 		$this->foo = $foo;
-		echo "<p>";
-		print_r($foo);
-		echo "</p>";
 	}
      /**
      * @param FormBuilderInterface $builder
@@ -34,6 +31,10 @@ class ChartmasterType extends AbstractType
             		))
             ->add('Confirm','submit')
         ;
+        
+        echo "<p>";
+        print_r($this->foo);
+        echo "</p>";
     }
     
     /**
