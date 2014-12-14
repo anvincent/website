@@ -46,7 +46,7 @@ class Chartmaster
 	protected $chartdetails;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="")
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="chartmaster")
 	 */
 	protected $gltrans;
 	

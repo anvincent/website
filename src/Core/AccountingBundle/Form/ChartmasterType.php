@@ -15,9 +15,12 @@ class ChartmasterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('accountcode')
-            ->add('accountname')
-            ->add('group_')
+            ->add('accountcode','integer')
+            ->add('accountname','text')
+            ->add('group_','entity',array(
+            		'class' => 'CoreAccountingBundle:Accountgroups',
+            		'choices' => 'groupname'
+            		))
             ->add('Confirm','submit')
         ;
     }
