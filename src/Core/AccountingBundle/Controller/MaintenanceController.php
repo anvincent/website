@@ -95,17 +95,12 @@ class MaintenanceController extends Controller
 		$chartmaster = new Chartmaster();
         $request = $this->getRequest();
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
-        $form->bind($request);
-		
+        $form->bind($request);		
 		if ($form->isValid()) {
-			
-			
-			
         	$em = $this->getDoctrine()
         			   ->getManager();
         	$em->persist($chartmaster);
         	$em->flush();
-		
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'));
 		}
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
