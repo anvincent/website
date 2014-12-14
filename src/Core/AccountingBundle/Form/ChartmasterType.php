@@ -8,6 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ChartmasterType extends AbstractType
 {
+	public function __construct($foo=null)
+	{
+		$this->foo = $foo;
+	}
      /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -19,7 +23,9 @@ class ChartmasterType extends AbstractType
             ->add('accountname','text')
             ->add('group_','entity',array(
             		'class' => 'CoreAccountingBundle:Accountgroups',
-            		'choices' => 'groupname'
+            		'choices' => 'groupname',
+            		'empty_value' => 'Choose an option',
+            		'data' => $this->foo
             		))
             ->add('Confirm','submit')
         ;
