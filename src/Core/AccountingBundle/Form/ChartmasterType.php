@@ -36,7 +36,8 @@ class ChartmasterType extends AbstractType
     protected function buildgroupnames()
     {
     	$choices = array();
-    	$em = $this->getDoctrine()->getManager();
+    //	$em = $this->getDoctrine()->getManager();
+    	$em = $this->entityManager();
     		
     	$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
     		->findAll();
