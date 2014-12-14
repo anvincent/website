@@ -74,21 +74,16 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	protected function getChartmaster($account_id=null) 
+	protected function getChartmaster($id=null) 
 	{
 		$em = $this->getDoctrine()->getManager();
-		
-		$chartmaster = $em	->getRepository('CoreAccountingBundle:Chartmaster')
-		->findOneByaccountcode($account_id);
-		
-		/*
 		if(isset($id)) {
 			$chartmaster = $em	->getRepository('CoreAccountingBundle:Chartmaster')
-								->findOneByaccountcode($account_id);
+								->findOneByaccountcode($id);
 		} else {
 			$chartmaster = $em	->getRepository('CoreAccountingBundle:Chartmaster')
 								->findAll();
-		}*/
+		}
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find Account.');
 		}
