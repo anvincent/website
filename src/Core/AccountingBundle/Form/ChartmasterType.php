@@ -28,23 +28,7 @@ class ChartmasterType extends AbstractType
             		))
             ->add('Confirm','submit');
     }
-    
-/*    protected function buildgroupnames()
-    {
-    	$choices = array();
-    //	$em = $this->getDoctrine()->getManager();
-    	$em = $this->entityManager();
-    		
-    	$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
-    		->findAll();
-    	
-    	$choices[$this-foo] = $this-foo;
-    	foreach($accountgroups as $group) {
-    		$choices[$group->getGroupname()] = $group->getGroupname();
-    	}
-    	return $choices;
-    }
-*/    
+      
     /**
      * @param OptionsResolverInterface $resolver
      */

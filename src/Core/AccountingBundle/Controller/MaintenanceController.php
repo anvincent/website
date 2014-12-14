@@ -29,11 +29,11 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		if(isset($id)) {
-			$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
-			->findOneBygroupname($id);
+			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+									->findOneBygroupname($id);
 		} else {
-			$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
-			->findAll();
+			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+									->findAll();
 		}
 		if (!$accountgroups) {
 			throw $this->createNotFoundException('Unable to find Account.');
@@ -50,12 +50,7 @@ class MaintenanceController extends Controller
 	 */
 	public function showchartmasterAction()
 	{
-		$em = $this->getDoctrine()
-		->getManager();
-		 
-		$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
-		->findAll();
-		 
+		$transactionData = $this->getChartmaster();
 		return $this->render('CoreAccountingBundle:Maintenance:chartmastershow.html.twig', array(
 				'title' => 'Chart of Accounts',
 				'accounts' => $transactionData
@@ -78,18 +73,19 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	protected function getChartmaster($account_id) 
+	protected function getChartmaster($account_id=null) 
 	{
 		$em = $this->getDoctrine()->getManager();
-			
-		$chartmaster = $em->getRepository('CoreAccountingBundle:Chartmaster')
-			//->findChartmasterByAccountcode($account_id);
-			->findOneByaccountcode($account_id);
-		
+		if(isset($id)) {
+			$chartmaster = $em	->getRepository('CoreAccountingBundle:Chartmaster')
+								->findOneByaccountcode($account_id);
+		} else {
+			$chartmaster = $em	->getRepository('CoreAccountingBundle:Chartmaster')
+								->findAll();
+		}
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find Account.');
 		}
-		
 		return $chartmaster;
 	}
 	
