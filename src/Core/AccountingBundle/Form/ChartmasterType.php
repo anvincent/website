@@ -28,7 +28,7 @@ class ChartmasterType extends AbstractType
             		'choices' => 'groupname',
             		//'data' => $this->foo,
             		'data' => 'Prepayments',
-            		'empty_value' => 'Choose an option'
+           // 		'empty_value' => 'Choose an option'
             		))
             ->add('Confirm','submit')
         ;
