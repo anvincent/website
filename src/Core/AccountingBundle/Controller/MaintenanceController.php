@@ -23,6 +23,24 @@ class MaintenanceController extends Controller
 	
 	/* Account Groups - accountgroups */
 	
+	
+	
+	protected function getAccountgroups($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
+			->findOneBygroupname($id);
+		} else {
+			$accountgroups = $em->getRepository('CoreAccountingBundle:Accountgroups')
+			->findAll();
+		}
+		if (!$accountgroups) {
+			throw $this->createNotFoundException('Unable to find Account.');
+		}
+		return $accountgroups;
+	}
+	
 	/* Chart of Accounts - chartmaster 
 	 * 		show
 	 * 		edit
@@ -47,15 +65,13 @@ class MaintenanceController extends Controller
 	public function editchartmasterAction($account_id)
 	{
 		$chartmaster = $this->getChartmaster($account_id);
-		
-		echo "<p>";
-		print_r($chartmaster->getGroup_());
-		echo "</p>";
-		
-		$defaultgroup = $chartmaster->getGroup_();
-		$chartmaster->setGroup_($defaultgroup);
-		$form = $this->createForm(new ChartmasterType($defaultgroup), $chartmaster);
-	//	$form->get('CoreAccountingBundle:Accountgroups')->setData($Accountgroups);
+		$grouplist = array();
+		$grouplist[$chartmaster->getGroup_()] = $chartmaster->getGroup_();
+		$accountgroups = $this->getAccountgroups();
+		foreach($accountgroups as $group) {
+			$grouplist[$group->getGroupname()] = $group->getGroupname();
+		}
+		$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 				'chartmaster' => $chartmaster,
 				'form'        => $form->createView()
