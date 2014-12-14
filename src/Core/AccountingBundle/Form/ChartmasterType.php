@@ -14,7 +14,7 @@ class ChartmasterType extends AbstractType
 	{
 		$this->foo = $foo;
 		echo "<p>";
-		print_r($test);
+		print_r($foo);
 		echo "</p>";
 	}
      /**
