@@ -19,7 +19,7 @@ class Periods
 	 * @ORM\Id
 	 * @ORM\Column(type="smallint", length=6)
 	 */
-	protected $periono;
+	protected $periodno;
 	
 	/**
 	 * @ORM\Column(name="lastdate_in_period", type="date")
