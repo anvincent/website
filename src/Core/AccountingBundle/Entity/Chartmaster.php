@@ -27,8 +27,9 @@ class Chartmaster
 	 */
 	protected $accountname;
 	
+	//@ORM\Column(name="group_", type="string", length=30)
 	/**
-	 * @ORM\Column(name="group_", type="string", length=30)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
 	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
 	 */
