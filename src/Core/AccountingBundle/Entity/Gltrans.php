@@ -42,15 +42,17 @@ class Gltrans
 	 */
 	protected $trandate;
 	
+	//@ORM\Column(type="smallint", length=6)
 	/**
-	 * @ORM\Column(type="smallint", length=6)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="gltrans")
 	 * @ORM\JoinColumn(name="periodno", referencedColumnName="periodno")
 	 */
 	protected $periodno;
 	
+	//@ORM\Column(type="integer", length=11)
 	/**
-	 * @ORM\Column(type="integer", length=11)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="gltrans")
 	 * @ORM\JoinColumn(name="account", referencedColumnName="accountcode")
 	 */

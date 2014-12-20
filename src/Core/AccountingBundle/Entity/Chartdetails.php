@@ -15,17 +15,19 @@ class Chartdetails
 {
 	// Properties
 	
+	//@ORM\Column(type="integer", length=11)
 	/**
 	 * @ORM\Id
-	 * @ORM\Column(type="integer", length=11)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
 	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
 	 */
 	protected $accountcode;
 	
+	//@ORM\Column(type="smallint", length=6)
 	/**
 	 * @ORM\Id
-	 * @ORM\Column(type="smallint", length=6)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
 	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
 	 */
