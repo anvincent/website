@@ -60,14 +60,17 @@ class MaintenanceController extends Controller
 	public function editchartmasterAction($account_id)
 	{
 		$chartmaster = $this->getChartmaster($account_id);
-		$groupstage = $chartmaster->getGroup_();
-		$grouplist = array();
-		$grouplist[$groupstage] = $groupstage;
-		$accountgroups = $this->getAccountgroups();
-		foreach($accountgroups as $group) {
-			$grouplist[$group->getGroupname()] = $group->getGroupname();
-		}
-		$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
+	//	$groupstage = $chartmaster->getGroup_();
+	//	$grouplist = array();
+	//	$grouplist[$groupstage] = $groupstage;
+	//	$accountgroups = $this->getAccountgroups();
+	//	foreach($accountgroups as $group) {
+	//		$grouplist[$group->getGroupname()] = $group->getGroupname();
+	//	}
+	//	$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
+		
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
+		
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 				'chartmaster' => $chartmaster,
 				'form'        => $form->createView()
