@@ -22,7 +22,6 @@ class Chartmaster
 	protected $accountcode;
 	
 	/**
-	 * @ORM\Id
 	 * @ORM\Column(type="string", length=50)
 	 */
 	protected $accountname;
