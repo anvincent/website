@@ -44,11 +44,15 @@ class Gltrans
 	
 	/**
 	 * @ORM\Column(type="smallint", length=6)
+	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="gltrans")
+	 * @ORM\JoinColumn(name="periodno", referencedColumnName="periodno")
 	 */
 	protected $periodno;
 	
 	/**
 	 * @ORM\Column(type="integer", length=11)
+	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="gltrans")
+	 * @ORM\JoinColumn(name="account", referencedColumnName="accountcode")
 	 */
 	protected $account;
 	
@@ -76,20 +80,6 @@ class Gltrans
 	 * @ORM\Column(type="smallint", length=4)
 	 */
 	protected $tag;
-	
-	// Associations
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="gltrans")
-	 * @ORM\JoinColumn(name="periodno", referencedColumnName="periodno")
-	 */
-	protected $period;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="gltrans")
-	 * @ORM\JoinColumn(name="account", referencedColumnName="accountcode")
-	 */
-	protected $chartmaster;
 	
 	// Methods
 
@@ -354,51 +344,5 @@ class Gltrans
     public function getTag()
     {
         return $this->tag;
-    }
-
-    /**
-     * Set period
-     *
-     * @param \Core\AccountingBundle\Entity\Periods $period
-     * @return Gltrans
-     */
-    public function setPeriod(\Core\AccountingBundle\Entity\Periods $period = null)
-    {
-        $this->period = $period;
-
-        return $this;
-    }
-
-    /**
-     * Get period
-     *
-     * @return \Core\AccountingBundle\Entity\Periods 
-     */
-    public function getPeriod()
-    {
-        return $this->period;
-    }
-
-    /**
-     * Set chartmaster
-     *
-     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmaster
-     * @return Gltrans
-     */
-    public function setChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmaster = null)
-    {
-        $this->chartmaster = $chartmaster;
-
-        return $this;
-    }
-
-    /**
-     * Get chartmaster
-     *
-     * @return \Core\AccountingBundle\Entity\Chartmaster 
-     */
-    public function getChartmaster()
-    {
-        return $this->chartmaster;
     }
 }

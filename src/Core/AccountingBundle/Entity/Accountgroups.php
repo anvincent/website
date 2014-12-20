@@ -13,6 +13,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Accountgroups
 {
+	
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="string", length=30)
@@ -21,6 +24,8 @@ class Accountgroups
 	
 	/**
 	 * @ORM\Column(type="integer", length=11)
+	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
+	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
 	 */
 	protected $sectioninaccounts;
 	
@@ -39,16 +44,14 @@ class Accountgroups
 	 */
 	protected $parentgroupname;
 	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
-	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
-	 */
-	protected $accountsection;
+	// Associations
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="accountgroup")
+	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="group_")
 	 */
 	protected $chartmasters;
+	
+	// Methods
 	
 	public function __construct()
 	{
@@ -173,29 +176,6 @@ class Accountgroups
     public function getParentgroupname()
     {
         return $this->parentgroupname;
-    }
-
-    /**
-     * Set accountsection
-     *
-     * @param \Core\AccountingBundle\Entity\Accountsection $accountsection
-     * @return Accountgroups
-     */
-    public function setAccountsection(\Core\AccountingBundle\Entity\Accountsection $accountsection = null)
-    {
-        $this->accountsection = $accountsection;
-
-        return $this;
-    }
-
-    /**
-     * Get accountsection
-     *
-     * @return \Core\AccountingBundle\Entity\Accountsection 
-     */
-    public function getAccountsection()
-    {
-        return $this->accountsection;
     }
 
     /**

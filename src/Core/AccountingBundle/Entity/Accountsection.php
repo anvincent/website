@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Accountsection
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
@@ -25,7 +27,7 @@ class Accountsection
 	protected $sectionname;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="accountsection")
+	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="sectioninaccounts")
 	 */
 	protected $accountgroups;
 	
@@ -33,6 +35,8 @@ class Accountsection
 	{
 		$this->accountgroups = new ArrayCollection();
 	}
+	
+	// Methods
 
     /**
      * Set sectionid

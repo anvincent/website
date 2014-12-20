@@ -18,12 +18,16 @@ class Chartdetails
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
+	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
 	 */
 	protected $accountcode;
 	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="smallint", length=6)
+	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
 	 */
 	protected $period;
 	
@@ -46,20 +50,6 @@ class Chartdetails
 	 * @ORM\Column(type="float")
 	 */
 	protected $bfwdbudget;
-	
-	// Associations
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
-	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
-	 */
-	protected $chartmaster;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
-	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
-	 */
-	protected $periodref;
 	
 	// Methods
 
@@ -199,51 +189,5 @@ class Chartdetails
     public function getBfwdbudget()
     {
         return $this->bfwdbudget;
-    }
-
-    /**
-     * Set chartmaster
-     *
-     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmaster
-     * @return Chartdetails
-     */
-    public function setChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmaster = null)
-    {
-        $this->chartmaster = $chartmaster;
-
-        return $this;
-    }
-
-    /**
-     * Get chartmaster
-     *
-     * @return \Core\AccountingBundle\Entity\Chartmaster 
-     */
-    public function getChartmaster()
-    {
-        return $this->chartmaster;
-    }
-
-    /**
-     * Set periodref
-     *
-     * @param \Core\AccountingBundle\Entity\Periods $periodref
-     * @return Chartdetails
-     */
-    public function setPeriodref(\Core\AccountingBundle\Entity\Periods $periodref = null)
-    {
-        $this->periodref = $periodref;
-
-        return $this;
-    }
-
-    /**
-     * Get periodref
-     *
-     * @return \Core\AccountingBundle\Entity\Periods 
-     */
-    public function getPeriodref()
-    {
-        return $this->periodref;
     }
 }

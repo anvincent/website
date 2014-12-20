@@ -29,16 +29,14 @@ class Periods
 	// Associations
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="periodref")
+	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="period")
 	 */
 	protected $chartdetails;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="periodref")
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="periodno")
 	 */
 	protected $gltrans;
-	
-	
 	
 	// Methods
 	

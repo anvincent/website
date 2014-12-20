@@ -29,24 +29,20 @@ class Chartmaster
 	
 	/**
 	 * @ORM\Column(name="group_", type="string", length=30)
+	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
+	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
 	 */
 	protected $group_;
 	
 	// Associations
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
-	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
-	 */
-	protected $accountgroup;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="chartmaster")
+	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="accountcode")
 	 */
 	protected $chartdetails;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="chartmaster")
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="account")
 	 */
 	protected $gltrans;
 	
@@ -126,29 +122,6 @@ class Chartmaster
     public function getGroup_()
     {
         return $this->group_;
-    }
-
-    /**
-     * Set accountgroup
-     *
-     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroup
-     * @return Chartmaster
-     */
-    public function setAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroup = null)
-    {
-        $this->accountgroup = $accountgroup;
-
-        return $this;
-    }
-
-    /**
-     * Get accountgroup
-     *
-     * @return \Core\AccountingBundle\Entity\Accountgroups 
-     */
-    public function getAccountgroup()
-    {
-        return $this->accountgroup;
     }
 
     /**

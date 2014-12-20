@@ -67,12 +67,6 @@ class MaintenanceController extends Controller
 		foreach($accountgroups as $group) {
 			$grouplist[$group->getGroupname()] = $group->getGroupname();
 		}
-		
-		echo "<p>";
-		print_r($grouplist);
-		echo "</p>";
-		
-		
 		$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
 		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 				'chartmaster' => $chartmaster,
@@ -103,6 +97,9 @@ class MaintenanceController extends Controller
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
         $form->bind($request);		
 		if ($form->isValid()) {
+			// test
+			
+			
         	$em = $this->getDoctrine()
         			   ->getManager();
         	$em->persist($chartmaster);
