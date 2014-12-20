@@ -22,8 +22,9 @@ class Accountgroups
 	 */
 	protected $groupname;
 	
+	//@ORM\Column(type="integer", length=11)
 	/**
-	 * @ORM\Column(type="integer", length=11)
+	 * 
 	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
 	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
 	 */
