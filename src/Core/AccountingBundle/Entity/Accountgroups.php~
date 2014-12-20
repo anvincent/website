@@ -13,6 +13,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Accountgroups
 {
+	
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="string", length=30)
@@ -21,6 +24,8 @@ class Accountgroups
 	
 	/**
 	 * @ORM\Column(type="integer", length=11)
+	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
+	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
 	 */
 	protected $sectioninaccounts;
 	
@@ -39,20 +44,23 @@ class Accountgroups
 	 */
 	protected $parentgroupname;
 	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
-	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
-	 */
-	protected $accountsection;
+	// Associations
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="accountgroup")
+	 * @ORM\OneToMany(targetEntity="Chartmaster", mappedBy="group_")
 	 */
 	protected $chartmasters;
+	
+	// Methods
 	
 	public function __construct()
 	{
 		$this->chartmasters = new ArrayCollection();
+	}
+	
+	public function __toString()
+	{
+		return $this->groupname;
 	}
 
     /**
@@ -168,5 +176,38 @@ class Accountgroups
     public function getParentgroupname()
     {
         return $this->parentgroupname;
+    }
+
+    /**
+     * Add chartmasters
+     *
+     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmasters
+     * @return Accountgroups
+     */
+    public function addChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmasters)
+    {
+        $this->chartmasters[] = $chartmasters;
+
+        return $this;
+    }
+
+    /**
+     * Remove chartmasters
+     *
+     * @param \Core\AccountingBundle\Entity\Chartmaster $chartmasters
+     */
+    public function removeChartmaster(\Core\AccountingBundle\Entity\Chartmaster $chartmasters)
+    {
+        $this->chartmasters->removeElement($chartmasters);
+    }
+
+    /**
+     * Get chartmasters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChartmasters()
+    {
+        return $this->chartmasters;
     }
 }

@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Accountsection
 {
+	// Properties
+	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
@@ -25,7 +27,7 @@ class Accountsection
 	protected $sectionname;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="accountsection")
+	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="sectioninaccounts")
 	 */
 	protected $accountgroups;
 	
@@ -33,6 +35,8 @@ class Accountsection
 	{
 		$this->accountgroups = new ArrayCollection();
 	}
+	
+	// Methods
 
     /**
      * Set sectionid
@@ -78,5 +82,38 @@ class Accountsection
     public function getSectionname()
     {
         return $this->sectionname;
+    }
+
+    /**
+     * Add accountgroups
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroups
+     * @return Accountsection
+     */
+    public function addAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroups)
+    {
+        $this->accountgroups[] = $accountgroups;
+
+        return $this;
+    }
+
+    /**
+     * Remove accountgroups
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $accountgroups
+     */
+    public function removeAccountgroup(\Core\AccountingBundle\Entity\Accountgroups $accountgroups)
+    {
+        $this->accountgroups->removeElement($accountgroups);
+    }
+
+    /**
+     * Get accountgroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAccountgroups()
+    {
+        return $this->accountgroups;
     }
 }

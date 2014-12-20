@@ -27,26 +27,23 @@ class Chartmaster
 	 */
 	protected $accountname;
 	
+	//@ORM\Column(name="group_", type="string", length=30)
 	/**
-	 * @ORM\Column(name="group_", type="string", length=30)
+	 * 
+	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
+	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
 	 */
-	protected $group;
+	protected $group_;
 	
 	// Associations
 	
 	/**
-	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="chartmasters")
-	 * @ORM\JoinColumn(name="group_", referencedColumnName="groupname")
-	 */
-	protected $accountgroup;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="chartmaster")
+	 * @ORM\OneToMany(targetEntity="Chartdetails", mappedBy="accountcode")
 	 */
 	protected $chartdetails;
 	
 	/**
-	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="")
+	 * @ORM\OneToMany(targetEntity="Gltrans", mappedBy="account")
 	 */
 	protected $gltrans;
 	
@@ -111,9 +108,9 @@ class Chartmaster
      * @param string $group
      * @return Chartmaster
      */
-    public function setGroup($group)
+    public function setGroup_($group)
     {
-        $this->group = $group;
+        $this->group_ = $group;
 
         return $this;
     }
@@ -123,8 +120,74 @@ class Chartmaster
      *
      * @return string 
      */
-    public function getGroup()
+    public function getGroup_()
     {
-        return $this->group;
+        return $this->group_;
+    }
+
+    /**
+     * Add chartdetails
+     *
+     * @param \Core\AccountingBundle\Entity\Chartdetails $chartdetails
+     * @return Chartmaster
+     */
+    public function addChartdetail(\Core\AccountingBundle\Entity\Chartdetails $chartdetails)
+    {
+        $this->chartdetails[] = $chartdetails;
+
+        return $this;
+    }
+
+    /**
+     * Remove chartdetails
+     *
+     * @param \Core\AccountingBundle\Entity\Chartdetails $chartdetails
+     */
+    public function removeChartdetail(\Core\AccountingBundle\Entity\Chartdetails $chartdetails)
+    {
+        $this->chartdetails->removeElement($chartdetails);
+    }
+
+    /**
+     * Get chartdetails
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChartdetails()
+    {
+        return $this->chartdetails;
+    }
+
+    /**
+     * Add gltrans
+     *
+     * @param \Core\AccountingBundle\Entity\Gltrans $gltrans
+     * @return Chartmaster
+     */
+    public function addGltran(\Core\AccountingBundle\Entity\Gltrans $gltrans)
+    {
+        $this->gltrans[] = $gltrans;
+
+        return $this;
+    }
+
+    /**
+     * Remove gltrans
+     *
+     * @param \Core\AccountingBundle\Entity\Gltrans $gltrans
+     */
+    public function removeGltran(\Core\AccountingBundle\Entity\Gltrans $gltrans)
+    {
+        $this->gltrans->removeElement($gltrans);
+    }
+
+    /**
+     * Get gltrans
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGltrans()
+    {
+        return $this->gltrans;
     }
 }

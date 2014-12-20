@@ -190,4 +190,27 @@ class Chartmaster
     {
         return $this->gltrans;
     }
+
+    /**
+     * Set group_
+     *
+     * @param \Core\AccountingBundle\Entity\Accountgroups $group
+     * @return Chartmaster
+     */
+    public function setGroup(\Core\AccountingBundle\Entity\Accountgroups $group = null)
+    {
+        $this->group_ = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group_
+     *
+     * @return \Core\AccountingBundle\Entity\Accountgroups 
+     */
+    public function getGroup()
+    {
+        return $this->group_;
+    }
 }

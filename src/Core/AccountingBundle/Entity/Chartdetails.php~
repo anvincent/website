@@ -18,12 +18,16 @@ class Chartdetails
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=11)
+	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
 	 */
 	protected $accountcode;
 	
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="smallint", length=6)
+	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
+	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
 	 */
 	protected $period;
 	
@@ -46,20 +50,6 @@ class Chartdetails
 	 * @ORM\Column(type="float")
 	 */
 	protected $bfwdbudget;
-	
-	// Associations
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Chartmaster", inversedBy="chartdetails")
-	 * @ORM\JoinColumn(name="accountcode", referencedColumnName="accountcode")
-	 */
-	protected $chartmaster;
-	
-	/**
-	 * @ORM\ManyToOne(targetEntity="Periods", inversedBy="chartdetails")
-	 * @ORM\JoinColumn(name="period", referencedColumnName="periodno")
-	 */
-	protected $periodref;
 	
 	// Methods
 
