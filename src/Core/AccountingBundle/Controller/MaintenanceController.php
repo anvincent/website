@@ -91,9 +91,9 @@ class MaintenanceController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
-        	$accountcode = $this->get('request')->request->get('accountcode');
-        	$accountname = $this->get('request')->request->get('accountname');
-        	$group = $this->get('request')->request->get('group_');
+        	$accountcode = $form["accountcode"]->getData();
+        	$accountname = $form["accountname"]->getData();
+        	$group = $form["group_"]->getData();
         	if ($form->isValid()) {
         		$chartmaster->setAccountcode($accountcode);
         		$chartmaster->setAccountname($accountname);
