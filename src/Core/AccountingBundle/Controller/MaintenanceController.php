@@ -105,12 +105,13 @@ class MaintenanceController extends Controller
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
         	$this->showchartmasterAction($returnMessage);
+        } else {
+	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+	        		'chartmaster' => $chartmaster,
+	        		'accountcode_id'  => $account_id,
+	        		'form'        => $form->createView()
+	        ));
         }
-        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
-        		'chartmaster' => $chartmaster,
-        		'accountcode_id'  => $account_id,
-        		'form'        => $form->createView()
-        ));
 	}
 	
 	protected function getChartmaster($id=null) 
