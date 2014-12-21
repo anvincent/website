@@ -80,10 +80,15 @@ class MaintenanceController extends Controller
 	
 	public function editchartmasterAction($account_id)
 	{
-		$chartmaster = new Chartmaster();
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$chartmaster = $this->getChartmaster($account_id);
+		if (!$chartmaster) {
+			$chartmaster = new Chartmaster();
+		}
+        $form = $this->createForm(new ChartmasterType(), $chartmaster);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-        	$form = $this->createForm(new ChartmasterType(), $chartmaster);
         	$form->bind($request);
         	$accountcode = $this->get('request')->request->get('accountcode');
         	$accountname = $this->get('request')->request->get('accountname');
@@ -92,22 +97,18 @@ class MaintenanceController extends Controller
         		$chartmaster->setAccountcode($accountcode);
         		$chartmaster->setAccountname($accountname);
         		$chartmaster->setGroup_($group);
-        		$em = $this->getDoctrine()
-						   ->getManager();
+        		$em->persist($chartmaster);
         		$em->flush();
         		$returnMessage = "Account $accountcode successfully updated.";
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
         	$this->showchartmasterAction($returnMessage);
-        } else {
-        	$chartmaster = $this->getChartmaster($account_id);
-        	$form = $this->createForm(new ChartmasterType(), $chartmaster);
-        	return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
-        			'chartmaster' => $chartmaster,
-        			'form'        => $form->createView()
-        	));
         }
+        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+        		'chartmaster' => $chartmaster,
+        		'form'        => $form->createView()
+        ));
 	}
 	
 	protected function getChartmaster($id=null) 
