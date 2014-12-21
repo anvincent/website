@@ -48,33 +48,66 @@ class MaintenanceController extends Controller
 	 * 		post
 	 * 		delete
 	 */
-	public function showchartmasterAction()
+	public function showchartmasterAction($returnMessage=null)
 	{
 		$transactionData = $this->getChartmaster();
 		return $this->render('CoreAccountingBundle:Maintenance:chartmastershow.html.twig', array(
 				'title' => 'Chart of Accounts',
+				'returnMessage' => $returnMessage,
 				'accounts' => $transactionData
+		));
+	}
+
+	public function editchartmasterAction_old($account_id)
+	{
+		$chartmaster = $this->getChartmaster($account_id);
+		//	$groupstage = $chartmaster->getGroup_();
+		//	$grouplist = array();
+		//	$grouplist[$groupstage] = $groupstage;
+		//	$accountgroups = $this->getAccountgroups();
+		//	foreach($accountgroups as $group) {
+		//		$grouplist[$group->getGroupname()] = $group->getGroupname();
+		//	}
+		//	$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
+	
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
+	
+		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+				'chartmaster' => $chartmaster,
+				'form'        => $form->createView()
 		));
 	}
 	
 	public function editchartmasterAction($account_id)
 	{
-		$chartmaster = $this->getChartmaster($account_id);
-	//	$groupstage = $chartmaster->getGroup_();
-	//	$grouplist = array();
-	//	$grouplist[$groupstage] = $groupstage;
-	//	$accountgroups = $this->getAccountgroups();
-	//	foreach($accountgroups as $group) {
-	//		$grouplist[$group->getGroupname()] = $group->getGroupname();
-	//	}
-	//	$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
-		
-		$form = $this->createForm(new ChartmasterType(), $chartmaster);
-		
-		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
-				'chartmaster' => $chartmaster,
-				'form'        => $form->createView()
-		));
+		$chartmaster = new Chartmaster();
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form = $this->createForm(new ChartmasterType(), $chartmaster);
+        	$form->bind($request);
+        	$accountcode = $this->get('request')->request->get('accountcode');
+        	$accountname = $this->get('request')->request->get('accountname');
+        	$group = $this->get('request')->request->get('group_');
+        	if ($form->isValid()) {
+        		$chartmaster->setAccountcode($accountcode);
+        		$chartmaster->setAccountname($accountname);
+        		$chartmaster->setGroup_($group);
+        		$em = $this->getDoctrine()
+						   ->getManager();
+        		$em->flush();
+        		$returnMessage = '';
+        	} else {
+        		$returnMessage = '';
+        	}
+        	$this->showchartmasterAction($returnMessage);
+        } else {
+        	$chartmaster = $this->getChartmaster($account_id);
+        	$form = $this->createForm(new ChartmasterType(), $chartmaster);
+        	return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+        			'chartmaster' => $chartmaster,
+        			'form'        => $form->createView()
+        	));
+        }
 	}
 	
 	protected function getChartmaster($id=null) 
@@ -96,9 +129,8 @@ class MaintenanceController extends Controller
 	public function postchartmasterAction(Request $request)
 	{
 		$chartmaster = new Chartmaster();
-        $request = $this->getRequest();
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
-        $form->bind($request);		
+        $form->bind($request);
 		if ($form->isValid()) {
 			// test
 			

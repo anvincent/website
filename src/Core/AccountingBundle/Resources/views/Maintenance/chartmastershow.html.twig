@@ -4,6 +4,9 @@
 {% block title %}Accounting - Chart of Accounts{% endblock %}
 
 {% block body %}
+{% if returnMessage != null %}
+<p>{{ returnMessage }}</p>
+{% endif %}
 <table>
 	<tr>
 		<th>Account Nr.</th>
