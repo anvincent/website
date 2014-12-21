@@ -105,9 +105,9 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
-        	//return $this->redirect($this-generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         	//return newRedirectResponse($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'));
-        	return $this-get('router')->generate('CoreAccountingBundle_maintenance_chartmaster_show');
+        	//return $this-get('router')->generate('CoreAccountingBundle_maintenance_chartmaster_show');
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 	        		'chartmaster' => $chartmaster,
