@@ -4,9 +4,7 @@
 {% block title %}Accounting - Chart of Accounts{% endblock %}
 
 {% block body %}
-{% if returnMessage != null %}
-<p>{{ returnMessage }}</p>
-{% endif %}
+<p>{{ app.session.flashbag.get('returnMessage') }}</p>
 <table>
 	<tr>
 		<th>Account Nr.</th>
