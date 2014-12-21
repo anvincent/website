@@ -87,7 +87,6 @@ class MaintenanceController extends Controller
 		$chartmaster = $this->getChartmaster($account_id);
 		if (!$chartmaster) {
 			$chartmaster = new Chartmaster();
-			echo "<p>new</p>";
 		}
         $form = $this->createForm(new ChartmasterType(), $chartmaster);
         $request = $this->getRequest();
@@ -106,8 +105,11 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
+        	
+        	$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+        	
         	//$this->addFlash('returnMessage',$returnMessage);
-        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	//$session->getFlashBag()->add('returnMessage',$returnMessage);
         	
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         } else {
