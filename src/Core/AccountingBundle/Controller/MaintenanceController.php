@@ -95,9 +95,9 @@ class MaintenanceController extends Controller
         		$em = $this->getDoctrine()
 						   ->getManager();
         		$em->flush();
-        		$returnMessage = '';
+        		$returnMessage = "Account $accountcode successfully updated.";
         	} else {
-        		$returnMessage = '';
+        		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
         	$this->showchartmasterAction($returnMessage);
         } else {
