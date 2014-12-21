@@ -58,7 +58,7 @@ class MaintenanceController extends Controller
 		));
 	}
 
-	public function old_editchartmasterAction($account_id)
+	public function oldeditchartmasterAction($account_id)
 	{
 		$chartmaster = $this->getChartmaster($account_id);
 		//	$groupstage = $chartmaster->getGroup_();
