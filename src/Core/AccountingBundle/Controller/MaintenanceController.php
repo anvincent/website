@@ -105,12 +105,7 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
-        	
         	$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
-        	
-        	//$this->addFlash('returnMessage',$returnMessage);
-        	//$session->getFlashBag()->add('returnMessage',$returnMessage);
-        	
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(

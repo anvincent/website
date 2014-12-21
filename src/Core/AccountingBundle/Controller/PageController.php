@@ -25,23 +25,21 @@ class PageController extends Controller
     
     
     
-    
+    /*
     
     
     public function chartmasterAction($account_id=null)
     {
     	$em = $this->getDoctrine()
     			   ->getManager();
-    	
     	$transactionData = $em->getRepository('CoreAccountingBundle:Chartmaster')
     						  ->findAll();
-    	
     	return $this->render('CoreAccountingBundle:Page:test.html.twig', array(
     			'accounts' => $transactionData
     	));
     }
     
-    
+    */
     
     public function editAction($page,$id=null) {
     	
