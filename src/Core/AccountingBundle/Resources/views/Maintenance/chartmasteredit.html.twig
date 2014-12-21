@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':accountcode}) }}" 
+<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':account_id}) }}" 
 		method="post" {{ form_enctype(form) }} class="core">
     {{ form_widget(form) }}
 </form>
