@@ -33,7 +33,7 @@ CoreAccountingBundle_maintenance_chartmaster_edit:
 
 CoreAccountingBundle_maintenance_chartmaster_post:
     pattern:	/accounting/maintenance/chartmaster/post
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:postchartmaster }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editchartmaster }
     requirements:
         _method:  POST
 
