@@ -85,6 +85,7 @@ class MaintenanceController extends Controller
 		$chartmaster = $this->getChartmaster($account_id);
 		if (!$chartmaster) {
 			$chartmaster = new Chartmaster();
+			echo "<p>new</p>";
 		}
         $form = $this->createForm(new ChartmasterType(), $chartmaster);
         $request = $this->getRequest();
