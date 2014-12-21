@@ -104,7 +104,7 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
-        	$this->showchartmasterAction($returnMessage);
+        	return $this->redirect($this-generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
 	        		'chartmaster' => $chartmaster,
@@ -132,23 +132,7 @@ class MaintenanceController extends Controller
 	
 	public function postchartmasterAction(Request $request)
 	{
-		$chartmaster = new Chartmaster();
-		$form = $this->createForm(new ChartmasterType(), $chartmaster);
-        $form->bind($request);
-		if ($form->isValid()) {
-			// test
-			
-			
-        	$em = $this->getDoctrine()
-        			   ->getManager();
-        	$em->persist($chartmaster);
-        	$em->flush();
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'));
-		}
-		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
-				'chartmaster' => $chartmaster,
-				'form'        => $form->createView()
-		));
+		
 	}
 	
 	
