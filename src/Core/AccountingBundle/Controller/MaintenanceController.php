@@ -108,6 +108,7 @@ class MaintenanceController extends Controller
         }
         return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
         		'chartmaster' => $chartmaster,
+        		'accountcode_id'  => $account_id,
         		'form'        => $form->createView()
         ));
 	}
