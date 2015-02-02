@@ -1,6 +1,6 @@
 {# src/Core/AccountingBundle/Resources/views/Maintenance/chartmaster.form.html.twig #}
 
 <form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit') }}" 
-		method="post" {{ form_enctype(form) }} class="core">
-    {{ form_widget(form) }}
+		method="post" {{ form_enctype(form) }} >
+    {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
 </form>

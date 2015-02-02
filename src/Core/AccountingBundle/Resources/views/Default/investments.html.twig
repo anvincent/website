@@ -1,0 +1,57 @@
+{# src/Core/AccountingBundle/Resources/views/Default/investments.html.twig #}
+{% extends 'CoreAccountingBundle::layout.html.twig' %}
+
+{% block title %}Core Investments System - Home{% endblock %}
+
+{% block navigation %}
+
+<li>
+    <a href="#"><i class="fa fa-calculator fa-fw"></i> Transactions<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li><a href="{{ path('#') }}">Download Market Quotes</a></li>
+        <li><a href="{{ path('#') }}">Single Investment Transaction</a></li>
+    </ul>
+    <!-- /.nav-second-level -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-wrench fa-fw"></i> Tools<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li><a href="{{ path('#') }}">Post to Investment Ledger</a></li>
+    </ul>
+    <!-- /.nav-second-level -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-cog fa-fw"></i> Maintenance<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li><a href="{{ path('#') }}">Manage Portfolios</a></li>
+        <li><a href="{{ path('#') }}">Security Master</a></li>
+    </ul>
+    <!-- /.nav-second-level -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-cog fa-fw"></i> Reports<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li><a href="{{ path('#') }}">Dashboard</a></li>
+    </ul>
+    <!-- /.nav-second-level -->
+</li>
+
+{% endblock %}
+
+
+{% block headtitle %}
+Investments Home
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+	<div class="col-lg-12">
+    Welcome to the Home Page for the Core Investments system. You are at
+    	<div class="well">{{ path('CoreAccountingBundle_investments_home') }}</div>
+    </div>
+</div>
+{% endblock %}

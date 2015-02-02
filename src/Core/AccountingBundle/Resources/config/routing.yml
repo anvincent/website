@@ -1,24 +1,28 @@
-CoreAccountingBundle_homepage:
+# Top
+CoreAccountingBundle_home:
+    pattern:  /index
+    defaults: { _controller: CoreAccountingBundle:Default:index }
+    requirements:
+        _method:  GET
+
+## Accounting app
+CoreAccountingBundle_accounting_home:
     pattern:  /accounting/index
-    defaults: { _controller: CoreAccountingBundle:Page:index }
+    defaults: { _controller: CoreAccountingBundle:Default:accounting }
     requirements:
         _method:  GET
 
-CoreAccountingBundle_transactions:
-    pattern:  /accounting/transactions
-    defaults: { _controller: CoreAccountingBundle:Page:transactions }
-    requirements:
-        _method:  GET
+### Accounting Transactions
 
 
 
+### Accounting Tools
 
 
 
-CoreAccountingBundle_maintenance:
-    pattern:  /accounting/maintenance
-    defaults: { _controller: CoreAccountingBundle:Page:maintenance }
+### Accounting Maintenance
 
+#### Chart of Accounts
 CoreAccountingBundle_maintenance_chartmaster_show:
     pattern:	/accounting/maintenance/chartmaster
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:showchartmaster }
@@ -37,60 +41,36 @@ CoreAccountingBundle_maintenance_chartmaster_delete:
     requirements:
         _method:  GET
 
+#### Periods
+
+
+#### Budget
+
+
+#### Tags
+
+
+#### Import Transaction Definitions
 
 
 
+### Accounting Reports
 
 
+## Investments app
+CoreAccountingBundle_investments_home:
+    pattern:  /investments/index
+    defaults: { _controller: CoreAccountingBundle:Default:investments }
+    requirements:
+        _method:  GET
 
-
-
-
-CoreAccountingBundle_test:
-    pattern:  /accounting/test
-    defaults: { _controller: CoreAccountingBundle:Page:test }
+## Assets app
+CoreAccountingBundle_assets_home:
+    pattern:  /assets/index
+    defaults: { _controller: CoreAccountingBundle:Default:assets }
     requirements:
         _method:  GET
 
 
 
-    
-CoreAccountingBundle_transactions_single:
-    pattern:  /accounting/transactions/single
-    defaults: { _controller: CoreAccountingBundle:Transactions:single }
-    
-CoreAccountingBundle_transactions_batch:
-    pattern:  /accounting/transactions/batch
-    defaults: { _controller: CoreAccountingBundle:Transactions:batch }
-
-
-
-
-
-
-
-
-
-
-    
-CoreAccountingBundle_maintenance_importdefinitions:
-    pattern:  /accounting/maintenance/importdefinitions
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
-    
-CoreAccountingBundle_maintenance_importdefinitions_create:
-    pattern:  /accounting/maintenance/importdefinitions
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
-    
-CoreAccountingBundle_maintenance_importdefinitions_edit:
-    pattern:  /accounting/maintenance/importdefinitions
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
-    
-CoreAccountingBundle_maintenance_importdefinitions_delete:
-    pattern:  /accounting/maintenance/importdefinitions
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
-    
-    
-CoreAccountingBundle_maintenance_chartofaccounts:
-    pattern:  /accounting/maintenance/chartofaccounts
-    defaults: { _controller: CoreAccountingBundle:Maintenance:index }
     

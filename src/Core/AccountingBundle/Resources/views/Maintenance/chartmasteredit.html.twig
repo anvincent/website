@@ -3,11 +3,19 @@
 
 {% block title %}Accounting - Chart of Accounts{% endblock %}
 
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Edit Chart of Accounts
+{% endblock %}
+
 {% block body %}
 
-<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':accountcode_id}) }}" 
-		method="post" {{ form_enctype(form) }} class="core">
-    {{ form_widget(form) }}
+<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit') }}" 
+		method="post" {{ form_enctype(form) }} >
+    {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
 </form>
 
 {% endblock %}
