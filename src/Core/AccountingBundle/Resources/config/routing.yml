@@ -1,6 +1,6 @@
 # Top
 CoreAccountingBundle_home:
-    pattern:  /index
+    pattern:  /
     defaults: { _controller: CoreAccountingBundle:Default:index }
     requirements:
         _method:  GET
