@@ -60,21 +60,25 @@ class MaintenanceController extends Controller
 		));
 	}
 
-	public function oldeditchartmasterAction($account_id)
+	public function addchartmasterAction(Request $request)
 	{
-		$chartmaster = $this->getChartmaster($account_id);
-		//	$groupstage = $chartmaster->getGroup_();
-		//	$grouplist = array();
-		//	$grouplist[$groupstage] = $groupstage;
-		//	$accountgroups = $this->getAccountgroups();
-		//	foreach($accountgroups as $group) {
-		//		$grouplist[$group->getGroupname()] = $group->getGroupname();
-		//	}
-		//	$form = $this->createForm(new ChartmasterType($grouplist), $chartmaster);
-	
+		$chartmaster = new Chartmaster();
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
-	
-		return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+		$form->handleRequest($request);
+		
+		if ($form->isValid()) {
+			$em = $this	->getDoctrine()
+						->getManager();
+			$em->persist($chartmaster);
+			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Account added');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
+		}
+		
+		return $this->render('CoreAccountingBundle:Maintenance:chartmasteradd.html.twig', array(
 				'chartmaster' => $chartmaster,
 				'form'        => $form->createView()
 		));

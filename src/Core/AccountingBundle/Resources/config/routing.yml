@@ -31,7 +31,7 @@ CoreAccountingBundle_maintenance_chartmaster_show:
 
 CoreAccountingBundle_maintenance_chartmaster_add:
     pattern:	/accounting/maintenance/chartmaster/add
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editchartmaster }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addchartmaster }
     requirements:
         _method:  GET|POST
 
