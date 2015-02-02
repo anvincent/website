@@ -48,6 +48,29 @@ CoreAccountingBundle_maintenance_chartmaster_delete:
         _method:  GET
 
 #### Periods
+CoreAccountingBundle_maintenance_periods_show:
+    pattern:	/accounting/maintenance/periods
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showperiods }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_periods_add:
+    pattern:	/accounting/maintenance/periods/add
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addperiods }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_periods_edit:
+    pattern:	/accounting/maintenance/periods/edit/{period_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editperiods }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_periods_delete:
+    pattern:	/accounting/maintenance/periods/delete/{period_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteperiods }
+    requirements:
+        _method:  GET
 
 
 #### Budget
