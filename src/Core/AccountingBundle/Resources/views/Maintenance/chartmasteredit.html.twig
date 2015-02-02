@@ -1,5 +1,5 @@
 {# src/Core/AccountingBundle/Resources/views/Maintenance/chartmasteredit.html.twig #}
-{% extends 'CoreAccountingBundle::layout.html.twig' %}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
 
 {% block title %}Accounting - Chart of Accounts{% endblock %}
 
@@ -13,7 +13,7 @@ Edit Chart of Accounts
 
 {% block body %}
 
-<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit') }}" 
+<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':accountcode_id}) }}" 
 		method="post" {{ form_enctype(form) }} >
     {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
 </form>

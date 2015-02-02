@@ -1,4 +1,4 @@
-{# src/Core/AccountingBundle/Resources/views/Maintenance/show.html.twig #}
+{# src/Core/AccountingBundle/Resources/views/Maintenance/chartmastershow.html.twig #}
 {% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
 
 {% block title %}Accounting - Chart of Accounts{% endblock %}
@@ -40,18 +40,15 @@ Display Chart of Accounts
 					    	<td>{{ account.accountcode }}</td>
 					    	<td>{{ account.accountname }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':account.accountcode}) }}">
-					    		<img src="{{ asset('images/file_edit.png') }}" alt="Edit Account" />
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_chartmaster_delete',{'account_id':account.accountcode}) }}">
-					    		<img src="{{ asset('images/file_delete.png') }}" alt="Delete Account" />
 					    		<i class="fa fa-times"></i>
 					    	</a></td>
 						</tr>
 					    {% else %}
 					        <p>There are no accounts within the chart</p>
 					    {% endfor %}
-					    <tr><a href="#">Return to Maintenance</a></tr>
 					    </tbody>
 					</table>
 				</div>
