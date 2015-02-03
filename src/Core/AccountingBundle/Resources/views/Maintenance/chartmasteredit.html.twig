@@ -22,7 +22,7 @@ Edit Chart of Accounts
 			<div class="panel-body">
             	<div class="row">
                 	<div class="col-lg-6">
-                    	{{ form_start(form) }}
+                    	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
                     		<div class="form-group">
                     			{{ form_label(form.accountcode, 'Account Code') }}
 								{{ form_errors(form.accountcode) }}
