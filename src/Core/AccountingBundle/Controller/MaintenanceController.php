@@ -184,7 +184,7 @@ class MaintenanceController extends Controller
 //				$em->flush();
 				$returnMessage = "Account $accountcode successfully removed.";
 			} else {
-				$returnMessage = "An error occurred during the processing of $accountcode.";
+				$returnMessage = "An error occurred during the removing of account $accountcode.";
 			}
 			$errorArray[5] = $returnMessage;																	//test
 //			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
