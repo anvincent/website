@@ -161,17 +161,17 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()
 		->getManager();
-		echo '<p>$account_id: </p>';print_r($account_id);							//test
 		$chartmaster = $this->getChartmaster($account_id);
-		echo '<p>$chartmaster: </p>';print_r($chartmaster->getAccountcode());							//test
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find this entity.');
 		}
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
+				echo '<p>inside POST if</p>';															//test
 			$form->bind($request);
 			$accountcode = $form["accountcode"]->getData();
+				echo '<p>$accountcode: </p>';print_r($accountcode);										//test
 			$confirm = $form["Confirm"]->getData();
 			if ($form->isValid()) {
 //				$em->remove($chartmaster);
