@@ -189,7 +189,7 @@ class MaintenanceController extends Controller
 			$errorArray[5] = $returnMessage;																	//test
 //			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
 //			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
-			return new Response($errorArray);
+			return new Response(print_r($errorArray));
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:chartmasterdelete.html.twig', array(
 					'chartmaster' => $chartmaster,
