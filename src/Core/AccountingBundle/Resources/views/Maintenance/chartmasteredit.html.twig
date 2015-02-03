@@ -24,16 +24,29 @@ Edit Chart of Accounts
                 	<div class="col-lg-6">
                     	{{ form_start(form) }}
                     		<div class="form-group">
-                    		
-                    		
-                            	<label>Account Code</label>
-                                <input class="form-control" id="Accountcode">
+                    			{{ form_label(form.Accountcode, 'Account Code') }}
+								{{ form_errors(form.Accountcode) }}
+								{{ form_widget(form.Accountcode, {'attr': {'class': 'form-control'}}) }}
                             </div>
-
-
-<form action="{{ path('CoreAccountingBundle_maintenance_chartmaster_edit',{'account_id':accountcode_id}) }}" 
-		method="post" {{ form_enctype(form) }} >
-    {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
-</form>
+                    		<div class="form-group">
+                    			{{ form_label(form.Accountname, 'Account Code') }}
+								{{ form_errors(form.Accountname) }}
+								{{ form_widget(form.Accountname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.Group, 'Account Code') }}
+								{{ form_errors(form.Group) }}
+								{{ form_widget(form.Group, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div>
+								{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+							</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>			
+		</div>				
+	</div>
+</div>
 
 {% endblock %}
