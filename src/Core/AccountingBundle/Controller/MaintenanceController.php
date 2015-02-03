@@ -157,30 +157,24 @@ class MaintenanceController extends Controller
 	//
 	//
 		
-	public function deletechartmasterAction($account_id=null)
+	public function deletechartmasterAction($account_id)
 	{
 		$em = $this->getDoctrine()
 		->getManager();
-		
-		
 		$chartmaster = $this->getChartmaster($account_id);
 		if (!$chartmaster) {
-			$chartmaster = new Chartmaster();
+			throw $this->createNotFoundException('Unable to find this entity.');
 		}
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$accountcode = $form["accountcode"]->getData();
-			$accountname = $form["accountname"]->getData();
-			$group = $form["group_"]->getData();
-			if ($form->isValid()) {
-				$chartmaster->setAccountcode($accountcode);
-				$chartmaster->setAccountname($accountname);
-				$chartmaster->setGroup_($group);
-				$em->persist($chartmaster);
+			$confirm = $form["Confirm"]->getData();
+			if ($form->isValid() && $confirm) {
+				$em->remove($chartmaster);
 				$em->flush();
-				$returnMessage = "Account $accountcode successfully updated.";
+				$returnMessage = "Account $accountcode successfully removed.";
 			} else {
 				$returnMessage = "An error occurred during the processing of $accountcode.";
 			}
@@ -193,10 +187,6 @@ class MaintenanceController extends Controller
 					'form'        => $form->createView()
 			));
 		}
-		
-		
-		
-		
 	}
 	
 	/* Budget - chartdetails */
