@@ -159,25 +159,17 @@ class MaintenanceController extends Controller
 		
 	public function deletechartmasterAction($account_id)
 	{
-		//TEST
-		$errorArray = array();
-				$errorArray[1] = "account_id is: $account_id";													//test
-		
 		$em = $this->getDoctrine()
 		->getManager();
 		$chartmaster = $this->getChartmaster($account_id);
-				$q = $chartmaster->getAccountcode();															//test
-				$errorArray[2] = "account_id is: $q";															//test
 		if (!$chartmaster) {
 			throw $this->createNotFoundException('Unable to find this entity.');
 		}
 		$form = $this->createForm(new ChartmasterType(), $chartmaster);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
-				$errorArray[3] = 'inside POST if';																//test
 			$form->bind($request);
 			$accountcode = $form["accountcode"]->getData();
-				$errorArray[4] = "account_id from form is: $accountcode";										//test
 			$confirm = $form["Confirm"]->getData();
 			if ($form->isValid()) {
 //				$em->remove($chartmaster);
@@ -186,10 +178,11 @@ class MaintenanceController extends Controller
 			} else {
 				$returnMessage = "An error occurred during the removing of account $accountcode.";
 			}
-			$errorArray[5] = $returnMessage;																	//test
-//			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
-//			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
-			return new Response(print_r($errorArray));
+			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+			
+			return new Repsonse('<p>'.print_r($_POST).'</p>');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:chartmasterdelete.html.twig', array(
 					'chartmaster' => $chartmaster,
