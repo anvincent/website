@@ -23,7 +23,10 @@ Delete Chart of Accounts
 				{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
 				<div class="form-group">
 					Please confirm you would like to delete 
-					{{ form_widget(form.accountcode, {'attr': {'class': 'form-control'}}) }}
+					<p class="form-control-static">{{ form.accountcode.vars.name }}<p>
+					
+					<p class="form-control-static">{{ form.accountcode.vars.full_name }}</p>
+					
 					?
 				</div>
 				<div class="form-group">

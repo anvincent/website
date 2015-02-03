@@ -45,7 +45,7 @@ CoreAccountingBundle_maintenance_chartmaster_delete:
     pattern:	/accounting/maintenance/chartmaster/delete/{account_id}
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletechartmaster }
     requirements:
-        _method:  GET
+        _method:  GET|POST
 
 #### Periods
 CoreAccountingBundle_maintenance_periods_show:
