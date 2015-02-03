@@ -45,6 +45,7 @@ class MaintenanceController extends Controller
 	
 	/* Chart of Accounts - chartmaster 
 	 * 		show
+	 * 		add
 	 * 		edit
 	 * 		get
 	 * 		post
@@ -109,7 +110,9 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
-        	$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+        	
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
@@ -136,17 +139,10 @@ class MaintenanceController extends Controller
 		return $chartmaster;
 	}
 	
-	public function postchartmasterAction(Request $request)
-	{
-		
-	}
-	
-	
-	
-	
-	
-	
-	
+	//
+	//
+	// check if the following is used
+	//
 	public function newchartmasterAction($chartmaster=null)
 	{
 		if(isset($data)) {
@@ -158,17 +154,48 @@ class MaintenanceController extends Controller
 				'form'        => $form->createView()
 		));
 	}
-	
-	public function createchartmasterAction()
-	{
+	//
+	//
 		
-		
-		
-		
-	}
-	
 	public function deletechartmasterAction($account_id=null)
 	{
+		$em = $this->getDoctrine()
+		->getManager();
+		
+		
+		$chartmaster = $this->getChartmaster($account_id);
+		if (!$chartmaster) {
+			$chartmaster = new Chartmaster();
+		}
+		$form = $this->createForm(new ChartmasterType(), $chartmaster);
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			$accountcode = $form["accountcode"]->getData();
+			$accountname = $form["accountname"]->getData();
+			$group = $form["group_"]->getData();
+			if ($form->isValid()) {
+				$chartmaster->setAccountcode($accountcode);
+				$chartmaster->setAccountname($accountname);
+				$chartmaster->setGroup_($group);
+				$em->persist($chartmaster);
+				$em->flush();
+				$returnMessage = "Account $accountcode successfully updated.";
+			} else {
+				$returnMessage = "An error occurred during the processing of $accountcode.";
+			}
+			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Maintenance:chartmasterdelete.html.twig', array(
+					'chartmaster' => $chartmaster,
+					'accountcode_id'  => $account_id,
+					'form'        => $form->createView()
+			));
+		}
+		
+		
+		
 		
 	}
 	
