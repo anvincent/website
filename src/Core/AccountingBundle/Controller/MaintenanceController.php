@@ -261,14 +261,14 @@ class MaintenanceController extends Controller
 	{
 	$em = $this->getDoctrine()->getManager();
 	if(isset($id)) {
-	$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
-			->findOneBygroupname($id);
+		$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+								->findOneBygroupname($id);
 	} else {
-			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
-					->findAll();
+		$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+								->findAll();
 	}
-					if (!$accountgroups) {
-	throw $this->createNotFoundException('Unable to find Account.');
+	if (!$accountgroups) {
+		throw $this->createNotFoundException('Unable to find Account.');
 	}
 	return $accountgroups;
 	}
