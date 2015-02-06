@@ -180,6 +180,7 @@ class MaintenanceController extends Controller
 			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
 			
 //			return new Response('<p>'.print_r($_POST).'</p>');
+			var_dump($form->getErrorsAsString());die;
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
 		} else {
