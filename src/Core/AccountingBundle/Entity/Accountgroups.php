@@ -61,8 +61,8 @@ class Accountgroups
 	
 	public function __toString()
 	{
-		//return $this->groupname;
-		return $this->sectioninaccounts;
+		return $this->groupname;
+		//return $this->sectioninaccounts;
 	}
 
     /**
