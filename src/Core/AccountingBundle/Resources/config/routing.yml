@@ -50,6 +50,11 @@ CoreAccountingBundle_maintenance_chartmaster_delete:
 #### Account Sections
 
 #### Account Group
+CoreAccountingBundle_maintenance_accountgroups_show:
+    pattern:	/accounting/maintenance/chartmaster
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showaccountgroups }
+    requirements:
+        _method:  GET
 
 #### Periods
 

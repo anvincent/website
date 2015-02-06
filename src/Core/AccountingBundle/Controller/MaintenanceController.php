@@ -7,9 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+
+// add entities
 use Core\AccountingBundle\Entity\Chartmaster;
 use Core\AccountingBundle\Entity\Accountgroups;
+
+// add forms
 use Core\AccountingBundle\Form\ChartmasterType;
+use Core\AccountingBundle\Form\AccountgroupsType;
 
 class MaintenanceController extends Controller
 {
@@ -21,34 +26,12 @@ class MaintenanceController extends Controller
 	
 	/* Import Transaction Definitions - importtransdefn */
 	
-	/* Account Sections - accountsection */
-	
-	/* Account Groups - accountgroups */
-	
-	
-	
-	protected function getAccountgroups($id=null)
-	{
-		$em = $this->getDoctrine()->getManager();
-		if(isset($id)) {
-			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
-									->findOneBygroupname($id);
-		} else {
-			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
-									->findAll();
-		}
-		if (!$accountgroups) {
-			throw $this->createNotFoundException('Unable to find Account.');
-		}
-		return $accountgroups;
-	}
 	
 	/* Chart of Accounts - chartmaster 
 	 * 		show
 	 * 		add
 	 * 		edit
 	 * 		get
-	 * 		post
 	 * 		delete
 	 */
 	public function showchartmasterAction($returnMessage=null)
@@ -178,10 +161,6 @@ class MaintenanceController extends Controller
 				$returnMessage = "An error occurred during the removing of account $accountcode.";
 			}
 			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
-			
-//			return new Response('<p>'.print_r($_POST).'</p>');
-//			var_dump($form->getErrorsAsString());die;
-			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:chartmasterdelete.html.twig', array(
@@ -191,6 +170,105 @@ class MaintenanceController extends Controller
 			));
 		}
 	}
+	
+	/* Account Sections - accountsection */
+	
+	/* Account Groups - accountgroups
+	 * 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showaccountgroupsAction($returnMessage=null)
+	{
+		$transactionData = $this->getAccountgroups();
+		return $this->render('CoreAccountingBundle:Maintenance:accountgroupsshow.html.twig', array(
+				'title' => 'Account Groups',
+				'returnMessage' => $returnMessage,
+				'accounts' => $transactionData
+		));
+	}
+
+	public function addaccountgroupsAction(Request $request)
+	{
+		$accountgroups = new Accountgroups();
+		$form = $this->createForm(new AccountgroupsType(), $accountgroups);
+		$form->handleRequest($request);
+		
+		if ($form->isValid()) {
+			$em = $this	->getDoctrine()
+						->getManager();
+			$em->persist($chartmaster);
+			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Account added');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
+		}
+		
+		return $this->render('CoreAccountingBundle:Maintenance:accountgroupsadd.html.twig', array(
+				'accountgroups' => $accountgroups,
+				'form'        => $form->createView()
+		));
+	}
+	
+	public function editAccountgroupsAction($account_id)
+	{
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$chartmaster = $this->getChartmaster($account_id);
+		if (!$chartmaster) {
+			$chartmaster = new Chartmaster();
+		}
+        $form = $this->createForm(new ChartmasterType(), $chartmaster);
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	$accountcode = $form["accountcode"]->getData();
+        	$accountname = $form["accountname"]->getData();
+        	$group = $form["group_"]->getData();
+        	if ($form->isValid()) {
+        		$chartmaster->setAccountcode($accountcode);
+        		$chartmaster->setAccountname($accountname);
+        		$chartmaster->setGroup_($group);
+        		$em->persist($chartmaster);
+        		$em->flush();
+        		$returnMessage = "Account $accountcode successfully updated.";
+        	} else {
+        		$returnMessage = "An error occurred during the processing of $accountcode.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
+        } else {
+	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
+	        		'chartmaster' => $chartmaster,
+	        		'accountcode_id'  => $account_id,
+	        		'form'        => $form->createView()
+	        ));
+        }
+	}
+	
+	
+	
+	protected function getAccountgroups($id=null)
+	{
+	$em = $this->getDoctrine()->getManager();
+	if(isset($id)) {
+	$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+			->findOneBygroupname($id);
+	} else {
+			$accountgroups = $em	->getRepository('CoreAccountingBundle:Accountgroups')
+					->findAll();
+	}
+					if (!$accountgroups) {
+	throw $this->createNotFoundException('Unable to find Account.');
+	}
+	return $accountgroups;
+	}
+	
 	
 	/* Budget - chartdetails */
 	
