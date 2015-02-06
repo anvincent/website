@@ -26,13 +26,12 @@ Delete Chart of Accounts
 					<p class="form-control-static">{{ form.accountcode.vars.value }}
 					 - {{ form.accountname.vars.value }}?</p>
 				</div>
-				<div class="form-group" style="display: none;">
-					{{ form_widget(form.accountcode, {'attr': {'class': 'form-control'}}) }}
-                </div>
 				<div class="form-group">
 					{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
 				</div>
-				{{ form_end(form, {'render_rest': false}) }}
+				<div style="display: none;">
+					{{ form_end(form) }}
+				</div>
 			</div>			
 		</div>				
 	</div>
