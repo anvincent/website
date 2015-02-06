@@ -186,7 +186,7 @@ class MaintenanceController extends Controller
 		return $this->render('CoreAccountingBundle:Maintenance:accountgroupsshow.html.twig', array(
 				'title' => 'Account Groups',
 				'returnMessage' => $returnMessage,
-				'accounts' => $transactionData
+				'groups' => $transactionData
 		));
 	}
 
