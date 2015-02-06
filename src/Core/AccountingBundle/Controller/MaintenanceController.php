@@ -171,8 +171,8 @@ class MaintenanceController extends Controller
 			$accountcode = $form["accountcode"]->getData();
 			$confirm = $form["Confirm"]->getData();
 			if ($form->isValid()) {
-//				$em->remove($chartmaster);
-//				$em->flush();
+				$em->remove($chartmaster);
+				$em->flush();
 				$returnMessage = "Account $accountcode successfully removed.";
 			} else {
 				$returnMessage = "An error occurred during the removing of account $accountcode.";
