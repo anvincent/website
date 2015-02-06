@@ -113,6 +113,9 @@ class MaintenanceController extends Controller
         	
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	
+        	return new Response('<p>'.print_r($_POST).'</p>');
+        	
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
