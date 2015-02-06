@@ -110,7 +110,6 @@ class MaintenanceController extends Controller
         	} else {
         		$returnMessage = "An error occurred during the processing of $accountcode.";
         	}
-        	
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
@@ -180,7 +179,7 @@ class MaintenanceController extends Controller
 			}
 			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
 			
-			return new Response('<p>'.print_r($_POST).'</p>');
+//			return new Response('<p>'.print_r($_POST).'</p>');
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
 		} else {
