@@ -22,7 +22,10 @@ class AccountgroupsType extends AbstractType
             ))
             ->add('pandl','text')
             ->add('sequenceintb','text')
-            ->add('parentgroupname','text')
+            ->add('parentgroupname','entity',array(
+            		'class' => 'CoreAccountingBundle:Accountgroups',
+            		'property' => 'groupname'
+            ))
             ->add('Confirm','submit');
     }
       

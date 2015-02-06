@@ -214,38 +214,42 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function editAccountgroupsAction($account_id)
+	public function editAccountgroupsAction($group_id)
 	{
 		$em = $this->getDoctrine()
 				   ->getManager();
-		$chartmaster = $this->getChartmaster($account_id);
-		if (!$chartmaster) {
-			$chartmaster = new Chartmaster();
+		$accountgroups = $this->getAccountgroups($group_id);
+		if (!$accountgroups) {
+			$accountgroups = new Accountgroups();
 		}
-        $form = $this->createForm(new ChartmasterType(), $chartmaster);
+        $form = $this->createForm(new AccountgroupsType(), $accountgroups);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
-        	$accountcode = $form["accountcode"]->getData();
-        	$accountname = $form["accountname"]->getData();
-        	$group = $form["group_"]->getData();
+        	$groupname = $form["groupname"]->getData();
+        	$sectioninaccounts = $form["sectioninaccounts"]->getData();
+        	$pandl = $form["pandl"]->getData();
+        	$sequenceintb = $form["sequenceintb"]->getData();
+        	$parentgroupname = $form["parentgroupname"]->getData();
         	if ($form->isValid()) {
-        		$chartmaster->setAccountcode($accountcode);
-        		$chartmaster->setAccountname($accountname);
-        		$chartmaster->setGroup_($group);
-        		$em->persist($chartmaster);
+        		$accountgroups->setGroupname($groupname);
+        		$accountgroups->setSectioninaccounts($sectioninaccounts);
+        		$accountgroups->setPandl($pandl);
+        		$accountgroups->setSequenceintb($sequenceintb);
+        		$accountgroups->setParentgroupname($parentgroupname);
+        		$em->persist($accountgroups);
         		$em->flush();
-        		$returnMessage = "Account $accountcode successfully updated.";
+        		$returnMessage = "Account group $groupname successfully updated.";
         	} else {
-        		$returnMessage = "An error occurred during the processing of $accountcode.";
+        		$returnMessage = "An error occurred during the processing of $groupname.";
         	}
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
-        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_chartmaster_show'),301);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
         } else {
-	        return $this->render('CoreAccountingBundle:Maintenance:chartmasteredit.html.twig', array(
-	        		'chartmaster' => $chartmaster,
-	        		'accountcode_id'  => $account_id,
+	        return $this->render('CoreAccountingBundle:Maintenance:accountgroupsedit.html.twig', array(
+	        		'chartmaster' => $accountgroups,
+	        		'accountcode_id'  => $group_id,
 	        		'form'        => $form->createView()
 	        ));
         }

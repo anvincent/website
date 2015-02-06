@@ -56,6 +56,24 @@ CoreAccountingBundle_maintenance_accountgroups_show:
     requirements:
         _method:  GET
 
+CoreAccountingBundle_maintenance_accountgroups_add:
+    pattern:	/accounting/maintenance/accountgroups/add
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addaccountgroups }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_accountgroups_edit:
+    pattern:	/accounting/maintenance/accountgroups/edit/{group_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editaccountgroups }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_accountgroups_delete:
+    pattern:	/accounting/maintenance/accountgroups/delete/{group_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteaccountgroups }
+    requirements:
+        _method:  GET|POST
+
 #### Periods
 
 
