@@ -24,10 +24,18 @@ class AccountgroupsType extends AbstractType
             ->add('sequenceintb','text')
             ->add('parentgroupname','entity',array(
             		'class' => 'CoreAccountingBundle:Accountgroups',
-            		'property' => 'groupname',
-            	//	'empty_value' => ''
+            		'property' => 'parentgroupname',
         			'required' => false
             ))
+            
+            /*
+            ->add('parentgroupname','entity',array(
+            		'class' => 'CoreAccountingBundle:Accountgroups',
+            		'property' => 'groupname',
+        			'required' => false
+            ))
+            
+            */
             ->add('Confirm','submit');
     }
       
