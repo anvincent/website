@@ -18,14 +18,14 @@ class AccountgroupsType extends AbstractType
             ->add('groupname','text')
             ->add('sectioninaccounts','entity',array(
             		'class' => 'CoreAccountingBundle:Accountsection',
-            		'property' => 'sectionid',
-            		'empty_value' => ''
+            		'property' => 'sectionid'
             ))
             ->add('pandl','text')
             ->add('sequenceintb','text')
             ->add('parentgroupname','entity',array(
             		'class' => 'CoreAccountingBundle:Accountgroups',
-            		'property' => 'groupname'
+            		'property' => 'groupname',
+            		'empty_value' => ''
             ))
             ->add('Confirm','submit');
     }
