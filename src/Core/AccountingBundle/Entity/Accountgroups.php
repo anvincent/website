@@ -40,8 +40,11 @@ class Accountgroups
 	 */
 	protected $sequenceintb;
 	
+	//@ORM\Column(type="string", length=30)
 	/**
-	 * @ORM\Column(type="string", length=30)
+	 * 
+	 * @ORM\ManyToOne(targetEntity="Accountgroups")
+	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname")
 	 */
 	protected $parentgroupname;
 	
