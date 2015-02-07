@@ -35,7 +35,7 @@ class AccountgroupsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Core\AccountingBundle\Entity\Accountsection'
+            'data_class' => 'Core\AccountingBundle\Entity\Accountgroups'
         ));
     }
 
