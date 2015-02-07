@@ -227,7 +227,7 @@ class MaintenanceController extends Controller
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
         	$groupname = $form["groupname"]->getData();
-        	$sectioninaccounts = $form["sectioninaccounts"]->getData();
+        	$sectioninaccounts = $form["sectionname"]->getData();
         	$pandl = $form["pandl"]->getData();
         	$sequenceintb = $form["sequenceintb"]->getData();
         	$parentgroupname = $form["parentgroupname"]->getData();
