@@ -24,7 +24,7 @@ class Accountgroups
 	
 	/**
 	 * 
-	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="children")
+	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
 	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
 	 */
 	protected $sectioninaccounts;
@@ -41,7 +41,7 @@ class Accountgroups
 	
 	/**
 	 * 
-	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="groupname")
+	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="children")
 	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname")
 	 */
 	protected $parentgroupname;
