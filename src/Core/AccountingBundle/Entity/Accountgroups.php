@@ -39,10 +39,12 @@ class Accountgroups
 	 */
 	protected $sequenceintb;
 	
+	//@ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="children")
+	//@ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname", nullable=true)
+	
 	/**
 	 * 
-	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="children")
-	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname", nullable=true)
+	 * @ORM\Column(type="string", length=30)
 	 */
 	protected $parentgroupname;
 	
