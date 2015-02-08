@@ -55,17 +55,16 @@ class Accountgroups
 	 */
 	protected $chartmasters;
 	
-	/**
-	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="parentgroupname")
-	 */
-	protected $children;
+	//@ORM\OneToMany(targetEntity="Accountgroups", mappedBy="parentgroupname")
+
+//	protected $children;
 	
 	// Methods
 	
 	public function __construct()
 	{
 		$this->chartmasters = new ArrayCollection();
-		$this->children = new ArrayCollection();
+//		$this->children = new ArrayCollection();
 	}
 
     /**
