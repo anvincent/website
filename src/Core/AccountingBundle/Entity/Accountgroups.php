@@ -24,7 +24,7 @@ class Accountgroups
 	
 	/**
 	 * 
-	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
+	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="children")
 	 * @ORM\JoinColumn(name="sectioninaccounts", referencedColumnName="sectionid")
 	 */
 	protected $sectioninaccounts;
