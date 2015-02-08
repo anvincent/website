@@ -63,6 +63,7 @@ class Accountgroups
 	public function __construct()
 	{
 		$this->chartmasters = new ArrayCollection();
+		$this->children = new ArrayCollection();
 	}
 
     /**
