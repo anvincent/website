@@ -62,11 +62,11 @@ class Accountgroups
 		$this->chartmasters = new ArrayCollection();
 	}
 	
-	public function __toString()
-	{
-		return $this->groupname;
-		//return $this->sectioninaccounts;
-	}
+//	public function __toString()
+//	{
+//		//return $this->groupname;
+//		//return $this->sectioninaccounts;
+//	}
 
     /**
      * Set groupname
