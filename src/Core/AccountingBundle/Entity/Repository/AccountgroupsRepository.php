@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class AccountgroupsRepository extends EntityRepository
 {
+	public function getParentGroups()
+	{
+		$sql = "('')
+				UNION
+				(SELECT t.groupname AS parentgroupname FROM CoreAccountingBundle:Accountgroups t)";
+		return $this->getEntityManager()
+			->createQuery($sql)
+			->getResult();
+	}
 }

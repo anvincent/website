@@ -22,11 +22,18 @@ class AccountgroupsType extends AbstractType
             ))
             ->add('pandl','text')
             ->add('sequenceintb','text')
-            ->add('parentgroupname','entity',array(
-            		'class' => 'CoreAccountingBundle:Accountgroups',
-            		'property' => 'groupname',
-            		'required' => false
-            ))
+//            ->add('parentgroupname','entity',array(
+//            		'class' => 'CoreAccountingBundle:Accountgroups',
+//            		'property' => 'groupname',
+//            		'required' => false
+//            ))
+        	->add('parentgroupname','entity',array(
+					'class' => 'CoreAccountingBundle:Accountgroups',
+					'query_builder' => function(EntityRepository $er) {
+        				return $er->getParentGroups();
+						},
+					'required' => false
+			))
             ->add('Confirm','submit');
     }
       
