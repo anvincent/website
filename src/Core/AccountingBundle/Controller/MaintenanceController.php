@@ -199,7 +199,7 @@ class MaintenanceController extends Controller
 		if ($form->isValid()) {
 			$em = $this	->getDoctrine()
 						->getManager();
-			$em->persist($chartmaster);
+			$em->persist($accountgroups);
 			$em->flush();
 			
 			$session = $this->getRequest()->getSession();
