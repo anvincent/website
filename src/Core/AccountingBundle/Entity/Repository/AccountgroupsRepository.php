@@ -14,9 +14,9 @@ class AccountgroupsRepository extends EntityRepository
 {
 	public function getParentGroups()
 	{
-		$sql = "(SELECT '')
+		$sql = "SELECT ''
 				UNION
-				(SELECT t.groupname AS parentgroupname FROM CoreAccountingBundle:Accountgroups t)";
+				SELECT t.groupname AS parentgroupname FROM CoreAccountingBundle:Accountgroups t";
 		return $this->getEntityManager()
 			->createQuery($sql)
 			->getResult();
