@@ -53,6 +53,11 @@ class Accountgroups
 	 */
 	protected $chartmasters;
 	
+	/**
+	 * @ORM\OneToMany(targetEntity="Accountgroups", mappedBy="parentgroupname")
+	 */
+	protected $children;
+	
 	// Methods
 	
 	public function __construct()
