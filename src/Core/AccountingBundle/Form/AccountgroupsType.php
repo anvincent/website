@@ -29,7 +29,7 @@ class AccountgroupsType extends AbstractType
 //            ))
         	->add('parentgroupname','entity',array(
 					'class' => 'CoreAccountingBundle:Accountgroups',
-					'query_builder' => function(Core\AccountingBundle\Entity\Repository $er) {
+					'query_builder' => function(\Core\AccountingBundle\Entity\Repository $er) {
         				return $er->getParentGroups();
 						},
 					'required' => false
