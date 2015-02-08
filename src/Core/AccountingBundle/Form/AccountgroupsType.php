@@ -5,6 +5,7 @@ namespace Core\AccountingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class AccountgroupsType extends AbstractType
 {
@@ -29,7 +30,7 @@ class AccountgroupsType extends AbstractType
 //            ))
         	->add('parentgroupname','entity',array(
 					'class' => 'CoreAccountingBundle:Accountgroups',
-					'query_builder' => function(\Core\AccountingBundle\Entity\Repository $er) {
+					'query_builder' => function(EntityRepository $er) {
         				return $er->getParentGroups();
 						},
 					'required' => false
