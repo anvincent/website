@@ -26,7 +26,7 @@ class AccountgroupsType extends AbstractType
             		'class' => 'CoreAccountingBundle:Accountgroups',
             		'property' => 'groupname',
             		'required' => false,
-            		'placeholder' => ''
+            		'empty_value' => ''
             ))
             ->add('Confirm','submit');
     }
