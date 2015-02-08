@@ -41,7 +41,7 @@ class Accountgroups
 	
 	/**
 	 * 
-	 * @ORM\ManyToOne(targetEntity="Accountgroups")
+	 * @ORM\ManyToOne(targetEntity="Accountgroups", inversedBy="groupname")
 	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname")
 	 */
 	protected $parentgroupname;
