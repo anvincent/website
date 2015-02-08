@@ -23,7 +23,9 @@ class AccountgroupsType extends AbstractType
             ))
             ->add('pandl','text')
             ->add('sequenceintb','text')
-            ->add('parentgroupname','text')
+            ->add('parentgroupname','text',array(
+            		'required' => 'false'
+            ))
             ->add('Confirm','submit');
     }
       
