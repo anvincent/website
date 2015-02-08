@@ -48,7 +48,7 @@ Display Account Groups
 					    	<td>{{ group.sectioninaccounts.sectionname }}</td>
 					    	<td>{{ group.pandl }}</td>
 					    	<td>{{ group.sequenceintb }}</td>
-					    	<td>{{ group.parentgroupname }}</td>
+					    	<td>{{ group.parentgroupname.groupname }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_accountgroups_edit',{'group_id':group.groupname}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
