@@ -22,7 +22,6 @@ class Accountgroups
 	 */
 	protected $groupname;
 	
-	//@ORM\Column(type="integer", length=11)
 	/**
 	 * 
 	 * @ORM\ManyToOne(targetEntity="Accountsection", inversedBy="accountgroups")
@@ -40,11 +39,10 @@ class Accountgroups
 	 */
 	protected $sequenceintb;
 	
-	//@ORM\Column(type="string", length=30)
 	/**
 	 * 
 	 * @ORM\ManyToOne(targetEntity="Accountgroups")
-	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname")
+	 * @ORM\JoinColumn(name="parentgroupname", referencedColumnName="groupname", nullable=false)
 	 */
 	protected $parentgroupname;
 	
@@ -61,12 +59,6 @@ class Accountgroups
 	{
 		$this->chartmasters = new ArrayCollection();
 	}
-	
-//	public function __toString()
-//	{
-//		//return $this->groupname;
-//		//return $this->sectioninaccounts;
-//	}
 
     /**
      * Set groupname
