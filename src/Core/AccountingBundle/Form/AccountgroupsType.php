@@ -25,7 +25,8 @@ class AccountgroupsType extends AbstractType
             ->add('parentgroupname','entity',array(
             		'class' => 'CoreAccountingBundle:Accountgroups',
             		'property' => 'groupname',
-            		'required' => false
+            		'required' => false,
+            		'placeholder' => ''
             ))
             ->add('Confirm','submit');
     }
