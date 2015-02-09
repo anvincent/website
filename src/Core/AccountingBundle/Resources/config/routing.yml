@@ -61,13 +61,13 @@ CoreAccountingBundle_maintenance_accountsection_add:
         _method:  GET|POST
 
 CoreAccountingBundle_maintenance_accountsection_edit:
-    pattern:	/accounting/maintenance/accountgroups/accountsection/{section_id}
+    pattern:	/accounting/maintenance/accountsection/edit/{section_id}
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:editaccountsection }
     requirements:
         _method:  GET|POST
 
 CoreAccountingBundle_maintenance_accountsection_delete:
-    pattern:	/accounting/maintenance/accountgroups/delete/{section_id}
+    pattern:	/accounting/maintenance/accountsection/delete/{section_id}
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteaccountsection }
     requirements:
         _method:  GET|POST
