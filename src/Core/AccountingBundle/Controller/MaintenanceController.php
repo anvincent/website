@@ -138,7 +138,7 @@ class MaintenanceController extends Controller
 	}
 	//
 	//
-		
+	
 	public function deletechartmasterAction($account_id)
 	{
 		$em = $this->getDoctrine()
@@ -171,7 +171,131 @@ class MaintenanceController extends Controller
 		}
 	}
 	
-	/* Account Sections - accountsection */
+	/* Account Sections - accountsection
+	* 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showaccountsectionAction($returnMessage=null)
+	{
+		$transactionData = $this->getAccountsection();
+		return $this->render('CoreAccountingBundle:Maintenance:accountsectionshow.html.twig', array(
+				'title'			=> 'Account Section',
+				'returnMessage' => $returnMessage,
+				'sections'		=> $transactionData
+		));
+	}
+
+	public function addaccountsectionAction(Request $request)
+	{
+		$accountsection = new Accountsection();
+		$form = $this->createForm(new AccountsectionType(), $accountsection);
+		$form->handleRequest($request);
+		
+		if ($form->isValid()) {
+			$em = $this	->getDoctrine()
+						->getManager();
+			$em->persist($accountsection);
+			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Account section added');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountsection_show'),301);
+		}
+		
+		return $this->render('CoreAccountingBundle:Maintenance:accountsectionadd.html.twig', array(
+				'accountgroups' => $accountgroups,
+				'form'        => $form->createView()
+		));
+	}
+	
+	public function editAccountsectionAction($section_id)
+	{
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$accountsection = $this->getAccountsection($section_id);
+		if (!$accountsection) {
+			$accountsection = new Accountsection();
+		}
+        $form = $this->createForm(new AccountsectionType(), $accountsection);
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	$sectionid = $form["sectionid"]->getData();
+        	$sectionname = $form["sectionname"]->getData();
+        	if ($form->isValid()) {
+        		$accountsection->setSectionid($sectionid);
+        		$accountsection->setSectionname($sectionname);
+        		$em->persist($accountsection);
+        		$em->flush();
+        		$returnMessage = "Account section $sectionname successfully updated.";
+        	} else {
+        		$returnMessage = "An error occurred during the processing of $sectionname.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountsection_show'),301);
+        } else {
+	        return $this->render('CoreAccountingBundle:Maintenance:accountsectionedit.html.twig', array(
+	        		'accountsection'	=> $accountsection,
+	        		'section_id'		=> $section_id,
+	        		'form'				=> $form->createView()
+	        ));
+        }
+	}
+	
+	protected function getAccountsection($id=null)
+	{
+	$em = $this->getDoctrine()->getManager();
+	if(isset($id)) {
+		$accountsection = $em	->getRepository('CoreAccountingBundle:Accountsection')
+								->findOneBygroupname($id);
+	} else {
+		$accountsection = $em	->getRepository('CoreAccountingBundle:Accountsection')
+								->findAll();
+	}
+	if (!$accountsection) {
+		throw $this->createNotFoundException('Unable to find Account section.');
+	}
+	return $accountsection;
+	}
+	
+	public function deleteaccountsectionAction($section_id)
+	{
+		$em = $this->getDoctrine()
+		->getManager();
+		$accountsection = $this->getAccountsection($section_id);
+		if (!$accountsection) {
+			throw $this->createNotFoundException('Unable to find this entity.');
+		}
+		$form = $this->createForm(new AccountsectionType(), $accountsection);
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			$sectionid = $form["sectionid"]->getData();
+			$confirm = $form["Confirm"]->getData();
+			if ($form->isValid()) {
+				$em->remove($accountsection);
+				$em->flush();
+				$returnMessage = "Account $accountcode successfully removed.";
+			} else {
+				$returnMessage = "An error occurred during the removing of account $accountcode.";
+			}
+			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountsection_show'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Maintenance:accountsectiondelete.html.twig', array(
+					'accountsection'	=> $accountsection,
+					'section_id'		=> $section_id,
+					'form'				=> $form->createView()
+			));
+		}
+	}
+	
+	
 	
 	/* Account Groups - accountgroups
 	 * 		show
@@ -203,7 +327,7 @@ class MaintenanceController extends Controller
 			$em->flush();
 			
 			$session = $this->getRequest()->getSession();
-			$session->getFlashBag()->add('returnMessage','Account added');
+			$session->getFlashBag()->add('returnMessage','Account group added');
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
 		}
@@ -248,14 +372,12 @@ class MaintenanceController extends Controller
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
         } else {
 	        return $this->render('CoreAccountingBundle:Maintenance:accountgroupsedit.html.twig', array(
-	        		'chartmaster' => $accountgroups,
-	        		'accountcode_id'  => $group_id,
-	        		'form'        => $form->createView()
+	        		'accountgroups'	=> $accountgroups,
+	        		'group_id'		=> $group_id,
+	        		'form'			=> $form->createView()
 	        ));
         }
 	}
-	
-	
 	
 	protected function getAccountgroups($id=null)
 	{

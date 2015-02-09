@@ -16,16 +16,8 @@ class AccountgroupsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('groupname','text')
-            ->add('sectioninaccounts','entity',array(
-            		'class' => 'CoreAccountingBundle:Accountsection',
-            		'property' => 'sectionname'
-            ))
-            ->add('pandl','text')
-            ->add('sequenceintb','text')
-            ->add('parentgroupname','text',array(
-            		'required' => false
-            ))
+            ->add('sectionid','text')
+            ->add('sectionname','text')
             ->add('Confirm','submit');
     }
       
@@ -35,7 +27,7 @@ class AccountgroupsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Core\AccountingBundle\Entity\Accountgroups'
+            'data_class' => 'Core\AccountingBundle\Entity\Accountsection'
         ));
     }
 
@@ -44,6 +36,6 @@ class AccountgroupsType extends AbstractType
      */
     public function getName()
     {
-        return 'core_accountingbundle_accountgroups';
+        return 'core_accountingbundle_accountsection';
     }
 }

@@ -1,0 +1,21 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/accountsectionedit.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Account Section{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Add a new Account section
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ path('CoreAccountingBundle_maintenance_accountsection_add') }}" 
+		method="post" {{ form_enctype(form) }} >
+    {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
+</form>
+
+{% endblock %}

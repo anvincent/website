@@ -48,6 +48,30 @@ CoreAccountingBundle_maintenance_chartmaster_delete:
         _method:  GET|POST
 
 #### Account Sections
+CoreAccountingBundle_maintenance_accountsection_show:
+    pattern:	/accounting/maintenance/accountsection
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showaccountsection }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_accountsection_add:
+    pattern:	/accounting/maintenance/accountsection/add
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addaccountsection }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_accountsection_edit:
+    pattern:	/accounting/maintenance/accountgroups/accountsection/{section_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editaccountsection }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_accountsection_delete:
+    pattern:	/accounting/maintenance/accountgroups/delete/{section_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteaccountsection }
+    requirements:
+        _method:  GET|POST
+
 
 #### Account Group
 CoreAccountingBundle_maintenance_accountgroups_show:

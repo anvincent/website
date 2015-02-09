@@ -1,0 +1,47 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/accountsectionedit.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Account Section{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Edit Account Section
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Edit Account Section
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+            	<div class="row">
+                	<div class="col-lg-6">
+                    	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+                    		<div class="form-group">
+                    			{{ form_label(form.sectionid, 'Section ID') }}
+								{{ form_errors(form.sectionid) }}
+								{{ form_widget(form.sectionid, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.sectionname, 'Section Name') }}
+								{{ form_errors(form.sectionname) }}
+								{{ form_widget(form.sectionname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+								{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+							</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>			
+		</div>				
+	</div>
+</div>
+
+{% endblock %}
