@@ -282,9 +282,9 @@ class MaintenanceController extends Controller
 			if ($form->isValid()) {
 				$em->remove($accountsection);
 				$em->flush();
-				$returnMessage = "Account $accountcode successfully removed.";
+				$returnMessage = "Account section $sectionid successfully removed.";
 			} else {
-				$returnMessage = "An error occurred during the removing of account $accountcode.";
+				$returnMessage = "An error occurred during the removing of account section $sectionid.";
 			}
 			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountsection_show'),301);
