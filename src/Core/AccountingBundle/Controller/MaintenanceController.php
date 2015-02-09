@@ -254,7 +254,7 @@ class MaintenanceController extends Controller
 	$em = $this->getDoctrine()->getManager();
 	if(isset($id)) {
 		$accountsection = $em	->getRepository('CoreAccountingBundle:Accountsection')
-								->findOneBygroupname($id);
+								->findOneBysectionid($id);
 	} else {
 		$accountsection = $em	->getRepository('CoreAccountingBundle:Accountsection')
 								->findAll();
