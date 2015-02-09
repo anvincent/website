@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class AccountgroupsType extends AbstractType
+class AccountsectionType extends AbstractType
 {
 	/**
      * @param FormBuilderInterface $builder
