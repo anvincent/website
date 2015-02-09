@@ -209,8 +209,8 @@ class MaintenanceController extends Controller
 		}
 		
 		return $this->render('CoreAccountingBundle:Maintenance:accountsectionadd.html.twig', array(
-				'accountgroups' => $accountgroups,
-				'form'        => $form->createView()
+				'accountsection'=> $accountsection,
+				'form'        	=> $form->createView()
 		));
 	}
 	
