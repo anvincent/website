@@ -58,8 +58,8 @@ Display Fiscal Periods
 						<tbody>
 						{% for period in periods %}
 					    <tr>
-					    	<td>{{ period.periodno }}</td>
-					    	<td>{{ period.lastdate_in_period|date('Y-m-d') }}</td>
+					    	<td>{{ period.getPeriodno }}</td>
+					    	<td>{{ period.getLastdateinperiod|date('Y-m-d') }}</td>
 						</tr>
 					    {% else %}
 					        <p>There are no fiscal periods established</p>
