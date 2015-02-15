@@ -27,7 +27,7 @@ Display Fiscal Periods
             	Fiscal period starting date
             </div>
             <div class="panel-body">
-            	{{ periodstart.getLastdateinperiod }}
+            	{{ periodstart.getLastdateinperiod|date('Y-m-d') }}
             </div>
         </div>
 	</div>
