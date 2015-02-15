@@ -13,6 +13,7 @@ use Core\AccountingBundle\Entity\Chartmaster;
 use Core\AccountingBundle\Entity\Accountsection;
 use Core\AccountingBundle\Entity\Accountgroups;
 use Core\AccountingBundle\Entity\Periods;
+use Core\AccountingBundle\Entity\Tags;
 
 // add forms
 use Core\AccountingBundle\Form\ChartmasterType;
