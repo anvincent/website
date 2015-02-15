@@ -435,7 +435,7 @@ class MaintenanceController extends Controller
 		$periods->setPeriodno($newperiodno);
 		$periods->setLastdateinperiod($newlastdateinmonth);
 		
-		die(var_dump($periods));
+	//	die(var_dump($periods));
 		
 		$em = $this	->getDoctrine()
 					->getManager();
