@@ -52,9 +52,9 @@ class Periods
      * @param integer $periono
      * @return Periods
      */
-    public function setPeriono($periono)
+    public function setPeriodno($periono)
     {
-        $this->periono = $periono;
+        $this->periodno = $periodno;
 
         return $this;
     }
@@ -64,9 +64,9 @@ class Periods
      *
      * @return integer 
      */
-    public function getPeriono()
+    public function getPeriodno()
     {
-        return $this->periono;
+        return $this->periodno;
     }
 
     /**
