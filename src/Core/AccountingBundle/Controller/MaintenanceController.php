@@ -428,9 +428,11 @@ class MaintenanceController extends Controller
 		/// find current period end
 		//die(var_dump($lastperiod->getLastdateinperiod()->format('Y-m-d')));
 		
-		$currentdate = $lastperiod->getLastdateinperiod()->format('Y-m-d');
+		$currentdate = $lastperiod->getLastdateinperiod();
 		
-		$date = new \DateTime($currentdate);
+		die(var_dump($currentdate->format('Y-m-d')));
+		
+		$date = new \DateTime($currentdate->format('Y-m-d'));
 		$date->add(new \DateInterval('P10D'));
 		$newlastdateinmonth = $date->format('Y-m-t'); 
 		
