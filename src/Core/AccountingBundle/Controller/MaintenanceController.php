@@ -405,7 +405,7 @@ class MaintenanceController extends Controller
 	* 		get
 	* 		delete
 	*/
-	protected function showperiodsAction($returnMessage=null)
+	public function showperiodsAction($returnMessage=null)
 	{
 		$transactionData = $this->getPeriods();
 		return $this->render('CoreAccountingBundle:Maintenance:periodsshow.html.twig', array(
@@ -417,7 +417,7 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	protected function updateperiodsAction($returnMessage=null)
+	public function updateperiodsAction($returnMessage=null)
 	{
 		// get max period
 		$allperiods = getPeriods();
