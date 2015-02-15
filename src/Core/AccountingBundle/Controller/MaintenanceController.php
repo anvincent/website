@@ -428,13 +428,17 @@ class MaintenanceController extends Controller
 		/// find current period end
 		$date = new \DateTime($lastperiod->getLastdateinperiod()->format('Y-m-d'));
 		$date->add(new \DateInterval('P10D'));
-		$newlastdateinmonth = date('Y-m-d', strtotime(str_replace('-', '/', $date->format('Y-m-t'))));
+		$newlastdateinmonth = $date->format('Y-m-t');
+		
+		echo "<p></p>";
+		var_dum($newlastdateinmonth);
 
 		// add new record
 		$periods = new Periods();
 		$periods->setPeriodno($newperiodno);
 		$periods->setLastdateinperiod($newlastdateinmonth);
 		
+		echo "<p></p>";
 		die(var_dump($periods));
 		
 		$em = $this	->getDoctrine()
