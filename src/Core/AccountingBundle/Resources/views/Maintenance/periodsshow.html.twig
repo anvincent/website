@@ -37,7 +37,7 @@ Display Fiscal Periods
             	Final fiscal period defined
             </div>
             <div class="panel-body">
-            	{{ periodend.periodno }} - {{ periodend.lastdate_in_period }}
+            	{{ periodend.getPeriono }} - {{ periodend.getLastdateinperiod|date('Y-m-d') }}
             </div>
         </div>
         <button type="button" class="btn btn-default">
@@ -59,7 +59,7 @@ Display Fiscal Periods
 						{% for period in periods %}
 					    <tr>
 					    	<td>{{ period.periodno }}</td>
-					    	<td>{{ period.lastdate_in_period }}</td>
+					    	<td>{{ period.lastdate_in_period|date('Y-m-d') }}</td>
 						</tr>
 					    {% else %}
 					        <p>There are no fiscal periods established</p>
