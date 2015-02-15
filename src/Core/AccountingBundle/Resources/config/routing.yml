@@ -99,7 +99,17 @@ CoreAccountingBundle_maintenance_accountgroups_delete:
         _method:  GET|POST
 
 #### Periods
+CoreAccountingBundle_maintenance_periods_show:
+    pattern:	/accounting/maintenance/periods
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showperiods }
+    requirements:
+        _method:  GET
 
+CoreAccountingBundle_maintenance_periods_update:
+    pattern:	/accounting/maintenance/periods/update
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:updateperiods }
+    requirements:
+        _method:  GET
 
 
 #### Budget

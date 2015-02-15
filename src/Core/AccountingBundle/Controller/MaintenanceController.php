@@ -398,10 +398,68 @@ class MaintenanceController extends Controller
 	}
 	
 	
-	/* Budget - chartdetails */
 	
+	/* Fiscal Periods - periods
+	* 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showperiodsAction($returnMessage=null)
+	{
+		$transactionData = $this->getPeriods();
+		return $this->render('CoreAccountingBundle:Maintenance:periodsshow.html.twig', array(
+				'title' => 'Fiscal Periods',
+				'returnMessage' => $returnMessage,
+				'periods' => $transactionData,
+				'periodstart' => $transactionData[0],
+				'periodend' => end($transactionData)
+		));
+	}
 	
+	protected function updateperiodsAction($returnMessage=null)
+	{
+		// get max period
+		$allperiods = getPeriods();
+		$lastperiod = getPeriods(end($allperiods));
+		
+		// find next period no
+		$newperiodno = $lastperiod['periodno'] + 1;
+		
+		/// find current period end
+		$date = new DateTime($lastperiod['lastdate_in_period']);
+		$date->add(new DateInterval('P10D'));
+		$newlastdateinmonth = $date->format('Y-m-t'); 
+		
+		// add new record
+		$periods = new Periods();
+		$periods->setPeriono($newperiodno);
+		$periods->setLastdateinperiod($newlastdateinmonth);
+		$em = $this	->getDoctrine()
+					->getManager();
+		$em->persist($periods);
+		$em->flush();
+		
+		$session = $this->getRequest()->getSession();
+		$session->getFlashBag()->add('returnMessage','Fiscal Period added');
+		
+		return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_periods_show'),301);
+	}
 	
-	
-    
+	protected function getPeriods($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+			->findOneByperiodno($id);
+		} else {
+			$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+			->findAll();
+		}
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
+	}
 }
