@@ -428,6 +428,9 @@ class MaintenanceController extends Controller
 		/// find current period end
 		$date = new \DateTime($lastperiod->getLastdateinperiod()->format('Y-m-d'));
 		$date->add(new \DateInterval('P10D'));
+		
+		$date->setDate($date->format('Y'),$date->format('m'),$date->format('t'));
+		
 		$newlastdateinmonth = $date->format('Y-m-t');
 		
 		echo "<p></p>";
