@@ -420,8 +420,8 @@ class MaintenanceController extends Controller
 	public function updateperiodsAction($returnMessage=null)
 	{
 		// get max period
-		$allperiods = getPeriods();
-		$lastperiod = getPeriods(end($allperiods));
+		$allperiods = $this->getPeriods();
+		$lastperiod = $this->getPeriods(end($allperiods));
 		
 		// find next period no
 		$newperiodno = $lastperiod['periodno'] + 1;
