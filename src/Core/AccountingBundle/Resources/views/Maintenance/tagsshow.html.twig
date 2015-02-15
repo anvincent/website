@@ -1,0 +1,71 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/tagsshow.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Transaction Tags{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Display Transaction Tags
+{% endblock %}
+
+{% block body %}
+
+{% for flashMessage in app.session.flashbag.get('returnMessage') %}
+<div class="row">
+	<div class="alert alert-info" role="alert">
+        {{ flashMessage }}
+    </div>
+</div>
+{% endfor %}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a href="{{ path('CoreAccountingBundle_maintenance_tags_add') }}">
+					<i class="fa fa-plus"></i> Add new Transaction Tag
+				</a>
+			</div>
+			<!-- /.panel-heading -->
+            <div class="panel-body">
+            	<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<thead><tr>
+							<th>Tag Reference</th>
+							<th>Tag Description</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr></thead>
+						<tbody>
+						{% for tag in tags %}
+					    <tr>
+					    	<td>{{ tag.getTagref }}</td>
+					    	<td>{{ tag.getTagdescription }}</td>
+					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_tags_edit',{'tagref':tag.getTagref}) }}">
+					    		<i class="fa fa-pencil-square-o"></i>
+					    	</a></td>
+					    	<td><a href="#">
+					    		<i class="fa fa-times"></i>
+					    	</a></td>
+						</tr>
+					    {% else %}
+					        <p>There are no tags within the definitions</p>
+					    {% endfor %}
+					    </tbody>
+					</table>
+				</div>
+				<!-- /.table-responsive -->
+			</div>
+            <!-- /.panel-body -->
+            
+		</div>
+        <!-- /.panel -->
+	</div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+{% endblock %}
+

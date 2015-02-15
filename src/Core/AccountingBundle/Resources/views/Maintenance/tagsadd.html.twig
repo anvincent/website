@@ -1,0 +1,21 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/chartmasteredit.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Transaction Tags{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Add a new Transaction Tags
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ path('CoreAccountingBundle_maintenance_tags_add') }}" 
+		method="post" {{ form_enctype(form) }} >
+    {{ form_widget(form, {'attr': {'class':'form-group'}}) }}
+</form>
+
+{% endblock %}

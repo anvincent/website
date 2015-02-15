@@ -396,8 +396,6 @@ class MaintenanceController extends Controller
 	return $accountgroups;
 	}
 	
-	
-	
 	/* Fiscal Periods - periods
 	* 		show
 	* 		add
@@ -453,6 +451,99 @@ class MaintenanceController extends Controller
 			->findOneByperiodno($id);
 		} else {
 			$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+			->findAll();
+		}
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
+	}
+	
+	
+	/* Transaction Tags - tags
+	 * 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showtagsAction($returnMessage=null)
+	{
+		$transactionData = $this->getTags();
+		return $this->render('CoreAccountingBundle:Maintenance:tagsshow.html.twig', array(
+				'title' => 'Transaction Tags',
+				'returnMessage' => $returnMessage,
+				'tags' => $transactionData
+		));
+	}
+
+	public function addtagsAction(Request $request)
+	{
+		$tags = new Tags();
+		$form = $this->createForm(new TagsType(), $tags);
+		$form->handleRequest($request);
+		
+		if ($form->isValid()) {
+			$em = $this	->getDoctrine()
+						->getManager();
+			$em->persist($tags);
+			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Transaction tag added');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_tags_show'),301);
+		}
+		
+		return $this->render('CoreAccountingBundle:Maintenance:tagsadd.html.twig', array(
+				'tags' 	=> $tags,
+				'form'  => $form->createView()
+		));
+	}
+	
+	public function edittagsrAction($tagref)
+	{
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$tags = $this->getTags($tagref);
+		if (!$tags) {
+			$tags = new Tags();
+		}
+        $form = $this->createForm(new TagsType(), $tags);
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	$tagref = $form["tagref"]->getData();
+        	$tagdescription = $form["tagdescription"]->getData();
+        	if ($form->isValid()) {
+        		$tags->setTagdescription($tagdescription);
+        		$em->persist($tags);
+        		$em->flush();
+        		$returnMessage = "Transaction tag $tags successfully updated.";
+        	} else {
+        		$returnMessage = "An error occurred during the processing of $tags.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_tags_show'),301);
+        } else {
+	        return $this->render('CoreAccountingBundle:Maintenance:$tagsedit.html.twig', array(
+	        		'tags' => $tags,
+	        		'accountcode_id'  => $tagref,
+	        		'form'        => $form->createView()
+	        ));
+        }
+	}
+	
+	
+	protected function getTags($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$periods = $em	->getRepository('CoreAccountingBundle:Tags')
+			->findOneBytagref($id);
+		} else {
+			$periods = $em	->getRepository('CoreAccountingBundle:Tags')
 			->findAll();
 		}
 		if (!$periods) {

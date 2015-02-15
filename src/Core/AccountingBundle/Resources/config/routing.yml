@@ -116,6 +116,29 @@ CoreAccountingBundle_maintenance_periods_update:
 
 
 #### Tags
+CoreAccountingBundle_maintenance_tags_show:
+    pattern:	/accounting/maintenance/tags
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showtags }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_tags_add:
+    pattern:	/accounting/maintenance/tags/add
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addaccountgroups }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_tags_edit:
+    pattern:	/accounting/maintenance/tags/edit/{tagref}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editaccountgroups }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_tags_delete:
+    pattern:	/accounting/maintenance/tags/delete/{tagref}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteaccountgroups }
+    requirements:
+        _method:  GET|POST
 
 
 #### Import Transaction Definitions

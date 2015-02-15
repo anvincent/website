@@ -25,10 +25,6 @@ class Tags
 	 */
 	protected $tagdescription;
 	
-	
-	
-	
-
     /**
      * Get tagref
      *
