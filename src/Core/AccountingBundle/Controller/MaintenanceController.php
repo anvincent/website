@@ -520,9 +520,9 @@ class MaintenanceController extends Controller
         		$tags->setTagdescription($tagdescription);
         		$em->persist($tags);
         		$em->flush();
-        		$returnMessage = "Transaction tag $tags successfully updated.";
+        		$returnMessage = "Transaction tag $tagdescription successfully updated.";
         	} else {
-        		$returnMessage = "An error occurred during the processing of $tags.";
+        		$returnMessage = "An error occurred during the processing of $tagdescription.";
         	}
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
