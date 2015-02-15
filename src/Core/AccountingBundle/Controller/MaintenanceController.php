@@ -424,7 +424,7 @@ class MaintenanceController extends Controller
 		$lastperiod = $this->getPeriods(end($allperiods));
 		
 		// find next period no
-		$newperiodno = $lastperiod['periodno'] + 1;
+		$newperiodno = $lastperiod->getPeriodno()+1;
 		
 		/// find current period end
 		$date = new DateTime($lastperiod['lastdate_in_period']);
