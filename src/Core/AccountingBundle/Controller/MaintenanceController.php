@@ -501,7 +501,7 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function edittagsrAction($tagref)
+	public function edittagsAction($tagref)
 	{
 		$em = $this->getDoctrine()
 				   ->getManager();
