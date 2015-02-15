@@ -18,6 +18,7 @@ use Core\AccountingBundle\Entity\Periods;
 use Core\AccountingBundle\Form\ChartmasterType;
 use Core\AccountingBundle\Form\AccountsectionType;
 use Core\AccountingBundle\Form\AccountgroupsType;
+use Core\AccountingBundle\Form\TagsType;
 
 class MaintenanceController extends Controller
 {
