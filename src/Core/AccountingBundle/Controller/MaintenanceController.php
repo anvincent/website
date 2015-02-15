@@ -430,18 +430,10 @@ class MaintenanceController extends Controller
 		$date->add(new \DateInterval('P10D'));
 		$date->setDate($date->format('Y'),$date->format('m'),$date->format('t'));
 		$newlastdateinmonth = $date->format('Y-m-t');
-		
-		echo "<p></p>";
-		var_dump($newlastdateinmonth);
-
 		// add new record
 		$periods = new Periods();
 		$periods->setPeriodno($newperiodno);
 		$periods->setLastdateinperiod(new \DateTime($newlastdateinmonth));
-		
-		echo "<p></p>";
-		die(var_dump($periods));
-		
 		$em = $this	->getDoctrine()
 					->getManager();
 		$em->persist($periods);
