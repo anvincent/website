@@ -432,7 +432,7 @@ class MaintenanceController extends Controller
 		
 		// add new record
 		$periods = new Periods();
-		$periods->setPeriono($newperiodno);
+		$periods->setPeriodno($newperiodno);
 		$periods->setLastdateinperiod($newlastdateinmonth);
 		$em = $this	->getDoctrine()
 					->getManager();
