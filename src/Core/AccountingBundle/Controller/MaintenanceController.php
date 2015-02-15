@@ -426,6 +426,8 @@ class MaintenanceController extends Controller
 		// find next period no
 		$newperiodno = $lastperiod->getPeriodno()+1;
 		
+		die(var_dump($lastperiod->getLastdateinperiod()));
+		
 		/// find current period end
 		$date = new \DateTime($lastperiod->getLastdateinperiod());
 		$date->add(new \DateInterval('P10D'));
