@@ -430,7 +430,7 @@ class MaintenanceController extends Controller
 		
 		$currentdate = $lastperiod->getLastdateinperiod();
 		
-		die(var_dump($currentdate->format('Y-m-d')));
+		//die(var_dump($currentdate->format('Y-m-d')));
 		
 		$date = new \DateTime($currentdate->format('Y-m-d'));
 		$date->add(new \DateInterval('P10D'));
