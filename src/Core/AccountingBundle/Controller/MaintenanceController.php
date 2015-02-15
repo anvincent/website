@@ -431,7 +431,7 @@ class MaintenanceController extends Controller
 		$newlastdateinmonth = $date->format('Y-m-t');
 		
 		echo "<p></p>";
-		var_dum($newlastdateinmonth);
+		var_dump($newlastdateinmonth);
 
 		// add new record
 		$periods = new Periods();
