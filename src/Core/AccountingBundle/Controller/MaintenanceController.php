@@ -528,7 +528,7 @@ class MaintenanceController extends Controller
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_tags_show'),301);
         } else {
-	        return $this->render('CoreAccountingBundle:Maintenance:$tagsedit.html.twig', array(
+	        return $this->render('CoreAccountingBundle:Maintenance:tagsedit.html.twig', array(
 	        		'tags' => $tags,
 	        		'accountcode_id'  => $tagref,
 	        		'form'        => $form->createView()
