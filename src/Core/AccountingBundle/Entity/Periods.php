@@ -52,7 +52,7 @@ class Periods
      * @param integer $periono
      * @return Periods
      */
-    public function setPeriodno($periono)
+    public function setPeriodno($periodno)
     {
         $this->periodno = $periodno;
 
