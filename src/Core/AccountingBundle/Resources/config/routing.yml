@@ -124,19 +124,19 @@ CoreAccountingBundle_maintenance_tags_show:
 
 CoreAccountingBundle_maintenance_tags_add:
     pattern:	/accounting/maintenance/tags/add
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addaccountgroups }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addtags }
     requirements:
         _method:  GET|POST
 
 CoreAccountingBundle_maintenance_tags_edit:
     pattern:	/accounting/maintenance/tags/edit/{tagref}
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editaccountgroups }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:edittags }
     requirements:
         _method:  GET|POST
 
 CoreAccountingBundle_maintenance_tags_delete:
     pattern:	/accounting/maintenance/tags/delete/{tagref}
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteaccountgroups }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletetags }
     requirements:
         _method:  GET|POST
 
