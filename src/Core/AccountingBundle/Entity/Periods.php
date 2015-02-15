@@ -22,6 +22,7 @@ class Periods
 	protected $periodno;
 	
 	/**
+	 * @var \DateTime
 	 * @ORM\Column(name="lastdate_in_period", type="date")
 	 */
 	protected $lastdateinperiod;
