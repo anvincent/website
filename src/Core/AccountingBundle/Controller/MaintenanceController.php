@@ -298,8 +298,6 @@ class MaintenanceController extends Controller
 		}
 	}
 	
-	
-	
 	/* Account Groups - accountgroups
 	 * 		show
 	* 		add
@@ -407,7 +405,7 @@ class MaintenanceController extends Controller
 	* 		get
 	* 		delete
 	*/
-	public function showperiodsAction($returnMessage=null)
+	protected function showperiodsAction($returnMessage=null)
 	{
 		$transactionData = $this->getPeriods();
 		return $this->render('CoreAccountingBundle:Maintenance:periodsshow.html.twig', array(
