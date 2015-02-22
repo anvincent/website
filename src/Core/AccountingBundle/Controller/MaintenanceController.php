@@ -14,12 +14,14 @@ use Core\AccountingBundle\Entity\Accountsection;
 use Core\AccountingBundle\Entity\Accountgroups;
 use Core\AccountingBundle\Entity\Periods;
 use Core\AccountingBundle\Entity\Tags;
+use Core\AccountingBundle\Entity\Importtransdefn;
 
 // add forms
 use Core\AccountingBundle\Form\ChartmasterType;
 use Core\AccountingBundle\Form\AccountsectionType;
 use Core\AccountingBundle\Form\AccountgroupsType;
 use Core\AccountingBundle\Form\TagsType;
+use Core\AccountingBundle\Form\ImporttransdefnType;
 
 class MaintenanceController extends Controller
 {
@@ -28,9 +30,6 @@ class MaintenanceController extends Controller
 	{
 		return $this->render('CoreAccountingBundle:Maintenance:index.html.twig');
 	}	
-	
-	/* Import Transaction Definitions - importtransdefn */
-	
 	
 	/* Chart of Accounts - chartmaster 
 	 * 		show
@@ -552,5 +551,147 @@ class MaintenanceController extends Controller
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
 		return $periods;
+	}
+	
+	/* Import Transaction Definitions (itd) - importtransdefn
+	 * 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showimporttransdefnAction($returnMessage=null)
+	{
+		$transactionData = $this->getImporttransdefn();
+		return $this->render('CoreAccountingBundle:Maintenance:importtransdefnshow.html.twig', array(
+				'title' => 'Transaction Tags',
+				'returnMessage' => $returnMessage,
+				'importtransdefn' => $transactionData
+		));
+	}
+
+	public function addimporttransdefnAction(Request $request)
+	{
+		$importtransdefn = new Importtransdefn();
+		$form = $this->createForm(new ImporttransdefnType(), $importtransdefn);
+		$form->handleRequest($request);
+		
+		if ($form->isValid()) {
+			$em = $this	->getDoctrine()
+						->getManager();
+			$em->persist($importtransdefn);
+			$em->flush();
+			
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Import definition added');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
+		}
+		
+		return $this->render('CoreAccountingBundle:Maintenance:tagsadd.html.twig', array(
+				'importtransdefn' 	=> $importtransdefn,
+				'form'  			=> $form->createView()
+		));
+	}
+	
+	public function editimporttransdefnAction($importdefn_id)
+	{
+		$em = $this->getDoctrine()
+				   ->getManager();
+		$importtransdefn = $this->getImporttransdefn($importdefn_id);
+		if (!$importtransdefn) {
+			$importtransdefn = new getImporttransdefn();
+		}
+        $form = $this->createForm(new ImporttransdefnType(), $importtransdefn);
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	$importdefnid = $form["accountname"]->getData();
+        	$accountname = $form["accountname"]->getData();
+        	$dataheaderdefn = $form["dataheader_defn"]->getData();
+        	$datalineaccount = $form["dataline_account"]->getData();
+        	$datalinenarrative = $form["dataline_narrative"]->getData();
+        	$datalineamount = $form["dataline_amount"]->getData();
+        	$datalinedate = $form["dataline_date"]->getData();
+        	$datalinetag = $form["dataline_tag"]->getData();
+        	if ($form->isValid()) {
+        		$importtransdefn->setAccountname($accountname);
+        		$importtransdefn->setDataheaderdefn($dataheaderdefn);
+        		$importtransdefn->setDatalineaccount($datalineaccount);
+        		$importtransdefn->setDatalinenarrative($datalinenarrative);
+        		$importtransdefn->setDatalineamount($datalineamount);
+        		$importtransdefn->setDatalinedate($datalinedate);
+        		$importtransdefn->setDatalinetag($datalinetag);
+        		$importtransdefn->setTagdescription($tagdescription);
+        		$em->persist($importtransdefn);
+        		$em->flush();
+        		$returnMessage = "Transaction import definition for account $accountname successfully updated.";
+        	} else {
+        		$returnMessage = "An error occurred during the processing of account $accountname.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
+        } else {
+	        return $this->render('CoreAccountingBundle:Maintenance:importtransdefnedit.html.twig', array(
+	        		'importtransdefn' 	=> $importtransdefn,
+	        		'importdefnid'  	=> $importdefnid,
+	        		'form'        		=> $form->createView()
+	        ));
+        }
+	}
+	
+	protected function getImporttransdefn($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$importtransdefn = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
+			->findOneByimportdefnid($id);
+		} else {
+			$importtransdefn = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
+			->findAll();
+		}
+		if (!$importtransdefn) {
+			throw $this->createNotFoundException('Unable to find Transaction Definition.');
+		}
+		return $importtransdefn;
+	}
+	
+	public function deleteimporttransdefnAction($importdefn_id)
+	{
+		$em = $this->getDoctrine()
+		->getManager();
+		$importtransdefn = $this->getImporttransdefn($importdefn_id);
+		if (!$importtransdefn) {
+			throw $this->createNotFoundException('Unable to find this entity.');
+		}
+		$form = $this->createForm(new AccountsectionType(), $importtransdefn);
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+        	$importdefnid = $form["accountname"]->getData();
+        	$accountname = $form["accountname"]->getData();
+        	$dataheaderdefn = $form["dataheader_defn"]->getData();
+        	$datalineaccount = $form["dataline_account"]->getData();
+        	$datalinenarrative = $form["dataline_narrative"]->getData();
+        	$datalineamount = $form["dataline_amount"]->getData();
+        	$datalinedate = $form["dataline_date"]->getData();
+        	$datalinetag = $form["dataline_tag"]->getData();
+			if ($form->isValid()) {
+				$em->remove($importtransdefn);
+				$em->flush();
+				$returnMessage = "Account section $sectionid successfully removed.";
+			} else {
+				$returnMessage = "An error occurred during the removing of account section $sectionid.";
+			}
+			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Maintenance:importtransdefndelete.html.twig', array(
+	        		'importtransdefn' 	=> $importtransdefn,
+	        		'importdefnid'  	=> $importdefnid,
+	        		'form'        		=> $form->createView()
+			));
+		}
 	}
 }

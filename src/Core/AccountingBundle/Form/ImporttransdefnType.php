@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class TagsType extends AbstractType
+class ImporttransdefnType extends AbstractType
 {
 	/**
      * @param FormBuilderInterface $builder
@@ -16,8 +16,14 @@ class TagsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//          ->add('tagref','integer')
-            ->add('tagdescription','text')
+            ->add('importdefnid','integer')
+            ->add('accountname','text')
+            ->add('dataheader_defn','text')
+            ->add('dataline_account','integer')
+            ->add('dataline_narrative','integer')
+            ->add('dataline_amount','integer')
+            ->add('dataline_date','integer')
+            ->add('dataline_tag','integer')
             ->add('Confirm','submit');
     }
       
@@ -27,7 +33,7 @@ class TagsType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Core\AccountingBundle\Entity\Tags'
+            'data_class' => 'Core\AccountingBundle\Entity\Importtransdefn'
         ));
     }
 
@@ -36,6 +42,6 @@ class TagsType extends AbstractType
      */
     public function getName()
     {
-        return 'core_accountingbundle_tags';
+        return 'core_accountingbundle_importtransdefn';
     }
 }

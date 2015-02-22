@@ -142,6 +142,29 @@ CoreAccountingBundle_maintenance_tags_delete:
 
 
 #### Import Transaction Definitions
+CoreAccountingBundle_maintenance_importtransdefn_show:
+    pattern:	/accounting/maintenance/importtransdefn
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showimporttransdefn }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_maintenance_importtransdefn_add:
+    pattern:	/accounting/maintenance/importtransdefn/add
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:addimporttransdefn }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_importtransdefn_edit:
+    pattern:	/accounting/maintenance/importtransdefn/edit/{importdefnid}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editimporttransdefn }
+    requirements:
+        _method:  GET|POST
+
+CoreAccountingBundle_maintenance_importtransdefn_delete:
+    pattern:	/accounting/maintenance/importtransdefn/delete/{importdefnid}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:deleteimporttransdefn }
+    requirements:
+        _method:  GET|POST
 
 
 
