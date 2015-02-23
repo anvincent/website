@@ -25,6 +25,14 @@ class Tags
 	 */
 	protected $tagdescription;
 	
+	/**
+	 * Set tagref
+	 */
+	public function setTagref()
+	{
+		
+	}
+	
     /**
      * Get tagref
      *
