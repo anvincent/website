@@ -44,9 +44,9 @@ Display Transaction Import Definitions
 						{% for defn in importtransdefn %}
 					    <tr>
 					    	<td>{{ defn.accountname }}</td>
-					    	<td>{{ defn.dataheader_defn }}</td>
-					    	<td>{{ defn.dataline_account }}</td>
-					    	<td>{{ defn.dataline_tag }}</td>
+					    	<td>{{ defn.dataheaderdefn }}</td>
+					    	<td>{{ defn.datalineaccount }}</td>
+					    	<td>{{ defn.datalinetag }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_tags_edit',{'tagref':tag.getTagref}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
