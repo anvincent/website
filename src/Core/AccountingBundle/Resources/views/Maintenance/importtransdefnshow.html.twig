@@ -41,10 +41,12 @@ Display Transaction Import Definitions
 							<th>Delete</th>
 						</tr></thead>
 						<tbody>
-						{% for tag in tags %}
+						{% for defn in importtransdefn %}
 					    <tr>
-					    	<td>{{ tag.getTagref }}</td>
-					    	<td>{{ tag.getTagdescription }}</td>
+					    	<td>{{ defn.accountname }}</td>
+					    	<td>{{ defn.dataheader_defn }}</td>
+					    	<td>{{ defn.dataline_account }}</td>
+					    	<td>{{ defn.dataline_tag }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_tags_edit',{'tagref':tag.getTagref}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>

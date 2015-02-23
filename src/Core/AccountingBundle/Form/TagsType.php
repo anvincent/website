@@ -16,7 +16,7 @@ class TagsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//          ->add('tagref','integer')
+            ->add('tagref','integer')
             ->add('tagdescription','text')
             ->add('Confirm','submit');
     }
