@@ -588,7 +588,7 @@ class MaintenanceController extends Controller
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
 		}
 		
-		return $this->render('CoreAccountingBundle:Maintenance:tagsadd.html.twig', array(
+		return $this->render('CoreAccountingBundle:Maintenance:importtransdefnadd.html.twig', array(
 				'importtransdefn' 	=> $importtransdefn,
 				'form'  			=> $form->createView()
 		));
