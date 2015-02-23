@@ -27,11 +27,16 @@ class Tags
 	
 	/**
 	 * Set tagref
+     *
+     * @param integer $tagref
+     * @return Tags
 	 */
-	public function setTagref()
-	{
-		
-	}
+	public function setTagref($tagref)
+    {
+        $this->tagref = $tagref;
+
+        return $this;
+    }
 	
     /**
      * Get tagref
