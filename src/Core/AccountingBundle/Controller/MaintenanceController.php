@@ -622,7 +622,6 @@ class MaintenanceController extends Controller
         		$importtransdefn->setDatalineamount($datalineamount);
         		$importtransdefn->setDatalinedate($datalinedate);
         		$importtransdefn->setDatalinetag($datalinetag);
-        		$importtransdefn->setTagdescription($tagdescription);
         		$em->persist($importtransdefn);
         		$em->flush();
         		$returnMessage = "Transaction import definition for account $accountname successfully updated.";
