@@ -55,8 +55,18 @@ class Importtransdefn
 	 */
 	protected $datalinetag;
 	
+	/**
+	 * Set importdefnid
+	 *
+	 * @param integer $importdefnid
+	 * @return Importtransdefn
+	 */
+	public function setImportdefnid($importdefnid)
+	{
+		$this->importdefnid = $importdefnid;
 	
-	
+		return $this;
+	}
 
     /**
      * Get importdefnid
