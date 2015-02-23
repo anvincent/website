@@ -656,11 +656,11 @@ class MaintenanceController extends Controller
 		return $importtransdefn;
 	}
 	
-	public function deleteimporttransdefnAction($importdefn_id)
+	public function deleteimporttransdefnAction($importdefnid)
 	{
 		$em = $this->getDoctrine()
 		->getManager();
-		$importtransdefn = $this->getImporttransdefn($importdefn_id);
+		$importtransdefn = $this->getImporttransdefn($importdefnid);
 		if (!$importtransdefn) {
 			throw $this->createNotFoundException('Unable to find this entity.');
 		}
