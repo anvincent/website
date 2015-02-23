@@ -664,7 +664,7 @@ class MaintenanceController extends Controller
 		if (!$importtransdefn) {
 			throw $this->createNotFoundException('Unable to find this entity.');
 		}
-		$form = $this->createForm(new AccountsectionType(), $importtransdefn);
+		$form = $this->createForm(new ImporttransdefnType(), $importtransdefn);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
