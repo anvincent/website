@@ -594,11 +594,11 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function editimporttransdefnAction($importdefn_id)
+	public function editimporttransdefnAction($importdefnid)
 	{
 		$em = $this->getDoctrine()
 				   ->getManager();
-		$importtransdefn = $this->getImporttransdefn($importdefn_id);
+		$importtransdefn = $this->getImporttransdefn($importdefnid);
 		if (!$importtransdefn) {
 			$importtransdefn = new getImporttransdefn();
 		}
@@ -606,7 +606,7 @@ class MaintenanceController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
-        	$importdefnid = $form["accountname"]->getData();
+        	$importdefnid = $form["importdefnid"]->getData();
         	$accountname = $form["accountname"]->getData();
         	$dataheaderdefn = $form["dataheader_defn"]->getData();
         	$datalineaccount = $form["dataline_account"]->getData();
