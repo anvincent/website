@@ -18,7 +18,7 @@ class ImporttransdefnType extends AbstractType
         $builder
             ->add('importdefnid','integer')
             ->add('accountname','text')
-            ->add('dataheader_defn','text')
+            ->add('dataheader_defn','textarea')
             ->add('dataline_account','integer')
             ->add('dataline_narrative','integer')
             ->add('dataline_amount','integer')
