@@ -679,9 +679,9 @@ class MaintenanceController extends Controller
 			if ($form->isValid()) {
 				$em->remove($importtransdefn);
 				$em->flush();
-				$returnMessage = "Account section $sectionid successfully removed.";
+				$returnMessage = "Definition for $accountname successfully removed.";
 			} else {
-				$returnMessage = "An error occurred during the removing of account section $sectionid.";
+				$returnMessage = "An error occurred during the removing of $accountname definition.";
 			}
 			$request->getSession()->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
