@@ -23,7 +23,7 @@ Edit Account Groups
             	<div class="row">
                 	<div class="col-lg-6">
                     	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-                    		<div class="form-group">
+                    		<div class="form-group" aria-hidden="true">
                     			{{ form_label(form.importdefnid, 'Import Definition ID') }}
 								{{ form_errors(form.importdefnid) }}
 								{{ form_widget(form.importdefnid, {'attr': {'class': 'form-control'}}) }}
