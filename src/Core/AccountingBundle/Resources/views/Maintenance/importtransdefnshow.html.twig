@@ -47,10 +47,10 @@ Display Transaction Import Definitions
 					    	<td>{{ defn.dataheaderdefn }}</td>
 					    	<td>{{ defn.datalineaccount }}</td>
 					    	<td>{{ defn.datalinetag }}</td>
-					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_tags_edit',{'tagref':tag.getTagref}) }}">
+					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_importtransdefn_edit',{'importdefnid':defn.getImportdefnid}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
-					    	<td><a href="#">
+					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_importtransdefn_delete',{'importdefnid':defn.getImportdefnid}) }}">
 					    		<i class="fa fa-times"></i>
 					    	</a></td>
 						</tr>
