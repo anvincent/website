@@ -722,7 +722,7 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function editbudgetAction($account)
+	public function editbudgetAction($account_id)
 	{
 		$em = $this->getDoctrine()
 		->getManager();
