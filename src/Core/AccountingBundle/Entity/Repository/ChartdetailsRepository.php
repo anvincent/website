@@ -16,7 +16,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT a
+					'SELECT a, b
 					FROM CoreAccountingBundle:Chartmaster a
 					JOIN a.chartdetails b
 					GROUP BY a.accountcode, a.accountname
@@ -28,7 +28,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT a
+					'SELECT a, b
 					FROM CoreAccountingBundle:Chartmaster a
 					JOIN a.chartdetails b
 					WHERE a.accountcode = :id
