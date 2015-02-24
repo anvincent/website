@@ -30,7 +30,7 @@ Display Budget
             
             
             	<button class="btn btn-primary" type="button" data-toggle="collapse" 
-            			data-target="#budget0">
+            			data-target=".budget0">
             		Button with data-target
             	</button>
             
@@ -53,7 +53,7 @@ Display Budget
 						<tbody id="budgetrows">
 						{% for budget in budgets %}
 							{% if budget.sumbudget == 0 %}
-						    <tr class="collapse" id="budget0">
+						    <tr class="collapse budget0">
 						    	<td>{{ budget.accountcode }}</td>
 						    	<td>{{ budget.accountname }}</td>
 						    	<td>{{ budget.sumbudget }}</td>
