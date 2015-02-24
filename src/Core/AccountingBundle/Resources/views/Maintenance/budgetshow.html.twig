@@ -50,7 +50,7 @@ Display Budget
 						</tr></thead>
 						<tbody>
 						{% for budget in budgets %}
-						{% if budget.budget == 0 %}
+						{% if budget.getChartdetails.budget == 0 %}
 					    <tr class="budget0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
