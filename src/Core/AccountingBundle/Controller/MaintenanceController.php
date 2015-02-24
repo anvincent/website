@@ -693,4 +693,46 @@ class MaintenanceController extends Controller
 			));
 		}
 	}
+	
+	/* Budget - chartdetails
+	 * 		show
+	* 		add
+	* 		edit
+	* 		get
+	* 		delete
+	*/
+	public function showbudgetAction($returnMessage=null)
+	{
+		$transactionData = $this->getBudget();
+		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
+				'title' => 'Budget',
+				'returnMessage' => $returnMessage,
+				'budget' => $transactionData
+		));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	protected function getBudget($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+			->findBudgetbyid($id);
+		} else {
+			$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+			->findAllBudgets();
+		}
+		if (!$budget) {
+			throw $this->createNotFoundException('Unable to find Transaction Definition.');
+		}
+		return $budget;
+	}
 }

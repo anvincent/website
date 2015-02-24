@@ -111,10 +111,6 @@ CoreAccountingBundle_maintenance_periods_update:
     requirements:
         _method:  GET
 
-
-#### Budget
-
-
 #### Tags
 CoreAccountingBundle_maintenance_tags_show:
     pattern:	/accounting/maintenance/tags
@@ -139,7 +135,6 @@ CoreAccountingBundle_maintenance_tags_delete:
     defaults:	{ _controller:CoreAccountingBundle:Maintenance:deletetags }
     requirements:
         _method:  GET|POST
-
 
 #### Import Transaction Definitions
 CoreAccountingBundle_maintenance_importtransdefn_show:
@@ -166,7 +161,18 @@ CoreAccountingBundle_maintenance_importtransdefn_delete:
     requirements:
         _method:  GET|POST
 
+#### Budget
+CoreAccountingBundle_maintenance_budget_show:
+    pattern:	/accounting/maintenance/budget
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showbudget }
+    requirements:
+        _method:  GET
 
+CoreAccountingBundle_maintenance_budget_edit:
+    pattern:	/accounting/maintenance/budget/edit/{account_id}
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:editbudget }
+    requirements:
+        _method:  GET|POST
 
 ### Accounting Reports
 
