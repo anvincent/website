@@ -449,11 +449,22 @@ class MaintenanceController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		if(isset($id)) {
 			$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-			->findOneByperiodno($id);
+							->findOneByperiodno($id);
 		} else {
 			$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-			->findAll();
+							->findAll();
 		}
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
+	}
+	
+	protected function getTodaysPeriod()
+	{
+		$today = new DateTime("now",new DateTimeZone('America/Chicago'));
+		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+						->findOneBylastdateinperiod($today->format('Y-m-t'));
 		if (!$periods) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
@@ -703,8 +714,7 @@ class MaintenanceController extends Controller
 	*/
 	public function showbudgetAction($returnMessage=null)
 	{
-		$transactionData = $this->getBudget();
-		die(var_dump($transactionData));
+		$transactionData = $this->getBudget('allbudgets');
 		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
 				'title' => 'Budget',
 				'returnMessage' => $returnMessage,
@@ -721,15 +731,29 @@ class MaintenanceController extends Controller
 	
 	
 	
-	protected function getBudget($id=null)
+	protected function getBudget($type,$id=null)
 	{
 		$em = $this->getDoctrine()->getManager();
-		if(isset($id)) {
-			$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-			->findBudgetbyid($id);
-		} else {
-			$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-			->findAllBudgets();
+		switch ($type) {
+			case "allbudgets":
+				$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+								->findAllBudgets();
+				break;
+			case "budgetbyid":
+				if(isset($id)) {
+					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+									->findBudgetbyid($id);
+				}
+				break;
+			case "budgetbyperiod":
+				//something
+				break;
+			case "budgetbyperiod":
+				//something
+				break;
+			default:
+				$budget = 0;
+				break;
 		}
 		if (!$budget) {
 			throw $this->createNotFoundException('Unable to find Transaction Definition.');

@@ -51,7 +51,7 @@ Display Budget
 						</tr></thead>
 						<tbody>
 						{% for budget in budgets %}
-						{% if budget.budget == 0 %}
+						{% if budget.sumbudget == 0 %}
 					    <tr class="budget0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
@@ -60,7 +60,7 @@ Display Budget
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
 						</tr>
-						{% elseif budget.budget != 0 %}
+						{% elseif budget.sumbudget != 0 %}
 					    <tr class="budgetnot0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>

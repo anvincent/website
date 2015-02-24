@@ -16,7 +16,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT a.accountcode, a.accountname, b.budget
+					'SELECT a.accountcode, a.accountname, sum(b.budget) AS sumbudget
 					FROM CoreAccountingBundle:Chartmaster a
 					JOIN a.chartdetails b
 					GROUP BY a.accountcode, a.accountname
@@ -28,7 +28,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT a.accountcode, a.accountname, b.budget
+					'SELECT a.accountcode, a.accountname, sum(b.budget) AS sumbudget
 					FROM CoreAccountingBundle:Chartmaster a
 					JOIN a.chartdetails b
 					WHERE a.accountcode = :id
@@ -36,5 +36,19 @@ class ChartdetailsRepository extends EntityRepository
 					ORDER BY a.accountcode ASC'
 			)->setParameter('id', $id)
 			->getResult();
+	}
+	
+	public function findBudgetbyperiod($id)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a.accountcode, a.accountname, sum(b.budget) AS sumbudget
+				FROM CoreAccountingBundle:Chartmaster a
+				JOIN a.chartdetails b
+				WHERE b.period = :id
+				GROUP BY a.accountcode, a.accountname
+				ORDER BY a.accountcode ASC'
+		)->setParameter('id', $id)
+		->getResult();
 	}
 }
