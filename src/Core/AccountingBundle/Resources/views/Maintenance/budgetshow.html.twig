@@ -27,6 +27,11 @@ Display Budget
             	Show budget selections
             </div>
             <div class="panel-body">
+            	<a class="btn btn-primary" data-toggle="collapse" href="#budget0" 
+            			aria-expanded="false" aria-controls="budget0">
+            		Link with href
+            	</a>
+            
             
             	<button class="btn btn-primary" type="button" data-toggle="collapse" 
             			data-target="#budget0" aria-expanded="false" 
@@ -52,25 +57,25 @@ Display Budget
 						</tr></thead>
 						<tbody>
 						{% for budget in budgets %}
-						{% if budget.sumbudget == 0 %}
-					    <tr class="collapse" id="budget0">
-					    	<td>{{ budget.accountcode }}</td>
-					    	<td>{{ budget.accountname }}</td>
-					    	<td>{{ budget.sumbudget }}</td>
-					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
-					    		<i class="fa fa-pencil-square-o"></i>
-					    	</a></td>
-						</tr>
-						{% elseif budget.sumbudget != 0 %}
-					    <tr>
-					    	<td>{{ budget.accountcode }}</td>
-					    	<td>{{ budget.accountname }}</td>
-					    	<td>{{ budget.sumbudget }}</td>
-					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
-					    		<i class="fa fa-pencil-square-o"></i>
-					    	</a></td>
-						</tr>
-						{% endif %}
+							{% if budget.sumbudget == 0 %}
+						    <tr class="collapse" id="budget0">
+						    	<td>{{ budget.accountcode }}</td>
+						    	<td>{{ budget.accountname }}</td>
+						    	<td>{{ budget.sumbudget }}</td>
+						    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
+						    		<i class="fa fa-pencil-square-o"></i>
+						    	</a></td>
+							</tr>
+							{% elseif budget.sumbudget != 0 %}
+						    <tr>
+						    	<td>{{ budget.accountcode }}</td>
+						    	<td>{{ budget.accountname }}</td>
+						    	<td>{{ budget.sumbudget }}</td>
+						    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
+						    		<i class="fa fa-pencil-square-o"></i>
+						    	</a></td>
+							</tr>
+							{% endif %}
 					    {% else %}
 					        <p>There are no accounts within the budget</p>
 					    {% endfor %}
