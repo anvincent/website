@@ -464,7 +464,7 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-//		die(var_dump($today));
+		die(var_dump($today));
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 						->findOneBylastdateinperiod($today->format('Y-m-t'));
 		die(var_dump($periods));
