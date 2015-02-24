@@ -18,7 +18,7 @@ class ChartdetailsRepository extends EntityRepository
 			->createQuery(
 					'SELECT b
 					FROM CoreAccountingBundle:Chartdetails a
-					JOIN CoreAccountingBundle:Chartmaster b
+					JOIN a.chartmaster b
 					GROUP BY b.accountcode, b.accountname
 					ORDER BY b.accountcode ASC'
 			)->getResult();
@@ -27,14 +27,14 @@ class ChartdetailsRepository extends EntityRepository
 	public function findBudgetbyid($id)
 	{
 		return $this->getEntityManager()
-		->createQuery(
-				'SELECT b
-				FROM CoreAccountingBundle:Chartdetails a
-				JOIN CoreAccountingBundle:Chartmaster b
-				WHERE b.accountcode = :id
-				GROUP BY b.accountcode, b.accountname
-				ORDER BY b.accountcode ASC'
-		)->setParameter('id', $id)
-		->getResult();
+			->createQuery(
+					'SELECT b
+					FROM CoreAccountingBundle:Chartdetails a
+					JOIN a.chartmaster b
+					WHERE b.accountcode = :id
+					GROUP BY b.accountcode, b.accountname
+					ORDER BY b.accountcode ASC'
+			)->setParameter('id', $id)
+			->getResult();
 	}
 }
