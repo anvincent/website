@@ -707,7 +707,7 @@ class MaintenanceController extends Controller
 		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
 				'title' => 'Budget',
 				'returnMessage' => $returnMessage,
-				'budget' => $transactionData
+				'budgets' => $transactionData
 		));
 	}
 	
