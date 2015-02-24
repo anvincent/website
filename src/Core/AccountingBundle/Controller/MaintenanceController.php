@@ -463,7 +463,8 @@ class MaintenanceController extends Controller
 	protected function getTodaysPeriod()
 	{
 		$em = $this->getDoctrine()->getManager();
-		$today = new \DateTime(date('Y-m-d'),new \DateTimeZone('America/Chicago'));
+		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		die(var_dump($today));
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 						->findOneBylastdateinperiod($today->format('Y-m-t'));
 		if (!$periods) {
