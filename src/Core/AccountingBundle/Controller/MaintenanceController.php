@@ -704,6 +704,7 @@ class MaintenanceController extends Controller
 	public function showbudgetAction($returnMessage=null)
 	{
 		$transactionData = $this->getBudget();
+		die(var_dump($transactionData));
 		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
 				'title' => 'Budget',
 				'returnMessage' => $returnMessage,
