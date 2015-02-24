@@ -46,6 +46,7 @@ Display Budget
 						<thead><tr>
 							<th>Account Nr.</th>
 							<th>Account Name</th>
+							<th>Test</th>
 							<th>Edit Budgets</th>
 						</tr></thead>
 						<tbody>
@@ -54,6 +55,7 @@ Display Budget
 					    <tr class="budget0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
+					    	<td>{{ budget.budget }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
@@ -62,6 +64,7 @@ Display Budget
 					    <tr class="budgetnot0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
+					    	<td>{{ budget.budget }}</td>
 					    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
 					    		<i class="fa fa-pencil-square-o"></i>
 					    	</a></td>
