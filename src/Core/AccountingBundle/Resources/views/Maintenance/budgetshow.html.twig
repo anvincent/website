@@ -29,7 +29,7 @@ Display Budget
             <div class="panel-body">
             	<button class="btn btn-primary" type="button" data-toggle="collapse" 
             			data-target=".budget0">
-            		Show/Hide All Accounts
+            		Show / Hide All Accounts
             	</button>
             </div>
         </div>
@@ -88,4 +88,10 @@ Display Budget
 
 {% block javascripts %}
     {{ parent() }}
+    
+    $('#btn').on('click', function () {
+		var $btn = $(this).button('processing...')
+    	$btn.button('reset')
+	})
+    
 {% endblock %}
