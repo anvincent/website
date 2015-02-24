@@ -722,6 +722,47 @@ class MaintenanceController extends Controller
 		));
 	}
 	
+	public function editbudgetAction($account)
+	{
+		$em = $this->getDoctrine()
+		->getManager();
+		die(var_dump($this->getTodaysPeriod()->getPeriodno()));
+		$transactionData = $this->getBudget('budgetactualbypriorcurrentnextbyaccount',$account);
+		die(var_dump($transactionData));
+		
+		
+		
+		
+		
+		$form = $this->createForm(new ImporttransdefnType(), $importtransdefn);
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			$importdefnid = $form["importdefnid"]->getData();
+			
+			
+			if ($form->isValid()) {
+				$importtransdefn->setAccountname($accountname);
+				
+				
+				$em->persist($importtransdefn);
+				$em->flush();
+				$returnMessage = "Transaction import definition for account $accountname successfully updated.";
+			} else {
+				$returnMessage = "An error occurred during the processing of account $accountname.";
+			}
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage',$returnMessage);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Maintenance:importtransdefnedit.html.twig', array(
+					'importtransdefn' 	=> $importtransdefn,
+					'importdefnid'  	=> $importdefnid,
+					'form'        		=> $form->createView()
+			));
+		}
+	}
+	
 	
 	
 	
@@ -748,8 +789,10 @@ class MaintenanceController extends Controller
 			case "budgetbyperiod":
 				//something
 				break;
-			case "budgetbyperiod":
-				//something
+			case "budgetactualbypriorcurrentnextbyaccount":
+					$period = $this->getTodaysPeriod()->getPeriodno();
+					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+									->findBudgetactualbypriorcurrentnextbyaccount($id);
 				break;
 			default:
 				$budget = 0;

@@ -1,0 +1,76 @@
+{# src/Core/AccountingBundle/Resources/views/Maintenance/budgetedit.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Budget{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Edit Chart of Accounts
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-lg-4">
+		<div class="panel-heading">Last Financial Year</div>
+		<div class="panel-heading">
+			
+		</div>
+		<div class="panel panel-default">
+		</div>
+		<div class="panel panel-footer">
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+
+
+
+			<div class="panel-heading">
+
+
+
+				Edit Accounts
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+            	<div class="row">
+                	<div class="col-lg-6">
+                    	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+                    		<div class="form-group">
+                    			{{ form_label(form.accountcode, 'Account Code') }}
+								{{ form_errors(form.accountcode) }}
+								{{ form_widget(form.accountcode, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.accountname, 'Account Name') }}
+								{{ form_errors(form.accountname) }}
+								{{ form_widget(form.accountname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.group_, 'Group') }}
+								{{ form_errors(form.group_) }}
+								{{ form_widget(form.group_, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+								{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+							</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>			
+		</div>				
+	</div>
+</div>
+
+{% endblock %}

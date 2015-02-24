@@ -51,4 +51,17 @@ class ChartdetailsRepository extends EntityRepository
 		)->setParameter('id', $id)
 		->getResult();
 	}
+	
+	
+	
+	public function findBudgetactualbypriorcurrentnextbyaccount($id)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a.actual, a.budget
+				FROM CoreAccountingBundle:Chartdetails a
+				'
+		)->setParameter('id', $id)
+		->getResult();
+	}
 }
