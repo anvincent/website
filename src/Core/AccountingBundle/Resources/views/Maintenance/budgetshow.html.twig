@@ -55,7 +55,7 @@ Display Budget
 							<th>Test</th>
 							<th>Edit Budgets</th>
 						</tr></thead>
-						<tbody>
+						<tbody id="budgetrows">
 						{% for budget in budgets %}
 							{% if budget.sumbudget == 0 %}
 						    <tr class="collapse" id="budget0">
@@ -98,4 +98,9 @@ Display Budget
 
 {% block javascripts %}
     {{ parent() }}
+    
+    $('#table .budgetrows').on('click', function () {
+    	$('#budgetrows .budget0').collapse('toggle');
+	});
+    
 {% endblock %}
