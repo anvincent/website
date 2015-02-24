@@ -27,14 +27,15 @@ Display Budget
             	Show budget selections
             </div>
             <div class="panel-body">
-            	<div class="btn-group" data-toggle="buttons">
-            		<label class="btn btn-primary">
-            			<input type="radio" name="options" id="allrows" autocomplete="off"> All Accounts
-  					</label>
-  					<label class="btn btn-primary">
-  						<input type="radio" name="options" id="limitrows" autocomplete="off"> Current Budget Accounts
-  					</label>
-  				</div>
+            
+            	<button class="btn btn-primary" type="button" data-toggle="collapse" 
+            			data-target="#budget0" aria-expanded="false" 
+            			aria-controls="budget0">
+            		Button with data-target
+            	</button>
+            
+
+            
             </div>
         </div>
 	</div>
@@ -52,7 +53,7 @@ Display Budget
 						<tbody>
 						{% for budget in budgets %}
 						{% if budget.sumbudget == 0 %}
-					    <tr class="budget0">
+					    <tr class="collapse" id="budget0">
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
 					    	<td>{{ budget.sumbudget }}</td>
@@ -61,7 +62,7 @@ Display Budget
 					    	</a></td>
 						</tr>
 						{% elseif budget.sumbudget != 0 %}
-					    <tr class="budgetnot0">
+					    <tr>
 					    	<td>{{ budget.accountcode }}</td>
 					    	<td>{{ budget.accountname }}</td>
 					    	<td>{{ budget.sumbudget }}</td>
@@ -92,18 +93,4 @@ Display Budget
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-    	var rows = $('table.table tr');
-
-		$('#allrows').click(function() {
-		    rows.show();
-		});
-		
-		$('#limitrows').click(function() {
-		    var budgetnot0 = rows.filter('.budgetnot0').show();
-		    rows.not( budgetnot0 ).hide();
-		});
-		
-		
-    </script>
 {% endblock %}
