@@ -16,11 +16,11 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT b
-					FROM CoreAccountingBundle:Chartdetails a
-					JOIN a.chartmaster b
-					GROUP BY b.accountcode, b.accountname
-					ORDER BY b.accountcode ASC'
+					'SELECT a
+					FROM CoreAccountingBundle:Chartmaster a
+					JOIN a.chartdetails b
+					GROUP BY a.accountcode, a.accountname
+					ORDER BY a.accountcode ASC'
 			)->getResult();
 	}
 	
@@ -28,12 +28,12 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT b
-					FROM CoreAccountingBundle:Chartdetails a
-					JOIN a.chartmaster b
-					WHERE b.accountcode = :id
-					GROUP BY b.accountcode, b.accountname
-					ORDER BY b.accountcode ASC'
+					'SELECT a
+					FROM CoreAccountingBundle:Chartmaster a
+					JOIN a.chartdetails b
+					WHERE a.accountcode = :id
+					GROUP BY a.accountcode, a.accountname
+					ORDER BY a.accountcode ASC'
 			)->setParameter('id', $id)
 			->getResult();
 	}
