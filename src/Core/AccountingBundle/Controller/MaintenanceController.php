@@ -476,7 +476,6 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-		//$year = $today->format('Y');
 		$today->setDate($today->format('Y'),1,1);
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 		->findperiodnowithlastdateinperiod($today);
@@ -738,15 +737,31 @@ class MaintenanceController extends Controller
 		));
 	}
 	
+	public function showdetailedbudgetAction($account_id)
+	{
+		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
+		
+		
+		
+		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
+				'title' => 'Budget',
+				'returnMessage' => $returnMessage,
+				'budgets' => $transactionData
+		));
+	}
+	
+	
 	public function editbudgetAction($account_id)
 	{
-		$em = $this->getDoctrine()
-		->getManager();
+		$em = $this	->getDoctrine()
+					->getManager();
 		
 		die(var_dump($this->getThisYearsJanPeriod()));
 		
-		die(var_dump($this->getTodaysPeriod()));
-		$transactionData = $this->getBudget('budgetactualbypriorcurrentnextbyaccount',$account);
+		var_dump($this->getTodaysPeriod());
+		echo "</br></br>";
+		
+		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		die(var_dump($transactionData));
 		
 		
@@ -773,8 +788,13 @@ class MaintenanceController extends Controller
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
-		} else {
-			return $this->render('CoreAccountingBundle:Maintenance:importtransdefnedit.html.twig', array(
+		} 
+		
+		
+		
+		
+		else {
+			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'importtransdefn' 	=> $importtransdefn,
 					'importdefnid'  	=> $importdefnid,
 					'form'        		=> $form->createView()
@@ -808,10 +828,10 @@ class MaintenanceController extends Controller
 			case "budgetbyperiod":
 				//something
 				break;
-			case "budgetactualbypriorcurrentnextbyaccount":
-					$period = $this->getTodaysPeriod()->getPeriodno();
+			case "budgetactualpriorcurrentnextbyaccount":
+					$period = $this->getThisYearsJanPeriod();
 					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-									->findBudgetactualbypriorcurrentnextbyaccount($id);
+									->findBudgetactualpriorcurrentnextbyaccount($id,$period-12,$period+23);
 				break;
 			default:
 				$budget = 0;

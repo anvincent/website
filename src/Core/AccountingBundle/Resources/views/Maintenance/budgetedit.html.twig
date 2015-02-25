@@ -13,6 +13,7 @@ Edit Chart of Accounts
 
 {% block body %}
 <div class="row">
+	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
 	<div class="col-lg-4">
 		<div class="panel-heading">Last Financial Year</div>
 		<div class="panel-heading">
@@ -23,53 +24,42 @@ Edit Chart of Accounts
 		<div class="panel panel-footer">
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
+	<div class="col-lg-4">
+		<div class="panel panel-default"></div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default"></div>
+	</div>
+	
+	<div class="col-lg-4">
 		<div class="panel panel-default">
-
-
-
-			<div class="panel-heading">
-
-
-
-				Edit Accounts
-			</div>
-			<!-- /.panel-heading -->
 			<div class="panel-body">
-            	<div class="row">
-                	<div class="col-lg-6">
-                    	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-                    		<div class="form-group">
-                    			{{ form_label(form.accountcode, 'Account Code') }}
-								{{ form_errors(form.accountcode) }}
-								{{ form_widget(form.accountcode, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                    		<div class="form-group">
-                    			{{ form_label(form.accountname, 'Account Name') }}
-								{{ form_errors(form.accountname) }}
-								{{ form_widget(form.accountname, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                    		<div class="form-group">
-                    			{{ form_label(form.group_, 'Group') }}
-								{{ form_errors(form.group_) }}
-								{{ form_widget(form.group_, {'attr': {'class': 'form-control'}}) }}
-                            </div>
-                            <div class="form-group">
-								{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
-							</div>
-						{{ form_end(form) }}
-					</div>
+            	<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<thead><tr>
+							<th>Period</th>
+							<th>Actual</th>
+						</tr></thead>
+						<tbody>
+							{% for row in rows1 %]
+						    <tr>
+						    	<td>{{ row.period }}</td>
+						    	<td>{{ row.actual }}</td>
+						    	<td>
+						    		{{ row.budget }} 
+						    		<a href="{{ path('CoreAccountingBundle_maintenance_accountgroups_edit',{'group_id':group.groupname}) }}">
+						    			<i class="fa fa-pencil-square-o"></i>
+						    		</a>
+						    	</td>
+							</tr>
+						    {% else %}
+						        <p>There are no budgets within the account</p>
+						    {% endfor %}
+						</tbody>
+					</table>
 				</div>
-			</div>			
-		</div>				
+			</div>
+		</div>
 	</div>
 </div>
 
