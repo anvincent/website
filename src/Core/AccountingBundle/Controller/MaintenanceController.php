@@ -741,7 +741,9 @@ class MaintenanceController extends Controller
 	{
 		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
-		
+		var_dump(array_slice($transactionData,0,12));
+		var_dump(array_slice($transactionData,12,12));
+		var_dump(array_slice($transactionData,24,12));
 		
 		return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 				'title' 		=> 'Budget',
