@@ -737,7 +737,7 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function showdetailedbudgetAction($account_id)
+	public function showdetailedbudgetAction($account_id,$returnMessage=null)
 	{
 		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
