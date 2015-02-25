@@ -472,6 +472,20 @@ class MaintenanceController extends Controller
 		return $periods;
 	}
 	
+	protected function getThisYearsJanPeriod()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		$today->setDate($today-format('Y'),1,1);
+		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+		->findperiodnowithlastdateinperiod($today);
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
+	}
+	
+	
 	
 	/* Transaction Tags - tags
 	 * 		show
@@ -727,6 +741,9 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()
 		->getManager();
+		
+		die(var_dump($this->getThisYearsJanPeriod()));
+		
 		die(var_dump($this->getTodaysPeriod()));
 		$transactionData = $this->getBudget('budgetactualbypriorcurrentnextbyaccount',$account);
 		die(var_dump($transactionData));
