@@ -464,11 +464,8 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-		//$todayslastperiod = $today->format('Y-m-t');
-		var_dump($today);
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 						->findperiodnowithlastdateinperiod($today);
-		die(var_dump($periods));
 		if (!$periods) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
@@ -730,7 +727,7 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()
 		->getManager();
-		die(var_dump($this->getTodaysPeriod()->getPeriodno()));
+		die(var_dump($this->getTodaysPeriod()));
 		$transactionData = $this->getBudget('budgetactualbypriorcurrentnextbyaccount',$account);
 		die(var_dump($transactionData));
 		
