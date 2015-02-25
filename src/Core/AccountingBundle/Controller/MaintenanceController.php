@@ -464,10 +464,10 @@ class MaintenanceController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-		$todayslastperiod = $today->format('Y-m-t');
+		//$todayslastperiod = $today->format('Y-m-t');
 		//die(var_dump($todayslastperiod));
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-						->findOneBylastdateinperiod($today);
+						->findperiodnowithlastdateinperiod($today);
 		die(var_dump($periods));
 		if (!$periods) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');

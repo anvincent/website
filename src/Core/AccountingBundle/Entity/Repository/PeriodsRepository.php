@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PeriodsRepository extends EntityRepository
 {
+	public function findperiodnowithlastdateinperiod($date)
+	{
+		$id = $date->format('Y-m-t');
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a.lastdateinperio
+				FROM CoreAccountingBundle:Periods a
+				WHERE a.periodno = :id'
+		)->setParameter('id', $id)
+		->getResult();
+	}
+	
 }
