@@ -52,9 +52,8 @@ Edit Chart of Accounts
 						    <tr>
 						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
-						    	<td>
-						    		{{ row.budget }} 
-						    		<a href="#">
+						    	<td>{{ row.budget }} 
+						    		<a href="#editbudget" data-toggle="modal">
 						    			<i class="fa fa-pencil-square-o"></i>
 						    		</a>
 						    	</td>
@@ -85,9 +84,8 @@ Edit Chart of Accounts
 						    <tr>
 						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
-						    	<td>
-						    		{{ row.budget }} 
-						    		<a href="#">
+						    	<td>{{ row.budget }} 
+						    		<a href="#editbudget" data-toggle="modal">
 						    			<i class="fa fa-pencil-square-o"></i>
 						    		</a>
 						    	</td>
@@ -118,9 +116,8 @@ Edit Chart of Accounts
 						    <tr>
 						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
-						    	<td>
-						    		{{ row.budget }} 
-						    		<a href="#">
+						    	<td>{{ row.budget }} 
+						    		<a href="#editbudget" data-toggle="modal">
 						    			<i class="fa fa-pencil-square-o"></i>
 						    		</a>
 						    	</td>
@@ -135,7 +132,23 @@ Edit Chart of Accounts
 		</div>
 	</div>
 	
-	
+	<div class="modal fade" id="editbudget" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<p>Header Text</p>
+				</div>
+				
+	</div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		
+	</script>
+    {{ parent() }}
+    
+    
 {% endblock %}
