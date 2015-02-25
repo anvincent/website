@@ -60,7 +60,7 @@ class ChartdetailsRepository extends EntityRepository
 		->createQuery(
 				'SELECT a.actual, a.budget
 				FROM CoreAccountingBundle:Chartdetails a
-				'
+				 n '
 		)->setParameter('id', $id)
 		->getResult();
 	}
