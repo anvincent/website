@@ -743,12 +743,12 @@ class MaintenanceController extends Controller
 		
 		
 		
-		return $this->render('CoreAccountingBundle:Maintenance:budgetshow.html.twig', array(
-				'title' => 'Budget',
+		return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
+				'title' 		=> 'Budget',
 				'returnMessage' => $returnMessage,
-				'prioryear' => array_slice($transactionData,0,12),
-				'curryear' => array_slice($transactionData,12,12),
-				'nextyear' => array_slice($transactionData,0,12)
+				'prioryear' 	=> array_slice($transactionData,0,12),
+				'curryear' 		=> array_slice($transactionData,12,12),
+				'nextyear' 		=> array_slice($transactionData,24,12)
 		));
 	}
 	
@@ -759,9 +759,7 @@ class MaintenanceController extends Controller
 					->getManager();
 		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
-		var_dump(array_slice($transactionData,12,12));
-		echo "</br></br>";
-		die(var_dump(array_slice($transactionData,23,12)));
+		die(var_dump(array_slice($transactionData,24,12)));
 		
 		
 		
