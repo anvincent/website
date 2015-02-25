@@ -17,7 +17,7 @@ class PeriodsRepository extends EntityRepository
 		$id = $date->format('Y-m-t');
 		return $this->getEntityManager()
 		->createQuery(
-				'SELECT a.lastdateinperio
+				'SELECT a.lastdateinperiod
 				FROM CoreAccountingBundle:Periods a
 				WHERE a.periodno = :id'
 		)->setParameter('id', $id)
