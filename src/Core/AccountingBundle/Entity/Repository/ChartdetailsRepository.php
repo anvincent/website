@@ -58,7 +58,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		return $this->getEntityManager()
 		->createQuery(
-				'SELECT a.period, a.actual, a.budget
+				'SELECT IDENTITY(a.period), a.actual, a.budget
 				FROM CoreAccountingBundle:Chartdetails a
 				WHERE a.accountcode = :id
 				AND a.period >= :periodstart
