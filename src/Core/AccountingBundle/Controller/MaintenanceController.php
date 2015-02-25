@@ -756,9 +756,9 @@ class MaintenanceController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		
-		die(var_dump($this->getThisYearsJanPeriod()));
+		//die(var_dump($this->getThisYearsJanPeriod()));
 		
-		var_dump($this->getTodaysPeriod());
+		var_dump($this->getThisYearsJanPeriod());
 		echo "</br></br>";
 		
 		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
