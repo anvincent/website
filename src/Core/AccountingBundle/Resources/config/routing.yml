@@ -170,7 +170,7 @@ CoreAccountingBundle_maintenance_budget_show:
 
 CoreAccountingBundle_maintenance_budget_edit:
     pattern:	/accounting/maintenance/budget/edit/{account_id}
-    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showdetailedbudgetbudget }
+    defaults:	{ _controller:CoreAccountingBundle:Maintenance:showdetailedbudget }
     requirements:
         _method:  GET|POST
 
