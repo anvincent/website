@@ -14,20 +14,25 @@ Edit Chart of Accounts
 {% block body %}
 <div class="row">
 	<div class="col-lg-4">
-		<div class="panel-heading">Last Financial Year</div>
-		<div class="panel-heading">
-			
-		</div>
 		<div class="panel panel-default">
-		</div>
-		<div class="panel panel-footer">
+			<div class="panel-heading">Last Financial Year</div>
+			<div class="panel-heading">Year ended - {% prioryear.period|last %}</div>
+			<div class="panel panel-footer"></div>
 		</div>
 	</div>
 	<div class="col-lg-4">
-		<div class="panel panel-default"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Current Financial Year</div>
+			<div class="panel-heading">Year ending - {% curryear.period|last %}</div>
+			<div class="panel panel-footer"></div>
+		</div>
 	</div>
 	<div class="col-lg-4">
-		<div class="panel panel-default"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Next Financial Year</div>
+			<div class="panel-heading">Year ending - {% nextyear.period|last %}</div>
+			<div class="panel panel-footer"></div>
+		</div>
 	</div>
 </div>
 <div class="row">	
@@ -40,6 +45,7 @@ Edit Chart of Accounts
 						<thead><tr>
 							<th>Period</th>
 							<th>Actual</th>
+							<th>Budget</th>
 						</tr></thead>
 						<tbody>
 							{% for row in prioryear %}
@@ -72,6 +78,7 @@ Edit Chart of Accounts
 						<thead><tr>
 							<th>Period</th>
 							<th>Actual</th>
+							<th>Budget</th>
 						</tr></thead>
 						<tbody>
 							{% for row in curryear %}
@@ -104,6 +111,7 @@ Edit Chart of Accounts
 						<thead><tr>
 							<th>Period</th>
 							<th>Actual</th>
+							<th>Budget</th>
 						</tr></thead>
 						<tbody>
 							{% for row in nextyear %}
