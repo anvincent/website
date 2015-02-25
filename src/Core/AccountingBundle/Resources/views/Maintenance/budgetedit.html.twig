@@ -44,7 +44,7 @@ Edit Chart of Accounts
 						<tbody>
 							{% for row in prioryear %}
 						    <tr>
-						    	<td>{{ row.1 }}</td>
+						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
 						    	<td>
 						    		{{ row.budget }} 
@@ -76,7 +76,7 @@ Edit Chart of Accounts
 						<tbody>
 							{% for row in curryear %}
 						    <tr>
-						    	<td>{{ row.1 }}</td>
+						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
 						    	<td>
 						    		{{ row.budget }} 
@@ -108,7 +108,7 @@ Edit Chart of Accounts
 						<tbody>
 							{% for row in nextyear %}
 						    <tr>
-						    	<td>{{ row.1 }}</td>
+						    	<td>{{ row.period }}</td>
 						    	<td>{{ row.actual }}</td>
 						    	<td>
 						    		{{ row.budget }} 
