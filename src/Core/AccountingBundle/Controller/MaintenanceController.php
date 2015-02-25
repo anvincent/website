@@ -747,8 +747,8 @@ class MaintenanceController extends Controller
 				'title' => 'Budget',
 				'returnMessage' => $returnMessage,
 				'prioryear' => array_slice($transactionData,0,12),
-				'prioryear' => array_slice($transactionData,12,12),
-				'prioryear' => array_slice($transactionData,0,12)
+				'curryear' => array_slice($transactionData,12,12),
+				'nextyear' => array_slice($transactionData,0,12)
 		));
 	}
 	
@@ -757,18 +757,11 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		
-		//die(var_dump($this->getThisYearsJanPeriod()));
-		
-		var_dump($this->getThisYearsJanPeriod());
-		echo "</br></br>";
-		
 		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
-		
-		
-		
-		die(var_dump(array_slice($transactionData,0,12)));
+		var_dump(array_slice($transactionData,12,12));
+		echo "</br></br>";
+		die(var_dump(array_slice($transactionData,23,12)));
 		
 		
 		
