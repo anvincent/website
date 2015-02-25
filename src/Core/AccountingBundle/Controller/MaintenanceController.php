@@ -831,7 +831,7 @@ class MaintenanceController extends Controller
 			case "budgetactualpriorcurrentnextbyaccount":
 					$period = $this->getThisYearsJanPeriod();
 					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-									->findBudgetactualpriorcurrentnextbyaccount($id,$period-12,$period+23);
+									->findBudgetactualpriorcurrentnextbyaccount($id,$period[0]['periodno']-12,$period[0]['periodno']+23);
 				break;
 			default:
 				$budget = 0;
