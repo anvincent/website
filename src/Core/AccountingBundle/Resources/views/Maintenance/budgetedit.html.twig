@@ -32,7 +32,7 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for form in forms.budget %}
+							{% for form in forms %}
 						    <tr>
 						    	<td>{{ form_row(form.period) }}</td>
 						    	<td>{{ form_row(form.actual) }}</td>
