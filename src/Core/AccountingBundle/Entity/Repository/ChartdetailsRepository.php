@@ -3,6 +3,7 @@
 namespace Core\AccountingBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * ChartdetailsRepository
