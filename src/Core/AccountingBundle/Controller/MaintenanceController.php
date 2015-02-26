@@ -485,8 +485,6 @@ class MaintenanceController extends Controller
 		return $periods;
 	}
 	
-	
-	
 	/* Transaction Tags - tags
 	 * 		show
 	* 		add
@@ -561,7 +559,6 @@ class MaintenanceController extends Controller
 	        ));
         }
 	}
-	
 	
 	protected function getTags($id=null)
 	{
@@ -754,7 +751,7 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
+		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		
 		
 		
@@ -773,9 +770,6 @@ class MaintenanceController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-			
-			die(var_dump($form));
-			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
 				
 			}
@@ -813,14 +807,6 @@ class MaintenanceController extends Controller
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	protected function getBudget($type,$id=null)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -842,6 +828,15 @@ class MaintenanceController extends Controller
 					$period = $this->getThisYearsJanPeriod();
 					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
 									->findBudgetactualpriorcurrentnextbyaccount($id,$period[0]['periodno']-12,$period[0]['periodno']+23);
+				break;
+			case "budgetactualpriorcurrentnextbyaccount2":
+					$period = $this->getThisYearsJanPeriod();
+					$periodrange = range($period[0]['periodno']-12,$period[0]['periodno']+23);
+					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+									->findBy(array(
+											'accountcode' => $id,
+											'period' => $periodrange
+											));
 				break;
 			default:
 				$budget = 0;
