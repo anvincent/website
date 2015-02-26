@@ -60,11 +60,9 @@ class ChartdetailsRepository extends EntityRepository
 		$qb = $this->getEntityManager()->createQueryBuilder();
 		return $qb	->select('a')
 					->from('CoreAccountingBundle:Chartdetails','a')
-					->add('where',$qb->expr()->andX(
-							$qb->expr()->eq('a.accountcode',':id'),
-							$qb->expr()->gte('a.period',':periodstart'),
-							$qb->expr()->lte('a.period',':periodend')
-						))
+					->where('a.accountcode = :id')
+					->andWhere('a.period >= :periodstart')
+					->andWhere('a.period <= :periodend')
 					->setParameters(array(
 							'id' => $id,
 							'periodstart' => $periodstart,
