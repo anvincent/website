@@ -22,6 +22,8 @@ use Core\AccountingBundle\Form\AccountsectionType;
 use Core\AccountingBundle\Form\AccountgroupsType;
 use Core\AccountingBundle\Form\TagsType;
 use Core\AccountingBundle\Form\ImporttransdefnType;
+use Core\AccountingBundle\Form\BudgetType;
+use Core\AccountingBundle\Form\ChartdetailsType;
 
 class MaintenanceController extends Controller
 {
