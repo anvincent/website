@@ -757,7 +757,7 @@ class MaintenanceController extends Controller
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
 		
-		$tags = $this->getTags('1');
+		$tags = $this->getTags();
 		var_dump($tags);
 		echo "</br></br>";
 		var_dump($budgetbyperiod);
