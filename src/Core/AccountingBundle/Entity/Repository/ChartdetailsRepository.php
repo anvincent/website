@@ -59,7 +59,7 @@ class ChartdetailsRepository extends EntityRepository
 	{
 		$qb = $this->getEntityManager()->createQueryBuilder();
 		return $qb	->select('a')
-					->from('CoreAccountingBundle:Chartdetails','a')
+					->from('Chartdetails','a')
 					->where('a.accountcode = :id')
 					->andWhere('a.period >= :periodstart')
 					->andWhere('a.period <= :periodend')
