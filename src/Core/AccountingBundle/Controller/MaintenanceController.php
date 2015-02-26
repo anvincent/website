@@ -751,7 +751,7 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
+		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount3',$account_id);
 		
 		
 		
@@ -837,6 +837,12 @@ class MaintenanceController extends Controller
 											'accountcode' => $id,
 											'period' => $periodrange
 											));
+				break;
+			case "budgetactualpriorcurrentnextbyaccount3":
+					$period = $this->getThisYearsJanPeriod();
+					$periodrange = range($period[0]['periodno']-12,$period[0]['periodno']+23);
+					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+									->findAll();
 				break;
 			default:
 				$budget = 0;
