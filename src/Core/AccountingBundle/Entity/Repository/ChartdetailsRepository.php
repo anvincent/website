@@ -57,6 +57,8 @@ class ChartdetailsRepository extends EntityRepository
 	
 	public function findBudgetactualpriorcurrentnextbyaccount($id,$periodstart,$periodend)
 	{
+		
+		/*		
 		$qb = $this->getEntityManager()->createQueryBuilder();
 		return $qb	->select('a')
 					->from('Chartdetails','a')
@@ -70,8 +72,9 @@ class ChartdetailsRepository extends EntityRepository
 					))
 					->getQuery()
 					->getResult();
-	}
-/*		
+		*/		
+		
+	
 		return $this->getEntityManager()
 		->createQuery(
 			//	'SELECT IDENTITY(a.period) AS period, a.actual, a.budget
@@ -86,6 +89,6 @@ class ChartdetailsRepository extends EntityRepository
 				'periodend' => $periodend
 				))
 		->getResult();
+
 	}
-*/
 }
