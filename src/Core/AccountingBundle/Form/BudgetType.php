@@ -23,15 +23,15 @@ class BudgetType extends AbstractType
             ->add('Confirm','submit');
     }
 
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Core\AccountingBundle\Entity\Chartdetails'
-        ));
-    }
+//    /**
+//     * @param OptionsResolverInterface $resolver
+//     */
+//    public function setDefaultOptions(OptionsResolverInterface $resolver)
+//    {
+//        $resolver->setDefaults(array(
+//            'data_class' => 'Core\AccountingBundle\Entity\Chartdetails'
+//        ));
+//    }
 
     
     /**
