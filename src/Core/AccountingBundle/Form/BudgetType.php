@@ -16,22 +16,22 @@ class BudgetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        	->add('accountcode','integer')
         	->add('budget','collection',array(
         		'type' => new ChartdetailsType()
         		))
             ->add('Confirm','submit');
     }
 
-/*
     /**
      * @param OptionsResolverInterface $resolver
      */
-//    public function setDefaultOptions(OptionsResolverInterface $resolver)
-//    {
-//        $resolver->setDefaults(array(
-//            'data_class' => 'Core\AccountingBundle\Entity\Chartdetails'
-//        ));
-//    }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Core\AccountingBundle\Entity\Chartdetails'
+        ));
+    }
 
     
     /**

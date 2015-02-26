@@ -748,23 +748,17 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	
 	public function editbudgetAction($account_id)
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
-		
-		
-		
-		$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
-		
-		
-		
-		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
+			
+			$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+			
 			$form->bind($request);
 			foreach ($budgetbyperiod as $singleperiodbudget) {
 				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget); die($x);
@@ -788,16 +782,11 @@ class MaintenanceController extends Controller
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
-		} 
-		
-		
-		
-		
-		else {
+		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
-					'importtransdefn' 	=> $importtransdefn,
-					'importdefnid'  	=> $importdefnid,
-					'form'        		=> $form->createView()
+					'budgetbyperiod' 	=> $budgetbyperiod,
+					'account_id'  		=> $account_id,
+					'forms'        		=> $form->createView()
 			));
 		}
 	}

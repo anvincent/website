@@ -25,9 +25,9 @@ class ChartdetailsType extends AbstractType
             		))*/
             		
 //			->add('accountcode','integer')
-//			->add('period','integer')
+			->add('period','integer')
 			->add('budget','float');
-//			->add('actual','float')
+			->add('actual','float')
 //			->add('bfwd','float')
 //			->add('bfwdbudget','float')
 //			->add('Confirm','submit');

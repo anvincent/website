@@ -13,32 +13,16 @@ Edit Chart of Accounts
 
 {% block body %}
 <div class="row">
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Last Financial Year</div>
-			<div class="panel-heading">Year ended - {{ prioryear.11.period }}</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Current Financial Year</div>
-			<div class="panel-heading">Year ending - {{ curryear.11.period }}</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Next Financial Year</div>
-			<div class="panel-heading">Year ending - {{ nextyear.11.period }}</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-</div>
+
+
 <div class="row">	
 	{# first column #}
-	<div class="col-lg-4">
+	<div class="col-lg-12">
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Account code is {{ form.accountcode }}</h4>
+			</div>
+			{{ form_start(form) }}
 			<div class="panel-body">
             	<div class="dataTable_wrapper">
 					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -48,18 +32,15 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for row in prioryear %}
+							{% for key, form in forms.budget %}
 						    <tr>
-						    	<td>{{ row.period }}</td>
-						    	<td>{{ row.actual }}</td>
-						    	<td>{{ row.budget }} 
-						    		<a href="#editbudget" data-toggle="modal">
-						    			<i class="fa fa-pencil-square-o"></i>
-						    		</a>
-						    	</td>
+						    	<td>{{ form_row(form.period) }}</td>
+						    	<td>{{ form_row(form.actual) }}</td>
+						    	<td>{{ form_row(form.budget) }}</td>
+						    	<td>{{ key }}</td>
 							</tr>
 						    {% else %}
-						        <p>There are no budgets within the account</p>
+						        <td colspan="3">There are no budgets within the account</td>
 						    {% endfor %}
 						</tbody>
 					</table>
@@ -68,73 +49,10 @@ Edit Chart of Accounts
 			<div class="panel-footer">
 				<p>Assign monthly budget</p>
 			</div>
+			{{ form_end(form) }}
 		</div>
 	</div>
 	
-	{# second column #}
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-body">
-            	<div class="dataTable_wrapper">
-					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-						<thead><tr>
-							<th>Period</th>
-							<th>Actual</th>
-							<th>Budget</th>
-						</tr></thead>
-						<tbody>
-							{% for row in curryear %}
-						    <tr>
-						    	<td>{{ row.period }}</td>
-						    	<td>{{ row.actual }}</td>
-						    	<td>{{ row.budget }} 
-						    		<a href="#editbudget" data-toggle="modal">
-						    			<i class="fa fa-pencil-square-o"></i>
-						    		</a>
-						    	</td>
-							</tr>
-						    {% else %}
-						        <p>There are no budgets within the account</p>
-						    {% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	{# second column #}
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-body">
-            	<div class="dataTable_wrapper">
-					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-						<thead><tr>
-							<th>Period</th>
-							<th>Actual</th>
-							<th>Budget</th>
-						</tr></thead>
-						<tbody>
-							{% for row in nextyear %}
-						    <tr>
-						    	<td>{{ row.period }}</td>
-						    	<td>{{ row.actual }}</td>
-						    	<td>{{ row.budget }} 
-						    		<a href="#editbudget" data-toggle="modal">
-						    			<i class="fa fa-pencil-square-o"></i>
-						    		</a>
-						    	</td>
-							</tr>
-						    {% else %}
-						        <p>There are no budgets within the account</p>
-						    {% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
 {% endblock %}
 
