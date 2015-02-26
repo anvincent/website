@@ -16,7 +16,7 @@ class BudgetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        	->add('accountcode','integer')
+  //      	->add('accountcode','integer')
         	->add('budget','collection',array(
         		'type' => new ChartdetailsType()
         		))
