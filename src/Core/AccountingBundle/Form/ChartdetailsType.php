@@ -5,9 +5,8 @@ namespace Core\AccountingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\ORM\EntityRepository;
 
-class BudgetType extends AbstractType
+class ChartdetailsType extends AbstractType
 {
 	/**
      * @param FormBuilderInterface $builder
@@ -15,11 +14,23 @@ class BudgetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        	->add('budget','collection',array(
-        		'type' => new ChartdetailsType()
-        		))
-            ->add('Confirm','submit');
+        $builder/*
+            ->add('accountcode','entity',array(
+            		'class' => 'CoreAccountingBundle:Chartmaster',
+            		'property' => 'accountcode'
+            		))
+            ->add('period','entity',array(
+            		'class' => 'CoreAccountingBundle:Periods',
+            		'property' => 'periodno'
+            		))*/
+            		
+//			->add('accountcode','integer')
+//			->add('period','integer')
+			->add('budget','float');
+//			->add('actual','float')
+//			->add('bfwd','float')
+//			->add('bfwdbudget','float')
+//			->add('Confirm','submit');
     }
       
     /**
@@ -37,6 +48,6 @@ class BudgetType extends AbstractType
      */
     public function getName()
     {
-        return 'core_accountingbundle_budget';
+        return 'core_accountingbundle_chartdetails';
     }
 }

@@ -752,28 +752,20 @@ class MaintenanceController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
-		
-		$x = \Doctrine\Common\Util\Debug::dump($budgetbyperiod);
-		
-		die($x);
-		
-		foreach ($budgetbyperiod as $periodbudget) {
-			var_dump($periodbudget);
-			echo "</br></br>";
-		}
-		
-		
-		
-		var_dump($budgetbyperiod->getAccountcode());
-		
-		die();
-		
 		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
+		
+		
+		
+		$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+		
+		
+		
+		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			foreach ($budgetbyperiod as $singleperiodbudget) {
-				
+				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget); die($x);
 			}
 			
 			$importdefnid = $form["importdefnid"]->getData();
