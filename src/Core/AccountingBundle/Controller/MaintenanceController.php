@@ -754,19 +754,31 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$transactionData = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
-		
-		die(var_dump(array_slice($transactionData,24,12)));
+		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		
 		
+		$tags = $this->getTags($tagref);
 		
+		var_dump($budgetbyperiod);
+		echo "</br></br>";
+		var_dump($tags);
 		
+		die();
 		
-		$form = $this->createForm(new ImporttransdefnType(), $importtransdefn);
+		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
+			
+			die(var_dump($form));
+			
+			foreach ($budgetbyperiod as $singleperiodbudget) {
+				
+			}
+			
 			$importdefnid = $form["importdefnid"]->getData();
+			
+			
 			
 			
 			if ($form->isValid()) {
