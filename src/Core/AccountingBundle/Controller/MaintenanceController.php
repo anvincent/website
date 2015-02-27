@@ -793,11 +793,11 @@ class MaintenanceController extends Controller
 			echo "</br></br>";
 			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value']);
 			echo "</br></br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->period);
+			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getPeriod());
 			echo "</br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->actual);
+			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getActual());
 			echo "</br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->budget);
+			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getBudget());
 			echo "</br></br>";
 			die($x);
 			//
