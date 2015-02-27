@@ -765,7 +765,7 @@ class MaintenanceController extends Controller
 			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
 				$period = $singleperiodbudget->getPeriod()->getPeriodno();
-				if($singleperiodbudget->getBudget() != $forms["budget.$period"]) {
+				if($singleperiodbudget->getBudget() != $forms["budget$period"]) {
 					echo "Period:";
 					print_r($singleperiodbudget->getPeriod()->getPeriodno());
 					echo "</br>";
