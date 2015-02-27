@@ -757,6 +757,15 @@ class MaintenanceController extends Controller
 			$forms->bind($request);
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>";
 			
+			foreach ($forms as $form) {
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>";
+				
+			}
+			die();
+			
+			
+			
+			
 			$formData = $forms->getData();
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
 			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
