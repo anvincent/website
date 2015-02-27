@@ -32,12 +32,12 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for form in forms %}
+							{% for budget in forms.budgets %}
 						    <tr>
 						    	<td colspan="3"></td>
-						    	<td>{{ form.vars.value.period }}</td>
-						    	<td>{{ form.vars.value.actual }}</td>
-						    	<td>{{ form.vars.value.budget }}</td>
+						    	<td>{{ form_row(budget.budget }}</td>
+						    	<td>blank</td>
+						    	<td>blank</td>
 							</tr>
 						    {% else %}
 						        <td colspan="3">There are no budgets within the account</td>
