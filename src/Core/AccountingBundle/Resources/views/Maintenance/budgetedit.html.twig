@@ -36,13 +36,17 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ form_widget(row.getBudget, {'attr': {'class': 'form-control'}}) }}</td>
+							    	<td>
+										{{ form_row(row.getBudget) }}
+							    	</td>
 								</tr>
 	{% else %}
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ form_widget(row.getBudget, {'attr': {'class': 'form-control'}}) }}</td>
+							    	<td>
+										{{ form_row(row.getBudget) }}
+							    	</td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
