@@ -37,7 +37,9 @@ Edit Chart of Accounts
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
 							    	<td>
-							    		<input type="text" name="budget[{{ row.getPeriod.getPeriodno }}]" value="{{ row.getBudget }}">
+							    		<input type="text" class="form-control input-sm"  
+							    			name="budget[{{ row.getPeriod.getPeriodno }}]" 
+							    			value="{{ row.getBudget }}">
 							    		{{ row.getBudget }}
 							    		
 							    	</td>
@@ -46,7 +48,13 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ row.getBudget }}</td>
+							    	<td>
+							    		<input type="text" class="form-control input-sm"  
+							    			name="budget[{{ row.getPeriod.getPeriodno }}]" 
+							    			value="{{ row.getBudget }}">
+							    		{{ row.getBudget }}
+							    		
+							    	</td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
