@@ -767,7 +767,7 @@ class MaintenanceController extends Controller
 //					$x = \Doctrine\Common\Util\Debug::dump($forms);
 					print_r($singleperiodbudget->getBudget());
 					echo "</br>";
-					print_r($forms->viewdata[$key]);
+					\Doctrine\Common\Util\Debug::dump($forms->getData());
 					echo "</br></br>";
 					
 					/*
