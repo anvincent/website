@@ -36,7 +36,11 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ row.getBudget }}</td>
+							    	<td>
+							    		<input type="text" name="budget[{{ row.getPeriod.getPeriodno }}]" value="{{ row.getBudget }}">
+							    		{{ row.getBudget }}
+							    		
+							    	</td>
 								</tr>
 	{% else %}
 							    <tr>
