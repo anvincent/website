@@ -34,7 +34,7 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ row.getBudget }}</td>
+							    	<td>{{ form_row(row.getBudget) }}</td>
 								</tr>
 						    {% else %}
 						        <td colspan="3">"row" failed</td>
