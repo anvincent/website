@@ -35,9 +35,9 @@ Edit Chart of Accounts
 							{% for form in forms %}
 						    <tr>
 						    	<td colspan="3"></td>
-						    	<td>{{ form_row(form.getPeriod) }}</td>
-						    	<td>{{ form_row(form.getActual) }}</td>
-						    	<td>{{ form_row(form.getBudget) }}</td>
+						    	<td>{{ form_row(form.get('value').getPeriod) }}</td>
+						    	<td>{{ form_row(form.get('value').getActual) }}</td>
+						    	<td>{{ form_row(form.get('value').getBudget) }}</td>
 							</tr>
 						    {% else %}
 						        <td colspan="3">There are no budgets within the account</td>
