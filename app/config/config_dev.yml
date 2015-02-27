@@ -41,4 +41,4 @@ swiftmailer:
 services:
     debug.twig.extension:
         class: Twig_Extensions_Extension_Debug
-        tags: [{ name: 'twig.extension' }]
+        tags: { name: 'twig.extension' }
