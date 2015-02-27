@@ -30,7 +30,7 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% debug forms %}
+							{% dump(forms) %}
 							{% for form in forms.budgetcollection %}
 							    <tr>
 							    	<td>period</td>
