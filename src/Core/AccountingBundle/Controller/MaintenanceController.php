@@ -761,16 +761,15 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$forms->bind($request);
 			
-			$x = \Doctrine\Common\Util\Debug::dump($forms); die($x);
+//			$x = \Doctrine\Common\Util\Debug::dump($forms); die($x);
 			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
-				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget); die($x);
+				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget);
+			echo "</br>";
 			}
+			$die($x);
 			
 			$importdefnid = $form["importdefnid"]->getData();
-			
-			
-			
 			
 			if ($form->isValid()) {
 				$importtransdefn->setAccountname($accountname);
