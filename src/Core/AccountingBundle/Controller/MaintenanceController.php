@@ -784,7 +784,7 @@ class MaintenanceController extends Controller
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
 		} else {
 			
-			$x = \Doctrine\Common\Util\Debug::dump($form->createView()->get('value')); die($x);
+//			$x = \Doctrine\Common\Util\Debug::dump($form->createView()->get('value')); die($x);
 			
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
