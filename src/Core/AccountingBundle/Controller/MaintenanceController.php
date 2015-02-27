@@ -763,11 +763,14 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$forms->bind($request);
 			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
-			
+				
+				
+					$x = $forms->getData();
+					
 //					$x = \Doctrine\Common\Util\Debug::dump($forms);
 					print_r($singleperiodbudget->getBudget());
 					echo "</br>";
-					\Doctrine\Common\Util\Debug::dump($forms->getData());
+					\Doctrine\Common\Util\Debug::dump($x[$key]);
 					echo "</br></br>";
 					
 					/*
