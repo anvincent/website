@@ -764,9 +764,12 @@ class MaintenanceController extends Controller
 			$forms->bind($request);
 			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
 			
-//					$x = \Doctrine\Common\Util\Debug::dump($forms); 
-					print_r($key);
-			
+//					$x = \Doctrine\Common\Util\Debug::dump($forms);
+					print_r($singleperiodbudget->getBudget());
+					echo "</br>";
+					print_r($forms->viewdata[$key]);
+					echo "</br></br>";
+					$key
 					/*
 				$period = $singleperiodbudget->getPeriod()->getPeriodno();
 				if($singleperiodbudget->getBudget() != $forms->viewdata["budget[$period]"]) {
@@ -776,7 +779,7 @@ class MaintenanceController extends Controller
 					
 				}
 				
-					*/
+				*/
 				
 				/*
 				echo "Period:";
