@@ -533,18 +533,11 @@ class MaintenanceController extends Controller
 		$em = $this->getDoctrine()
 				   ->getManager();
 		$tags = $this->getTags($tagref);
-		if (!$tags) {
-			$tags = new Tags();
-		}
+		if (!$tags) { $tags = new Tags(); }
         $form = $this->createForm(new TagsType(), $tags);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-        	$form->bind($request);
-        	
-        	
-        		$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
-        	
-        	
+        	$form->bind($request);							$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
         	$tagref = $form["tagref"]->getData();
         	$tagdescription = $form["tagdescription"]->getData();
         	if ($form->isValid()) {
@@ -760,11 +753,8 @@ class MaintenanceController extends Controller
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
-		
-		$forms->handleRequest($request);
-		
 		if ($request->getMethod() == 'POST') {
-//			$forms->bind($request);
+			$forms->bind($request);
 			
 			$formData = $forms->getData();
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";

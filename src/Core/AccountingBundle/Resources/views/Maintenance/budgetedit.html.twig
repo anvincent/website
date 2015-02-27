@@ -13,8 +13,8 @@ Edit Chart of Accounts
 
 {% block body %}
 
-<div class="row">
-{{ form_start(forms) }}
+<div class="row">{{ form_start(forms) }}
+
 {% for row in forms.vars['value'] %}
 	{% if loop.index0 in [0,12,24] %}
 		{# new column #}
@@ -36,13 +36,13 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ form_row(row.getBudget) }}</td>
+							    	<td>{{ form_widget(row.getBudget, {'attr': {'class': 'form-control'}}) }}</td>
 								</tr>
 	{% else %}
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
-							    	<td>{{ form_row(row.getBudget) }}</td>
+							    	<td>{{ form_widget(row.getBudget, {'attr': {'class': 'form-control'}}) }}</td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
@@ -57,8 +57,8 @@ Edit Chart of Accounts
 		</div>
 	{% endif %}
 {% endfor %}
-{{ form_end(forms) }}
-</div>
+{{ form_end(forms) }}</div>
+
 {% endblock %}
 
 {% block javascripts %}
