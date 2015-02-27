@@ -757,6 +757,7 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			
 			$formData = $forms->getData();
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
 			
 			foreach ($formData['budgetcollection'] as $key => $singleperiodbudget) {
 				echo "</br>"; \Doctrine\Common\Util\Debug::dump($singleperiodbudget['budget']); echo "</br>";
