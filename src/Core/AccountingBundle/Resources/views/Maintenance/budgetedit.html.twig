@@ -42,9 +42,6 @@ Edit Chart of Accounts
 		{# new column #}
 		<div class="col-lg-4">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4>Account code is {{ account_id }}</h4>
-				</div>
 				<div class="panel-body">
 	            	<div class="dataTable_wrapper">
 						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -59,16 +56,6 @@ Edit Chart of Accounts
 							    	<td>{{ row.getActual }}</td>
 							    	<td>{{ row.getBudget }}</td>
 								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="panel-footer">
-					<p>Assign monthly budget</p>
-				</div>
-				{{ form_end(forms) }}
-			</div>
-		</div>
 	{% else %}
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
@@ -76,8 +63,19 @@ Edit Chart of Accounts
 							    	<td>{{ row.getBudget }}</td>
 								</tr>
 	{% endif %}
+	{% if loop.index0 in [0,12,24] %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<p>Assign monthly budget</p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
 {% endfor %}
-
+{{ form_end(forms) }}
 </div>
 {% endblock %}
 
