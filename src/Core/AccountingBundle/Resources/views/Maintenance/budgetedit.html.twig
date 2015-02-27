@@ -32,10 +32,10 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for budget in forms.budgets %}
+							{% for budgetline in forms.budgets %}
 						    <tr>
 						    	<td colspan="3"></td>
-						    	<td>{{ form_row(budget.budget) }}</td>
+						    	<td>{{ form_row(budgetline.budget) }}</td>
 						    	<td>blank</td>
 						    	<td>blank</td>
 							</tr>
