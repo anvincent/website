@@ -37,16 +37,20 @@ Edit Chart of Accounts
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
 							    	<td>
-										{{ form_row(row.getBudget) }}
-							    	</td>
+-							    		<input type="text" class="form-control input-sm"  
+-							    			name="budget[{{ loop.index0 }}]"
+-							    			value="{{ row.getBudget }}">
+-							    	</td>
 								</tr>
 	{% else %}
 							    <tr>
 							    	<td>{{ row.getPeriod.getPeriodno }}</td>
 							    	<td>{{ row.getActual }}</td>
 							    	<td>
-										{{ form_row(row.getBudget) }}
-							    	</td>
+-							    		<input type="text" class="form-control input-sm"  
+-							    			name="budget[{{ loop.index0 }}]"
+-							    			value="{{ row.getBudget }}">
+-							    	</td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
