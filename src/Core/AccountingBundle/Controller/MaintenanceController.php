@@ -780,7 +780,7 @@ class MaintenanceController extends Controller
 				//$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget);
 			echo "</br>";
 			}
-			$die();
+			die();
 			
 			$importdefnid = $form["importdefnid"]->getData();
 			
