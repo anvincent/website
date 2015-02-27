@@ -774,10 +774,9 @@ class MaintenanceController extends Controller
 					print_r($singleperiodbudget->getPeriod()->getPeriodno());
 					echo "</br>";
 					
-					*/
 				}
 				
-				die($x);
+					*/
 				
 				/*
 				echo "Period:";
