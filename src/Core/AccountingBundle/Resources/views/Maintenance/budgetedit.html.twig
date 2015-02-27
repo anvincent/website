@@ -30,15 +30,14 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% dump(forms) %}
-							{% for form in forms.budgetcollection %}
+							{% for row in forms.vars['value']['budgetcollection'] %}
 							    <tr>
 							    	<td>period</td>
 							    	<td>actual</td>
 							    	<td>budget</td>
 								</tr>
 						    {% else %}
-						        <td colspan="3">"rows" failed</td>
+						        <td colspan="3">"row" failed</td>
 						    {% endfor %}
 						</tbody>
 					</table>

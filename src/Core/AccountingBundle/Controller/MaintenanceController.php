@@ -790,7 +790,7 @@ class MaintenanceController extends Controller
 			// test area
 			$q = $forms->createView();
 			$x = \Doctrine\Common\Util\Debug::dump($q);
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value']['budgets'][0]); 
+			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value']['budgetcollection'][0]); 
 			die($x);
 			//
 			
