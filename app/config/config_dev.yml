@@ -35,3 +35,10 @@ assetic:
 swiftmailer:
     delivery_address:  development@symblog.dev
     disable_delivery: true
+
+    
+    
+services:
+    debug.twig.extension:
+        class: Twig_Extensions_Extension_Debug
+        tags: [{ name: 'twig.extension' }]
