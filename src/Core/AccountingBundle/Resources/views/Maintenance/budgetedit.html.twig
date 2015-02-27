@@ -32,12 +32,11 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for rows in forms.budgetcollection %}
+							{% for form in forms %}
 							    <tr>
-							    	<td colspan="3"></td>
-							    	<td>{{ form_row(row) }}</td>
-							    	<td>blank</td>
-							    	<td>blank</td>
+							    	<td>period</td>
+							    	<td>actual</td>
+							    	<td>budget</td>
 								</tr>
 						    {% else %}
 						        <td colspan="3">"rows" failed</td>
