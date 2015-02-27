@@ -754,65 +754,19 @@ class MaintenanceController extends Controller
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
 		$forms->bind($request);
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
 		if ($request->getMethod() == 'POST') {
 			
-			$formData = $forms->getData();
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
+		}
 			
-			foreach ($formData['budgetcollection'] as $key => $singleperiodbudget) {
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($singleperiodbudget['budget']); echo "</br>";
-			}
-			
-			die();
-			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
-			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
-				
-					echo "</br>";
-					\Doctrine\Common\Util\Debug::dump($formData[$key]->getPeriod()->getPeriodno());
-					echo " - ";
-					\Doctrine\Common\Util\Debug::dump($formData[$key]->getActual());
-					echo " - ";
-					\Doctrine\Common\Util\Debug::dump($formData[$key]->getBudget());
-					echo "</br>";
-					
-					/*
-				$period = $singleperiodbudget->getPeriod()->getPeriodno();
-				if($singleperiodbudget->getBudget() != $forms->viewdata["budget[$period]"]) {
-					echo "Period:";
-					print_r($singleperiodbudget->getPeriod()->getPeriodno());
-					echo "</br>";
-					
-				}
-				
-				*/
-				
-				/*
-				echo "Period:";
-				print_r($singleperiodbudget->getPeriod()->getPeriodno());
-				echo "</br>";
-				
-				echo "Actual:";
-				print_r($singleperiodbudget->getActual());
-				echo "</br>";
-				
-				echo "Budget:";
-				print_r($singleperiodbudget->getBudget());
-				echo "</br>";
-				*/
-				
-				
-			}
-			die();
-			
-			$importdefnid = $form["importdefnid"]->getData();
+//			$importdefnid = $form["importdefnid"]->getData();
 			
 			if ($form->isValid()) {
-				$importtransdefn->setAccountname($accountname);
+//				$importtransdefn->setAccountname($accountname);
 				
 				
-				$em->persist($importtransdefn);
-				$em->flush();
+//				$em->persist($importtransdefn);
+//				$em->flush();
 				$returnMessage = "Transaction import definition for account $accountname successfully updated.";
 			} else {
 				$returnMessage = "An error occurred during the processing of account $accountname.";
