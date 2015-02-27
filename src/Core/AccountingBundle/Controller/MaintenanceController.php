@@ -754,9 +754,9 @@ class MaintenanceController extends Controller
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
 		$forms->bind($request);
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
 		if ($request->getMethod() == 'POST') {
 			
+			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
 		
 			
 //			$importdefnid = $form["importdefnid"]->getData();
@@ -775,32 +775,11 @@ class MaintenanceController extends Controller
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
 		} else {
-			
-			/* test area
-			$q = $forms->createView();
-			$x = \Doctrine\Common\Util\Debug::dump($q);
-			echo "</br></br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value']);
-			echo "</br></br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getPeriod());
-			echo "</br></br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getPeriod()->getPeriodno());
-			echo "</br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getActual());
-			echo "</br>";
-			$x = \Doctrine\Common\Util\Debug::dump($q->vars['value'][0]->getBudget());
-			echo "</br></br>";
-			die($x);
-			*/
-			
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
 					'account_id'  		=> $account_id,
 					'forms'        		=> $forms->createView()
 			));
-			
-			
-			
 		}
 	}
 	
