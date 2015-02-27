@@ -32,18 +32,13 @@ Edit Chart of Accounts
 							<th>Budget</th>
 						</tr></thead>
 						<tbody>
-							{% for rows in forms %}
-								{% for row in rows %}
-								
+							{% for rows in forms.budgetcollection %}
 							    <tr>
 							    	<td colspan="3"></td>
 							    	<td>{{ form_row(row) }}</td>
 							    	<td>blank</td>
 							    	<td>blank</td>
 								</tr>
-								{% else %}
-						        	<td colspan="3">"row" failed</td>
-						    	{% endfor %}
 						    {% else %}
 						        <td colspan="3">"rows" failed</td>
 						    {% endfor %}

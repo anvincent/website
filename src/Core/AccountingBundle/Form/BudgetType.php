@@ -17,7 +17,7 @@ class BudgetType extends AbstractType
     {
         $builder
   //      	->add('accountcode','integer')
-        	->add('budgets','collection',array(
+        	->add('budgetcollection','collection',array(
         		'type' => new ChartdetailsType()
         		))
             ->add('Confirm','submit');
