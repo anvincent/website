@@ -12,35 +12,17 @@ Edit Chart of Accounts
 {% endblock %}
 
 {% block body %}
-<div class="row">
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Last Financial Year</div>
-			<div class="panel-heading">Year ended - [tbd]</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Current Financial Year</div>
-			<div class="panel-heading">Year ending - [tbd]</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">Next Financial Year</div>
-			<div class="panel-heading">Year ending - [tbd]</div>
-			<div class="panel panel-footer"></div>
-		</div>
-	</div>
-</div>
+
 <div class="row">
 {{ form_start(forms) }}
 {% for row in forms.vars['value'] %}
 	{% if loop.index0 in [0,12,24] %}
 		{# new column #}
 		<div class="col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Financial Year - x</div>
+				<div class="panel panel-footer"></div>
+			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
 	            	<div class="dataTable_wrapper">
