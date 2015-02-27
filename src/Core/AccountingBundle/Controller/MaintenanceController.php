@@ -755,21 +755,16 @@ class MaintenanceController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$forms->bind($request);
-			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
-		
-			
-//			$importdefnid = $form["importdefnid"]->getData();
-			
-			if ($form->isValid()) {
-//				$importtransdefn->setAccountname($accountname);
-				
-				
-//				$em->persist($importtransdefn);
-//				$em->flush();
-				$returnMessage = "Transaction import definition for account $accountname successfully updated.";
+			$data = $forms->getData();
+//			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
+			if ($forms->isValid()) {
+				foreach($data as $object) {
+					$em->persist($object);
+				}
+				$em->flush();
+				$returnMessage = "Updates processed completely.";
 			} else {
-				$returnMessage = "An error occurred during the processing of account $accountname.";
+				$returnMessage = "An error occurred during processing.";
 			}
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
