@@ -760,8 +760,12 @@ class MaintenanceController extends Controller
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
+		
+		$forms->handleRequest($request);
+		
 		if ($request->getMethod() == 'POST') {
-			$forms->bind($request);
+//			$forms->bind($request);
+			
 			$formData = $forms->getData();
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
 			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
