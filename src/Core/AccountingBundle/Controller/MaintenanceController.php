@@ -753,13 +753,13 @@ class MaintenanceController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
-		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
+		$forms = $this->createForm(new BudgetType(), array('budgets' => $budgetbyperiod));
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			
 			$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
 			
-			$form->bind($request);
+			$forms->bind($request);
 			foreach ($budgetbyperiod as $singleperiodbudget) {
 				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget); die($x);
 			}
@@ -783,12 +783,12 @@ class MaintenanceController extends Controller
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
 		} else {
-			$q = $form->createView(); $x = \Doctrine\Common\Util\Debug::dump($q); die($x);
+//			$q = $forms->createView(); $x = \Doctrine\Common\Util\Debug::dump($q); die($x);
 			
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
 					'account_id'  		=> $account_id,
-					'forms'        		=> $form->createView()
+					'forms'        		=> $forms->createView()
 			));
 		}
 	}
