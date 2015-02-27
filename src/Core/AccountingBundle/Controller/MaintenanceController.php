@@ -555,7 +555,7 @@ class MaintenanceController extends Controller
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_tags_show'),301);
         } else {
         	
-        	$q = $forms->createView(); $x = \Doctrine\Common\Util\Debug::dump($q); die($x);
+        	$q = $form->createView(); $x = \Doctrine\Common\Util\Debug::dump($q); die($x);
         	
 	        return $this->render('CoreAccountingBundle:Maintenance:tagsedit.html.twig', array(
 	        		'tags' => $tags,
