@@ -761,7 +761,7 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$forms->bind($request);
 			
-			$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+			$x = \Doctrine\Common\Util\Debug::dump($forms); die($x);
 			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
 				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget); die($x);
