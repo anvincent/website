@@ -15,7 +15,7 @@ Edit Chart of Accounts
 
 <div class="row">{{ form_start(forms) }}
 
-{% for row in forms.vars['value'] %}
+{% for form in forms.vars['value'] %}
 	{% if loop.index0 in [0,12,24] %}
 		{# new column #}
 		<div class="col-lg-4">
@@ -34,22 +34,22 @@ Edit Chart of Accounts
 							</tr></thead>
 							<tbody>
 							    <tr>
-							    	<td>{{ row.getPeriod.getPeriodno }}</td>
-							    	<td>{{ row.getActual }}</td>
+							    	<td>{{ form.getPeriod.getPeriodno }}</td>
+							    	<td>{{ form.getActual }}</td>
 							    	<td>
-							    		<input type="text" class="form-control input-sm"  
-							    			name="budget[{{ loop.index0 }}]"
-							    			value="{{ row.getBudget }}">
+							    		<input type="number" class="form-control input-sm"  
+							    			id="form_budget" name="form[budget]"
+							    			value="{{ form.getBudget }}">
 							    	</td>
 								</tr>
 	{% else %}
 							    <tr>
-							    	<td>{{ row.getPeriod.getPeriodno }}</td>
-							    	<td>{{ row.getActual }}</td>
+							    	<td>{{ form.getPeriod.getPeriodno }}</td>
+							    	<td>{{ form.getActual }}</td>
 							    	<td>
 							    		<input type="text" class="form-control input-sm"  
 							    			name="budget[{{ loop.index0 }}]"
-							    			value="{{ row.getBudget }}">
+							    			value="{{ form.getBudget }}">
 							    	</td>
 								</tr>
 	{% endif %}
