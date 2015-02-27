@@ -764,10 +764,23 @@ class MaintenanceController extends Controller
 //			$x = \Doctrine\Common\Util\Debug::dump($forms); die($x);
 			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
-				$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget);
+				
+				echo "Period:";
+				print_r($singleperiodbudget->getPeriod()->getPeriodno());
+				echo "</br>";
+				
+				echo "Actual:";
+				print_r($singleperiodbudget->getActual());
+				echo "</br>";
+				
+				echo "Budget:";
+				print_r($singleperiodbudget->getBudget());
+				echo "</br>";
+				
+				//$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget);
 			echo "</br>";
 			}
-			$die($x);
+			$die();
 			
 			$importdefnid = $form["importdefnid"]->getData();
 			
