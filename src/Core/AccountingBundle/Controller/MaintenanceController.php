@@ -540,6 +540,11 @@ class MaintenanceController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
+        	
+        	
+        		$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+        	
+        	
         	$tagref = $form["tagref"]->getData();
         	$tagdescription = $form["tagdescription"]->getData();
         	if ($form->isValid()) {
@@ -554,9 +559,6 @@ class MaintenanceController extends Controller
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_tags_show'),301);
         } else {
-        	
-        	$q = $form->createView(); $x = \Doctrine\Common\Util\Debug::dump($q); die($x);
-        	
 	        return $this->render('CoreAccountingBundle:Maintenance:tagsedit.html.twig', array(
 	        		'tags' => $tags,
 	        		'accountcode_id'  => $tagref,
