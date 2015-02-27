@@ -783,8 +783,7 @@ class MaintenanceController extends Controller
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
 		} else {
-			
-//			$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+			$q = $form->createView(); $x = \Doctrine\Common\Util\Debug::dump($x['vars']['value']); die($x);
 			
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
