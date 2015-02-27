@@ -753,21 +753,17 @@ class MaintenanceController extends Controller
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
+		$forms->bind($request);
 		if ($request->getMethod() == 'POST') {
-			$forms->bind($request);
-			//echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>";
-			
-			foreach ($forms as $form) {
-				$formData = $form->getData();
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
-				
-			}
-			die();
-			
-			
-			
 			
 			$formData = $forms->getData();
+			
+			foreach ($formData['budgetcollection'] as $key => $singleperiodbudget) {
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($singleperiodbudget['budget']); echo "</br>";
+			}
+			
+			die();
+			
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
 			foreach ($budgetbyperiod as $key => $singleperiodbudget) {
 				
