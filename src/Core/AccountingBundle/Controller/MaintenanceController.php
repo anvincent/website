@@ -769,7 +769,7 @@ class MaintenanceController extends Controller
 					echo "</br>";
 					print_r($forms->viewdata[$key]);
 					echo "</br></br>";
-					$key
+					
 					/*
 				$period = $singleperiodbudget->getPeriod()->getPeriodno();
 				if($singleperiodbudget->getBudget() != $forms->viewdata["budget[$period]"]) {
