@@ -758,7 +758,8 @@ class MaintenanceController extends Controller
 			//echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>";
 			
 			foreach ($forms as $form) {
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>";
+				$formData = $form->getData();
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>";
 				
 			}
 			die();
