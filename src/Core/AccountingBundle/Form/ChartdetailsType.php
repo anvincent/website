@@ -18,14 +18,14 @@ class ChartdetailsType extends AbstractType
             ->add('accountcode','entity',array(
             		'class' => 'CoreAccountingBundle:Chartmaster',
             		'property' => 'accountcode'
-            		))
+            		))*/
             ->add('period','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
             		'property' => 'periodno'
-            		))*/
+            		))
             		
 //			->add('accountcode','integer')
-			->add('period','integer')
+//			->add('period','integer')
 			->add('budget','float')
 			->add('actual','float');
 //			->add('bfwd','float')
