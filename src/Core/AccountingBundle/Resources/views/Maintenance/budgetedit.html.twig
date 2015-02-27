@@ -47,8 +47,8 @@ Edit Chart of Accounts
 							    	<td>{{ form.getPeriod.getPeriodno }}</td>
 							    	<td>{{ form.getActual }}</td>
 							    	<td>
-							    		<input type="text" class="form-control input-sm"  
-							    			name="budget[{{ loop.index0 }}]"
+							    		<input type="number" class="form-control input-sm"  
+							    			id="form_budget" name="form[budget]"
 							    			value="{{ form.getBudget }}">
 							    	</td>
 								</tr>
