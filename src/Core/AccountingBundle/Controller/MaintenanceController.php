@@ -764,7 +764,15 @@ class MaintenanceController extends Controller
 //			$x = \Doctrine\Common\Util\Debug::dump($forms); die($x);
 			
 			foreach ($budgetbyperiod as $singleperiodbudget) {
+				$period = $singleperiodbudget->getPeriod()->getPeriodno();
+				if($singleperiodbudget->getBudget() != $forms["budget.$period"]) {
+					echo "Period:";
+					print_r($singleperiodbudget->getPeriod()->getPeriodno());
+					echo "</br>";
+				}
 				
+				
+				/*
 				echo "Period:";
 				print_r($singleperiodbudget->getPeriod()->getPeriodno());
 				echo "</br>";
@@ -776,9 +784,9 @@ class MaintenanceController extends Controller
 				echo "Budget:";
 				print_r($singleperiodbudget->getBudget());
 				echo "</br>";
+				*/
 				
-				//$x = \Doctrine\Common\Util\Debug::dump($singleperiodbudget);
-			echo "</br>";
+				
 			}
 			die();
 			
