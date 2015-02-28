@@ -538,7 +538,7 @@ class MaintenanceController extends Controller
         $form = $this->createForm(new TagsType(), $tags);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-        	$form->bind($request);							$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+        	$form->bind($request);//							$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
         	$tagref = $form["tagref"]->getData();
         	$tagdescription = $form["tagdescription"]->getData();
         	if ($form->isValid()) {
@@ -753,24 +753,20 @@ class MaintenanceController extends Controller
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$budgets = new Budget();	// instantiate Budget object
-		
+		$budget->setAccountcode($account_id);
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
-		
-		echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgets); echo "</br>"; die();
-		
+		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
 		
 		
-		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
+		echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
+		
+		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-			
-			
-//			echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>"; die();
-			
-			if ($forms->isValid()) {
+			if ($form->isValid()) {
 				
 				
 //				$em->persist($object);
