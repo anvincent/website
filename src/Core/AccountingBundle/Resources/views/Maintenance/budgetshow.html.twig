@@ -42,7 +42,6 @@ Display Budget
 						<thead><tr>
 							<th>Account Nr.</th>
 							<th>Account Name</th>
-							<th>Test</th>
 							<th>Edit Budgets</th>
 						</tr></thead>
 						<tbody id="budgetrows">
@@ -51,7 +50,6 @@ Display Budget
 						    <tr class="collapse budget0">
 						    	<td>{{ budget.accountcode }}</td>
 						    	<td>{{ budget.accountname }}</td>
-						    	<td>{{ budget.sumbudget }}</td>
 						    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
 						    		<i class="fa fa-pencil-square-o"></i>
 						    	</a></td>
@@ -60,7 +58,6 @@ Display Budget
 						    <tr>
 						    	<td>{{ budget.accountcode }}</td>
 						    	<td>{{ budget.accountname }}</td>
-						    	<td>{{ budget.sumbudget }}</td>
 						    	<td><a href="{{ path('CoreAccountingBundle_maintenance_budget_edit',{'account_id':budget.accountcode}) }}">
 						    		<i class="fa fa-pencil-square-o"></i>
 						    	</a></td>
