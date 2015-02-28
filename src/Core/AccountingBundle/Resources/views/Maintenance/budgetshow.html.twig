@@ -86,9 +86,11 @@ Display Budget
 {% block javascripts %}
     {{ parent() }}
     
+    <script>
     $('#btn').on('click', function () {
 		var $btn = $(this).button('processing...')
     	$btn.button('reset')
 	})
+	</script>
     
 {% endblock %}
