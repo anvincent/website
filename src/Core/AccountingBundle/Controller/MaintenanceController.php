@@ -763,8 +763,14 @@ class MaintenanceController extends Controller
 			$form->bind($request);
 			$originalbudget = $budgets->getBudgets();
 			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
+				echo "</br>inside foreach";
+				
+				echo '</br>$dataitem->getBudget() is '; print_r($dataitem->getBudget());
+				echo '</br>$originalbudget[$key]->getBudget() is '; print_r($originalbudget[$key]->getBudget());
+				
+				
 				if ($dataitem->getBudget() != $originalbudget[$key]->getBudget()) {
-					
+					echo "</br>inside if";
 echo "</br>"; print_r($dataitem->getBudget()); echo " does not equal "; print_r($originalbudget[$key]->getBudget());
 					
 				}
