@@ -538,7 +538,7 @@ class MaintenanceController extends Controller
         $form = $this->createForm(new TagsType(), $tags);
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-        	$form->bind($request);//							$x = \Doctrine\Common\Util\Debug::dump($form); die($x);
+        	$form->bind($request);
         	$tagref = $form["tagref"]->getData();
         	$tagdescription = $form["tagdescription"]->getData();
         	if ($form->isValid()) {
@@ -762,34 +762,14 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$originalbudget = $budgets->getBudgets();
-			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
-				echo "</br>inside foreach";
-				
-				echo '</br>$dataitem->getBudget() is '; print_r($dataitem->getBudget());
-				echo '</br>$originalbudget[$key]->getBudget() is '; print_r($originalbudget[$key]->getBudget());
-				
-				
-				if ($dataitem->getBudget() != $originalbudget[$key]->getBudget()) {
-					echo "</br>inside if";
-echo "</br>"; print_r($dataitem->getBudget()); echo " does not equal "; print_r($originalbudget[$key]->getBudget());
-					
-				}
-				
-				
-//				echo "</br>"; print_r($key);
-//				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget());
-//				echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>";
-				
-
-			}die();
-			
-						
-			
 			if ($form->isValid()) {
-								
-				
-//				$em->persist($object);
-//				$em->flush();
+				foreach ($form->getData()->getBudgets() as $dataitem) {
+					
+echo "</br>";\Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>";
+					
+//					$em->persist($dataitem);
+//					$em->flush();
+				} die();
 				$returnMessage = "Updates processed completely.";
 			} else {
 				$returnMessage = "An error occurred during processing.";
@@ -805,7 +785,6 @@ echo "</br>"; print_r($dataitem->getBudget()); echo " does not equal "; print_r(
 			));
 		}
 	}
-	
 	
 	protected function getBudget($type,$id=null)
 	{
