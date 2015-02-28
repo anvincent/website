@@ -759,9 +759,10 @@ class MaintenanceController extends Controller
 //			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
 			if ($forms->isValid()) {
 				foreach($data as $object) {
-					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object); echo "</br>"; die();
-					$em->persist($object);
+					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object->getBudget()); echo "</br>"; 
+//					$em->persist($object);
 				}
+				die();
 				$em->flush();
 				$returnMessage = "Updates processed completely.";
 			} else {
