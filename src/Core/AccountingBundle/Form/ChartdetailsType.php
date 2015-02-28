@@ -24,12 +24,12 @@ class ChartdetailsType extends AbstractType
             		'property' => 'periodno'
             		))
             		
-//			->add('accountcode','integer')
-//			->add('period','integer')
+//			->add('accountcode')
+//			->add('period')
 			->add('budget')
 			->add('actual');
-//			->add('bfwd','float')
-//			->add('bfwdbudget','float')
+//			->add('bfwd')
+//			->add('bfwdbudget')
 //			->add('Confirm','submit');
     }
       
