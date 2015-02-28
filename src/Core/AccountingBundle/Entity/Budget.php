@@ -1,5 +1,6 @@
 <?php
-// src/Core/AccountingBundle/Entity/Accountgroups.php
+// src/Core/AccountingBundle/Entity/Budget.php
+//	Placeholder class to build budget forms
 
 namespace Core\AccountingBundle\Entity;
 

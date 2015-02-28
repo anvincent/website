@@ -15,6 +15,7 @@ use Core\AccountingBundle\Entity\Accountgroups;
 use Core\AccountingBundle\Entity\Periods;
 use Core\AccountingBundle\Entity\Tags;
 use Core\AccountingBundle\Entity\Importtransdefn;
+use Core\AccountingBundle\Entity\Budget;
 
 // add forms
 use Core\AccountingBundle\Form\ChartmasterType;
