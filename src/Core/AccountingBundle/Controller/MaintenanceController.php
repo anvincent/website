@@ -765,7 +765,7 @@ class MaintenanceController extends Controller
 			$formData = $form->getData();
 			foreach ($formData as $key => $dataitem) {
 				
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget()); echo "</br>"; die();
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>"; die();
 				
 				if ($dataitem->getBudget() == 1) {
 					
@@ -775,11 +775,7 @@ class MaintenanceController extends Controller
 						
 			
 			if ($form->isValid()) {
-				
-				
-				
-				
-				
+								
 				
 //				$em->persist($object);
 //				$em->flush();
@@ -789,7 +785,7 @@ class MaintenanceController extends Controller
 			}
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_importtransdefn_show'),301);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_budget_show'),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
