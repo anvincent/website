@@ -34,8 +34,8 @@ Edit Chart of Accounts
 							</tr></thead>
 							<tbody>
 							    <tr><div class="form-group">
-								    	<td><p class="form-control-static">{{ form_widget(budget.period) }}</p></td>
-								    	<td><p class="form-control-static">{{ form_widget(budget.actual) }}</p></td>
+								    	<td><p class="form-control-static">{{ budget.period.vars.value }}</p></td>
+								    	<td><p class="form-control-static">{{ budget.actual.vars.value }}</p></td>
 							    	</div>
 							    	<td>
 							    		{{ form_errors(budget) }}
@@ -44,8 +44,8 @@ Edit Chart of Accounts
 								</tr>
 	{% else %}
 							    <tr><div class="form-group">
-								    	<td><p class="form-control-static">{{ form_widget(budget.period) }}</p></td>
-								    	<td><p class="form-control-static">{{ form_widget(budget.actual) }}</p></td>
+								    	<td><p class="form-control-static">{{ budget.period.vars.value }}</p></td>
+								    	<td><p class="form-control-static">{{ budget.actual.vars.value }}</p></td>
 							    	</div>
 							    	<td>
 							    		{{ form_errors(budget) }}
@@ -68,7 +68,8 @@ Edit Chart of Accounts
 <div class="form-group">
 	{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
 </div>
-{{ form_end(form) }}</div>
+<div style="display: none;">
+{{ form_end(form) }}</div></div>
 
 {% endblock %}
 
