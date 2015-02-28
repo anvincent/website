@@ -772,18 +772,10 @@ class MaintenanceController extends Controller
 				}
 			}
 			
-			
-			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgetbyperiod); echo "</br>";
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
-			
-			
-			
+						
 			
 			if ($form->isValid()) {
 				
-				
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
 				
 				
 				
