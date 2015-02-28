@@ -751,9 +751,13 @@ class MaintenanceController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
+		$budgets = new Budget();	// instantiate Budget object
+		
 		foreach ($budgetbyperiod as $singlebudget) {
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($singlebudget); echo "</br>"; die();
+			$budgets->getBudgets()->add($singlebudget);
 		}
+		
+		echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgets); echo "</br>"; die();
 		
 		
 		
