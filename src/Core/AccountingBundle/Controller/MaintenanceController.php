@@ -757,17 +757,17 @@ class MaintenanceController extends Controller
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
-		
-		echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgets); echo "</br>";die();
-		
 		$form = $this->createForm(new BudgetsType(), $budgets);
-		// tested through here
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-//			$formData = $form->getData();
+			$originalbudget = $budgets->getBudgets();
+			echo "</br>"; \Doctrine\Common\Util\Debug::dump($originalbudget[0]); echo "</br>"; die();
+			
 			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
-//				if ($dataitem->getBudget() != 1)
+				if ($dataitem->getBudget() != $budgets->getBudgets()) {
+					
+				}
 				
 				
 				echo "</br>"; print_r($key);
