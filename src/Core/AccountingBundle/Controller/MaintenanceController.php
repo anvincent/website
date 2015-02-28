@@ -747,7 +747,7 @@ class MaintenanceController extends Controller
 		));
 	}
 	
-	public function editbudgetAction($account_id)
+	public function editbudgetAction($account_id,$returnMessage=null)
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
@@ -774,7 +774,7 @@ class MaintenanceController extends Controller
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_budget_edit',
-					array('account_id' => $account_id)),301);
+					array('account_id' => $account_id,'returnMessage' => $returnMessage)),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
