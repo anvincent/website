@@ -766,12 +766,12 @@ class MaintenanceController extends Controller
 			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
 				
 				echo "</br>"; print_r($key);
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>"; die();
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget()); echo "</br>";// die();
 				
-				if ($dataitem->getBudget() == 1) {
-					
-				}
-			}
+//				if ($dataitem->getBudget() == 1) {
+//					
+//				}
+			}die();
 			
 						
 			
