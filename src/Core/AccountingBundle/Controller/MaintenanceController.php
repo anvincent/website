@@ -757,6 +757,9 @@ class MaintenanceController extends Controller
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
+		
+		echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgets); echo "</br>";die();
+		
 		$form = $this->createForm(new BudgetsType(), $budgets);
 		// tested through here
 		$request = $this->getRequest();
@@ -764,13 +767,14 @@ class MaintenanceController extends Controller
 			$form->bind($request);
 //			$formData = $form->getData();
 			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
+//				if ($dataitem->getBudget() != 1)
+				
 				
 				echo "</br>"; print_r($key);
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget()); echo "</br>";// die();
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget());
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>";
 				
-//				if ($dataitem->getBudget() == 1) {
-//					
-//				}
+
 			}die();
 			
 						
