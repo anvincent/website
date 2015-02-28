@@ -752,7 +752,7 @@ class MaintenanceController extends Controller
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		foreach ($budgetbyperiod as $singlebudget) {
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgetbyperiod); echo "</br>"; die();
+			echo "</br>"; \Doctrine\Common\Util\Debug::dump($singlebudget); echo "</br>"; die();
 		}
 		
 		
