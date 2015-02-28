@@ -762,8 +762,6 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$originalbudget = $budgets->getBudgets();
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($originalbudget[0]->getBudget()); echo "</br>"; die();
-			
 			foreach ($form->getData()->getBudgets() as $key => $dataitem) {
 				if ($dataitem->getBudget() != $originalbudget[$key]->getBudget()) {
 					
