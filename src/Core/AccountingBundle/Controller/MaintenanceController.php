@@ -759,7 +759,8 @@ class MaintenanceController extends Controller
 //			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms); echo "</br>"; die();
 			if ($forms->isValid()) {
 				foreach($data as $object) {
-					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object->getBudget()); echo "</br>"; 
+					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object->getBudget()); echo "</br>";
+					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object->get('budget')); echo "</br>";  
 //					$em->persist($object);
 				}
 				die();
