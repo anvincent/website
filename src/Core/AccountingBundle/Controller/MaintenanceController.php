@@ -773,7 +773,6 @@ class MaintenanceController extends Controller
 			}
 			
 			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>"; die();
 			
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgetbyperiod); echo "</br>";
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
