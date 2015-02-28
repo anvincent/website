@@ -36,13 +36,13 @@ Edit Chart of Accounts
 							    <tr>
 							    	<td>periodno</td>
 							    	<td>actual</td>
-							    	<td>{{ form_error(budget) }}{{ form_widget(budget) }}</td>
+							    	<td>{{ form_errors(budget) }}{{ form_widget(budget) }}</td>
 								</tr>
 	{% else %}
 							    <tr>
 							    	<td>periodno</td>
 							    	<td>actual</td>
-							    	<td>{{ form_error(budget) }}{{ form_widget(budget) }}</td>
+							    	<td>{{ form_errors(budget) }}{{ form_widget(budget) }}</td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
