@@ -753,7 +753,7 @@ class MaintenanceController extends Controller
 					->getManager();
 		$budgets = new Budget();
 		$budgets->setAccountcode($account_id);
-		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
+		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount',$account_id);
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
@@ -774,11 +774,13 @@ class MaintenanceController extends Controller
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_budget_edit',
-					array('account_id' => $account_id,'returnMessage' => $returnMessage)),301);
+					array('account_id' => $account_id,
+							'returnMessage' => $returnMessage)),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
 					'account_id'  		=> $account_id,
+					'year'  			=> date("Y"),
 					'form'        		=> $form->createView()
 			));
 		}
@@ -798,15 +800,7 @@ class MaintenanceController extends Controller
 									->findBudgetbyid($id);
 				}
 				break;
-			case "budgetbyperiod":
-				//something
-				break;
 			case "budgetactualpriorcurrentnextbyaccount":
-					$period = $this->getThisYearsJanPeriod();
-					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-									->findBudgetactualpriorcurrentnextbyaccount($id,$period[0]['periodno']-12,$period[0]['periodno']+23);
-				break;
-			case "budgetactualpriorcurrentnextbyaccount2":
 					$period = $this->getThisYearsJanPeriod();
 					$periodrange = range($period[0]['periodno']-12,$period[0]['periodno']+23);
 					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
@@ -814,12 +808,6 @@ class MaintenanceController extends Controller
 											'accountcode' => $id,
 											'period' => $periodrange
 											));
-				break;
-			case "budgetactualpriorcurrentnextbyaccount3":
-					$period = $this->getThisYearsJanPeriod();
-					$periodrange = range($period[0]['periodno']-12,$period[0]['periodno']+23);
-					$budget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-									->findAll();
 				break;
 			default:
 				$budget = 0;

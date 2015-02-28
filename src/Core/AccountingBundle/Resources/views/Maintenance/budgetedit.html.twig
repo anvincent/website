@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block headtitle %}
-Edit Chart of Accounts
+Edit Budgets
 {% endblock %}
 
 {% block body %}
@@ -24,13 +24,16 @@ Edit Chart of Accounts
 	"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",
 	"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] %}
 <div class="row">{{ form_start(form) }}
-
 {% for budget in form.budgets %}
 	{% if loop.index0 in [0,12,24] %}
 		{# new column #}
 		<div class="col-lg-4">
 			<div class="panel panel-default">
-				<div class="panel-heading">Financial Year - x</div>
+				<div class="panel-heading">Financial Year - 
+					{% if loop.index0 == 0 %}{{ year - 1 }}
+					{% elseif loop.index0 == 12 %}{{ year }}
+					{% elseif loop.index0 == 24 %}{{ year + 1 }}
+				</div>
 				<div class="panel panel-footer"></div>
 			</div>
 			<div class="panel panel-default">
