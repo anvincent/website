@@ -770,9 +770,9 @@ echo "</br>"; print_r($dataitem->getBudget()); echo " does not equal "; print_r(
 				}
 				
 				
-				echo "</br>"; print_r($key);
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget());
-				echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>";
+//				echo "</br>"; print_r($key);
+//				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem->getBudget());
+//				echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>";
 				
 
 			}die();
