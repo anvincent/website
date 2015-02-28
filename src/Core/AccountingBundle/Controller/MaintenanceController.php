@@ -757,7 +757,7 @@ class MaintenanceController extends Controller
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
-		$form = $this->createForm(new BudgetType(), $budgets);
+		$form = $this->createForm(new BudgetsType(), $budgets);
 		
 		
 		echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
