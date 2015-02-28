@@ -44,7 +44,7 @@ Edit Chart of Accounts
 							</tr></thead>
 							<tbody>
 							    <tr><div class="form-group">
-								    	<td><p>{{ month[loop.index0] }}</p></td>
+								    	<td><p class="form-control-static">{{ month[loop.index0] }}</p></td>
 								    	<td><p class="form-control-static">{{ budget.actual.vars.value }}</p></td>
 							    	</div>
 							    	<td>
@@ -54,7 +54,7 @@ Edit Chart of Accounts
 								</tr>
 	{% else %}
 							    <tr><div class="form-group">
-								    	<td><p>{{ month[loop.index0] }}</p></td>
+								    	<td><p class="form-control-static">{{ month[loop.index0] }}</p></td>
 								    	<td><p class="form-control-static">{{ budget.actual.vars.value }}</p></td>
 							    	</div>
 							    	<td>
