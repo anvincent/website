@@ -763,16 +763,17 @@ class MaintenanceController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
+			foreach ($formData as $dataitem) {
+				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>"; die();
+			}
 			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData); echo "</br>"; die();
+			
 			
 			
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgetbyperiod); echo "</br>";
 			echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
 			
-//			foreach () {
-				
-//			}
+			
 			
 			
 			if ($form->isValid()) {
