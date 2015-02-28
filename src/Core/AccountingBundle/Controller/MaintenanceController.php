@@ -751,7 +751,7 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$budgets = new Budget();	// instantiate Budget object
+		$budgets = new Budget();
 		$budgets->setAccountcode($account_id);
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		foreach ($budgetbyperiod as $singlebudget) {
@@ -764,19 +764,17 @@ class MaintenanceController extends Controller
 			$originalbudget = $budgets->getBudgets();
 			if ($form->isValid()) {
 				foreach ($form->getData()->getBudgets() as $dataitem) {
-					
-//echo "</br>";\Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>";
-					
 					$em->persist($dataitem);
 					$em->flush();
-				} die();
+				}
 				$returnMessage = "Updates processed completely.";
 			} else {
 				$returnMessage = "An error occurred during processing.";
 			}
 			$session = $this->getRequest()->getSession();
 			$session->getFlashBag()->add('returnMessage',$returnMessage);
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_budget_show'),301);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_budget_edit',
+					array('account_id' => $account_id)),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
