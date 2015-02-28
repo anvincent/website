@@ -751,13 +751,13 @@ class MaintenanceController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		$budgets = new Budget();	// instantiate Budget object
-		$budget->setAccountcode($account_id);
+		$budgets->setAccountcode($account_id);
+		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
 		foreach ($budgetbyperiod as $singlebudget) {
 			$budgets->getBudgets()->add($singlebudget);
 		}
-		$form = $this->createForm(new BudgetType(), $budgetbyperiod);
+		$form = $this->createForm(new BudgetType(), $budgets);
 		
 		
 		echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
