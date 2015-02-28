@@ -765,10 +765,10 @@ class MaintenanceController extends Controller
 			if ($form->isValid()) {
 				foreach ($form->getData()->getBudgets() as $dataitem) {
 					
-echo "</br>";\Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>";
+//echo "</br>";\Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>";
 					
-//					$em->persist($dataitem);
-//					$em->flush();
+					$em->persist($dataitem);
+					$em->flush();
 				} die();
 				$returnMessage = "Updates processed completely.";
 			} else {
