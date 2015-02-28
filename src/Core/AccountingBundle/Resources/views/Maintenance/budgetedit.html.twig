@@ -34,8 +34,8 @@ Edit Chart of Accounts
 							</tr></thead>
 							<tbody>
 							    <tr>
-							    	<td>{{ form_widget(budget.period) }}</td>
-							    	<td>{{ form_widget(budget.actual) }}</td>
+							    	<td class="form-control-static">{{ form_widget(budget.period) }}</td>
+							    	<td class="form-control-static">{{ form_widget(budget.actual) }}</td>
 							    	<td>
 							    		{{ form_errors(budget) }}
 								    	{{ form_widget(budget.budget, {'attr': {'class': 'form-control input-sm'}}) }}
@@ -43,8 +43,8 @@ Edit Chart of Accounts
 								</tr>
 	{% else %}
 							    <tr>
-							    	<td>{{ form_widget(budget.period) }}</td>
-							    	<td>{{ form_widget(budget.actual) }}</td>
+							    	<td class="form-control-static">{{ form_widget(budget.period) }}</td>
+							    	<td class="form-control-static">{{ form_widget(budget.actual) }}</td>
 							    	<td>
 							    		{{ form_errors(budget) }}
 								    	{{ form_widget(budget.budget, {'attr': {'class': 'form-control input-sm'}}) }}
