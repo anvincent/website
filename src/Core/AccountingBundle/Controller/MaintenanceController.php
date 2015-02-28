@@ -764,14 +764,14 @@ class MaintenanceController extends Controller
 			$form->bind($request);
 			$formData = $form->getData();
 			
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($formData->getBudgets()); echo "</br>"; die();
+			echo "</br>"; \Doctrine\Common\Util\Debug::dump($form->getData()->getBudgets()); echo "</br>"; die();
 			
 			
 			
 			
 			
 			
-			foreach ($formData as $key => $dataitem) {
+			foreach ($formData->getBudgets() as $key => $dataitem) {
 				
 				echo "</br>"; \Doctrine\Common\Util\Debug::dump($dataitem); echo "</br>"; die();
 				
