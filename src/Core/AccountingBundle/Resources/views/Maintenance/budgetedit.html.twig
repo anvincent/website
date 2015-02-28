@@ -13,9 +13,9 @@ Edit Chart of Accounts
 
 {% block body %}
 
-<div class="row">{{ form_start(forms) }}
+<div class="row">{{ form_start(form) }}
 
-{% for budget in forms.budgets %}
+{% for budget in form.budgets %}
 	{% if loop.index0 in [0,12,24] %}
 		{# new column #}
 		<div class="col-lg-4">

@@ -758,14 +758,15 @@ class MaintenanceController extends Controller
 			$budgets->getBudgets()->add($singlebudget);
 		}
 		$form = $this->createForm(new BudgetsType(), $budgets);
-		
-		
-		echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
-		
-		
+		// tested through here
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
+			
+			
+			echo "</br>"; \Doctrine\Common\Util\Debug::dump($form); echo "</br>"; die();
+			
+			
 			if ($form->isValid()) {
 				
 				
@@ -782,7 +783,7 @@ class MaintenanceController extends Controller
 			return $this->render('CoreAccountingBundle:Maintenance:budgetedit.html.twig', array(
 					'budgetbyperiod' 	=> $budgetbyperiod,
 					'account_id'  		=> $account_id,
-					'forms'        		=> $forms->createView()
+					'form'        		=> $form->createView()
 			));
 		}
 	}
