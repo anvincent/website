@@ -34,15 +34,21 @@ Edit Chart of Accounts
 							</tr></thead>
 							<tbody>
 							    <tr>
-							    	<td>periodno</td>
-							    	<td>actual</td>
-							    	<td>{{ form_errors(budget) }}{{ form_widget(budget.budget) }}</td>
+							    	<td>{{ budget.getPeriod }}</td>
+							    	<td>{{ budget.getActual }}</td>
+							    	<td>
+							    		{{ form_errors(budget) }}
+								    	{{ form_widget(budget.budget, {'attr': {'class': 'form-control input-sm'}}) }}
+								    </td>
 								</tr>
 	{% else %}
 							    <tr>
-							    	<td>periodno</td>
-							    	<td>actual</td>
-							    	<td>{{ form_errors(budget) }}{{ form_widget(budget.budget) }}</td>
+							    	<td>{{ budget.getPeriod }}</td>
+							    	<td>{{ budget.getActual }}</td>
+							    	<td>
+							    		{{ form_errors(budget) }}
+								    	{{ form_widget(budget.budget, {'attr': {'class': 'form-control input-sm'}}) }}
+								    </td>
 								</tr>
 	{% endif %}
 	{% if loop.index0 in [11,23,35] %}
@@ -57,6 +63,9 @@ Edit Chart of Accounts
 		</div>
 	{% endif %}
 {% endfor %}
+<div class="form-group">
+	{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+</div>
 {{ form_end(form) }}</div>
 
 {% endblock %}
