@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class BudgetType extends AbstractType
+class BudgetsType extends AbstractType
 {
 	/**
      * @param FormBuilderInterface $builder
@@ -16,22 +16,22 @@ class BudgetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-  //      	->add('accountcode','integer')
-        	->add('budgetcollection','collection',array(
+	      	->add('accountcode','integer')
+        	->add('budgets','collection',array(
         		'type' => new ChartdetailsType()
         		))
             ->add('Confirm','submit');
     }
 
-//    /**
-//     * @param OptionsResolverInterface $resolver
-//     */
-//    public function setDefaultOptions(OptionsResolverInterface $resolver)
-//    {
-//        $resolver->setDefaults(array(
-//            'data_class' => 'Core\AccountingBundle\Entity\Chartdetails'
-//        ));
-//    }
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Core\AccountingBundle\Entity\Budget'
+        ));
+    }
 
     
     /**

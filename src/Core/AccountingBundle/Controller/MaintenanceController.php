@@ -751,19 +751,22 @@ class MaintenanceController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$budgetbyperiod = $this->getBudget('budgetactualpriorcurrentnextbyaccount2',$account_id);
+		
+		echo "</br>"; \Doctrine\Common\Util\Debug::dump($budgetbyperiod); echo "</br>"; die();
+		
 		$forms = $this->createForm(new BudgetType(), $budgetbyperiod);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
-			$forms->bind($request);
-			$data = $forms->getData();
-			echo "</br>"; \Doctrine\Common\Util\Debug::dump($forms->get('budget')->getData()); echo "</br>"; die();
+			$form->bind($request);
+			
+			
+//			echo "</br>"; \Doctrine\Common\Util\Debug::dump(); echo "</br>"; die();
+			
 			if ($forms->isValid()) {
-				foreach($data as $object) {
-					echo "</br>"; \Doctrine\Common\Util\Debug::dump($object->getBudget()); echo "</br>";
-//					$em->persist($object);
-				}
-				die();
-				$em->flush();
+				
+				
+//				$em->persist($object);
+//				$em->flush();
 				$returnMessage = "Updates processed completely.";
 			} else {
 				$returnMessage = "An error occurred during processing.";
