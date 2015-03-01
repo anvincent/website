@@ -14,6 +14,13 @@ CoreAccountingBundle_accounting_home:
 
 ### Accounting Transactions
 
+#### Manual Journal Entries
+CoreAccountingBundle_transactions_gltrans_edit:
+    pattern:	/accounting/transactions/journal/add/{typeno}
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:addManualTransaction, typeno: 0 }
+    requirements:
+        _method:  GET|POST
+
 
 
 ### Accounting Tools
