@@ -17,7 +17,7 @@ class GltransRepository extends EntityRepository
 		$maxtypeno = $this	->getEntityManager()
 							->createQueryBuilder()
 							->select('MAX(a.typeno)')
-							->from('CoreAccountingBundle:Periods', 'a')
+							->from('CoreAccountingBundle:Gltrans', 'a')
 							->getQuery()
 							->getSingleScalarResult();
 		$maxtypeno++;
