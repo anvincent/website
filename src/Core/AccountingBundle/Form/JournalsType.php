@@ -18,7 +18,8 @@ class JournalsType extends AbstractType
         $builder
 	      	->add('typeno','integer')
         	->add('journalentries','collection',array(
-        		'type' => new GltransType()
+        		'type' => new GltransType(),
+        		'allow_add' => true
         		))
             ->add('Confirm','submit');
     }

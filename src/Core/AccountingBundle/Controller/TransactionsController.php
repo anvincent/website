@@ -42,6 +42,16 @@ class TransactionsController extends Controller
 					array('typeno' => $nexttypeno)),301);
 		} else {
 			$newentry = new Journal();
+			$newentry->setTypeno($typeno);
+			$form = $this->createForm(new JournalsType(), $newentry);
+			
+			//test item
+			\Doctrine\Common\Util\Debug::dump($form); die();
+			
+			$request = $this->getRequest();
+			if ($request->getMethod() == 'POST') {}
+			
+			
 			
 		}
 	}
