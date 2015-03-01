@@ -21,7 +21,7 @@ Enter Manual Journal Entry
 <!-- /.row -->
 {% endfor %}
 
-<div class="row">{{ form_start(form) }}
+<div class="row">{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -30,7 +30,7 @@ Enter Manual Journal Entry
 			<!-- /.panel-heading -->
 		</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="form-group">

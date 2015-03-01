@@ -34,6 +34,9 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
+		
+		\Doctrine\Core\AccountingBundle\MaintenanceController\getTodaysPeriod(); die();
+		
 		if ($typeno == 0) {
 			// new transaction typeno, get typeno
 			$nexttypeno = $em	->getRepository('CoreAccountingBundle:Gltrans')

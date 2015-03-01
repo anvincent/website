@@ -17,14 +17,16 @@ class JournalsType extends AbstractType
     {
         $builder
 	      	->add('typeno','integer')
-            ->add('trandate')
+            ->add('trandate', array('data' => date('Y-m-d')))
             ->add('periodno','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
-            		'property' => 'periodno'
+            		'property' => 'periodno',
+            		'data' => $this->getgetTodaysPeriod()
             		))
             ->add('tag','entity',array(
             		'class' => 'CoreAccountingBundle:Tags',
-            		'property' => 'tagdescription'
+            		'property' => 'tagdescription',
+            		'data' => ''
             		))
         	->add('journalentries','collection',array(
         		'type' => new GltransType(),
@@ -50,5 +52,10 @@ class JournalsType extends AbstractType
     public function getName()
     {
         return 'core_accountingbundle_journals';
+    }
+    
+    protected function getgetTodaysPeriod()
+    {
+    	return \Doctrine\Core\AccountingBundle\MaintenanceController\getTodaysPeriod();
     }
 }
