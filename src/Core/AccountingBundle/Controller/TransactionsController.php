@@ -46,7 +46,7 @@ class TransactionsController extends Controller
 			$form = $this->createForm(new JournalsType(), $newentry);
 			
 			//test item
-			\Doctrine\Common\Util\Debug::dump($form); die();
+//			\Doctrine\Common\Util\Debug::dump($form); die();
 			
 			$request = $this->getRequest();
 			if ($request->getMethod() == 'POST') {
