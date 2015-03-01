@@ -9,9 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 // add entities
-
+use Core\AccountingBundle\Entity\Gltrans;
+use Core\AccountingBundle\Entity\Journal;
 
 // add forms
+use Core\AccountingBundle\Form\GltransType;
+use Core\AccountingBundle\Form\JournalsType;
 
 
 class TransactionsController extends Controller
@@ -31,9 +34,13 @@ class TransactionsController extends Controller
 	{
 		if ($typeno == 0) {
 			// new transaction typeno, get typeno
-			
+			$nexttypeno = $em	->getRepository('CoreAccountingBundle:Gltrans')
+								->findnexttypeno();
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
+					array('typeno' => $nexttypeno)),301);
 		} else {
-			// 
+			$newentry = new Journal();
+			
 		}
 	}
 	 

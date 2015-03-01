@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class GltransRepository extends EntityRepository
 {
+	public function findnexttypeno()
+	{
+		$maxtypeno = $this	->getEntityManager()
+							->createQueryBuilder()
+							->select('MAX(a.typeno)')
+							->from('CoreAccountingBundle:Periods', 'a')
+							->getQuery()
+							->getSingleScalarResult();
+		$maxtypeno++;
+		return $maxtypeno;
+	}
 }
