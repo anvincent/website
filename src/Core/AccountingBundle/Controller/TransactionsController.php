@@ -49,10 +49,17 @@ class TransactionsController extends Controller
 			\Doctrine\Common\Util\Debug::dump($form); die();
 			
 			$request = $this->getRequest();
-			if ($request->getMethod() == 'POST') {}
-			
-			
-			
+			if ($request->getMethod() == 'POST') {
+				$form->bind($request);
+				
+				if ($form->isValid()) {
+					
+				}
+			} else {
+				return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
+						'form'        		=> $form->createView()
+				));
+			}
 		}
 	}
 	 
