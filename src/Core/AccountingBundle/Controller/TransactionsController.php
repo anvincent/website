@@ -32,6 +32,8 @@ class TransactionsController extends Controller
 	 */
 	public function addManualTransactionAction($typeno)
 	{
+		$em = $this	->getDoctrine()
+					->getManager();
 		if ($typeno == 0) {
 			// new transaction typeno, get typeno
 			$nexttypeno = $em	->getRepository('CoreAccountingBundle:Gltrans')
