@@ -7,7 +7,7 @@ namespace Core\AccountingBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Budget
+class Journal
 {
 	// Properties
 
