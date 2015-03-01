@@ -31,6 +31,7 @@ class TransactionsController extends Controller
 	{
 		if ($typeno == 0) {
 			// new transaction typeno, get typeno
+			
 		} else {
 			// 
 		}

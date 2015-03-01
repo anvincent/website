@@ -1,0 +1,78 @@
+{# src/Core/AccountingBundle/Resources/views/Transactions/gltransedit.html.twig #}
+{% extends 'CoreAccountingBundle:Default:accounting.html.twig' %}
+
+{% block title %}Accounting - Manual Journal Entries{% endblock %}
+
+{% block navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block headtitle %}
+Enter Manual Journal Entry
+{% endblock %}
+
+{% block body %}
+{% for flashMessage in app.session.flashbag.get('returnMessage') %}
+<div class="row">
+	<div class="alert alert-info" role="alert">
+        {{ flashMessage }}
+    </div>
+</div>
+{% endfor %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Enter Manual Journal Entry
+			</div>
+			<!-- /.panel-heading -->
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				
+			</div>
+			<!-- /.panel-body -->
+		</div>
+	</div>
+</div>
+<div class="row">
+	
+</div>
+                	
+                	
+                	
+                	
+                	</div>
+                	
+                	
+                    	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+                    		<div class="form-group">
+                    			{{ form_label(form.accountcode, 'Account Code') }}
+								{{ form_errors(form.accountcode) }}
+								{{ form_widget(form.accountcode, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.accountname, 'Account Name') }}
+								{{ form_errors(form.accountname) }}
+								{{ form_widget(form.accountname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                    		<div class="form-group">
+                    			{{ form_label(form.group_, 'Group') }}
+								{{ form_errors(form.group_) }}
+								{{ form_widget(form.group_, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+								{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+							</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>			
+		</div>				
+	</div>
+</div>
+
+{% endblock %}
