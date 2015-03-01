@@ -17,7 +17,7 @@ class JournalsType extends AbstractType
     {
         $builder
 	      	->add('typeno','integer')
-            ->add('trandate', array('data' => date('Y-m-d')))
+            ->add('trandate', 'text', array('data' => date('Y-m-d')))
             ->add('periodno','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
             		'property' => 'periodno',
