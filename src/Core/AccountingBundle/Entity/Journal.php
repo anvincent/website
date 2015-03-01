@@ -12,6 +12,12 @@ class Journal
 	// Properties
 
 	protected $typeno;
+	
+	protected $trandate;
+	
+	protected $periodno;
+	
+	protected $tag;
 
 	protected $journalentries;
 
@@ -44,7 +50,76 @@ class Journal
 	{
 		return $this->typeno;
 	}
-
+	
+	/**
+	 * Set trandate
+	 *
+	 * @param \DateTime $trandate
+	 * @return Gltrans
+	 */
+	public function setTrandate($trandate)
+	{
+		$this->trandate = $trandate;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get trandate
+	 *
+	 * @return \DateTime
+	 */
+	public function getTrandate()
+	{
+		return $this->trandate;
+	}
+	
+	/**
+	 * Set periodno
+	 *
+	 * @param integer $periodno
+	 * @return Gltrans
+	 */
+	public function setPeriodno($periodno)
+	{
+		$this->periodno = $periodno;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get periodno
+	 *
+	 * @return integer
+	 */
+	public function getPeriodno()
+	{
+		return $this->periodno;
+	}
+	
+	/**
+	 * Set tag
+	 *
+	 * @param integer $tag
+	 * @return Gltrans
+	 */
+	public function setTag($tag)
+	{
+		$this->tag = $tag;
+	
+		return $this;
+	}
+	
+	/**
+	 * Get tag
+	 *
+	 * @return integer
+	 */
+	public function getTag()
+	{
+		return $this->tag;
+	}
+	
 	/**
 	 * Set journalentries
 	 *

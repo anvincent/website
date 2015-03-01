@@ -17,23 +17,12 @@ class GltransType extends AbstractType
     {
         $builder
             ->add('counterindex')
-            ->add('type')
-            ->add('typeno')
-            ->add('chequeno')
-            ->add('trandate')
-            ->add('periodno','entity',array(
-            		'class' => 'CoreAccountingBundle:Periods',
-            		'property' => 'periodno'
-            		))
             ->add('accountcode','entity',array(
             		'class' => 'CoreAccountingBundle:Chartmaster',
             		'property' => 'accountcode'
             		))
-            ->add('narrative')
             ->add('amount')
-            ->add('posted')
-            ->add('jobref')
-            ->add('tag');
+            ->add('narrative');
     }
       
     /**

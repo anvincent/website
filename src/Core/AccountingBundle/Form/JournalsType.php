@@ -17,6 +17,15 @@ class JournalsType extends AbstractType
     {
         $builder
 	      	->add('typeno','integer')
+            ->add('trandate')
+            ->add('periodno','entity',array(
+            		'class' => 'CoreAccountingBundle:Periods',
+            		'property' => 'periodno'
+            		))
+            ->add('tag','entity',array(
+            		'class' => 'CoreAccountingBundle:Tags',
+            		'property' => 'tagdescription'
+            		))
         	->add('journalentries','collection',array(
         		'type' => new GltransType(),
         		'allow_add' => true
