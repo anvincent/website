@@ -56,6 +56,13 @@ class JournalsType extends AbstractType
     
     protected function getgetTodaysPeriod()
     {
-    	return \Doctrine\Core\AccountingBundle\MaintenanceController\getTodaysPeriod();
+		$em = $this->getDoctrine()->getManager();
+		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+						->findperiodnowithlastdateinperiod($today);
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
     }
 }
