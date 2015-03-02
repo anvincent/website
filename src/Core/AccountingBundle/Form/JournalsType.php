@@ -15,13 +15,15 @@ class JournalsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
         $builder
 	      	->add('typeno','integer')
             ->add('trandate', 'text', array('data' => date('Y-m-d')))
             ->add('periodno','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
-            		'property' => 'periodno',
-            		'data' => $this->getgetTodaysPeriod()
+            		'query_builder' => function(EntityRepository $repository) {
+            			return $repository->findperiodnowithlastdateinperiod($today);
+        				}
             		))
             ->add('tag','entity',array(
             		'class' => 'CoreAccountingBundle:Tags',
@@ -52,17 +54,5 @@ class JournalsType extends AbstractType
     public function getName()
     {
         return 'core_accountingbundle_journals';
-    }
-    
-    protected function getgetTodaysPeriod()
-    {
-    	$em = new EntityRepository();
-		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-						->findperiodnowithlastdateinperiod($today);
-		if (!$periods) {
-			throw $this->createNotFoundException('Unable to find Fiscal Period.');
-		}
-		return $periods;
     }
 }
