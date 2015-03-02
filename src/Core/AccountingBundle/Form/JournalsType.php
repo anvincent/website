@@ -15,13 +15,13 @@ class JournalsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
         $builder
 	      	->add('typeno','integer')
             ->add('trandate', 'text', array('data' => date('Y-m-d')))
             ->add('periodno','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
             		'query_builder' => function(EntityRepository $repository) {
+            			$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
             			return $repository->findperiodnowithlastdateinperiod($today);
         				}
             		))
