@@ -56,7 +56,7 @@ class JournalsType extends AbstractType
     
     protected function getgetTodaysPeriod()
     {
-		$em = $this->getDoctrine()->getManager();
+    	$em = Symfony\Bundle\FrameworkBundle\Controller\Controller\getDoctrine()->getManager();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 						->findperiodnowithlastdateinperiod($today);
