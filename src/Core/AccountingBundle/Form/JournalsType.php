@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class JournalsType extends AbstractType
 {
@@ -57,7 +56,7 @@ class JournalsType extends AbstractType
     
     protected function getgetTodaysPeriod()
     {
-    	$em = $this->getDoctrine()->getManager();
+    	$em = new EntityRepository();
 		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
 						->findperiodnowithlastdateinperiod($today);
