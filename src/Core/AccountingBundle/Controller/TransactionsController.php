@@ -44,7 +44,7 @@ class TransactionsController extends Controller
 			$newentry = new Journal();
 			$newentry->setTypeno($typeno);
 			$newentry->setTrandate(date('Y-m-d'));
-			$newentry->setPeriodno(getTodaysPeriod());
+			$newentry->setPeriodno($this->getTodaysPeriod());
 			$form = $this->createForm(new JournalsType(), $newentry);
 			
 			//test item
