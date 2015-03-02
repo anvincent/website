@@ -43,6 +43,8 @@ class TransactionsController extends Controller
 		} else {
 			$newentry = new Journal();
 			$newentry->setTypeno($typeno);
+			$newentry->setTrandate(date('Y-m-d'));
+			$newentry->setPeriodno(getTodaysPeriod());
 			$form = $this->createForm(new JournalsType(), $newentry);
 			
 			//test item
@@ -61,6 +63,18 @@ class TransactionsController extends Controller
 				));
 			}
 		}
+	}
+	
+	protected function getTodaysPeriod()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
+		->findperiodnowithlastdateinperiod($today);
+		if (!$periods) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $periods;
 	}
 	 
 }

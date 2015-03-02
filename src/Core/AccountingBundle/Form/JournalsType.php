@@ -17,13 +17,10 @@ class JournalsType extends AbstractType
     {
         $builder
 	      	->add('typeno','integer')
-            ->add('trandate', 'text', array('data' => date('Y-m-d')))
+            ->add('trandate')
             ->add('periodno','entity',array(
             		'class' => 'CoreAccountingBundle:Periods',
-            		'query_builder' => function(EntityRepository $repository) {
-            			$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
-            			return $repository->findperiodnowithlastdateinperiod($today);
-        				}
+            		'property' => 'periodno'
             		))
             ->add('tag','entity',array(
             		'class' => 'CoreAccountingBundle:Tags',
