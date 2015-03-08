@@ -70,7 +70,7 @@ Enter Manual Journal Entry
 							<th>Credit</th>
 							<th>Narrative</th>
 						</tr></thead>
-						<tbody data-prototype="{{ form_widget(form.journalentries.vars.prototype)|e }}">
+						<tbody class="trans" data-prototype="{{ form_widget(form.journalentries.vars.prototype)|e }}">
 							{% for journalentry in form.journalentries %}
 							    <tr>
 							    	<td>
@@ -109,11 +109,11 @@ Enter Manual Journal Entry
 
 // setup an "add a tag" link
 var $addTagLink = $('<tr><td span="5"><button type="button" class="btn btn-default"><a href="#" class="add_entry_link"><i class="fa fa-refresh fa-fw"></i></a></button></td></tr>');
-var $newLinkLi = $('<li></li>').append($addTagLink);
+var $newLinkLi = $('<tr></tr>').append($addTagLink);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
-   var $collectionHolder = $('ul.tags');
+   var $collectionHolder = $('tbody.trans');
     
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
@@ -129,8 +129,6 @@ jQuery(document).ready(function() {
         // add a new tag form (see code block below)
         addTagForm($collectionHolder, $newLinkLi);
     });
-    
-    
 });
 
 function addTagForm($collectionHolder, $newLinkLi) {
@@ -148,7 +146,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
     
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormLi = $('<tr></tr>').append(newForm);
     
     // also add a remove button, just for this example
     $newFormLi.append('<a href="#" class="remove-tag">x</a>');
