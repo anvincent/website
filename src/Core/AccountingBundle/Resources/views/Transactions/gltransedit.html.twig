@@ -92,9 +92,9 @@ Enter Manual Journal Entry
 								</tr>
 							{% endfor %}
 							<tr>
-								<td span="5">
+								<td colspan="5">
 									<button type="button" class="btn btn-default">
-										<a href="#" class="add_entry_link"><i class="fa fa-refresh fa-fw"></i></a>
+										<a href="#" class="add_tag_link"><i class="fa fa-refresh fa-fw"></i></a>
 									</button>
 								</td>
 							</tr>
@@ -113,14 +113,13 @@ Enter Manual Journal Entry
 {% block javascripts %}
 <script>
 
-
 // setup an "add a tag" link
-var $addTagLink = $('<tr><td span="5"><button type="button" class="btn btn-default"><a href="#" class="add_entry_link"><i class="fa fa-refresh fa-fw"></i></a></button></td></tr>');
-var $newLinkLi = $('<tr></tr>').append($addTagLink);
+var $addTagLink = $('<tr><td colspan="5"><button type="button" class="btn btn-default"><a href="#" class="add_tag_link"><i class="fa fa-refresh fa-fw"></i></a></button></td></tr>');
+var $newLinkLi = $('<li></li>').append($addTagLink);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
-   var $collectionHolder = $('tbody.trans');
+   var $collectionHolder = $('ul.tags');
     
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
@@ -136,6 +135,8 @@ jQuery(document).ready(function() {
         // add a new tag form (see code block below)
         addTagForm($collectionHolder, $newLinkLi);
     });
+    
+    
 });
 
 function addTagForm($collectionHolder, $newLinkLi) {
@@ -153,7 +154,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
     
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<tr></tr>').append(newForm);
+    var $newFormLi = $('<li></li>').append(newForm);
     
     // also add a remove button, just for this example
     $newFormLi.append('<a href="#" class="remove-tag">x</a>');
@@ -169,6 +170,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
         return false;
     });
 }
+
 </script>
 {{ parent() }}
 {% endblock %}
