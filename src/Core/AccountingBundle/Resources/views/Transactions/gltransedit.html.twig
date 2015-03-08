@@ -61,46 +61,9 @@ Enter Manual Journal Entry
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
-	           	<div class="dataTable_wrapper">
-					<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-						<thead><tr>
-							<th>Counterindex</th>
-							<th>Account</th>
-							<th>Debit</th>
-							<th>Credit</th>
-							<th>Narrative</th>
-						</tr></thead>
-						<tbody class="trans" data-prototype="{{ form_widget(form.journalentries.vars.prototype)|e }}">
-							{% for journalentry in form.journalentries %}
-							    <tr>
-							    	<td>
-							    		{{ form_errors(journalentry) }}
-								    	{{ form_widget(journalentry.counterindex, {'attr': {'class': 'form-control input-sm'}}) }}
-								    </td>
-							    	<td>
-								    	{{ form_widget(journalentry.accountcode, {'attr': {'class': 'form-control input-sm'}}) }}
-								    </td>
-							    	<td>
-								    	{{ form_widget(journalentry.debit, {'attr': {'class': 'form-control input-sm'}}) }}
-								    </td>
-							    	<td>
-								    	{{ form_widget(journalentry.credit, {'attr': {'class': 'form-control input-sm'}}) }}
-								    </td>
-							    	<td>
-								    	{{ form_widget(journalentry.narrative, {'attr': {'class': 'form-control input-sm'}}) }}
-								    </td>
-								</tr>
-							{% endfor %}
-							<tr>
-								<td colspan="5">
-									<button type="button" class="btn btn-default">
-										<a href="#" class="add_tag_link"><i class="fa fa-refresh fa-fw"></i></a>
-									</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+	           	<ul class="list-inline" data-prototype="{{ form_widget(form.journalentries.vars.prototype)|e }}">
+	           		<li></li>
+	           	</ul>
 			</div>
 		</div>
 	</div>
@@ -113,13 +76,14 @@ Enter Manual Journal Entry
 {% block javascripts %}
 <script>
 
+
 // setup an "add a tag" link
-var $addTagLink = $('<tr><td colspan="5"><button type="button" class="btn btn-default"><a href="#" class="add_tag_link"><i class="fa fa-refresh fa-fw"></i></a></button></td></tr>');
+var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
 var $newLinkLi = $('<li></li>').append($addTagLink);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
-   var $collectionHolder = $('ul.tags');
+   var $collectionHolder = $('ul.list-inline');
     
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
@@ -170,6 +134,8 @@ function addTagForm($collectionHolder, $newLinkLi) {
         return false;
     });
 }
+
+
 
 </script>
 {{ parent() }}
