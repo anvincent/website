@@ -33,6 +33,11 @@ Enter Manual Journal Entry
 	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-body">
+				<div class="">
+					<a href="#" class="add_tag_link">
+						<button type="button" class="btn btn-default navbar-btn">+</button>
+					</a>
+				</div>
 				<div class="form-group">
 					{{ form_label(form.typeno, 'Type No') }}
 					<p class="form-control-static">{{ form.typeno.vars.value }}</p>
@@ -78,8 +83,7 @@ Enter Manual Journal Entry
 
 
 // setup an "add a tag" link
-var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
-var $newLinkLi = $('<li></li>').append($addTagLink);
+var $newLinkLi = $('<li></li>');
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
