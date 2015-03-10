@@ -79,6 +79,9 @@ Enter Manual Journal Entry
 
 
 {% block javascripts %}
+
+{{ parent() }}
+
 <script>
 
 var $collectionHolder;
@@ -131,5 +134,4 @@ function addTagForm($collectionHolder, $newLinkLi) {
 
 
 </script>
-{{ parent() }}
 {% endblock %}
