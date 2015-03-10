@@ -33,7 +33,7 @@ Enter Manual Journal Entry
 	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<div class="">
+				<div class="list-inline">
 					<a href="#" class="add_tag_link">
 						<button type="button" class="btn btn-default navbar-btn">+</button>
 					</a>
@@ -83,6 +83,7 @@ Enter Manual Journal Entry
 
 
 // setup an "add a tag" link
+var $addTagLink = $('<a href="#" class="add_tag_link"><button type="button" class="btn btn-default navbar-btn">+</button></a>');
 var $newLinkLi = $('<li></li>');
 
 jQuery(document).ready(function() {
