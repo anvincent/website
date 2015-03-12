@@ -21,7 +21,8 @@ Enter Manual Journal Entry
 <!-- /.row -->
 {% endfor %}
 
-<div class="row">{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+<div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -66,7 +67,7 @@ Enter Manual Journal Entry
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-body">
-	           	<ul class="list-inline" data-prototype="{{ form_widget(form.journalentries.vars.prototype)|e }}">
+	           	<ul class="list-inline">
 	           		<li></li>
 	           	</ul>
 			</div>
@@ -74,6 +75,33 @@ Enter Manual Journal Entry
 	</div>
 </div>
 <!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="dataTable_wrapper">
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Counterindex</th>
+								<th>Account</th>
+								<th>Debit</th>
+								<th>Credit</th>
+								<th>Narrative</th>
+							</tr>
+						</thead>
+						<tbody class="trans" data-prototype="
+							{% filter escape %}
+								{% include 'CoreAccountingBundle:Transactions:gltransjouranlcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
+							{% endfilter %}"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.row -->
+{{ form_end(form) }}
 
 {% endblock %}
 
@@ -85,20 +113,13 @@ Enter Manual Journal Entry
 <script>
 
 var $collectionHolder;
-
-// setup an "add a tag" link
 var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
-var $newLinkLi = $('<li></li>').append($addTagLink);
+var $newLinkLi = $('<tr></tr>').append('<td colspan="5">',$addTagLink,'</td>');
 
 jQuery(document).ready(function() {
-    // Get the ul that holds the collection of tags
-    $collectionHolder = $('ul.list-inline');
-
-    // add the "add a tag" anchor and li to the tags ul
+    $collectionHolder = $('tbody.trans');
     $collectionHolder.append($newLinkLi);
 
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
     $addTagLink.on('click', function(e) {
@@ -125,13 +146,22 @@ function addTagForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormLi = $('<tr></tr>').append(newForm);
+    
+    // also add a remove button, just for this example
+    $newFormLi.append('<a href="#" class="remove-tag">x</a>');
+    
     $newLinkLi.before($newFormLi);
+    
+    // handle the removal, just for this example
+    $('.remove-tag').click(function(e) {
+        e.preventDefault();
+        
+        $(this).parent().remove();
+        
+        return false;
+    });
 }
-
-
-
-
 
 </script>
 {% endblock %}
