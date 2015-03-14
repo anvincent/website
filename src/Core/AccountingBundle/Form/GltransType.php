@@ -17,7 +17,7 @@ class GltransType extends AbstractType
     {
         $builder
             ->add('counterindex')
-            ->add('accountcode','entity',array(
+            ->add('account','entity',array(
             		'class' => 'CoreAccountingBundle:Chartmaster',
             		'property' => 'accountcode'
             		))
