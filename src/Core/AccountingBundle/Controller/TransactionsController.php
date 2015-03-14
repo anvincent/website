@@ -53,12 +53,40 @@ class TransactionsController extends Controller
 				$form->bind($request);
 				$formData = $form->getData();
 				
+				/*
+				 * formData is type Journal
+				 * newentry is type Journal
+				 * 
+				 * counterindex
+				 * type
+				 * typeno
+				 * chequeno
+				 * trandate
+				 * periodno
+				 * account
+				 * narrative
+				 * amount
+				 * posted
+				 * jobref
+				 * tag
+				 */
 				
-				\Doctrine\Common\Util\Debug::dump($formData); die();
+				
+				// bring over form data to object
+				$newentry->setTrandate($formData->getTrandate());
+				$newentry->setPeriodno($formData->getPeriodno());
+				$newentry->setTag($formData->getTag());
+				$newentry->setJournalentries($formData->getJournalentries());
+				
+				// create new entry object to enter
+				
+				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries()); die();
 				
 				
 				
 				if ($form->isValid()) {
+					
+					
 					
 				}
 			} else {
