@@ -75,6 +75,9 @@ Enter Manual Journal Entry
 							{% filter escape %}
 								{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
 							{% endfilter %}"></tbody>
+						<tbody>
+							<tr><td>Net balance</td><td class="sumtotal"></td><td></td></tr>
+						</tbody>
 					</table>
 				</div>
                 <div class="form-group">

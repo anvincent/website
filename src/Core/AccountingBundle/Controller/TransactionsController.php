@@ -41,7 +41,6 @@ class TransactionsController extends Controller
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $nexttypeno)),301);
 		} else {
-			
 			$nextcounterindex = $em	->getRepository('CoreAccountingBundle:Gltrans')
 									->findnextcounterindex();
 			$newentry = new Journal();
@@ -52,8 +51,12 @@ class TransactionsController extends Controller
 			$request = $this->getRequest();
 			if ($request->getMethod() == 'POST') {
 				$form->bind($request);
+				$formData = $form->getData();
 				
-				\Doctrine\Common\Util\Debug::dump($form); die();
+				
+				\Doctrine\Common\Util\Debug::dump($formData); die();
+				
+				
 				
 				if ($form->isValid()) {
 					
