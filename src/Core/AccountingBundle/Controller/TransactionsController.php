@@ -36,20 +36,19 @@ class TransactionsController extends Controller
 					->getManager();
 		if ($typeno == 0) {
 			// new transaction typeno, get typeno
-			$nexttypeno = $em	->getRepository('CoreAccountingBundle:Gltrans')
-								->findnexttypeno();
+			$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
+										->findnexttypeno();
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $nexttypeno)),301);
 		} else {
+			
+			$nextcounterindex = $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnextcounterindex();
 			$newentry = new Journal();
 			$newentry->setTypeno($typeno);
 			$newentry->setTrandate(date('Y-m-d'));
 			$newentry->setPeriodno($this->getTodaysPeriod());
 			$form = $this->createForm(new JournalsType(), $newentry);
-			
-			//test item
-//			\Doctrine\Common\Util\Debug::dump($form); die();
-			
 			$request = $this->getRequest();
 			if ($request->getMethod() == 'POST') {
 				$form->bind($request);
@@ -59,7 +58,8 @@ class TransactionsController extends Controller
 				}
 			} else {
 				return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
-						'form'        		=> $form->createView()
+						'form'        		=> $form->createView(),
+						'counterindex' 		=> $nextcounterindex
 				));
 			}
 		}

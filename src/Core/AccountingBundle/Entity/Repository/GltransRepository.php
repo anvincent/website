@@ -23,4 +23,16 @@ class GltransRepository extends EntityRepository
 		$maxtypeno++;
 		return $maxtypeno;
 	}
+	
+	public function findnextcounterindex()
+	{
+		$maxcounterindex = $this	->getEntityManager()
+		->createQueryBuilder()
+		->select('MAX(a.counterindex)')
+		->from('CoreAccountingBundle:Gltrans', 'a')
+		->getQuery()
+		->getSingleScalarResult();
+		$maxcounterindex++;
+		return $maxcounterindex;
+	}
 }
