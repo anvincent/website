@@ -21,8 +21,7 @@ class GltransType extends AbstractType
             		'class' => 'CoreAccountingBundle:Chartmaster',
             		'property' => 'accountcode'
             		))
-            ->add('debit')
-            ->add('credit')
+            ->add('amount')
             ->add('narrative');
     }
       
