@@ -53,6 +53,8 @@ class TransactionsController extends Controller
 			if ($request->getMethod() == 'POST') {
 				$form->bind($request);
 				
+				\Doctrine\Common\Util\Debug::dump($form); die();
+				
 				if ($form->isValid()) {
 					
 				}
