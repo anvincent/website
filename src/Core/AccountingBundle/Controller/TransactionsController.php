@@ -57,7 +57,7 @@ class TransactionsController extends Controller
 				$date = $formData->getTrandate();
 				$trandate = new \DateTime($date);
 				$periodno = $formData->getPeriodno();
-				$tag = $formData->getTag();
+				$tag = $formData->getTag()->getTagref();
 				
 				if ($form->isValid()) {
 					foreach ($formData->getJournalentries() as $entryItem) {
