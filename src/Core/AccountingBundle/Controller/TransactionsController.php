@@ -99,24 +99,24 @@ class TransactionsController extends Controller
 		}
 	}
 	
+	public function searchManualTransactionAction()
+	{
+		$data = array();
+		$form = $this	->createFormBuilder($data)
+						->add('typeno','integer')
+						->add('Confirm','submit')
+						->getForm();
+		return $this->render('CoreAccountingBundle:Transactions:gltranssearch.html.twig', array(
+						'form'        		=> $form->createView()
+				));
+	}
+	
 	public function editManualTransactionAction($typeno)
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		if ($typeno == 0) {
-			// new inquiry, pull search list
-			$data = array();
-			$form = $this->createFormBuilder($data)
-				->add('typeno','integer')
-	            ->add('Confirm','submit')
-				->getForm();
-			
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
-					array('typeno' => 0,
-							'form' => $form->createView())),301);
-		} else {
-			
-		}
+		$newentry = new Gltrans();
+		
 		
 	}
 	

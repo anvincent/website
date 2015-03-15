@@ -24,7 +24,7 @@ CoreAccountingBundle_transactions_gltrans_add:
 #### Manual Journal Adjustments
 CoreAccountingBundle_transactions_gltrans_search:
     pattern:	/accounting/transactions/journal/search
-    defaults:	{ _controller:CoreAccountingBundle:Transactions:editManualTransaction }
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:searchManualTransaction }
     requirements:
         _method:  GET
 
