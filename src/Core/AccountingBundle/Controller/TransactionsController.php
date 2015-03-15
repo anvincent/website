@@ -78,13 +78,14 @@ class TransactionsController extends Controller
 						$journalentry->setJobref('_');
 						$journalentry->setTag($tag);
 		        		$em->persist($journalentry);
+		        		
+		        		\Doctrine\Common\Util\Debug::dump($journalentry);
 						
-						$nextcounterindex++;
+		        		$nextcounterindex++;
 					}
 					
-					echo "</br>test1</br>";
+					 die();
 					$em->flush();
-					echo "</br>test2</br>";
 					$returnMessage = "Journal entry $typeno successfully updated.";
 				} else {
 					$returnMessage = "An error occurred during the processing of entry $typeno.";
