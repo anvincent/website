@@ -80,6 +80,11 @@ class TransactionsController extends Controller
 				
 				if ($form->isValid()) {
 					// for each journalentry
+					
+					\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());
+					
+					echo "</br></br>";
+					
 					foreach ($formData->getJournalentries() as $entryItem) {
 					
 						\Doctrine\Common\Util\Debug::dump($entryItem); die();
