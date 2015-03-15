@@ -111,15 +111,6 @@ class TransactionsController extends Controller
 				));
 	}
 	
-	public function editManualTransactionAction($typeno)
-	{
-		$em = $this	->getDoctrine()
-					->getManager();
-		$newentry = new Gltrans();
-		
-		
-	}
-	
 	protected function getTodaysPeriod()
 	{
 		$em = $this->getDoctrine()->getManager();
