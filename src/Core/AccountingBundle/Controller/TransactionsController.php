@@ -106,7 +106,7 @@ class TransactionsController extends Controller
 		if ($typeno == 0) {
 			// new inquiry, pull search list
 			$data = array();
-			$form = $this->creatFormBuilder($data)
+			$form = $this->createFormBuilder($data)
 				->add('typeno','integer')
 	            ->add('Confirm','submit');
 			
