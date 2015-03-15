@@ -30,7 +30,7 @@ CoreAccountingBundle_transactions_gltrans_search:
 
 CoreAccountingBundle_transactions_gltrans_edit:
     pattern:	/accounting/transactions/journal/edit/{typeno}
-    defaults:	{ _controller:CoreAccountingBundle:Transactions:editManualTransaction, typeno: 0 }
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:editManualTransaction }
     requirements:
         _method:  GET|POST
 
