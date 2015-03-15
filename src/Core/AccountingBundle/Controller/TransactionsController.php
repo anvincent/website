@@ -106,7 +106,13 @@ class TransactionsController extends Controller
 						$nextcounterindex++;
 					}
 					$em->flush();
+					$returnMessage = "Journal entry $typeno successfully updated.";
+				} else {
+					$returnMessage = "An error occurred during the processing of entry $typeno.";
 				}
+	        	$session = $this->getRequest()->getSession();
+	        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+	        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit'),301);
 			} else {
 				return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 						'form'        		=> $form->createView(),
