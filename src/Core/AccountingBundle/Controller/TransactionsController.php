@@ -66,25 +66,25 @@ class TransactionsController extends Controller
 						$journalentry->setType(0);
 						$journalentry->setTypeno($typeno);
 						$journalentry->setChequeno(0);
-						echo "</br>test1</br>";
 						$journalentry->setTrandate($trandate);
 						$journalentry->setPeriodno($periodno);
 						$account = $entryItem->getAccount();
 						$journalentry->setAccount($account);
 						$narrative = $entryItem->getNarrative();
 						$journalentry->setNarrative($narrative);
-						echo "</br>test2</br>";
 						$amount = $entryItem->getAmount();
 						$journalentry->setAmount($amount);
 						$journalentry->setPosted(0);
 						$journalentry->setJobref('_');
 						$journalentry->setTag($tag);
-						echo "</br>test3</br>";
 		        		$em->persist($journalentry);
 						
 						$nextcounterindex++;
 					}
+					
+					echo "</br>test1</br>";
 					$em->flush();
+					echo "</br>test2</br>";
 					$returnMessage = "Journal entry $typeno successfully updated.";
 				} else {
 					$returnMessage = "An error occurred during the processing of entry $typeno.";
