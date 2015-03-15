@@ -79,13 +79,9 @@ class TransactionsController extends Controller
 						$journalentry->setJobref('_');
 						$journalentry->setTag($tag);
 		        		$em->persist($journalentry);
-		        		
-		        		\Doctrine\Common\Util\Debug::dump($journalentry);
-						
+		        								
 		        		$nextcounterindex++;
 					}
-					
-					 die();
 					$em->flush();
 					$returnMessage = "Journal entry $typeno successfully updated.";
 				} else {
