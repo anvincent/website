@@ -53,42 +53,13 @@ class TransactionsController extends Controller
 				$form->bind($request);
 				$formData = $form->getData();
 				
-				/*
-				 * formData is type Journal
-				 * newentry is type Journal
-				 * 
-				 * counterindex
-				 * type
-				 * typeno
-				 * chequeno
-				 * trandate
-				 * periodno
-				 * account
-				 * narrative
-				 * amount
-				 * posted
-				 * jobref
-				 * tag
-				 */
-				
-				
-				// bring over form data to object
 				$typeno = $newentry->getTypeno();
 				$trandate = $formData->getTrandate();
 				$periodno = $formData->getPeriodno();
 				$tag = $formData->getTag();
 				
 				if ($form->isValid()) {
-					// for each journalentry
-					
-					\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());
-					
-					echo "</br></br>";
-					
 					foreach ($formData->getJournalentries() as $entryItem) {
-					
-						\Doctrine\Common\Util\Debug::dump($entryItem); die();
-						
 						$journalentry = new Gltrans();
 						
 						$journalentry->setCounterindex($nextcounterindex);
