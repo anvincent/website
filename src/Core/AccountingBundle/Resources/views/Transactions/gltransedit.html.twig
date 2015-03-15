@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block headtitle %}
-Enter Manual Journal Entry
+Edit Manual Journal Entry
 {% endblock %}
 
 {% block body %}
@@ -21,76 +21,120 @@ Enter Manual Journal Entry
 <!-- /.row -->
 {% endfor %}
 
-{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Enter Manual Journal Entry
-			</div>
-			<!-- /.panel-heading -->
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="form-group">
-					{{ form_label(form.typeno, 'Type No') }}
-					<p class="form-control-static">{{ form.typeno.vars.value }}</p>
+
+
+
+{% if typeno == 0 %}
+	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Enter Manual Journal Entry
 				</div>
-				<div class="form-group">
-        			{{ form_label(form.trandate, 'Transaction Date') }}
-					{{ form_errors(form.trandate) }}
-					{{ form_widget(form.trandate, {'attr': {'class': 'form-control'}}) }}
-				</div>
-				<div class="form-group">
-        			{{ form_label(form.periodno, 'Period') }}
-					{{ form_errors(form.periodno) }}
-					{{ form_widget(form.periodno, {'attr': {'class': 'form-control'}}) }}
-				</div>
-				<div class="form-group">
-        			{{ form_label(form.tag, 'Tag') }}
-					{{ form_errors(form.tag) }}
-					{{ form_widget(form.tag, {'attr': {'class': 'form-control'}}) }}
-				</div>
-			</div>
-			<!-- /.panel-body for top section -->
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="dataTable_wrapper">
-					<table class="table table-striped table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>Account</th>
-								<th>Amount</th>
-								<th>Narrative</th>
-							</tr>
-						</thead>
-						<tbody class="trans" data-prototype="
-							{% filter escape %}
-								{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
-							{% endfilter %}"></tbody>
-						<tbody>
-							<tr><td>Net balance</td><td class="sumtotal"></td><td></td></tr>
-						</tbody>
-					</table>
-				</div>
-                <div class="form-group">
-					{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
-				</div>
+				<!-- /.panel-heading -->
 			</div>
 		</div>
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="form-group">
+	        			{{ form_label(form.typeno, 'Search by TypeNo') }}
+						{{ form_errors(form.typeno) }}
+						{{ form_widget(form.typeno, {'attr': {'class': 'form-control'}}) }}
+					</div>
+	                <div class="form-group">
+						{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+					</div>
+				</div>
+				<!-- /.panel-body for top section -->
+			</div>
+		</div>	
 	</div>
-</div>
-<!-- /.row -->
-<div style="display: none;">
-	{{ form_end(form) }}
-</div>
+	<!-- /.row -->
+	<div style="display: none;">
+		{{ form_end(form) }}
+	</div>
+
+{% elseif typeno != 0 %}
+	{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Enter Manual Journal Entry
+				</div>
+				<!-- /.panel-heading -->
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="form-group">
+						{{ form_label(form.typeno, 'Type No') }}
+						<p class="form-control-static">{{ form.typeno.vars.value }}</p>
+					</div>
+					<div class="form-group">
+	        			{{ form_label(form.trandate, 'Transaction Date') }}
+						{{ form_errors(form.trandate) }}
+						{{ form_widget(form.trandate, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+	        			{{ form_label(form.periodno, 'Period') }}
+						{{ form_errors(form.periodno) }}
+						{{ form_widget(form.periodno, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					<div class="form-group">
+	        			{{ form_label(form.tag, 'Tag') }}
+						{{ form_errors(form.tag) }}
+						{{ form_widget(form.tag, {'attr': {'class': 'form-control'}}) }}
+					</div>
+				</div>
+				<!-- /.panel-body for top section -->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="dataTable_wrapper">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Account</th>
+									<th>Amount</th>
+									<th>Narrative</th>
+								</tr>
+							</thead>
+							<tbody class="trans" data-prototype="
+								{% filter escape %}
+									{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
+								{% endfilter %}"></tbody>
+								{% for journalentry in form.journalentries %}
+									<tr><td>{{ form_widget(journalentry.accountcode, {'attr': {'class': 'form-control input-sm'}}) }}</td></tr>
+									<tr><td>{{ form_widget(journalentry.amount, {'attr': {'class': 'form-control input-sm'}}) }}</td></tr>
+									<tr><td>{{ form_widget(journalentry.narrative, {'attr': {'class': 'form-control input-sm'}}) }}</td></tr>
+								{% endfor %}
+							<tbody>
+								<tr><td>Net balance</td><td class="sumtotal"></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+	                <div class="form-group">
+						{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.row -->
+	<div style="display: none;">
+		{{ form_end(form) }}
+	</div>
+
+
+{% endif %}
 
 {% endblock %}
 

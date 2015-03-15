@@ -38,7 +38,7 @@ class TransactionsController extends Controller
 			// new transaction typeno, get typeno
 			$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
 										->findnexttypeno();
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_add',
 					array('typeno' => $nexttypeno)),301);
 		} else {
 			$nextcounterindex = $em	->getRepository('CoreAccountingBundle:Gltrans')
@@ -89,14 +89,34 @@ class TransactionsController extends Controller
 				}
 	        	$session = $this->getRequest()->getSession();
 	        	$session->getFlashBag()->add('returnMessage',$returnMessage);
-	        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit'),301);
+	        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_add'),301);
 			} else {
-				return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
+				return $this->render('CoreAccountingBundle:Transactions:gltransadd.html.twig', array(
 						'form'        		=> $form->createView(),
 						'counterindex' 		=> $nextcounterindex
 				));
 			}
 		}
+	}
+	
+	public function editManualTransactionAction($typeno)
+	{
+		$em = $this	->getDoctrine()
+					->getManager();
+		if ($typeno == 0) {
+			// new inquiry, pull search list
+			$data = array();
+			$form = $this->creatFormBuilder($data)
+				->add('typeno','integer')
+	            ->add('Confirm','submit');
+			
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
+					array('typeno' => 0,
+							'form' => $form->createView())),301);
+		} else {
+			
+		}
+		
 	}
 	
 	protected function getTodaysPeriod()

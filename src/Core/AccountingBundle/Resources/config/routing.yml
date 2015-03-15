@@ -15,11 +15,25 @@ CoreAccountingBundle_accounting_home:
 ### Accounting Transactions
 
 #### Manual Journal Entries
-CoreAccountingBundle_transactions_gltrans_edit:
+CoreAccountingBundle_transactions_gltrans_add:
     pattern:	/accounting/transactions/journal/add/{typeno}
     defaults:	{ _controller:CoreAccountingBundle:Transactions:addManualTransaction, typeno: 0 }
     requirements:
         _method:  GET|POST
+
+#### Manual Journal Adjustments
+CoreAccountingBundle_transactions_gltrans_search:
+    pattern:	/accounting/transactions/journal/search
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:editManualTransaction }
+    requirements:
+        _method:  GET
+
+CoreAccountingBundle_transactions_gltrans_edit:
+    pattern:	/accounting/transactions/journal/edit/{typeno}
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:editManualTransaction }
+    requirements:
+        _method:  GET|POST
+
 
 
 
