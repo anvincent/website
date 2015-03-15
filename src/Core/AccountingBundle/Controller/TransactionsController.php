@@ -73,21 +73,39 @@ class TransactionsController extends Controller
 				
 				
 				// bring over form data to object
-				$newentry->setTrandate($formData->getTrandate());
-				$newentry->setPeriodno($formData->getPeriodno());
-				$newentry->setTag($formData->getTag());
-				$newentry->setJournalentries($formData->getJournalentries());
-				
-				// create new entry object to enter
-				
-				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries()); die();
-				
-				
+				$typeno = $newentry->getTypeno();
+				$trandate = $formData->getTrandate();
+				$periodno = $formData->getPeriodno();
+				$tag = $formData->getTag();
 				
 				if ($form->isValid()) {
+					// for each journalentry
+					foreach ($formData->getJournalentries() as $entryItem) {
 					
-					
-					
+						\Doctrine\Common\Util\Debug::dump($entryItem); die();
+						
+						$journalentry = new Gltrans();
+						
+						$journalentry->setCounterindex($nextcounterindex);
+						$journalentry->setType(0);
+						$journalentry->setTypeno($typeno);
+						$journalentry->setChequeno(0);
+						$journalentry->setTrandate($trandate);
+						$journalentry->setPeriodno($periodno);
+						$account = $entryItem->getAccount();
+						$journalentry->setAccount($account);
+						$narrative = $entryItem->getNarrative();
+						$journalentry->setNarrative($narrative);
+						$amount = $entryItem->getAmount();
+						$journalentry->setAmount($amount);
+						$journalentry->setPosted(0);
+						$journalentry->setJobref('_');
+						$journalentry->setTag($tag);
+		        		$em->persist($journalentry);
+						
+						$nextcounterindex++;
+					}
+					$em->flush();
 				}
 			} else {
 				return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(

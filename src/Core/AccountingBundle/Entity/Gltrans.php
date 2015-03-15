@@ -84,6 +84,19 @@ class Gltrans
 	protected $tag;
 	
 	// Methods
+	
+	/**
+	 * Set counterindex
+	 *
+	 * @param integer $counterindex
+	 * @return Gltrans
+	 */
+	public function setCounterindex($counterindex)
+	{
+		$this->counterindex = $counterindex;
+	
+		return $this;
+	}
 
     /**
      * Get counterindex
