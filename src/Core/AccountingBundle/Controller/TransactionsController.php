@@ -108,7 +108,8 @@ class TransactionsController extends Controller
 			$data = array();
 			$form = $this->createFormBuilder($data)
 				->add('typeno','integer')
-	            ->add('Confirm','submit');
+	            ->add('Confirm','submit')
+				->getForm();
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => 0,
