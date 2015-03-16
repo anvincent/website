@@ -101,22 +101,36 @@ class TransactionsController extends Controller
 	
 	public function searchManualTransactionAction()
 	{
+		
+	}
+	
+	public function editManualTransactionAction($typeno)
+	{
 		$data = array();
 		$form = $this	->createFormBuilder($data)
 						->add('typeno','integer')
 						->add('Confirm','submit')
 						->getForm();
-		return $this->render('CoreAccountingBundle:Transactions:gltranssearch.html.twig', array(
-						'form'        		=> $form->createView()
-				));
-	}
-	
-	public function editManualTransactionAction($typeno)
-	{
-		$em = $this	->getDoctrine()
-					->getManager();
-		$journalentry = $this->getJournalentry($typeno);
-		\Doctrine\Common\Util\Debug::dump($journalentry);die();
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			\Doctrine\Common\Util\Debug::dump($journalentry);die();
+			// process form
+			$journalentry = $this->getJournalentry($typeno);
+			if ($form->isValid()) {
+				
+				$returnMessage = "Account group $groupname successfully updated.";
+			} else {
+        		$returnMessage = "An error occurred during the processing of $groupname.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Transactions:gltranssearch.html.twig', array(
+							'form' 		=> $form->createView()
+			));
+		}
 	}
 	
 	public function getJournalentry($id) 
