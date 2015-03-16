@@ -115,6 +115,8 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			// process form
+			\Doctrine\Common\Util\Debug::dump($form);die();
+			//$typeno = $form;
 			$journalentry = $this->getJournalentry($typeno);
 			\Doctrine\Common\Util\Debug::dump($journalentry);die();
 			if ($form->isValid()) {
