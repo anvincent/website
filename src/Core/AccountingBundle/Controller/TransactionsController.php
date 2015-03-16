@@ -114,9 +114,9 @@ class TransactionsController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-			\Doctrine\Common\Util\Debug::dump($journalentry);die();
 			// process form
 			$journalentry = $this->getJournalentry($typeno);
+			\Doctrine\Common\Util\Debug::dump($journalentry);die();
 			if ($form->isValid()) {
 				
 				$returnMessage = "Account group $groupname successfully updated.";
