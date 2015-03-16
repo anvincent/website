@@ -111,6 +111,22 @@ class TransactionsController extends Controller
 				));
 	}
 	
+	public function editManualTransactionAction($typeno)
+	{
+		$em = $this	->getDoctrine()
+					->getManager();
+		$journalentry = $this->getJournalentry($typeno);
+		\Doctrine\Common\Util\Debug::dump($journalentry);die();
+	}
+	
+	public function getJournalentry($id) 
+	{
+		$em = $this->getDoctrine()->getManager();
+		$typeno = $em	->getRepository('CoreAccountingBundle:Gltrans')
+						->findBytypeno($id);
+		return $typeno;
+	}
+	
 	protected function getTodaysPeriod()
 	{
 		$em = $this->getDoctrine()->getManager();
