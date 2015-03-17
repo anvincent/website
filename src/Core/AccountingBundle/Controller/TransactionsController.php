@@ -101,11 +101,6 @@ class TransactionsController extends Controller
 	
 	public function searchManualTransactionAction()
 	{
-		
-	}
-	
-	public function editManualTransactionAction($typeno)
-	{
 		$data = array();
 		$form = $this	->createFormBuilder($data)
 						->add('typeno','integer')
@@ -114,11 +109,45 @@ class TransactionsController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-			// process form
 			$typeno = $form['typeno']->getData();
-			$journalentry = $this->getJournalentry($typeno);
-			\Doctrine\Common\Util\Debug::dump($journalentry);die();
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
+					array('typeno' => $typeno)),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Transactions:gltranssearch.html.twig', array(
+							'form' 		=> $form->createView()
+			));
+		}
+	}
+	
+	public function editManualTransactionAction($typeno)
+	{
+		$em = $this	->getDoctrine()
+					->getManager();
+		$journalentry = $this->getJournalentry($typeno);
+		$typeno = $journalentry[1]->getTypeno();
+		$trandate = $journalentry[1]->getTrandate();
+		$periodno = $journalentry[1]->getPeriodno();
+		$tag = $journalentry[1]->getTag();
+		
+		$updateentry = new Journal();
+		$updateentry->setTypeno($typeno);
+		$updateentry->setTrandate($trandate);
+		$updateentry->setPeriodno($periodno);
+		
+		foreach ($journalentry as $entry) {
+			$updateentry->setJournalentries($entry);
+		}
+		
+		$form = $this->createForm(new JournalsType(), $updateentry);
+		
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			// process form
+			\Doctrine\Common\Util\Debug::dump($form);die();
+			
 			if ($form->isValid()) {
+				// process 
 				
 				$returnMessage = "Account group $groupname successfully updated.";
 			} else {
@@ -128,7 +157,7 @@ class TransactionsController extends Controller
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
-			return $this->render('CoreAccountingBundle:Transactions:gltranssearch.html.twig', array(
+			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
 			));
 		}
