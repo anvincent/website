@@ -133,12 +133,9 @@ class TransactionsController extends Controller
 		$updateentry->setTypeno($typeno);
 		$updateentry->setTrandate($trandate);
 		$updateentry->setPeriodno($periodno);
+		$updateentry->setJournalentries($journalentry);
 		
-		foreach ($journalentry as $entry) {
-			$updateentry->setJournalentries($entry);
-		}
-		
-		\Doctrine\Common\Util\Debug::dump($updateentry);die();
+		\Doctrine\Common\Util\Debug::dump($updateentry);
 		
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		
