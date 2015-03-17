@@ -131,8 +131,9 @@ class TransactionsController extends Controller
 		
 		$updateentry = new Journal();
 		$updateentry->setTypeno($typeno);
-		$updateentry->setTrandate($trandate);
+		$updateentry->setTrandate($trandate->format('Y-m-d'));
 		$updateentry->setPeriodno($periodno);
+		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentry);
 		
 		\Doctrine\Common\Util\Debug::dump($updateentry);
