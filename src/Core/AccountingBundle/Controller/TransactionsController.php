@@ -141,8 +141,9 @@ class TransactionsController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
+			$formData = $form->getData();
 			// process form
-			\Doctrine\Common\Util\Debug::dump($form);die();
+			\Doctrine\Common\Util\Debug::dump($formData);die();
 			
 			if ($form->isValid()) {
 				// process 
