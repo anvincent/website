@@ -150,6 +150,9 @@ class TransactionsController extends Controller
 			
 			if ($form->isValid()) {
 				// process form
+				
+				\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
+				
 				foreach ($formData->getJournalentries() as $entryItem) {
 					$journalentry = new Gltrans();
 					
@@ -183,7 +186,7 @@ class TransactionsController extends Controller
 			//		$em->persist($journalentry);
 				}
 				
-				die();
+				\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
 				
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
