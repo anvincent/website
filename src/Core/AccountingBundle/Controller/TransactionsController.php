@@ -153,31 +153,24 @@ class TransactionsController extends Controller
 				// processing
 				foreach ($formData->getJournalentries() as $entryItem) {
 					$currentCounterindex = $entryItem->getCounterindex();
-					$journalentryupdate = $this->getJournalentry($currentCounterindex,'counterindex');
-					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
-					
-					$journalentry->setCounterindex($currentCounterindex);
-					$journalentry->setType(0);
-					$journalentry->setTypeno($typeno);
-					$journalentry->setChequeno(0);
-					$journalentry->setTrandate($trandate);
-					$journalentry->setPeriodno($periodno);
 					$account = $entryItem->getAccount();
-					$journalentry->setAccount($account);
 					$narrative = $entryItem->getNarrative();
-					$journalentry->setNarrative($narrative);
 					$amount = $entryItem->getAmount();
-					$journalentry->setAmount($amount);
-					$journalentry->setPosted(0);
-					$journalentry->setJobref('_');
-					$journalentry->setTag($tag);
-				\Doctrine\Common\Util\Debug::dump($journalentry);
-	//				$em->persist($journalentry);
+					$journalentryupdate = $this->getJournalentry($currentCounterindex,'counterindex');
+					$journalentryupdate->setCounterindex($currentCounterindex);
+					$journalentryupdate->setType(0);
+					$journalentryupdate->setTypeno($typeno);
+					$journalentryupdate->setChequeno(0);
+					$journalentryupdate->setTrandate($trandate);
+					$journalentryupdate->setPeriodno($periodno);
+					$journalentryupdate->setAccount($account);
+					$journalentryupdate->setNarrative($narrative);
+					$journalentryupdate->setAmount($amount);
+					$journalentryupdate->setPosted(0);
+					$journalentryupdate->setJobref('_');
+					$journalentryupdate->setTag($tag);
+					$em->persist($journalentry);
 				}
-				
-				die();
-				
 				$em->flush();
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
