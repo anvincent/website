@@ -155,7 +155,7 @@ class TransactionsController extends Controller
 					$currentCounterindex = $entryItem->getCounterindex();
 					$journalentryupdate = $this->getJournalentry($currentCounterindex,'counterindex');
 					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdate);
+					\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
 					
 					$journalentry->setCounterindex($currentCounterindex);
 					$journalentry->setType(0);
