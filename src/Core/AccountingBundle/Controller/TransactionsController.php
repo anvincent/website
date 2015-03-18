@@ -144,7 +144,8 @@ class TransactionsController extends Controller
 			$formData = $form->getData();
 			
 			$typeno 	= $formData->getTypeno();
-			$trandate 	= $formData->getTrandate();
+			$date 		= $formData->getTrandate();
+			$trandate 	= new \DateTime($date);
 			$periodno 	= $formData->getPeriodno();
 			$tag 		= $formData->getTag()->getTagref();
 			
