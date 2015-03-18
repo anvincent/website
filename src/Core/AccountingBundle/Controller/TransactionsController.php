@@ -123,7 +123,7 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $this->getJournalentry($typeno);
+		$journalentry = $this->getJournalentry($typeno,'typeno');
 		$typeno = $journalentry[1]->getTypeno();
 		$trandate = $journalentry[1]->getTrandate();
 		$periodno = $journalentry[1]->getPeriodno();
@@ -152,9 +152,11 @@ class TransactionsController extends Controller
 			if ($form->isValid()) {
 				// processing
 				foreach ($formData->getJournalentries() as $entryItem) {
-					$journalentry = new Gltrans();
-					
 					$currentCounterindex = $entryItem->getCounterindex();
+					$journalentryupdate = $this->getJournalentry($currentCounterindex,'counterindex');
+					
+					\Doctrine\Common\Util\Debug::dump($journalentryupdate);
+					
 					$journalentry->setCounterindex($currentCounterindex);
 					$journalentry->setType(0);
 					$journalentry->setTypeno($typeno);
@@ -191,12 +193,21 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	public function getJournalentry($id) 
+	public function getJournalentry($id,$type) 
 	{
 		$em = $this->getDoctrine()->getManager();
-		$typeno = $em	->getRepository('CoreAccountingBundle:Gltrans')
-						->findBytypeno($id);
-		return $typeno;
+		switch($type)
+		{
+			case 'typeno':
+				$result = $em	->getRepository('CoreAccountingBundle:Gltrans')
+								->findBytypeno($id);
+				break;
+			case 'counterindex':
+				$result = $em	->getRepository('CoreAccountingBundle:Gltrans')
+								->findBycounterindex($id);
+				break;
+		}
+		return $result;
 	}
 	
 	protected function getTodaysPeriod()
