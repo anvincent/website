@@ -156,18 +156,8 @@ class TransactionsController extends Controller
 				foreach ($formData->getJournalentries() as $entryItem) {
 					$journalentry = new Gltrans();
 					
-					if($entryItem->getCounterindex()) {
-						$currentCounterindex = $entryItem->getCounterindex();
-						$journalentry->setCounterindex($currentCounterindex);
-						echo "<p>counterindex set in form  ";
-						print_r($currentCounterindex);
-						echo "</p>";
-					} else {
-						$test = $entryItem->getCounterindex();
-						echo "<p>counterindex not in form  ";
-						print_r($test);
-						echo "</p>";
-					}
+					$currentCounterindex = $entryItem->getCounterindex();
+					$journalentry->setCounterindex($currentCounterindex);
 					$journalentry->setType(0);
 					$journalentry->setTypeno($typeno);
 					$journalentry->setChequeno(0);
