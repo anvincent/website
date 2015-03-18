@@ -157,7 +157,10 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$journalentryupdate = $this->getJournalentry($currentCounterindex,'counterindex');
-//					$journalentryupdate->setCounterindex($currentCounterindex);
+					
+					\Doctrine\Common\Util\Debug::dump($journalentryupdate); die();
+					
+					$journalentryupdate->setCounterindex($currentCounterindex);
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
 					$journalentryupdate->setChequeno(0);
