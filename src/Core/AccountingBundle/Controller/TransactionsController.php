@@ -149,10 +149,7 @@ class TransactionsController extends Controller
 			$tag 		= $formData->getTag()->getTagref();
 			
 			if ($form->isValid()) {
-				// process form
-				
-				\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
-				
+				// processing
 				foreach ($formData->getJournalentries() as $entryItem) {
 					$journalentry = new Gltrans();
 					
@@ -172,11 +169,14 @@ class TransactionsController extends Controller
 					$journalentry->setPosted(0);
 					$journalentry->setJobref('_');
 					$journalentry->setTag($tag);
-			//	\Doctrine\Common\Util\Debug::dump($journalentry);die();
+					
+				\Doctrine\Common\Util\Debug::dump($journalentry);
+				echo "</br>";
+				
 			//		$em->persist($journalentry);
 				}
 				
-				\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
+				die();
 				
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
