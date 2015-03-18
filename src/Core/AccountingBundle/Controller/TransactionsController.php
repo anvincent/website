@@ -142,15 +142,52 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
-			// process form
-			\Doctrine\Common\Util\Debug::dump($formData);die();
+			
+			$typeno 	= $formData->getTypeno();
+			$trandate 	= $formData->getTrandate();
+			$periodno 	= $formData->getPeriodno();
+			$tag 		= $formData->getTag()->getTagref();
 			
 			if ($form->isValid()) {
-				// process 
+				// process form
+				foreach ($formData->getJournalentries() as $entryItem) {
+					$journalentry = new Gltrans();
+					
+					if($entryItem->getCounterindex()) {
+						$currentCounterindex = $entryItem->getCounterindex();
+						$journalentry->setCounterindex($currentCounterindex);
+						echo "<p>counterindex set in form  ";
+						print_r($currentCounterindex);
+						echo "</p>";
+					} else {
+						$test = $entryItem->getCounterindex();
+						echo "<p>counterindex not in form  ";
+						print_r($test);
+						echo "</p>";
+					}
+					$journalentry->setType(0);
+					$journalentry->setTypeno($typeno);
+					$journalentry->setChequeno(0);
+					$journalentry->setTrandate($trandate);
+					$journalentry->setPeriodno($periodno);
+					$account = $entryItem->getAccount();
+					$journalentry->setAccount($account);
+					$narrative = $entryItem->getNarrative();
+					$journalentry->setNarrative($narrative);
+					$amount = $entryItem->getAmount();
+					$journalentry->setAmount($amount);
+					$journalentry->setPosted(0);
+					$journalentry->setJobref('_');
+					$journalentry->setTag($tag);
+			//	\Doctrine\Common\Util\Debug::dump($journalentry);die();
+			//		$em->persist($journalentry);
+				}
 				
-				$returnMessage = "Account group $groupname successfully updated.";
+				die();
+				
+				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
-        		$returnMessage = "An error occurred during the processing of $groupname.";
+				$returnMessage = "An error occurred during the processing of entry $typeno.";
         	}
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
