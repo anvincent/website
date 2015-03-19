@@ -266,9 +266,9 @@ class TransactionsController extends Controller
 				// get budget
 				$id = substr($account->getAccountname(),-6); 
 				//= $account->getAccountcode();
-				$accountbudget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-										->findBudgetbyaccountandperiod($id,$period);
-				
+				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+											->findBudgetbyaccountandperiod($id,$period);
+				$accountbudget = $accountchartdetails->getBudget();
 				
 				//print_r( $accountbudget );
 				\Doctrine\Common\Util\Debug::dump($accountbudget);
