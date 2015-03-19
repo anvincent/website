@@ -236,7 +236,7 @@ class TransactionsController extends Controller
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $typeno)),301);
 		} else {
-			return $this->render('CoreAccountingBundle:Maintenance:batchmenushow.html.twig', array(
+			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'form'        => $form->createView()
 			));
 		}
