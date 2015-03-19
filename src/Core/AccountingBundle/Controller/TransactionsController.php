@@ -281,6 +281,7 @@ class TransactionsController extends Controller
 		$newentry->setTypeno($nexttypeno);
 		$newentry->setTrandate($transactiondate);
 		$newentry->setPeriodno($period);
+		$newentry->setTag(1);
 		
 		$journalentry = new Gltrans();
 		foreach ($accounts as $key => $account) {
@@ -306,7 +307,7 @@ class TransactionsController extends Controller
 				$journalentry->setJobref('_');
 				//$journalentry->setTag($tag);
 				
-				$newentry->setJournalentries($journalentry);				
+				$newentry->addJournalentries($journalentry);				
 				$nextcounterindex++;
 			}
 		}

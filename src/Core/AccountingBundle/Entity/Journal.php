@@ -132,6 +132,19 @@ class Journal
 
 		return $this;
 	}
+	
+	/**
+	 * Add journalentry
+	 *
+	 * @param array $journalentries
+	 * @return array
+	 */
+	public function addJournalentries($journalentries)
+	{
+		$this->journalentries[] = $journalentries;
+
+		return $this;
+	}
 
 	/**
 	 * Get journalentries
