@@ -59,8 +59,8 @@ class ChartdetailsRepository extends EntityRepository
 		->createQuery(
 				'SELECT a
 				FROM CoreAccountingBundle:Chartdetails a
-				WHERE a.accountcode == :id
-				AND a.period == :period'
+				WHERE a.accountcode = :id
+				AND a.period = :period'
 		)->setParameters(array(
 				'id' => $id,
 				'period' => $period
