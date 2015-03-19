@@ -256,33 +256,31 @@ class TransactionsController extends Controller
 	
 	protected function getMonthAccrualAccounts($period)
 	{
-		// get array of all accounts with account numbers at their end
-		// get all accounts from chartmaster
 		$em = $this->getDoctrine()->getManager();
 		$accounts = $em	->getRepository('CoreAccountingBundle:Chartmaster')
 						->findAll();
 		foreach ($accounts as $account) {
 			if(is_numeric(substr($account->getAccountname(),-6))) {
-				// get budget
-				$id = substr($account->getAccountname(),-6); 
-				//= $account->getAccountcode();
+				$id = substr($account->getAccountname(),-6);
 				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
 											->findBudgetbyaccountandperiod($id,$period);
+				// accountchartdetails are objects containing the chartdetails
+				
+				
 				$accountbudget = $accountchartdetails[0]->getBudget();
 				
 				//print_r( $accountbudget );
-				\Doctrine\Common\Util\Debug::dump($accountbudget);
+				\Doctrine\Common\Util\Debug::dump($accountchartdetails);
 				echo "</br>";
 			}
 		}
 		die();
-\Doctrine\Common\Util\Debug::dump($accounts);die();
-		// for each account, check name, look for the right 6 characters to be numeric
-		// foreach (account)
 	}
 	
-	public function showBatchTransaction3Action()
+	protected function draftTransaction()
 	{
-	
+		// takes an array of data points and builds a GLtrans object
+		
+		// get new typeno
 	}
 }
