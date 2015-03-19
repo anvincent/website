@@ -308,12 +308,14 @@ class TransactionsController extends Controller
 				
 				$newentry->addJournalentries($journalentry);				
 				$nextcounterindex++;
+				
+				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries());
+				echo "</br>";
 			}
 		}
-				
-				
-		\Doctrine\Common\Util\Debug::dump($newentry);
-		echo "</br>";
+
+		
+		
 		
 		
 		//$form = $this->createForm(new JournalsType(), $newentry);
