@@ -46,7 +46,7 @@ class TransactionsController extends Controller
 			$newentry = new Journal();
 			$newentry->setTypeno($typeno);
 			$newentry->setTrandate(date('Y-m-d'));
-			$newentry->setPeriodno($this->getTodaysPeriod());
+			$newentry->setPeriodno($this->getThePeriod());
 			$form = $this->createForm(new JournalsType(), $newentry);
 			$request = $this->getRequest();
 			if ($request->getMethod() == 'POST') {
@@ -207,12 +207,16 @@ class TransactionsController extends Controller
 		return $result;
 	}
 	
-	protected function getTodaysPeriod()
+	protected function getThePeriod($date=null)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		if(isset($date)) {
+			$today = $date->format('Y-m-t');
+		} else {
+			$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
+		}
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-		->findperiodnowithlastdateinperiod($today);
+						->findperiodnowithlastdateinperiod($today);
 		if (!$periods) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
@@ -234,8 +238,9 @@ class TransactionsController extends Controller
 			$form->bind($request);
 			// get period from date
 			$date = $form->getData();
+			$periodno = getThePeriod($date[0]['dateperiod']);
 			
-\Doctrine\Common\Util\Debug::dump($date);die();
+\Doctrine\Common\Util\Debug::dump($periodno);die();
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $typeno)),301);
@@ -246,7 +251,7 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	public function showBatchTransaction2Action()
+	public function getBudget($account)
 	{
 	
 	}
