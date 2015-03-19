@@ -103,7 +103,9 @@ Batch Journal Processing
 			</div>
 			<div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Send message</button>
+                <div class="form-group">
+					{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
+				</div>
 			</div>
 			<div style="display: none;">{{ form_end(form) }}</div>
 		</div>

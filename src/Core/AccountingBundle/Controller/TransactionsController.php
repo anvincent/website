@@ -226,7 +226,7 @@ class TransactionsController extends Controller
 	{
 		$data = array();
 		$form = $this	->createFormBuilder($data)
-						->add('dateperiod','date')
+						->add('dateperiod','text')
 						->add('Confirm','submit')
 						->getForm();
 		$request = $this->getRequest();
