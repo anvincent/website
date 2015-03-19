@@ -250,6 +250,7 @@ class TransactionsController extends Controller
 			// get period from date
 			$date = $form->getData();
 			$periodno = $this->getThePeriod($date['dateperiod']);
+\Doctrine\Common\Util\Debug::dump($periodno);die();
 			
 			// get the budget for certain accounts for the period
 			$test = $this->getMonthAccrualAccounts($periodno);
