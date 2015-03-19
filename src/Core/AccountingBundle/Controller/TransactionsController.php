@@ -313,7 +313,7 @@ class TransactionsController extends Controller
 		}
 
 		$test = $newentry->getJournalentries();
-		\Doctrine\Common\Util\Debug::dump($test['0']->getAccountcode());
+		\Doctrine\Common\Util\Debug::dump($test['0']->getAccount());
 		echo "</br>";
 		
 		
