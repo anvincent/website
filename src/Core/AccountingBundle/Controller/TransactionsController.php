@@ -289,7 +289,6 @@ class TransactionsController extends Controller
 				$id = substr($account->getAccountname(),-6);
 				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
 											->findBudgetbyaccountandperiod($id,$period);
-				// accountchartdetails are objects containing the chartdetails
 				
 				$budget = $accountchartdetails->getBudget();
 				$account = $accountchartdetails->getAccountcode();
@@ -313,8 +312,8 @@ class TransactionsController extends Controller
 		}
 				
 				
-				\Doctrine\Common\Util\Debug::dump($newentry);
-				echo "</br>";
+		\Doctrine\Common\Util\Debug::dump($newentry);
+		echo "</br>";
 		
 		
 		//$form = $this->createForm(new JournalsType(), $newentry);
