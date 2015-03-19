@@ -79,35 +79,35 @@ Batch Journal Processing
 	</div>
 </div>
 <!-- /.row -->
-<div style="display: none;">
-	{{ form_end(form) }}
-</div>
 
-<div class="modal fade" id="monthproc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="monthprocLabel">New Batch</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
+
+<div class="modal fade" id="monthproc" tabindex="-1" role="dialog" aria-labelledby="monthprocLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="monthprocLabel">New Batch</h4>
+			</div>
+			{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+			<div class="modal-body">
+				<div class="form-group">
+					{{ form_label(form.dateperiod, 'Select Month / Year', {'label_attr': {'class': 'col-xs-3 control-label'}}) }}
+			        <div class="col-xs-5 date">
+			            <div class="input-group input-append date" id="datePicker">
+							{{ form_errors(form.dateperiod) }}
+							{{ form_widget(form.dateperiod, {'attr': {'class': 'form-control'}}) }}
+			                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+			            </div>
+			        </div>
+				</div>
+			</div>
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Send message</button>
+			</div>
+			<div style="display: none;">{{ form_end(form) }}</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
@@ -118,7 +118,7 @@ Batch Journal Processing
 {{ parent() }}
 
 <script>
-$('#exampleModal').on('show.bs.modal', function (event) {
+$('#monthproc').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var recipient = button.data('whatever') // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -127,6 +127,18 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   modal.find('.modal-title').text('New message to ' + recipient)
   modal.find('.modal-body input').val(recipient)
 })
+
+$(document).ready(function() {
+	$('#datePicker')
+        .datepicker({
+            format: 'M/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#eventForm').formValidation('revalidateField', 'date');
+        });
+
+}
 </script>
 
 {% endblock %}

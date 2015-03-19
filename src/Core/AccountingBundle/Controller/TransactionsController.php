@@ -232,7 +232,11 @@ class TransactionsController extends Controller
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
-//			$typeno = $form['typeno']->getData();
+			// get period from date
+			$date = $form->getData();
+			
+\Doctrine\Common\Util\Debug::dump($date);die();
+			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $typeno)),301);
 		} else {
