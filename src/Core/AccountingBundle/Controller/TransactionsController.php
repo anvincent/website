@@ -261,7 +261,10 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$accounts = $em	->getRepository('CoreAccountingBundle:Chartmaster')
 						->findAll();
-		
+		foreach ($accounts as $account) {
+			print_r(substr($account['accountname'],-7));
+		}
+		die();
 \Doctrine\Common\Util\Debug::dump($accounts);die();
 		// for each account, check name, look for the right 6 characters to be numeric
 		// foreach (account)
