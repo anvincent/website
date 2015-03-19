@@ -44,6 +44,7 @@ class PeriodsRepository extends EntityRepository
 				WHERE a.periodno = :id'
 		)->setParameter('id', $id)
 		->getResult();
+		\Doctrine\Common\Util\Debug::dump($lastdate);die();
 		$firstdate = new \DateTime($lastdate,new \DateTimeZone('America/Chicago'));
 		return $firstdate->format('Y-m-01');
 	}
