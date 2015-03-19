@@ -211,7 +211,7 @@ class TransactionsController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 		if(isset($date)) {
-			$today = $date->format('Y-m-t');
+			$today = new \DateTime($date,new \DateTimeZone('America/Chicago'));
 		} else {
 			$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
 		}
