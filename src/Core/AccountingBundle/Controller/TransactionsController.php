@@ -264,7 +264,8 @@ class TransactionsController extends Controller
 		foreach ($accounts as $account) {
 			if(is_numeric(substr($account->getAccountname(),-6))) {
 				// get budget
-				$id = $account->getAccountcode();
+				$id = substr($account->getAccountname(),-6); 
+				//= $account->getAccountcode();
 				$accountbudget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
 										->findBudgetbyaccountandperiod($id,$period);
 				
