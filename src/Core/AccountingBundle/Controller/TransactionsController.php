@@ -262,7 +262,7 @@ class TransactionsController extends Controller
 		$accounts = $em	->getRepository('CoreAccountingBundle:Chartmaster')
 						->findAll();
 		foreach ($accounts as $account) {
-			print_r(substr($account['accountname'],-7));
+			print_r(substr($account->getAccountname(),-7));
 		}
 		die();
 \Doctrine\Common\Util\Debug::dump($accounts);die();
