@@ -45,7 +45,6 @@ class PeriodsRepository extends EntityRepository
 		)->setParameter('id', $id)
 		->getResult();
 		$firstdate = $lastdate[0]['lastdateinperiod'];
-		\Doctrine\Common\Util\Debug::dump($firstdate->format('Y-m-01'));die();
 		return $firstdate->format('Y-m-01');
 	}
 }
