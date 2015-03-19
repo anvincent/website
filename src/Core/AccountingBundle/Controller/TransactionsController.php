@@ -263,7 +263,7 @@ class TransactionsController extends Controller
 						->findAll();
 		foreach ($accounts as $account) {
 			if(is_numeric(substr($account->getAccountname(),-6))) {
-				print_r( substr($account->getAccountname(),-6) );
+				print_r( $account->getAccountcode() );
 				echo "</br>";
 			}
 		}
