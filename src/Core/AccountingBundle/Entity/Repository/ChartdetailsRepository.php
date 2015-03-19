@@ -55,7 +55,7 @@ class ChartdetailsRepository extends EntityRepository
 	
 	public function findBudgetbyaccountandperiod($id,$period)
 	{
-		return $this->getEntityManager()
+		$result = $this->getEntityManager()
 		->createQuery(
 				'SELECT a
 				FROM CoreAccountingBundle:Chartdetails a
@@ -66,6 +66,7 @@ class ChartdetailsRepository extends EntityRepository
 				'period' => $period
 				))
 		->getResult();
+		return $result[0];
 	}
 	
 	public function findBudgetactualpriorcurrentnextbyaccount($id,$periodstart,$periodend)
