@@ -134,7 +134,8 @@ $('#monthproc').on('show.bs.modal', function (event) {
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'M/yyyy'
+            format: 'yyyy-mm-dd'
+            startView: '1'
         })
         .on('changeDate', function(e) {
             // Revalidate the date field
