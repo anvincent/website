@@ -88,7 +88,7 @@ Batch Journal Processing
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="monthprocLabel">New Batch</h4>
 			</div>
-			{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+			{{ form_start(form, {'attr': {'class': 'form-inline', 'id': 'eventForm'}}) }}
 			<div class="modal-body">
 				<div class="form-group">
 					{{ form_label(form.dateperiod, 'Select Month / Year', {'label_attr': {'class': 'col-xs-3 control-label'}}) }}
@@ -130,8 +130,9 @@ $('#monthproc').on('show.bs.modal', function (event) {
   modal.find('.modal-body input').val(recipient)
 })
 
+
 $(document).ready(function() {
-	$('#datePicker')
+    $('#datePicker')
         .datepicker({
             format: 'M/yyyy'
         })
@@ -140,7 +141,39 @@ $(document).ready(function() {
             $('#eventForm').formValidation('revalidateField', 'date');
         });
 
-}
+    $('#eventForm').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The name is required'
+                    }
+                }
+            },
+            date: {
+                validators: {
+                    notEmpty: {
+                        message: 'The date is required'
+                    },
+                    date: {
+                        format: 'MM/DD/YYYY',
+                        message: 'The date is not a valid'
+                    }
+                }
+            }
+        }
+    });
+});
 </script>
+
+
+
+
 
 {% endblock %}
