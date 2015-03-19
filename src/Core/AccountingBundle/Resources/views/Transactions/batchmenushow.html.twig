@@ -135,7 +135,8 @@ $(document).ready(function() {
     $('#datePicker')
         .datepicker({
             format: 'yyyy-mm-dd',
-            startView: '1'
+		    viewMode: "months", 
+		    minViewMode: "months"
         })
         .on('changeDate', function(e) {
             // Revalidate the date field
