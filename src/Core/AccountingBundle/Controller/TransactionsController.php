@@ -216,11 +216,22 @@ class TransactionsController extends Controller
 			$today = new \DateTime('today',new \DateTimeZone('America/Chicago'));
 		}
 		$periods = $em	->getRepository('CoreAccountingBundle:Periods')
-						->findperiodnowithlastdateinperiod($today);
+						->findperiodnowithdate($today);
 		if (!$periods) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
 		return $periods;
+	}
+	
+	protected function getTheLastDate($period)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$lastdate = $em	->getRepository('CoreAccountingBundle:Periods')
+						->findlastdatewithperiodno($period);
+		if (!$lastdate) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		return $lastdate;
 	}
 	
 	/* Adjust Journal Entries - gltrans
@@ -243,7 +254,7 @@ class TransactionsController extends Controller
 			// get the budget for certain accounts for the period
 			$test = $this->getMonthAccrualAccounts($periodno);
 			
-\Doctrine\Common\Util\Debug::dump($periodno);die();
+\Doctrine\Common\Util\Debug::dump($test);die();
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $typeno)),301);
@@ -257,27 +268,61 @@ class TransactionsController extends Controller
 	protected function getMonthAccrualAccounts($period)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$accounts = $em	->getRepository('CoreAccountingBundle:Chartmaster')
-						->findAll();
-		foreach ($accounts as $account) {
+		$accounts 			= $em	->getRepository('CoreAccountingBundle:Chartmaster')
+									->findAll();
+		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnexttypeno();
+		$nextcounterindex 	= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnextcounterindex();
+		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
+									->findfirstdatewithperiodno($period);
+		
+		$newentry = new Journal();
+		$newentry->setTypeno($nexttypeno);
+		$newentry->setTrandate($transactiondate);
+		$newentry->setPeriodno($period);
+		
+		$journalentry = new Gltrans();
+		foreach ($accounts as $key => $account) {
 			if(is_numeric(substr($account->getAccountname(),-6))) {
 				$id = substr($account->getAccountname(),-6);
 				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
 											->findBudgetbyaccountandperiod($id,$period);
 				// accountchartdetails are objects containing the chartdetails
 				
+				$budget = $accountchartdetails->getBudget();
+				$account = $accountchartdetails->getAccountcode();
 				
-//				$accountbudget = $accountchartdetails[0]->getBudget();
+				$journalentry->setCounterindex($nextcounterindex);
+				$journalentry->setType(0);
+				//$journalentry->setTypeno($nexttypeno);
+				$journalentry->setChequeno(0);
+				//$journalentry->setTrandate($transactiondate);
+				//$journalentry->setPeriodno($periodno);
+				$journalentry->setAccount($account);
+				$journalentry->setNarrative("Month Start");
+				$journalentry->setAmount($budget);
+				$journalentry->setPosted(0);
+				$journalentry->setJobref('_');
+				//$journalentry->setTag($tag);
 				
-				//print_r( $accountbudget );
-				\Doctrine\Common\Util\Debug::dump($accountchartdetails);
-				echo "</br>";
+				$newentry->setJournalentries($journalentry);				
+				$nextcounterindex++;
 			}
 		}
+				
+				
+				\Doctrine\Common\Util\Debug::dump($newentry);
+				echo "</br>";
+		
+		
+		//$form = $this->createForm(new JournalsType(), $newentry);
+		
+		
 		die();
 	}
 	
-	protected function draftTransaction()
+	protected function draftTransaction($data=array())
 	{
 		// takes an array of data points and builds a GLtrans object
 		
