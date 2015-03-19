@@ -53,31 +53,25 @@ class ChartdetailsRepository extends EntityRepository
 		->getResult();
 	}
 	
-	
+	public function findBudgetbyaccountandperiod($id,$period)
+	{
+		return $this->getEntityManager()
+		->createQuery(
+				'SELECT a
+				FROM CoreAccountingBundle:Chartdetails a
+				WHERE a.accountcode = :id
+				AND a.period == :period'
+		)->setParameters(array(
+				'id' => $id,
+				'period' => $period
+				))
+		->getResult();
+	}
 	
 	public function findBudgetactualpriorcurrentnextbyaccount($id,$periodstart,$periodend)
 	{
-		
-		/*		
-		$qb = $this->getEntityManager()->createQueryBuilder();
-		return $qb	->select('a')
-					->from('Chartdetails','a')
-					->where('a.accountcode = :id')
-					->andWhere('a.period >= :periodstart')
-					->andWhere('a.period <= :periodend')
-					->setParameters(array(
-							'id' => $id,
-							'periodstart' => $periodstart,
-							'periodend' => $periodend
-					))
-					->getQuery()
-					->getResult();
-		*/		
-		
-	
 		return $this->getEntityManager()
 		->createQuery(
-			//	'SELECT IDENTITY(a.period) AS period, a.actual, a.budget
 				'SELECT a
 				FROM CoreAccountingBundle:Chartdetails a
 				WHERE a.accountcode = :id
@@ -89,6 +83,5 @@ class ChartdetailsRepository extends EntityRepository
 				'periodend' => $periodend
 				))
 		->getResult();
-
 	}
 }

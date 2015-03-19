@@ -241,7 +241,7 @@ class TransactionsController extends Controller
 			$periodno = $this->getThePeriod($date['dateperiod']);
 			
 			// get the budget for certain accounts for the period
-			$test = $this->getMonthAccrualAccounts();
+			$test = $this->getMonthAccrualAccounts($periodno);
 			
 \Doctrine\Common\Util\Debug::dump($periodno);die();
 			
@@ -254,7 +254,7 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	protected function getMonthAccrualAccounts()
+	protected function getMonthAccrualAccounts($period)
 	{
 		// get array of all accounts with account numbers at their end
 		// get all accounts from chartmaster
@@ -264,9 +264,13 @@ class TransactionsController extends Controller
 		foreach ($accounts as $account) {
 			if(is_numeric(substr($account->getAccountname(),-6))) {
 				// get budget
+				$id = $account->getAccountcode();
+				$accountbudget = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+										->findBudgetbyaccountandperiod($id,$period);
 				
 				
-				print_r( $account->getChartdetails() );
+				//print_r( $accountbudget );
+				\Doctrine\Common\Util\Debug::dump($accountbudget);
 				echo "</br>";
 			}
 		}
