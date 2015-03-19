@@ -309,7 +309,7 @@ class TransactionsController extends Controller
 				$newentry->addJournalentries($journalentry);				
 				$nextcounterindex++;
 				
-				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries());
+				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries()->getAccountcode());
 				echo "</br>";
 			}
 		}
