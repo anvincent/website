@@ -239,6 +239,7 @@ class TransactionsController extends Controller
 			// get period from date
 			$date = $form->getData();
 			$periodno = $this->getThePeriod($date['dateperiod']);
+			$periodno = $this->getThePeriod();
 			
 \Doctrine\Common\Util\Debug::dump($periodno);die();
 			
