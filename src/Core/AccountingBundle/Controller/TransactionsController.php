@@ -267,7 +267,7 @@ class TransactionsController extends Controller
 				// accountchartdetails are objects containing the chartdetails
 				
 				
-				$accountbudget = $accountchartdetails[0]->getBudget();
+//				$accountbudget = $accountchartdetails[0]->getBudget();
 				
 				//print_r( $accountbudget );
 				\Doctrine\Common\Util\Debug::dump($accountchartdetails);
