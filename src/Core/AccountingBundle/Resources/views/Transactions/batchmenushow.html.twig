@@ -41,19 +41,19 @@ Batch Journal Processing
 			<div class="panel-body">
 				<div class="row">
 					<button type="button" class="btn btn-primary" data-toggle="modal" 
-							data-target="#monthproc" data-whatever="@start">
+							data-target="#monthproc" data-whatever="Month Start Processing">
 						Month Start
 					</button>
 				</div>
 				<div class="row">
 					<button type="button" class="btn btn-primary" data-toggle="modal" 
-							data-target="#monthproc" data-whatever="@end">
+							data-target="#monthproc" data-whatever="Month End Processing">
 						Month End
 					</button>
 				</div>
 				<div class="row">
 					<button type="button" class="btn btn-primary" data-toggle="modal" 
-							data-target="#batchfile" data-whatever="@batch">
+							data-target="#batchfile" data-whatever="File-based Batch Processing">
 						Batch File
 					</button>
 				</div>
@@ -126,8 +126,7 @@ $('#monthproc').on('show.bs.modal', function (event) {
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
+  modal.find('.modal-title').text('Initiate ' + recipient)
 })
 
 
