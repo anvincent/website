@@ -99,6 +99,9 @@ class TransactionsController extends Controller
 		}
 	}
 	
+	/* Adjust Journal Entries - gltrans
+	* 		
+	*/
 	public function searchManualTransactionAction()
 	{
 		$data = array();
@@ -215,5 +218,37 @@ class TransactionsController extends Controller
 		}
 		return $periods;
 	}
-	 
+	
+	/* Adjust Journal Entries - gltrans
+	 *
+	*/
+	public function showBatchTransactionAction()
+	{
+		$data = array();
+		$form = $this	->createFormBuilder($data)
+						->add('dateperiod','date')
+						->add('Confirm','submit')
+						->getForm();
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+//			$typeno = $form['typeno']->getData();
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
+					array('typeno' => $typeno)),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Maintenance:batchmenushow.html.twig', array(
+				'form'        => $form->createView()
+			));
+		}
+	}
+	
+	public function showBatchTransaction2Action()
+	{
+	
+	}
+	
+	public function showBatchTransaction3Action()
+	{
+	
+	}
 }

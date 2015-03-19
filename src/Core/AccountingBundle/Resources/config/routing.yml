@@ -34,6 +34,12 @@ CoreAccountingBundle_transactions_gltrans_edit:
     requirements:
         _method:  GET|POST
 
+#### Batch Journal Entries
+CoreAccountingBundle_transactions_batch_menu:
+    pattern:	/accounting/transactions/journal/batch/
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:showBatchTransaction }
+    requirements:
+        _method:  GET|POST
 
 
 
