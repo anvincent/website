@@ -308,6 +308,9 @@ class TransactionsController extends Controller
 				
 //				$newentry->getJournalentries()->add($journalentry);
 				$newentry->addJournalentries($journalentry);
+				
+				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries());
+				echo "</br></br>";
 				$nextcounterindex++;
 				
 			}
