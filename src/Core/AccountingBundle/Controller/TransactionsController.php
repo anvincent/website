@@ -267,7 +267,7 @@ class TransactionsController extends Controller
 	*/
 	public function showBatchTransactionAction()
 	{
-		$test = getBatchPeriods('start');
+		$test = $this->getBatchPeriods('start');
 		\Doctrine\Common\Util\Debug::dump($test);die();
 	}
 	
