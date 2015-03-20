@@ -306,22 +306,11 @@ class TransactionsController extends Controller
 				$journalentry->setJobref('_');
 				//$journalentry->setTag($tag);
 				
-				
-				
-				\Doctrine\Common\Util\Debug::dump($key);;echo"</br>";
-				\Doctrine\Common\Util\Debug::dump($id);;echo"</br>";
-				\Doctrine\Common\Util\Debug::dump($budget);;echo"</br>";
-				\Doctrine\Common\Util\Debug::dump($account);;echo"</br>";
-				\Doctrine\Common\Util\Debug::dump($journalentry);;echo"</br>";
-				
-				
 				$newentry->addJournalentries($journalentry);
 				$nextcounterindex++;
 				
 			}
 		}
-
-		die();
 		$test = $newentry->getJournalentries();
 		\Doctrine\Common\Util\Debug::dump($test);
 //		\Doctrine\Common\Util\Debug::dump($test['0']->getAccount()->getAccountcode());

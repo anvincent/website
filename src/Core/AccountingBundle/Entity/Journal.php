@@ -141,8 +141,10 @@ class Journal
 	 */
 	public function addJournalentries($journalentries)
 	{
-		$this->journalentries[] = $journalentries;
-
+		if (!$this->journalentries->contains($journalentries)) {
+			$this->journalentries->add($journalentries);
+		}
+		
 		return $this;
 	}
 
