@@ -260,7 +260,7 @@ class TransactionsController extends Controller
 		}
 		$start = $period-2;
 		$end = $period+3;
-		$periods = array('from' => $start,'to' => $end);
+		$periods = array($start,$end);
 		return $periods;
 	}
 	
