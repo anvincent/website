@@ -240,10 +240,38 @@ class TransactionsController extends Controller
 		return $lastdate;
 	}
 	
+	protected function getBatchPeriods($type)
+	{
+		$em = $this->getDoctrine()->getManager();
+		switch ($type)
+		{
+			case 'start':
+				$id = 1;
+				break;
+				
+			case 'end':
+				$id = 9;
+				break;
+		}
+		$period = $em	->getRepository('CoreAccountingBundle:Gltrans')
+						->findperiodsbytagnotstarted($id);
+		if (!$period) {
+			throw $this->createNotFoundException('Unable to find Fiscal Period.');
+		}
+		$periods = array('from' => ($period-2),'to' => ($period+3));
+		return $periods;
+	}
+	
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
 	public function showBatchTransactionAction()
+	{
+		$test = getBatchPeriods('start');
+		\Doctrine\Common\Util\Debug::dump($test);die();
+	}
+	
+	public function oldshowBatchTransactionAction()
 	{
 		$session = $this->getRequest()->getSession();
 		$session->set('step', '1');

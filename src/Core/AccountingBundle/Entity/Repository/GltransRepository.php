@@ -35,4 +35,17 @@ class GltransRepository extends EntityRepository
 		$maxcounterindex++;
 		return $maxcounterindex;
 	}
+	
+	public function findperiodsbytagnotstarted($id)
+	{
+		$result = $this->getEntityManager()
+		->createQuery(
+				'SELECT MAX(a.periodno) AS period
+				FROM CoreAccountingBundle:Gltrans a
+				WHERE a.tag = :id'
+		)->setParameter('id', $id)
+		->getResult();
+		
+		return $result;
+	}
 }

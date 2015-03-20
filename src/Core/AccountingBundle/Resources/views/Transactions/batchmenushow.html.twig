@@ -21,8 +21,6 @@ Batch Journal Processing
 <!-- /.row -->
 {% endfor %}
 
-
-{{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
@@ -88,14 +86,11 @@ Batch Journal Processing
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="monthprocLabel">New Batch</h4>
 			</div>
-			{{ form_start(form, {'attr': {'class': 'form-inline', 'id': 'eventForm'}}) }}
 			<div class="modal-body">
 				<div class="form-group">
-					{{ form_label(form.dateperiod, 'Select Month / Year', {'label_attr': {'class': 'col-xs-3 control-label'}}) }}
-			        <div class="col-xs-5 date">
+					<div class="col-xs-5 date">
 			            <div class="input-group input-append date" id="datePicker">
-							{{ form_errors(form.dateperiod) }}
-							{{ form_widget(form.dateperiod, {'attr': {'class': 'form-control'}}) }}
+							
 			                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 			            </div>
 			        </div>
