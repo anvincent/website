@@ -260,8 +260,8 @@ class TransactionsController extends Controller
 			// get the budget for certain accounts for the period
 			$journalentryupdate = $this->getMonthStartJournal($periodno[0]['periodno']);
 			
-			return $this->redirect($this->forward('CoreAccountingBundle:Transactions:editBatchTransaction',
-					array('edit' => $journalentryupdate)),301);
+			return $this->forward('CoreAccountingBundle:Transactions:editBatchTransaction',
+					array('edit' => $journalentryupdate));
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'form'        => $form->createView()
