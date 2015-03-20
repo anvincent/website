@@ -81,6 +81,11 @@ Edit Manual Journal Entry
 								</tr>
 							{% endfor %}
 						</tbody>
+						<tbody class="trans" data-prototype="
+							{% filter escape %}
+								{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
+							{% endfilter %}"></tbody>
+						<tbody>
 						<tbody>
 							<tr><td>Net balance</td><td class="sumtotal"></td><td></td></tr>
 						</tbody>
