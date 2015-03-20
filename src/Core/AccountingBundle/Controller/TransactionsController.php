@@ -159,7 +159,7 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					
-					if(isset($entryItem->getCounterindex())) {
+					if($entryItem->getCounterindex() != NULL) {
 						$currentCounterindex = $entryItem->getCounterindex();
 						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
 						$journalentryupdate = $journalentryupdatearray[0];
