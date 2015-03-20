@@ -255,6 +255,7 @@ class TransactionsController extends Controller
 		}
 		$period = $em	->getRepository('CoreAccountingBundle:Gltrans')
 						->findperiodsbytagnotstarted($id);
+		\Doctrine\Common\Util\Debug::dump($period);die();
 		if (!$period) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
