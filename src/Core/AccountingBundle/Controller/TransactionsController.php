@@ -318,9 +318,9 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $edit;//\Doctrine\Common\Util\Debug::dump($journalentry);die();
+		$journalentry = $edit;//
 		$typeno = $journalentry->getTypeno();
-		$trandate = $journalentry->getTrandate();
+		$trandate = $journalentry->getTrandate();\Doctrine\Common\Util\Debug::dump($trandate);die();
 		$periodno = $journalentry->getPeriodno();
 		$tag = $journalentry->getTag();
 		
