@@ -161,7 +161,7 @@ class TransactionsController extends Controller
 					$amount = $entryItem->getAmount();
 					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
 					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);die();
+					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray[0]);die();
 					
 					$journalentryupdate = $journalentryupdatearray[0];
 					
