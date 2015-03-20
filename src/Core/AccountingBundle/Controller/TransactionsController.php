@@ -331,7 +331,11 @@ class TransactionsController extends Controller
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentry);
 		
-		\Doctrine\Common\Util\Debug::dump($updateentry);die();
+		\Doctrine\Common\Util\Debug::dump($journalentry);
+		echo "</br></br>";
+		\Doctrine\Common\Util\Debug::dump($updateentry);
+		
+		die();
 		
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		
