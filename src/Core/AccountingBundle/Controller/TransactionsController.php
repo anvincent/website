@@ -325,6 +325,7 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
+			\Doctrine\Common\Util\Debug::dump($formData);die();
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
