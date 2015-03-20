@@ -139,7 +139,7 @@ class Journal
 	 * @param array $journalentries
 	 * @return array
 	 */
-	public function addJournalentries($journalentries)
+	public function addJournalentries(Gltrans $journalentries)
 	{
 		$this->journalentries->add($journalentries);
 		
