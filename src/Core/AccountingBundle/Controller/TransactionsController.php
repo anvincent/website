@@ -261,7 +261,9 @@ class TransactionsController extends Controller
 			$journalentryupdate = $this->getMonthStartJournal($periodno[0]['periodno']);
 			
 			return $this->forward('CoreAccountingBundle:Transactions:editBatchTransaction',
-					array('edit' => $journalentryupdate));
+					array(	'edit' => $journalentryupdate,
+							'step' => '1'
+			));
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'form'        => $form->createView()
@@ -319,13 +321,16 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		
+		\Doctrine\Common\Util\Debug::dump($edit);echo"</br></br>";
+		
 		$form = $this->createForm(new JournalsType(), $edit);
 		
+		\Doctrine\Common\Util\Debug::dump($form);die();
+		
 		$request = $this->getRequest();
-		if ($request->getMethod() == 'POST') {
+		if ($request->getMethod() == 'POST' && $step == '2') {
 			$form->bind($request);
 			$formData = $form->getData();
-			\Doctrine\Common\Util\Debug::dump($formData);die();
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
