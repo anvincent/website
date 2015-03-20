@@ -245,6 +245,8 @@ class TransactionsController extends Controller
 	*/
 	public function showBatchTransactionAction()
 	{
+		$session = $this->getRequest()->getSession();
+		$session->set('step', '1');echo"</br>";print_r($session->get('step'));echo"</br>";
 		$data = array();
 		$form = $this	->createFormBuilder($data)
 						->add('dateperiod','text')
@@ -262,7 +264,7 @@ class TransactionsController extends Controller
 			
 			return $this->forward('CoreAccountingBundle:Transactions:editBatchTransaction',
 					array(	'edit' => $journalentryupdate,
-							'step' => '1'
+							'step' => $session->get('step')
 			));
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
@@ -316,12 +318,14 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	public function editBatchTransactionAction($edit,$step)
+	public function editBatchTransactionAction($edit)
 	{
+		$session = $this->getRequest()->getSession();
 		$em = $this	->getDoctrine()
 					->getManager();
 		$form = $this->createForm(new JournalsType(), $edit);
 		$request = $this->getRequest();
+		$step = $session->get('step'); echo"</br>";print_r($step);echo"</br>";
 		if ($request->getMethod() == 'POST' && $step == '2') {
 			$form->bind($request);
 			$formData = $form->getData();
@@ -366,11 +370,11 @@ class TransactionsController extends Controller
 			} else {
 				$returnMessage = "An error occurred during the processing of entry $typeno.";
         	}
-        	$session = $this->getRequest()->getSession();
+        	
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
-			$step = 2;
+			$session->set('step', '2');
 			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
 			));
