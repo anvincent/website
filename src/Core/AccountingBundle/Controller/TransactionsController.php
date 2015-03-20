@@ -146,8 +146,6 @@ class TransactionsController extends Controller
 			$form->bind($request);
 			$formData = $form->getData();
 			
-			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
-			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
 			$trandate 	= new \DateTime($date);
@@ -157,19 +155,19 @@ class TransactionsController extends Controller
 			if ($form->isValid()) {
 				// processing
 				foreach ($formData->getJournalentries() as $entryItem) {
-					$currentCounterindex = $entryItem->getCounterindex();
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
-					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
 					
+					if(isset($entryItem->getCounterindex())) {
+						$currentCounterindex = $entryItem->getCounterindex();
+						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
+						$journalentryupdate = $journalentryupdatearray[0];
+						$journalentryupdate->setCounterindex($currentCounterindex);
+					} else {
+						$journalentryupdate = new Gltrans();
+					}
 					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);
-					
-					$journalentryupdate = $journalentryupdatearray[0];
-					
-					
-					$journalentryupdate->setCounterindex($currentCounterindex);
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
 					$journalentryupdate->setChequeno(0);
@@ -181,6 +179,11 @@ class TransactionsController extends Controller
 					$journalentryupdate->setPosted(0);
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
+					
+					
+					\Doctrine\Common\Util\Debug::dump($journalentryupdate);
+					
+					
 //					$em->persist($journalentryupdate);
 				}die();
 				$em->flush();
