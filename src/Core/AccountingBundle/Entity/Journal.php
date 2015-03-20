@@ -153,6 +153,6 @@ class Journal
 	 */
 	public function getJournalentries()
 	{
-		return $this->journalentries;
+		return $this->journalentries[];
 	}
 }
