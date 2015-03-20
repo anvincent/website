@@ -316,16 +316,13 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	public function editBatchTransactionAction($edit)
+	public function editBatchTransactionAction($edit,$step)
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		
-		\Doctrine\Common\Util\Debug::dump($edit);echo"</br></br>";
-		
 		$form = $this->createForm(new JournalsType(), $edit);
 		
-		\Doctrine\Common\Util\Debug::dump($form);die();
+		\Doctrine\Common\Util\Debug::dump($step);die();
 		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST' && $step == '2') {
