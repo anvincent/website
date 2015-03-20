@@ -146,6 +146,8 @@ class TransactionsController extends Controller
 			$form->bind($request);
 			$formData = $form->getData();
 			
+			\Doctrine\Common\Util\Debug::dump($formData);die();
+			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
 			$trandate 	= new \DateTime($date);
@@ -160,6 +162,8 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
+					
+					
 					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);
 					
 					$journalentryupdate = $journalentryupdatearray[0];
