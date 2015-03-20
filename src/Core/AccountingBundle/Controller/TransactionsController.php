@@ -160,10 +160,8 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
-					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray[0]);die();
-					
 					$journalentryupdate = $journalentryupdatearray[0];
+					\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
 					
 					
 					$journalentryupdate->setCounterindex($currentCounterindex);
