@@ -160,7 +160,11 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
+					\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);
+					
 					$journalentryupdate = $journalentryupdatearray[0];
+					
+					
 					$journalentryupdate->setCounterindex($currentCounterindex);
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
@@ -173,8 +177,8 @@ class TransactionsController extends Controller
 					$journalentryupdate->setPosted(0);
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
-					$em->persist($journalentryupdate);
-				}
+//					$em->persist($journalentryupdate);
+				}die();
 				$em->flush();
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
