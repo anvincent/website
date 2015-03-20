@@ -258,7 +258,9 @@ class TransactionsController extends Controller
 		if (!$period) {
 			throw $this->createNotFoundException('Unable to find Fiscal Period.');
 		}
-		$periods = array('from' => ($period-2),'to' => ($period+3));
+		$start = $period-2;
+		$end = $period+3;
+		$periods = array('from' => $start,'to' => $end);
 		return $periods;
 	}
 	
