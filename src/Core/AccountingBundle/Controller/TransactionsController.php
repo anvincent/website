@@ -314,7 +314,7 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	protected function editBatchTransactionAction($edit)
+	public function editBatchTransactionAction($edit)
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
