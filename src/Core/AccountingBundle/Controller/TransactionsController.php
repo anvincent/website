@@ -291,7 +291,7 @@ class TransactionsController extends Controller
 											->findBudgetbyaccountandperiod($id,$period);
 				
 				$budget = $accountchartdetails->getBudget();
-				$account = $accountchartdetails->getAccountcode();
+				$account = $account->getAccountcode();
 				
 				$journalentry->setCounterindex($nextcounterindex);
 				$journalentry->setType(0);
@@ -313,7 +313,7 @@ class TransactionsController extends Controller
 		}
 
 		$test = $newentry->getJournalentries();
-		\Doctrine\Common\Util\Debug::dump($test['0']->getAccount());
+		\Doctrine\Common\Util\Debug::dump($test['0']->getAccount()->getAccountcode());
 		echo "</br>";
 		
 		
