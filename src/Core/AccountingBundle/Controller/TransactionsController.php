@@ -262,7 +262,7 @@ class TransactionsController extends Controller
 		$end = $period[0]['period']+3;
 		$periods = array();
 		for ($start; $start <= $end; $start++) {
-			$thedate = $this->getTheLastDate($start);
+			$thedate = $this->getTheLastDate($start);\Doctrine\Common\Util\Debug::dump($thedate);die();
 			$periods[] = array($start,$thedate[0]);
 		}
 		return $periods;
