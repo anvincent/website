@@ -258,9 +258,8 @@ class TransactionsController extends Controller
 			$periodno = $this->getThePeriod($date['dateperiod']);
 			
 			// get the budget for certain accounts for the period
-			$test = $this->getMonthStartJournal($periodno[0]['periodno']);
-			
-\Doctrine\Common\Util\Debug::dump($test);die();
+			$journalentryupdate = $this->getMonthStartJournal($periodno[0]['periodno']);
+			$typeno = $journalentryupdate->getTypeno();
 			
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
 					array('typeno' => $typeno)),301);
