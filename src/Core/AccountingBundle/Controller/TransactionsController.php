@@ -126,7 +126,7 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $this->getJournalentry($typeno,'typeno');
+		$journalentry = $this->getJournalentry($typeno,'typeno');\Doctrine\Common\Util\Debug::dump($journalentry);die();
 		$typeno = $journalentry[1]->getTypeno();
 		$trandate = $journalentry[1]->getTrandate();
 		$periodno = $journalentry[1]->getPeriodno();
