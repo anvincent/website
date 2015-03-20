@@ -246,7 +246,8 @@ class TransactionsController extends Controller
 	public function showBatchTransactionAction()
 	{
 		$session = $this->getRequest()->getSession();
-		$session->set('step', '1');echo"</br>";print_r($session->get('step'));echo"</br>";
+		$session->set('step', '1');
+			echo"</br>showBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 		$data = array();
 		$form = $this	->createFormBuilder($data)
 						->add('dateperiod','text')
@@ -254,6 +255,7 @@ class TransactionsController extends Controller
 						->getForm();
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
+				echo"</br>showbatchtransactionaction - inside post";print_r($session->get('step'));echo"</br>";
 			$form->bind($request);
 			// get period from date
 			$date = $form->getData();
@@ -321,12 +323,14 @@ class TransactionsController extends Controller
 	public function editBatchTransactionAction($edit)
 	{
 		$session = $this->getRequest()->getSession();
+			echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 		$em = $this	->getDoctrine()
 					->getManager();
 		$form = $this->createForm(new JournalsType(), $edit);
 		$request = $this->getRequest();
 		$step = $session->get('step'); echo"</br>";print_r($step);echo"</br>";
 		if ($request->getMethod() == 'POST' && $step == '2') {
+				echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 			$form->bind($request);
 			$formData = $form->getData();
 			
