@@ -328,7 +328,7 @@ class TransactionsController extends Controller
 					->getManager();
 		$form = $this->createForm(new JournalsType(), $edit);
 		$request = $this->getRequest();
-		$step = $session->get('step'); echo"</br>";print_r($step);echo"</br>";
+		$step = $session->get('step');
 		if ($request->getMethod() == 'POST' && $step == '2') {
 				echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 			$form->bind($request);
