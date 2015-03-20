@@ -318,26 +318,8 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $edit;
-		$typeno = $journalentry->getTypeno();
-		$trandate = $journalentry->getTrandate();
-		$periodno = $journalentry->getPeriodno();
-		$tag = $journalentry->getTag();
 		
-		$updateentry = new Journal();
-		$updateentry->setTypeno($typeno);
-		$updateentry->setTrandate($trandate);
-		$updateentry->setPeriodno($periodno);
-		$updateentry->setTag($tag);
-		$updateentry->setJournalentries($journalentry);
-		
-		\Doctrine\Common\Util\Debug::dump($journalentry);
-		echo "</br></br>";
-		\Doctrine\Common\Util\Debug::dump($updateentry);
-		
-		die();
-		
-		$form = $this->createForm(new JournalsType(), $updateentry);
+		$form = $this->createForm(new JournalsType(), $edit);
 		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
