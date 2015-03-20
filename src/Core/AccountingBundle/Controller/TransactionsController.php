@@ -283,8 +283,8 @@ class TransactionsController extends Controller
 		$newentry->setPeriodno($period);
 		$newentry->setTag(1);
 		
-		$journalentry = new Gltrans();
 		foreach ($accounts as $key => $account) {
+			$journalentry = new Gltrans();
 			if(is_numeric(substr($account->getAccountname(),-6))) {
 				$id = substr($account->getAccountname(),-6);
 				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
@@ -309,8 +309,6 @@ class TransactionsController extends Controller
 //				$newentry->getJournalentries()->add($journalentry);
 				$newentry->addJournalentries($journalentry);
 				
-//				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries());
-				echo "</br></br>";
 				$nextcounterindex++;
 				
 			}
