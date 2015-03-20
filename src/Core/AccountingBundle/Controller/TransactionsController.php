@@ -306,6 +306,7 @@ class TransactionsController extends Controller
 				$journalentry->setJobref('_');
 				//$journalentry->setTag($tag);
 				
+//				$newentry->getJournalentries()->add($journalentry);
 				$newentry->addJournalentries($journalentry);
 				$nextcounterindex++;
 				

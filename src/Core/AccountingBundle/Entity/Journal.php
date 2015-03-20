@@ -142,8 +142,6 @@ class Journal
 	public function addJournalentries(Gltrans $journalentries)
 	{
 		$this->journalentries->add($journalentries);
-		
-		return $this;
 	}
 
 	/**
