@@ -126,7 +126,7 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $this->getJournalentry($typeno,'typeno');\Doctrine\Common\Util\Debug::dump($journalentry);die();
+		$journalentry = $this->getJournalentry($typeno,'typeno');
 		$typeno = $journalentry[1]->getTypeno();
 		$trandate = $journalentry[1]->getTrandate();
 		$periodno = $journalentry[1]->getPeriodno();
@@ -259,10 +259,9 @@ class TransactionsController extends Controller
 			
 			// get the budget for certain accounts for the period
 			$journalentryupdate = $this->getMonthStartJournal($periodno[0]['periodno']);
-			$typeno = $journalentryupdate->getTypeno();
 			
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_edit',
-					array('typeno' => $typeno)),301);
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_edit',
+					array('edit' => $journalentryupdate)),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'form'        => $form->createView()
@@ -315,10 +314,77 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	protected function draftTransaction($data=array())
+	protected function editBatchTransactionAction($edit)
 	{
-		// takes an array of data points and builds a GLtrans object
+		$em = $this	->getDoctrine()
+					->getManager();
+		$journalentry = $edit;\Doctrine\Common\Util\Debug::dump($journalentry);die();
+		$typeno = $journalentry[1]->getTypeno();
+		$trandate = $journalentry[1]->getTrandate();
+		$periodno = $journalentry[1]->getPeriodno();
+		$tag = $journalentry[1]->getTag();
 		
-		// get new typeno
+		$updateentry = new Journal();
+		$updateentry->setTypeno($typeno);
+		$updateentry->setTrandate($trandate->format('Y-m-d'));
+		$updateentry->setPeriodno($periodno);
+		$updateentry->setTag($tag);
+		$updateentry->setJournalentries($journalentry);
+		
+		$form = $this->createForm(new JournalsType(), $updateentry);
+		
+		$request = $this->getRequest();
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
+			$formData = $form->getData();
+			
+			$typeno 	= $formData->getTypeno();
+			$date 		= $formData->getTrandate();
+			$trandate 	= new \DateTime($date);
+			$periodno 	= $formData->getPeriodno();
+			$tag 		= $formData->getTag()->getTagref();
+			
+			if ($form->isValid()) {
+				foreach ($formData->getJournalentries() as $entryItem) {
+					$account = $entryItem->getAccount();
+					$narrative = $entryItem->getNarrative();
+					$amount = $entryItem->getAmount();
+					
+					if($entryItem->getCounterindex() != NULL) {
+						$currentCounterindex = $entryItem->getCounterindex();
+						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
+						$journalentryupdate = $journalentryupdatearray[0];
+						$journalentryupdate->setCounterindex($currentCounterindex);
+					} else {
+						$journalentryupdate = new Gltrans();
+					}
+					
+					$journalentryupdate->setType(0);
+					$journalentryupdate->setTypeno($typeno);
+					$journalentryupdate->setChequeno(0);
+					$journalentryupdate->setTrandate($trandate);
+					$journalentryupdate->setPeriodno($periodno);
+					$journalentryupdate->setAccount($account);
+					$journalentryupdate->setNarrative($narrative);
+					$journalentryupdate->setAmount($amount);
+					$journalentryupdate->setPosted(0);
+					$journalentryupdate->setJobref('_');
+					$journalentryupdate->setTag($tag);
+					
+					$em->persist($journalentryupdate);
+				}
+				$em->flush();
+				$returnMessage = "Journal entry $typeno successfully updated.";
+			} else {
+				$returnMessage = "An error occurred during the processing of entry $typeno.";
+        	}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
+		} else {
+			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
+							'form' 		=> $form->createView()
+			));
+		}
 	}
 }

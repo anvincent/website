@@ -41,6 +41,11 @@ CoreAccountingBundle_transactions_batch_menu:
     requirements:
         _method:  GET|POST
 
+CoreAccountingBundle_transactions_batch_edit:
+    pattern:	/accounting/transactions/journal/edit/
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:editBatchTransaction }
+    requirements:
+        _method:  GET|POST
 
 
 ### Accounting Tools
