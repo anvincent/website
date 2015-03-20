@@ -306,8 +306,8 @@ class TransactionsController extends Controller
 				$journalentry->setJobref('_');
 				//$journalentry->setTag($tag);
 				
-				$newentry->getJournalentries()->add($journalentry);
-//				$newentry->addJournalentries($journalentry);
+//				$newentry->getJournalentries()->add($journalentry);
+				$newentry->addJournalentries($journalentry);
 				
 //				\Doctrine\Common\Util\Debug::dump($newentry->getJournalentries());
 				echo "</br></br>";

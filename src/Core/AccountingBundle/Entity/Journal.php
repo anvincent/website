@@ -136,12 +136,16 @@ class Journal
 	/**
 	 * Add journalentry
 	 *
-	 * @param array $journalentries
+	 * @param Gltrans $journalentries
 	 * @return array
 	 */
 	public function addJournalentries(Gltrans $journalentries)
 	{
-		$this->journalentries->add($journalentries);
+		if(!$this->getJournalentries()->contains($journalentries)) {
+			$this->getJournalentries()->add($journalentries);
+		}
+		
+		return $this;
 	}
 
 	/**
