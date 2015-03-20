@@ -153,7 +153,6 @@ class TransactionsController extends Controller
 			$tag 		= $formData->getTag()->getTagref();
 			
 			if ($form->isValid()) {
-				// processing
 				foreach ($formData->getJournalentries() as $entryItem) {
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
@@ -180,12 +179,8 @@ class TransactionsController extends Controller
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
 					
-					
-					\Doctrine\Common\Util\Debug::dump($journalentryupdate);
-					
-					
-//					$em->persist($journalentryupdate);
-				}die();
+					$em->persist($journalentryupdate);
+				}
 				$em->flush();
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
