@@ -146,7 +146,7 @@ class TransactionsController extends Controller
 			$form->bind($request);
 			$formData = $form->getData();
 			
-			\Doctrine\Common\Util\Debug::dump($formData);die();
+			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());die();
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
