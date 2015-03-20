@@ -321,9 +321,6 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$form = $this->createForm(new JournalsType(), $edit);
-		
-		\Doctrine\Common\Util\Debug::dump($step);die();
-		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST' && $step == '2') {
 			$form->bind($request);
@@ -373,6 +370,7 @@ class TransactionsController extends Controller
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
+			$step = 2;
 			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
 			));
