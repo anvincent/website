@@ -72,7 +72,10 @@ Edit Manual Journal Entry
 								<th>Narrative</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="trans" data-prototype="
+									{% filter escape %}
+										{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
+									{% endfilter %}">
 							{% for journalentry in form.journalentries %}
 								<tr>
 									<td>{{ form_widget(journalentry.account, {'attr': {'class': 'form-control input-sm'}}) }}</td>
@@ -81,10 +84,6 @@ Edit Manual Journal Entry
 								</tr>
 							{% endfor %}
 						</tbody>
-						<tbody class="trans" data-prototype="
-							{% filter escape %}
-								{% include 'CoreAccountingBundle:Transactions:gltransjournalcollection.html.twig' with {'form': form.journalentries.vars.prototype} %}
-							{% endfilter %}"></tbody>
 						<tbody>
 						<tbody>
 							<tr><td>Net balance</td><td class="sumtotal"></td><td></td></tr>
