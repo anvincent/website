@@ -318,11 +318,11 @@ class TransactionsController extends Controller
 	{
 		$em = $this	->getDoctrine()
 					->getManager();
-		$journalentry = $edit;\Doctrine\Common\Util\Debug::dump($journalentry);die();
-		$typeno = $journalentry[1]->getTypeno();
-		$trandate = $journalentry[1]->getTrandate();
-		$periodno = $journalentry[1]->getPeriodno();
-		$tag = $journalentry[1]->getTag();
+		$journalentry = $edit;//\Doctrine\Common\Util\Debug::dump($journalentry);die();
+		$typeno = $journalentry->getTypeno();
+		$trandate = $journalentry->getTrandate();
+		$periodno = $journalentry->getPeriodno();
+		$tag = $journalentry->getTag();
 		
 		$updateentry = new Journal();
 		$updateentry->setTypeno($typeno);
