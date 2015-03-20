@@ -379,6 +379,7 @@ class TransactionsController extends Controller
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
 			$session->set('step', '2');
+				echo"</br>editBatchTransactionAction - outside post - after else ";print_r($session->get('step'));echo"</br>";
 			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
 			));
