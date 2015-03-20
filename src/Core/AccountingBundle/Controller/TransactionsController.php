@@ -260,17 +260,28 @@ class TransactionsController extends Controller
 		}
 		$start = $period[0]['period']-2;
 		$end = $period[0]['period']+3;
-		$periods = array($start,$end);
+		$periods = array();
+		for ($start; $start <= $end; $start++) {
+			echo "</br>$start</br>";
+		}
+		
+		
+		
+		
 		return $periods;
 	}
 	
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
-	public function showBatchTransactionAction()
+	public function showBatchTransactionAction($stage)
 	{
-		$test = $this->getBatchPeriods('start');
+		$periodrange = $this->getBatchPeriods($stage);
 		\Doctrine\Common\Util\Debug::dump($test);die();
+		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
+				'periodstart' => $periodrange[0],
+				'periodend' => end($periodrange)
+		));
 	}
 	
 	public function oldshowBatchTransactionAction()
