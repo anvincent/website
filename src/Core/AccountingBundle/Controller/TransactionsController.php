@@ -252,7 +252,7 @@ class TransactionsController extends Controller
 			$periodno = $this->getThePeriod($date['dateperiod']);
 			
 			// get the budget for certain accounts for the period
-			$test = $this->getMonthAccrualAccounts($periodno[0]['periodno']);
+			$test = $this->getMonthStartJournal($periodno[0]['periodno']);
 			
 \Doctrine\Common\Util\Debug::dump($test);die();
 			
@@ -265,7 +265,7 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	protected function getMonthAccrualAccounts($period)
+	protected function getMonthStartJournal($period)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$accounts 			= $em	->getRepository('CoreAccountingBundle:Chartmaster')
@@ -295,35 +295,19 @@ class TransactionsController extends Controller
 				
 				$journalentry->setCounterindex($nextcounterindex);
 				$journalentry->setType(0);
-				//$journalentry->setTypeno($nexttypeno);
 				$journalentry->setChequeno(0);
-				//$journalentry->setTrandate($transactiondate);
-				//$journalentry->setPeriodno($periodno);
 				$journalentry->setAccount($account);
 				$journalentry->setNarrative("Month Start");
 				$journalentry->setAmount($budget);
 				$journalentry->setPosted(0);
 				$journalentry->setJobref('_');
-				//$journalentry->setTag($tag);
 				
-//				$newentry->getJournalentries()->add($journalentry);
 				$newentry->addJournalentries($journalentry);
-				
 				$nextcounterindex++;
-				
 			}
 		}
-		$test = $newentry->getJournalentries();
-		\Doctrine\Common\Util\Debug::dump($test);
-//		\Doctrine\Common\Util\Debug::dump($test['0']->getAccount()->getAccountcode());
-		echo "</br>";
 		
-		
-		
-		//$form = $this->createForm(new JournalsType(), $newentry);
-		
-		
-		die();
+		return $newentry;
 	}
 	
 	protected function draftTransaction($data=array())
