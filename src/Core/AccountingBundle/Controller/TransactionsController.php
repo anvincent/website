@@ -275,7 +275,7 @@ class TransactionsController extends Controller
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
-	public function showBatchTransactionAction($stage)
+	public function showBatchTransactionAction($stage='start')
 	{
 		$periodrange = $this->getBatchPeriods($stage);
 		\Doctrine\Common\Util\Debug::dump($periodrange);die();
