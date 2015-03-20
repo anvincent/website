@@ -161,9 +161,6 @@ class TransactionsController extends Controller
 					$amount = $entryItem->getAmount();
 					$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
 					$journalentryupdate = $journalentryupdatearray[0];
-					\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
-					
-					
 					$journalentryupdate->setCounterindex($currentCounterindex);
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
