@@ -14,6 +14,7 @@ use Core\AccountingBundle\Entity\Journal;
 use Core\AccountingBundle\Entity\Periods;
 use Core\AccountingBundle\Entity\Chartmaster;
 use Core\AccountingBundle\Entity\Chartdetails;
+use Core\AccountingBundle\Entity\Tags;
 
 // add forms
 use Core\AccountingBundle\Form\GltransType;
@@ -321,12 +322,14 @@ class TransactionsController extends Controller
 		
 		$periodno			= new Periods();
 		$periodno->setPeriodno($period);
+		$tag				= new Tags();
+		$tag->setPeriodno(1);
 		
 		$newentry = new Journal();
 		$newentry->setTypeno($nexttypeno);
 		$newentry->setTrandate($transactiondate);
 		$newentry->setPeriodno($periodno);
-		$newentry->setTag(1);
+		$newentry->setTag($tag);
 		
 		foreach ($accounts as $key => $account) {
 			$journalentry = new Gltrans();
@@ -372,7 +375,7 @@ class TransactionsController extends Controller
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
 				
 				echo"journalentry</br>";
-				\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";die();
+				\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";
 				
 					
 		$form = $this->createForm(new JournalsType(), $updateentry);
