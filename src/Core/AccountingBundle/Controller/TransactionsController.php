@@ -375,7 +375,7 @@ class TransactionsController extends Controller
 					if($entryItem->getCounterindex() != NULL) {
 						$currentCounterindex = $entryItem->getCounterindex();
 						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
-						$journalentryupdate = $journalentryupdatearray[0];
+						$journalentryupdate = $journalentryupdatearray;
 						$journalentryupdate->setCounterindex($currentCounterindex);
 					} else {
 						$journalentryupdate = new Gltrans();
