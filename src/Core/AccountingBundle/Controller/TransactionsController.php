@@ -315,19 +315,24 @@ class TransactionsController extends Controller
 									->findnextcounterindex();
 		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findfirstdatewithperiodno($period);
-		
-		echo"accounts</br>";
-		\Doctrine\Common\Util\Debug::dump($accounts);echo"</br></br>";
-		echo"transactiondate</br>";
-		\Doctrine\Common\Util\Debug::dump($transactiondate);echo"</br></br>";
-		die();
-		
+		$periodno			= new Periods();
+		$periodno->setPeriodno($period);
 		
 		$newentry = new Journal();
 		$newentry->setTypeno($nexttypeno);
 		$newentry->setTrandate($transactiondate);
-		$newentry->setPeriodno($period);
+		$newentry->setPeriodno($periodno);
 		$newentry->setTag(1);
+		
+		echo"accounts</br>";
+		\Doctrine\Common\Util\Debug::dump($accounts);echo"</br></br>";
+		echo"periodno</br>";
+		\Doctrine\Common\Util\Debug::dump($periodno);echo"</br></br>";
+		echo"newentry->getPeriodno()</br>";
+		\Doctrine\Common\Util\Debug::dump($newentry->getPeriodno());echo"</br></br>";
+		die();
+		
+		
 		
 		foreach ($accounts as $key => $account) {
 			$journalentry = new Gltrans();
