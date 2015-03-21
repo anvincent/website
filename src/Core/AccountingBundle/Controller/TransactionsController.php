@@ -262,8 +262,9 @@ class TransactionsController extends Controller
 		$end = $period[0]['period']+3;
 		$periods = array();
 		for ($start; $start <= $end; $start++) {
-			$thedate = $this->getTheLastDate($start);\Doctrine\Common\Util\Debug::dump($thedate[0]['lastdateinperiod']->format('M Y'));die();
-			$periods[] = array($start,$thedate[0]['lastdateinperiod']->format('M Y'));
+			$thedate = $this->getTheLastDate($start);
+			$periods[] = array( 'periodnbr' => $start,
+								'lastdate'	=> $thedate[0]['lastdateinperiod']->format('M Y'));
 		}
 		return $periods;
 	}
@@ -276,8 +277,7 @@ class TransactionsController extends Controller
 		$periodrange = $this->getBatchPeriods($stage);
 		\Doctrine\Common\Util\Debug::dump($periodrange);die();
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
-				'periodstart' => $periodrange[0],
-				'periodend' => end($periodrange)
+				'periodrange' => $periodrange
 		));
 	}
 	
@@ -358,8 +358,11 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	public function editBatchTransactionAction($edit)
+	public function editBatchTransactionAction($period)
 	{
+		
+		// add logic to convert period to month start trans
+		
 		$session = $this->getRequest()->getSession();
 			echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 		$em = $this	->getDoctrine()

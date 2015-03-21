@@ -42,7 +42,7 @@ CoreAccountingBundle_transactions_batch_menu:
         _method:  GET|POST
 
 CoreAccountingBundle_transactions_batch_edit:
-    pattern:	/accounting/transactions/journal/batch/edit/
+    pattern:	/accounting/transactions/journal/batch/edit/{period}
     defaults:	{ _controller:CoreAccountingBundle:Transactions:editBatchTransaction }
     requirements:
         _method:  GET|POST

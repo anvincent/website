@@ -87,22 +87,28 @@ Batch Journal Processing
 				<h4 class="modal-title" id="monthprocLabel">New Batch</h4>
 			</div>
 			<div class="modal-body">
-				<div class="form-group">
-					<div class="col-xs-5 date">
-			            <div class="input-group input-append date" id="datePicker">
-							
-			                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-			            </div>
-			        </div>
-				</div>
+				<table class="table table-striped table-bordered table-condensed">
+					<thead>
+						<th>Period Nbr.</th>
+						<th>Period end date</th>
+					</thead>
+					<tbody>
+					{% for period in periodrange %}
+						<tr>
+							<td>{{ period.periodnbr }}</td>
+							<td>{{ period.lastdate }}</td>
+							{% if  %}
+					    	<td><a href="{{ path('CoreAccountingBundle_transactions_batch_edit',{'period':period.periodnbr}) }}">
+					    		<i class="fa fa-pencil-square-o"></i>
+					    	</a></td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
 			</div>
 			<div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <div class="form-group">
-					{{ form_widget(form.Confirm, {'attr': {'class': 'btn btn-default'}}) }}
-				</div>
 			</div>
-			<div style="display: none;">{{ form_end(form) }}</div>
 		</div>
 	</div>
 </div>
@@ -123,52 +129,5 @@ $('#monthproc').on('show.bs.modal', function (event) {
   var modal = $(this)
   modal.find('.modal-title').text('Initiate ' + recipient)
 })
-
-
-$(document).ready(function() {
-    $('#datePicker')
-        .datepicker({
-            format: 'yyyy-mm-dd',
-    		minViewMode: "months"
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
-
-    $('#eventForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            name: {
-                validators: {
-                    notEmpty: {
-                        message: 'The name is required'
-                    }
-                }
-            },
-            date: {
-                validators: {
-                    notEmpty: {
-                        message: 'The date is required'
-                    },
-                    date: {
-                        format: 'MM/DD/YYYY',
-                        message: 'The date is not a valid'
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
-
-
-
-
 
 {% endblock %}
