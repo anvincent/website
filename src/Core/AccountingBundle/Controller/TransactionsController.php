@@ -275,10 +275,8 @@ class TransactionsController extends Controller
 	public function showBatchTransactionAction()
 	{
 		$periodrange = $this->getBatchPeriods('start');
-		$next = $periodrange[3];
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
-				'periodrange' => $periodrange,
-				'next' => $next
+				'periodrange' => $periodrange
 		));
 	}
 	
