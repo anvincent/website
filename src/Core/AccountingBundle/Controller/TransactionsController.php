@@ -336,7 +336,7 @@ class TransactionsController extends Controller
 											->findBudgetbyaccountandperiod($id,$period);
 				
 				$budget = $accountchartdetails->getBudget();
-				$account = $account->getAccountcode();
+//				$account = $account->getAccountcode();
 				
 				$journalentry->setCounterindex($nextcounterindex);
 				$journalentry->setType(0);
