@@ -367,15 +367,14 @@ class TransactionsController extends Controller
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
 					
 		$form = $this->createForm(new JournalsType(), $updateentry);
-					
-							echo"updateentry</br>";
-							\Doctrine\Common\Util\Debug::dump($form);echo"</br></br>";die();
-							
-					
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
+					
+							echo"updateentry</br>";
+							\Doctrine\Common\Util\Debug::dump($formData);echo"</br></br>";die();
+							
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
