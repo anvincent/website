@@ -366,12 +366,12 @@ class TransactionsController extends Controller
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
 					
+		$form = $this->createForm(new JournalsType(), $updateentry);
+					
 							echo"updateentry</br>";
-							\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";die();
+							\Doctrine\Common\Util\Debug::dump($form);echo"</br></br>";die();
 							
 					
-					
-		$form = $this->createForm(new JournalsType(), $updateentry);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
