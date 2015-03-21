@@ -371,7 +371,7 @@ class TransactionsController extends Controller
 		
 		foreach($journalentryupdate->getJournalentries() as $entry) {
 			echo"updateentry</br>";
-			\Doctrine\Common\Util\Debug::dump($entrygetAccount());echo"</br></br>";
+			\Doctrine\Common\Util\Debug::dump($entry->getAccount());echo"</br></br>";
 		}
 		
 					
