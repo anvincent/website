@@ -354,12 +354,24 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()
 				   ->getManager();
 		$journalentryupdate = $this->getMonthStartJournal($period);
+		$typeno 	= $journalentryupdate->getTypeno();
+		$trandate 	= $journalentryupdate->getTrandate();
+		$periodno 	= $journalentryupdate->getPeriodno();
+		$tag 		= $journalentryupdate->getTag();
+		
+		$updateentry = new Journal();
+		$updateentry->setTypeno($typeno);
+		$updateentry->setTrandate($trandate->format('Y-m-d'));
+		$updateentry->setPeriodno($periodno);
+		$updateentry->setTag($tag);
+		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
 					
-							echo"journalentryupdate</br>";
-							\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();echo"</br></br>";
+							echo"updateentry</br>";
+							\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";die();
+							
 					
 					
-		$form = $this->createForm(new JournalsType(), $journalentryupdate);
+		$form = $this->createForm(new JournalsType(), $updateentry);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
