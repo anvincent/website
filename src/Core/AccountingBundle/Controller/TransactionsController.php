@@ -366,9 +366,13 @@ class TransactionsController extends Controller
 			$periodno 	= $formData->getPeriodno();
 			$tag 		= $formData->getTag()->getTagref();
 			
+			echo"formData->getJournalentries()</br>";
+			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());echo"</br></br>";
+			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
-					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br>";
+					echo"entryItem</br>";
+					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br></br>";
 					
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
@@ -407,7 +411,7 @@ class TransactionsController extends Controller
         	}
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
-        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
+        	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_menu'),301);
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
