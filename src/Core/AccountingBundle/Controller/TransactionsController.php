@@ -272,10 +272,9 @@ class TransactionsController extends Controller
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
-	public function showBatchTransactionAction($stage='start')
+	public function showBatchTransactionAction()
 	{
-		$periodrange = $this->getBatchPeriods($stage);
-		\Doctrine\Common\Util\Debug::dump($periodrange);die();
+		$periodrange = $this->getBatchPeriods('start');
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrange' => $periodrange,
 				'next' => $periodrange[3]
