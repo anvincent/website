@@ -359,8 +359,6 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
-								echo"formData</br>";
-								\Doctrine\Common\Util\Debug::dump($formData);echo"</br></br>";
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
@@ -375,20 +373,15 @@ class TransactionsController extends Controller
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
-					$currentCounterindex = $entryItem->getCounterindex();
 					
-							echo"currentCounterindex</br>";
-							\Doctrine\Common\Util\Debug::dump($currentCounterindex);echo"</br></br>";
-					
-					if($currentCounterindex != NULL) {
-						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
-							echo"journalentryupdatearray</br>";
-							\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);echo"</br></br>";
-						$journalentryupdate = $journalentryupdatearray;
-						$journalentryupdate->setCounterindex($currentCounterindex);
+					if($entryItem->getCounterindex() != NULL) {
+						$journalentryupdate = $entryItem;
 					} else {
 						$journalentryupdate = new Gltrans();
 					}
+					
+							echo"journalentryupdate</br>";
+							\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
 					
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
@@ -402,7 +395,7 @@ class TransactionsController extends Controller
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
 					
-					$em->persist($journalentryupdate);
+//					$em->persist($journalentryupdate);
 				}
 				die();
 				
