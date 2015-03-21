@@ -361,7 +361,7 @@ class TransactionsController extends Controller
 		
 		$updateentry = new Journal();
 		$updateentry->setTypeno($typeno);
-		$updateentry->setTrandate($trandate->format('Y-m-d'));
+		$updateentry->setTrandate($trandate);
 		$updateentry->setPeriodno($periodno);
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
