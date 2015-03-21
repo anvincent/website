@@ -366,11 +366,10 @@ class TransactionsController extends Controller
 			$periodno 	= $formData->getPeriodno();
 			$tag 		= $formData->getTag()->getTagref();
 			
-			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());echo"</br>";die();
-			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
-					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br>";die();
+					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br>";
+					
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
@@ -399,6 +398,8 @@ class TransactionsController extends Controller
 					
 					$em->persist($journalentryupdate);
 				}
+				die();
+				
 				$em->flush();
 				$returnMessage = "Journal entry $typeno successfully updated.";
 			} else {
