@@ -210,6 +210,8 @@ class TransactionsController extends Controller
 								->findBycounterindex($id);
 				break;
 		}
+							echo"result</br>";
+							\Doctrine\Common\Util\Debug::dump($result);echo"</br></br>";
 		return $result;
 	}
 	
@@ -372,6 +374,8 @@ class TransactionsController extends Controller
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$currentCounterindex = $entryItem->getCounterindex();
+							echo"currentCounterindex</br>";
+							\Doctrine\Common\Util\Debug::dump($currentCounterindex);echo"</br></br>";
 					
 					if($currentCounterindex != NULL) {
 						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
