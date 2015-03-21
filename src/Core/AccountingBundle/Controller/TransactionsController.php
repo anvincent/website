@@ -368,8 +368,6 @@ class TransactionsController extends Controller
 			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
-								echo"entryItem</br>";
-								\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br></br>";
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
@@ -379,10 +377,6 @@ class TransactionsController extends Controller
 					} else {
 						$journalentryupdate = new Gltrans();
 					}
-					
-							echo"journalentryupdate</br>";
-							\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
-					
 					$journalentryupdate->setType(0);
 					$journalentryupdate->setTypeno($typeno);
 					$journalentryupdate->setChequeno(0);
@@ -394,6 +388,10 @@ class TransactionsController extends Controller
 					$journalentryupdate->setPosted(0);
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
+					
+							echo"journalentryupdate</br>";
+							\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
+					
 					
 //					$em->persist($journalentryupdate);
 				}
