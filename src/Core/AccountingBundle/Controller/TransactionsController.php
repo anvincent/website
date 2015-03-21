@@ -127,6 +127,12 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$journalentry = $this->getJournalentry($typeno,'typeno');
+		
+		
+		echo"journalentry</br>";
+		\Doctrine\Common\Util\Debug::dump($journalentry);echo"</br></br>";die();
+		
+		
 		$typeno = $journalentry[1]->getTypeno();
 		$trandate = $journalentry[1]->getTrandate();
 		$periodno = $journalentry[1]->getPeriodno();
@@ -362,12 +368,9 @@ class TransactionsController extends Controller
 		$updateentry = new Journal();
 		$updateentry->setTypeno($typeno);
 		$updateentry->setTrandate($trandate);
-		$updateentry->setPeriodno($period);
+		$updateentry->setPeriodno($periodno);
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
-		
-		echo"updateentry</br>";
-		\Doctrine\Common\Util\Debug::dump($period);echo"</br></br>";
 		
 		foreach($journalentryupdate->getJournalentries() as $entry) {
 			echo"updateentry</br>";
