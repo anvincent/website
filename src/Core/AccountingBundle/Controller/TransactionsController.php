@@ -354,6 +354,11 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()
 				   ->getManager();
 		$journalentryupdate = $this->getMonthStartJournal($period);
+					
+							echo"journalentryupdate</br>";
+							\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();echo"</br></br>";
+					
+					
 		$form = $this->createForm(new JournalsType(), $journalentryupdate);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
@@ -388,11 +393,6 @@ class TransactionsController extends Controller
 					$journalentryupdate->setPosted(0);
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
-					
-							echo"journalentryupdate</br>";
-							\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
-					
-					
 //					$em->persist($journalentryupdate);
 				}
 				die();
