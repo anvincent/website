@@ -333,12 +333,16 @@ class TransactionsController extends Controller
 				
 				$journalentry->setCounterindex($nextcounterindex);
 				$journalentry->setType(0);
+				$journalentry->setTypeno($nexttypeno);
 				$journalentry->setChequeno(0);
+				$journalentry->setTrandate($transactiondate);
+				$journalentry->setPeriodno($period);
 				$journalentry->setAccount($account);
 				$journalentry->setNarrative("Month Start");
 				$journalentry->setAmount($budget);
 				$journalentry->setPosted(0);
 				$journalentry->setJobref('_');
+				$journalentry->setTag(1);
 				$newentry->addJournalentries($journalentry);
 				$nextcounterindex++;
 			}
