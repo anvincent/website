@@ -357,8 +357,8 @@ class TransactionsController extends Controller
 		$newentry->setTag($journals[0]->getTag());
 		
 		
-		echo"journals</br>";
-		\Doctrine\Common\Util\Debug::dump($journals);echo"</br></br>";
+		echo"newentry</br>";
+		\Doctrine\Common\Util\Debug::dump($newentry);echo"</br></br>";
 		
 		die();
 		
