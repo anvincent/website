@@ -405,7 +405,7 @@ class TransactionsController extends Controller
 			} else {
 				$returnMessage = "An error occurred during the processing of entry $typeno.";
         	}
-        	
+        	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
