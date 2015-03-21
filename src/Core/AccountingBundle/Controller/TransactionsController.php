@@ -210,8 +210,6 @@ class TransactionsController extends Controller
 								->findBycounterindex($id);
 				break;
 		}
-							echo"result</br>";
-							\Doctrine\Common\Util\Debug::dump($result);echo"</br></br>";
 		return $result;
 	}
 	
@@ -361,6 +359,8 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
+								echo"formData</br>";
+								\Doctrine\Common\Util\Debug::dump($formData);echo"</br></br>";
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
@@ -370,10 +370,13 @@ class TransactionsController extends Controller
 			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
+								echo"entryItem</br>";
+								\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br></br>";
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
 					$currentCounterindex = $entryItem->getCounterindex();
+					
 							echo"currentCounterindex</br>";
 							\Doctrine\Common\Util\Debug::dump($currentCounterindex);echo"</br></br>";
 					
