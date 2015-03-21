@@ -346,14 +346,10 @@ class TransactionsController extends Controller
 				$journalentry->setAmount($budget);
 				$journalentry->setPosted(0);
 				$journalentry->setJobref('_');
-				
-				echo"journalentry</br>";
-				\Doctrine\Common\Util\Debug::dump($journalentry);echo"</br></br>";
-				
 				$newentry->addJournalentries($journalentry);
 				$nextcounterindex++;
 			}
-		}die();
+		}
 		
 		return $newentry;
 	}
