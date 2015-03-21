@@ -366,14 +366,8 @@ class TransactionsController extends Controller
 			$periodno 	= $formData->getPeriodno();
 			$tag 		= $formData->getTag()->getTagref();
 			
-			echo"formData->getJournalentries()</br>";
-			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());echo"</br></br>";
-			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
-					echo"entryItem</br>";
-					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br></br>";
-					
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
@@ -381,6 +375,8 @@ class TransactionsController extends Controller
 					
 					if($currentCounterindex != NULL) {
 						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
+							echo"journalentryupdatearray</br>";
+							\Doctrine\Common\Util\Debug::dump($journalentryupdatearray);echo"</br></br>";
 						$journalentryupdate = $journalentryupdatearray;
 						$journalentryupdate->setCounterindex($currentCounterindex);
 					} else {
