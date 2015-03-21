@@ -360,6 +360,11 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()
 				   ->getManager();
 		$journalentryupdate = $this->getMonthStartJournal($period);
+		
+		echo"journalentryupdate</br>";
+		\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
+		
+		
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
 		$periodno 	= $journalentryupdate->getPeriodno();
