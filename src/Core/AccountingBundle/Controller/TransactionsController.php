@@ -301,10 +301,6 @@ class TransactionsController extends Controller
 					array(	'edit' => $journalentryupdate,
 							'step' => $session->get('step')
 			));
-		} else {
-			return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
-				'form'        => $form->createView()
-			));
 		}
 	}
 	
@@ -355,23 +351,12 @@ class TransactionsController extends Controller
 	
 	public function editBatchTransactionAction($period)
 	{
-		\Doctrine\Common\Util\Debug::dump($period);die();
-		
 		$em = $this->getDoctrine()
 				   ->getManager();
-		
-		
-		// add logic to convert period to month start trans
-		
-		$session = $this->getRequest()->getSession();
-			echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
-		$em = $this	->getDoctrine()
-					->getManager();
-		$form = $this->createForm(new JournalsType(), $edit);
+		$journalentryupdate = $this->getMonthStartJournal($period);
+		$form = $this->createForm(new JournalsType(), $journalentryupdate);
 		$request = $this->getRequest();
-		$step = $session->get('step');
-		if ($request->getMethod() == 'POST' && $step == '2') {
-				echo"</br>editBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
+		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
 			
@@ -419,8 +404,6 @@ class TransactionsController extends Controller
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
         	return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_gltrans_search'),301);
 		} else {
-			$session->set('step', '2');
-				echo"</br>editBatchTransactionAction - outside post - after else ";print_r($session->get('step'));echo"</br>";
 			return $this->render('CoreAccountingBundle:Transactions:gltransedit.html.twig', array(
 							'form' 		=> $form->createView()
 			));
