@@ -414,14 +414,12 @@ class TransactionsController extends Controller
 					$journalentryupdate->setPosted(0);
 					$journalentryupdate->setJobref('_');
 					$journalentryupdate->setTag($tag);
-//					$em->persist($journalentryupdate);
+					$em->persist($journalentryupdate);
 				}
-				\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
-				
 				$em->flush();
-				$returnMessage = "Journal entry $typeno successfully updated.";
+				$returnMessage = "Month start journal entries with Type Nbr $typeno successfully updated.";
 			} else {
-				$returnMessage = "An error occurred during the processing of entry $typeno.";
+				$returnMessage = "An error occurred during the processing of month start journal entries with Type Nbr $typeno.";
         	}
         	$session = $this->getRequest()->getSession();
         	$session->getFlashBag()->add('returnMessage',$returnMessage);
