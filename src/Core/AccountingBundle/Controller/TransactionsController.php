@@ -322,11 +322,6 @@ class TransactionsController extends Controller
 		$periodno		 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findOneByperiodno($period);
 		
-		echo"periodno</br>";
-		\Doctrine\Common\Util\Debug::dump($periodno);echo"</br></br>";
-		
-		die();
-		
 		$newentry = new Journal();
 		
 		foreach ($accounts as $key => $account) {
@@ -343,7 +338,7 @@ class TransactionsController extends Controller
 				$journalentry->setTypeno($nexttypeno);
 				$journalentry->setChequeno(0);
 				$journalentry->setTrandate($transactiondate);
-				$journalentry->setPeriodno($period);
+				$journalentry->setPeriodno($periodno);
 				$journalentry->setAccount($account);
 				$journalentry->setNarrative("Month Start");
 				$journalentry->setAmount($budget);
