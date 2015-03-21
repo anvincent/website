@@ -366,8 +366,11 @@ class TransactionsController extends Controller
 			$periodno 	= $formData->getPeriodno();
 			$tag 		= $formData->getTag()->getTagref();
 			
+			\Doctrine\Common\Util\Debug::dump($formData->getJournalentries());echo"</br>";die();
+			
 			if ($form->isValid()) {
 				foreach ($formData->getJournalentries() as $entryItem) {
+					\Doctrine\Common\Util\Debug::dump($entryItem);echo"</br>";die();
 					$account = $entryItem->getAccount();
 					$narrative = $entryItem->getNarrative();
 					$amount = $entryItem->getAmount();
