@@ -356,67 +356,13 @@ class TransactionsController extends Controller
 		$newentry->setPeriodno($journals[0]->getPeriodno());
 		$newentry->setTag($journals[0]->getTag());
 		
-		
-		echo"newentry</br>";
-		\Doctrine\Common\Util\Debug::dump($newentry);echo"</br></br>";
-		
-		die();
-		
-		
 		return $newentry;
 	}
 	
 	public function editBatchTransactionAction($period)
 	{
-		$em = $this->getDoctrine()->getManager();/*
-		$allaccounts 		= $em	->getRepository('CoreAccountingBundle:Chartmaster')
-									->findAll();
-		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
-									->findnexttypeno();
-		$nextcounterindex 	= $em	->getRepository('CoreAccountingBundle:Gltrans')
-									->findnextcounterindex();
-		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
-									->findfirstdatewithperiodno($period);
-		
-		$newentry = new Journal();
-		$newentry->setTypeno($nexttypeno);
-		$newentry->setTrandate($transactiondate);
-		$newentry->setPeriodno($period);
-		$newentry->setTag(1);
-		
-		foreach ($allaccounts as $account) {
-			$journalentry = new Gltrans();
-			if(is_numeric(substr($account->getAccountname(),-6))) {
-				$id = substr($account->getAccountname(),-6);
-				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-											->findBudgetbyaccountandperiod($id,$period);
-				
-				$budget = $accountchartdetails->getBudget();
-				
-				$journalentry->setCounterindex($nextcounterindex);
-				$journalentry->setType(0);
-				$journalentry->setChequeno(0);
-				$journalentry->setAccount($account);
-				$journalentry->setNarrative("Month Start");
-				$journalentry->setAmount($budget);
-				$journalentry->setPosted(0);
-				$journalentry->setJobref('_');
-				$newentry->addJournalentries($journalentry);
-				$nextcounterindex++;
-			}
-		}
-		
-		// $newentry 
-				
-				echo"newentry</br>";
-				\Doctrine\Common\Util\Debug::dump($newentry);echo"</br></br>";
-				
-				die();
-		
-		
-		*/
-		
-		
+		$em = $this->getDoctrine()->getManager();
+
 		$journalentryupdate = $this->getMonthStartJournal($period);
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
