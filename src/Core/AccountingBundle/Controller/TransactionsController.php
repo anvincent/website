@@ -319,6 +319,13 @@ class TransactionsController extends Controller
 									->findnextcounterindex();
 		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findfirstdatewithperiodno($period);
+		$periodno		 	= $em	->getRepository('CoreAccountingBundle:Periods')
+									->findOneByperiodno($period);
+		
+		echo"periodno</br>";
+		\Doctrine\Common\Util\Debug::dump($periodno);echo"</br></br>";
+		
+		die();
 		
 		$newentry = new Journal();
 		
