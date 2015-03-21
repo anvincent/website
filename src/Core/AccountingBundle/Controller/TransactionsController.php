@@ -282,9 +282,6 @@ class TransactionsController extends Controller
 	
 	public function oldshowBatchTransactionAction()
 	{
-		$session = $this->getRequest()->getSession();
-		$session->set('step', '1');
-			echo"</br>showBatchTransactionAction - outside post";print_r($session->get('step'));echo"</br>";
 		$data = array();
 		$form = $this	->createFormBuilder($data)
 						->add('dateperiod','text')
@@ -292,7 +289,6 @@ class TransactionsController extends Controller
 						->getForm();
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
-				echo"</br>showbatchtransactionaction - inside post";print_r($session->get('step'));echo"</br>";
 			$form->bind($request);
 			// get period from date
 			$date = $form->getData();
@@ -359,6 +355,11 @@ class TransactionsController extends Controller
 	
 	public function editBatchTransactionAction($period)
 	{
+		\Doctrine\Common\Util\Debug::dump($period);die();
+		
+		$em = $this->getDoctrine()
+				   ->getManager();
+		
 		
 		// add logic to convert period to month start trans
 		
