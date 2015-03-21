@@ -318,6 +318,7 @@ class TransactionsController extends Controller
 									->findnextcounterindex();
 		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findfirstdatewithperiodno($period);
+		
 		$periodno			= new Periods();
 		$periodno->setPeriodno($period);
 		
@@ -326,16 +327,6 @@ class TransactionsController extends Controller
 		$newentry->setTrandate($transactiondate);
 		$newentry->setPeriodno($periodno);
 		$newentry->setTag(1);
-		
-		echo"accounts</br>";
-		\Doctrine\Common\Util\Debug::dump($accounts);echo"</br></br>";
-		echo"periodno</br>";
-		\Doctrine\Common\Util\Debug::dump($periodno);echo"</br></br>";
-		echo"newentry->getPeriodno()</br>";
-		\Doctrine\Common\Util\Debug::dump($newentry->getPeriodno());echo"</br></br>";
-		die();
-		
-		
 		
 		foreach ($accounts as $key => $account) {
 			$journalentry = new Gltrans();
@@ -356,10 +347,13 @@ class TransactionsController extends Controller
 				$journalentry->setPosted(0);
 				$journalentry->setJobref('_');
 				
+				echo"journalentry</br>";
+				\Doctrine\Common\Util\Debug::dump($journalentry);echo"</br></br>";
+				
 				$newentry->addJournalentries($journalentry);
 				$nextcounterindex++;
 			}
-		}
+		}die();
 		
 		return $newentry;
 	}
