@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 // add entities
 use Core\AccountingBundle\Entity\Gltrans;
 use Core\AccountingBundle\Entity\Journal;
+use Core\AccountingBundle\Entity\Periods;
+use Core\AccountingBundle\Entity\Chartmaster;
+use Core\AccountingBundle\Entity\Chartdetails;
 
 // add forms
 use Core\AccountingBundle\Form\GltransType;
