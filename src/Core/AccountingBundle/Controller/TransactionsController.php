@@ -349,15 +349,16 @@ class TransactionsController extends Controller
 		}
 		$journals =  $newentry->getJournalentries();
 		
-		echo"journals</br>";
-		\Doctrine\Common\Util\Debug::dump($journals);echo"</br></br>";
+		$newentry->setTypeno($journals[0]->getTypeno());
+		$newentry->setTrandate($journals[0]->getTrandate());
+		$newentry->setPeriodno($journals[0]->getPeriodno());
+		$newentry->setTag($journals[0]->getTag());
+		
+		
+		echo"newentry</br>";
+		\Doctrine\Common\Util\Debug::dump($newentry);echo"</br></br>";
 		
 		die();
-		
-		$newentry->setTypeno($journals[0]->getTypeno());
-		$newentry->setTrandate($transactiondate);
-		$newentry->setPeriodno($periodno);
-		$newentry->setTag($tag);
 		
 		
 		return $newentry;
