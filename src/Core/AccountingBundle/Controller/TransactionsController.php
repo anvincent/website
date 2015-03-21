@@ -349,6 +349,10 @@ class TransactionsController extends Controller
 				$nextcounterindex++;
 			}
 		}
+		
+		// add balancing transaction from cash here
+		
+		
 		$journals =  $newentry->getJournalentries();
 		
 		$newentry->setTypeno($journals[0]->getTypeno());
@@ -375,11 +379,7 @@ class TransactionsController extends Controller
 		$updateentry->setPeriodno($periodno);
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
-				
-				echo"journalentry</br>";
-				\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";
-				
-					
+		
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
@@ -416,7 +416,7 @@ class TransactionsController extends Controller
 					$journalentryupdate->setTag($tag);
 //					$em->persist($journalentryupdate);
 				}
-				die();
+				\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
 				
 				$em->flush();
 				$returnMessage = "Journal entry $typeno successfully updated.";
