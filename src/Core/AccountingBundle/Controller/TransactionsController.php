@@ -323,7 +323,7 @@ class TransactionsController extends Controller
 		$periodno			= new Periods();
 		$periodno->setPeriodno($period);
 		$tag				= new Tags();
-		$tag->setPeriodno(1);
+		$tag->setTagref(1);
 		
 		$newentry = new Journal();
 		$newentry->setTypeno($nexttypeno);
