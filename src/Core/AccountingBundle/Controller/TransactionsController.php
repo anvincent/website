@@ -144,7 +144,7 @@ class TransactionsController extends Controller
 		$updateentry->setJournalentries($journalentry);
 		
 		echo"updateentry</br>";
-		\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";die();
+		\Doctrine\Common\Util\Debug::dump($periodno);echo"</br></br>";die();
 		
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		
