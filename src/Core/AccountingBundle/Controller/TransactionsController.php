@@ -370,6 +370,10 @@ class TransactionsController extends Controller
 		$updateentry->setPeriodno($periodno);
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
+				
+				echo"journalentry</br>";
+				\Doctrine\Common\Util\Debug::dump($updateentry);echo"</br></br>";die();
+				
 					
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		$request = $this->getRequest();
