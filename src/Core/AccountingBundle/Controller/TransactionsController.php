@@ -382,7 +382,6 @@ class TransactionsController extends Controller
 						$currentCounterindex = $entryItem->getCounterindex();
 						$journalentryupdatearray = $this->getJournalentry($currentCounterindex,'counterindex');
 						$journalentryupdate = $journalentryupdatearray;
-						\Doctrine\Common\Util\Debug::dump($journalentryupdate);die();
 						$journalentryupdate->setCounterindex($currentCounterindex);
 					} else {
 						$journalentryupdate = new Gltrans();
