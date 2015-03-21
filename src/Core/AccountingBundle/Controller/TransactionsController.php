@@ -127,12 +127,6 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$journalentry = $this->getJournalentry($typeno,'typeno');
-		
-		
-		echo"journalentry</br>";
-		\Doctrine\Common\Util\Debug::dump($journalentry);echo"</br></br>";die();
-		
-		
 		$typeno = $journalentry[1]->getTypeno();
 		$trandate = $journalentry[1]->getTrandate();
 		$periodno = $journalentry[1]->getPeriodno();
@@ -322,6 +316,13 @@ class TransactionsController extends Controller
 		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findfirstdatewithperiodno($period);
 		
+		echo"accounts</br>";
+		\Doctrine\Common\Util\Debug::dump($accounts);echo"</br></br>";
+		echo"transactiondate</br>";
+		\Doctrine\Common\Util\Debug::dump($transactiondate);echo"</br></br>";
+		die();
+		
+		
 		$newentry = new Journal();
 		$newentry->setTypeno($nexttypeno);
 		$newentry->setTrandate($transactiondate);
@@ -360,11 +361,6 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()
 				   ->getManager();
 		$journalentryupdate = $this->getMonthStartJournal($period);
-		
-		echo"journalentryupdate</br>";
-		\Doctrine\Common\Util\Debug::dump($journalentryupdate);echo"</br></br>";
-		
-		
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
 		$periodno 	= $journalentryupdate->getPeriodno();
@@ -376,22 +372,12 @@ class TransactionsController extends Controller
 		$updateentry->setPeriodno($periodno);
 		$updateentry->setTag($tag);
 		$updateentry->setJournalentries($journalentryupdate->getJournalentries());
-		
-		foreach($journalentryupdate->getJournalentries() as $entry) {
-			echo"updateentry</br>";
-			\Doctrine\Common\Util\Debug::dump($entry->getAccount());echo"</br></br>";
-		}
-		
 					
 		$form = $this->createForm(new JournalsType(), $updateentry);
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			$formData = $form->getData();
-					
-							echo"updateentry</br>";
-							\Doctrine\Common\Util\Debug::dump($formData);echo"</br></br>";die();
-							
 			
 			$typeno 	= $formData->getTypeno();
 			$date 		= $formData->getTrandate();
