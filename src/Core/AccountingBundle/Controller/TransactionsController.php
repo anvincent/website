@@ -320,16 +320,7 @@ class TransactionsController extends Controller
 		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
 									->findfirstdatewithperiodno($period);
 		
-		$periodno			= new Periods();
-		$periodno->setPeriodno($period);
-		$tag				= new Tags();
-		$tag->setTagref(1);
-		
 		$newentry = new Journal();
-		$newentry->setTypeno($nexttypeno);
-		$newentry->setTrandate($transactiondate);
-		$newentry->setPeriodno($periodno);
-		$newentry->setTag($tag);
 		
 		foreach ($accounts as $key => $account) {
 			$journalentry = new Gltrans();
@@ -352,13 +343,25 @@ class TransactionsController extends Controller
 				$nextcounterindex++;
 			}
 		}
+		$journals =  $newentry->getJournalentries();
+		
+		echo"journals</br>";
+		\Doctrine\Common\Util\Debug::dump($journals);echo"</br></br>";
+		
+		die();
+		
+		$newentry->setTypeno($journals[0]->getTypeno());
+		$newentry->setTrandate($transactiondate);
+		$newentry->setPeriodno($periodno);
+		$newentry->setTag($tag);
+		
 		
 		return $newentry;
 	}
 	
 	public function editBatchTransactionAction($period)
 	{
-		$em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();/*
 		$allaccounts 		= $em	->getRepository('CoreAccountingBundle:Chartmaster')
 									->findAll();
 		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
@@ -396,7 +399,7 @@ class TransactionsController extends Controller
 			}
 		}
 		
-		// $newentry
+		// $newentry 
 				
 				echo"newentry</br>";
 				\Doctrine\Common\Util\Debug::dump($newentry);echo"</br></br>";
@@ -404,10 +407,10 @@ class TransactionsController extends Controller
 				die();
 		
 		
+		*/
 		
 		
-		
-//		$journalentryupdate = $this->getMonthStartJournal($period);
+		$journalentryupdate = $this->getMonthStartJournal($period);
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
 		$periodno 	= $journalentryupdate->getPeriodno();
