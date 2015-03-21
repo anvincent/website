@@ -277,7 +277,8 @@ class TransactionsController extends Controller
 		$periodrange = $this->getBatchPeriods($stage);
 		\Doctrine\Common\Util\Debug::dump($periodrange);die();
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
-				'periodrange' => $periodrange
+				'periodrange' => $periodrange,
+				'next' => $periodrange[3]
 		));
 	}
 	

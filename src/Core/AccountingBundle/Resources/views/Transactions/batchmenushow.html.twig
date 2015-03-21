@@ -97,10 +97,13 @@ Batch Journal Processing
 						<tr>
 							<td>{{ period.periodnbr }}</td>
 							<td>{{ period.lastdate }}</td>
-							{% if  %}
-					    	<td><a href="{{ path('CoreAccountingBundle_transactions_batch_edit',{'period':period.periodnbr}) }}">
-					    		<i class="fa fa-pencil-square-o"></i>
+							{% if period.periodnbr < next  %}
+					    	<td><button class="btn btn-default" type="submit"><i class="fa fa-check-square-o"></i></button></td>
+					    	{% else %}
+					    	<td><a class="btn btn-default" href="{{ path('CoreAccountingBundle_transactions_batch_edit',{'period':period.periodnbr}) }}">
+					    		<i class="fa fa-square-o"></i>
 					    	</a></td>
+					    	{% endif %}
 						</tr>
 					{% endfor %}
 					</tbody>
