@@ -393,7 +393,7 @@ class TransactionsController extends Controller
 		
 		// add balancing transaction from cash here
 		// cash balance acct is 110120
-		/*
+		
 		$runningTotal = 0;
 		foreach($journals as $journal) {
 			$runningTotal = $runningTotal + $journal->getAmount();
@@ -401,6 +401,7 @@ class TransactionsController extends Controller
 		$runningTotal = $runningTotal*-1;
 		
 		$journalentry = new Gltrans();
+		$journalentry->setCounterindex($nextcounterindex);
 		$journalentry->setType(0);
 		$journalentry->setTypeno($nexttypeno);
 		$journalentry->setChequeno(0);
@@ -412,7 +413,7 @@ class TransactionsController extends Controller
 		$journalentry->setPosted(0);
 		$journalentry->setJobref('_');
 		$journalentry->setTag(1);
-		$newentry->addJournalentries($journalentry);*/
+		$newentry->addJournalentries($journalentry);
 		
 		$newentry->setTypeno($journals[0]->getTypeno());
 		$newentry->setTrandate($journals[0]->getTrandate());
