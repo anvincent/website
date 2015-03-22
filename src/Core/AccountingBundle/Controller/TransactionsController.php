@@ -357,20 +357,22 @@ class TransactionsController extends Controller
 		
 		$newentry = new Journal();
 		foreach ($accounts as $key => $account) {
-			$journalentry = new Gltrans();
-			$id = substr($account->getAccountname(),-6);
-			$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-										->findBudgetActualbyaccountandperiod($id,$period);
-			
-			if($stage == 'start') {
-				$amount = $accountchartdetails->getBudget();
-				$narrative = "Monthly Accurals";
-			} elseif($stage == 'end') {
-				$amount = $accountchartdetails->getActual();
-				$narrative = "Monthly Close";
-			}
-			
 			if(is_numeric(substr($account->getAccountname(),-6))) {
+				
+				$journalentry = new Gltrans();
+				$id = substr($account->getAccountname(),-6);
+				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+											->findBudgetActualbyaccountandperiod($id,$period);
+				
+				if($stage == 'start') {
+					$amount = $accountchartdetails->getBudget();
+					$narrative = "Monthly Accurals";
+				} elseif($stage == 'end') {
+					$amount = $accountchartdetails->getActual();
+					$narrative = "Monthly Close";
+				}
+				
+			
 				$journalentry->setCounterindex($nextcounterindex);
 				$journalentry->setType(0);
 				$journalentry->setTypeno($nexttypeno);

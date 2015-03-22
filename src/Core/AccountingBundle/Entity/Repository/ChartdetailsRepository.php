@@ -66,9 +66,6 @@ class ChartdetailsRepository extends EntityRepository
 				'period' => $period
 				))
 		->getResult();
-		\Doctrine\Common\Util\Debug::dump($id);
-		\Doctrine\Common\Util\Debug::dump($period);
-		\Doctrine\Common\Util\Debug::dump($result);die();
 		return $result[0];
 	}
 	
