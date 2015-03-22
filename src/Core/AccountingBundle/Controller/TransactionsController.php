@@ -393,6 +393,7 @@ class TransactionsController extends Controller
 		
 		// add balancing transaction from cash here
 		// cash balance acct is 110120
+		/*
 		$runningTotal = 0;
 		foreach($journals as $journal) {
 			$runningTotal = $runningTotal + $journal->getAmount();
@@ -406,12 +407,12 @@ class TransactionsController extends Controller
 		$journalentry->setTrandate($transactiondate);
 		$journalentry->setPeriodno($periodno);
 		$journalentry->setAccount('110120');
-		$journalentry->setNarrative("Month Start");
+		$journalentry->setNarrative($narrative);
 		$journalentry->setAmount($runningTotal);
 		$journalentry->setPosted(0);
 		$journalentry->setJobref('_');
 		$journalentry->setTag(1);
-		$newentry->addJournalentries($journalentry);
+		$newentry->addJournalentries($journalentry);*/
 		
 		$newentry->setTypeno($journals[0]->getTypeno());
 		$newentry->setTrandate($journals[0]->getTrandate());
