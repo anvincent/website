@@ -278,34 +278,12 @@ class TransactionsController extends Controller
 	*/
 	public function showBatchTransactionAction()
 	{
-		$periodrange = $this->getBatchPeriods('start');
+		$periodrangestart = $this->getBatchPeriods('start');
+		$periodrangeend = $this->getBatchPeriods('end');
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
-				'periodrange' => $periodrange
+				'periodrangestart' 	=> $periodrangestart,
+				'periodrangeend' 	=> $periodrangeend
 		));
-	}
-	
-	public function oldshowBatchTransactionAction()
-	{
-		$data = array();
-		$form = $this	->createFormBuilder($data)
-						->add('dateperiod','text')
-						->add('Confirm','submit')
-						->getForm();
-		$request = $this->getRequest();
-		if ($request->getMethod() == 'POST') {
-			$form->bind($request);
-			// get period from date
-			$date = $form->getData();
-			$periodno = $this->getThePeriod($date['dateperiod']);
-			
-			// get the budget for certain accounts for the period
-			$journalentryupdate = $this->getMonthStartJournal($periodno[0]['periodno']);
-			
-			return $this->forward('CoreAccountingBundle:Transactions:editBatchTransaction',
-					array(	'edit' => $journalentryupdate,
-							'step' => $session->get('step')
-			));
-		}
 	}
 	
 	protected function getMonthStartJournal($period)
@@ -363,11 +341,93 @@ class TransactionsController extends Controller
 		return $newentry;
 	}
 	
-	public function editBatchTransactionAction($period)
+	protected function getStandardMonthJournal($period,$stage)
 	{
 		$em = $this->getDoctrine()->getManager();
-
-		$journalentryupdate = $this->getMonthStartJournal($period);
+		$accounts 			= $em	->getRepository('CoreAccountingBundle:Chartmaster')
+									->findAll();
+		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnexttypeno();
+		$nextcounterindex 	= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnextcounterindex();
+		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
+									->findfirstdatewithperiodno($period);
+		$periodno		 	= $em	->getRepository('CoreAccountingBundle:Periods')
+									->findOneByperiodno($period);
+		
+		$newentry = new Journal();
+		foreach ($accounts as $key => $account) {
+			$journalentry = new Gltrans();
+			$id = substr($account->getAccountname(),-6);
+			$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
+										->findBudgetActualbyaccountandperiod($id,$period);
+			
+			if($stage == 'start') {
+				$amount = $accountchartdetails->getBudget();
+				$narrative = "Monthly Accurals";
+			} elseif($stage == 'end') {
+				$amount = $accountchartdetails->getActual();
+				$narrative = "Monthly Close";
+			}
+			
+			if(is_numeric(substr($account->getAccountname(),-6))) {
+				$journalentry->setCounterindex($nextcounterindex);
+				$journalentry->setType(0);
+				$journalentry->setTypeno($nexttypeno);
+				$journalentry->setChequeno(0);
+				$journalentry->setTrandate($transactiondate);
+				$journalentry->setPeriodno($periodno);
+				$journalentry->setAccount($account);
+				$journalentry->setNarrative($narrative);
+				$journalentry->setAmount($amount);
+				$journalentry->setPosted(0);
+				$journalentry->setJobref('_');
+				$journalentry->setTag(1);
+				$newentry->addJournalentries($journalentry);
+				$nextcounterindex++;
+			}
+		}
+		$journals =  $newentry->getJournalentries();
+		
+		// add balancing transaction from cash here
+		// cash balance acct is 110120
+		$runningTotal = 0;
+		foreach($journals as $journal) {
+			$runningTotal = $runningTotal + $journal->getAmount();
+		}
+		$runningTotal = $runningTotal*-1;
+		
+		$journalentry = new Gltrans();
+		$journalentry->setType(0);
+		$journalentry->setTypeno($nexttypeno);
+		$journalentry->setChequeno(0);
+		$journalentry->setTrandate($transactiondate);
+		$journalentry->setPeriodno($periodno);
+		$journalentry->setAccount('110120');
+		$journalentry->setNarrative("Month Start");
+		$journalentry->setAmount($runningTotal);
+		$journalentry->setPosted(0);
+		$journalentry->setJobref('_');
+		$journalentry->setTag(1);
+		$newentry->addJournalentries($journalentry);
+		
+		$newentry->setTypeno($journals[0]->getTypeno());
+		$newentry->setTrandate($journals[0]->getTrandate());
+		$newentry->setPeriodno($journals[0]->getPeriodno());
+		$newentry->setTag($journals[0]->getTag());
+		
+		return $newentry;
+	}
+	
+	public function editBatchTransactionAction($period,$stage)
+	{
+		$em = $this->getDoctrine()->getManager();
+		
+		if($stage=='start') {
+			$journalentryupdate = $this->getMonthStartJournal($period);
+		} elseif($stage=='end') {
+			$journalentryupdate = $this->getMonthEndJournal($period);
+		}
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
 		$periodno 	= $journalentryupdate->getPeriodno();

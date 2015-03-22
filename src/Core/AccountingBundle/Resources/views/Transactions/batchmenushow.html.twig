@@ -39,13 +39,13 @@ Batch Journal Processing
 			<div class="panel-body">
 				<div class="row">
 					<button type="button" class="btn btn-primary" data-toggle="modal" 
-							data-target="#monthproc" data-whatever="Month Start Processing">
+							data-target="#monthprocstart" data-whatever="Month Start Processing">
 						Month Start
 					</button>
 				</div>
 				<div class="row">
 					<button type="button" class="btn btn-primary" data-toggle="modal" 
-							data-target="#monthproc" data-whatever="Month End Processing">
+							data-target="#monthprocend" data-whatever="Month End Processing">
 						Month End
 					</button>
 				</div>
@@ -79,12 +79,12 @@ Batch Journal Processing
 <!-- /.row -->
 
 
-<div class="modal fade" id="monthproc" tabindex="-1" role="dialog" aria-labelledby="monthprocLabel" aria-hidden="true">
+<div class="modal fade" id="monthprocstart" tabindex="-1" role="dialog" aria-labelledby="monthprocLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="monthprocLabel">New Batch</h4>
+				<h4 class="modal-title" id="monthprocLabel">Month Start Processing</h4>
 			</div>
 			<div class="modal-body">
 				<table class="table table-striped table-bordered table-condensed">
@@ -93,14 +93,53 @@ Batch Journal Processing
 						<th>Period end date</th>
 					</thead>
 					<tbody>
-					{% for period in periodrange %}
+					{% for period in periodrangestart %}
 						<tr>
 							<td>{{ period.periodnbr }}</td>
 							<td>{{ period.lastdate }}</td>
 							{% if loop.index0 < 3  %}
 					    	<td><button class="btn btn-default" type="submit"><i class="fa fa-check-square-o"></i></button></td>
 					    	{% else %}
-					    	<td><a class="btn btn-default" href="{{ path('CoreAccountingBundle_transactions_batch_edit',{'period':period.periodnbr}) }}">
+					    	<td><a class="btn btn-default" href="{{ path('CoreAccountingBundle_transactions_batch_edit',
+					    											{'period':period.periodnbr, 'stage':'start'}) }}">
+					    		<i class="fa fa-square-o"></i>
+					    	</a></td>
+					    	{% endif %}
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="monthprocend" tabindex="-1" role="dialog" aria-labelledby="monthprocLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="monthprocLabel">Month End Processing</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-striped table-bordered table-condensed">
+					<thead>
+						<th>Period Nbr.</th>
+						<th>Period end date</th>
+					</thead>
+					<tbody>
+					{% for period in periodrangeend %}
+						<tr>
+							<td>{{ period.periodnbr }}</td>
+							<td>{{ period.lastdate }}</td>
+							{% if loop.index0 < 3  %}
+					    	<td><button class="btn btn-default" type="submit"><i class="fa fa-check-square-o"></i></button></td>
+					    	{% else %}
+					    	<td><a class="btn btn-default" href="{{ path('CoreAccountingBundle_transactions_batch_edit',
+					    											{'period':period.periodnbr, 'stage':'end'}) }}">
 					    		<i class="fa fa-square-o"></i>
 					    	</a></td>
 					    	{% endif %}

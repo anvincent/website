@@ -53,7 +53,7 @@ class ChartdetailsRepository extends EntityRepository
 		->getResult();
 	}
 	
-	public function findBudgetbyaccountandperiod($id,$period)
+	public function findBudgetActualbyaccountandperiod($id,$period)
 	{
 		$result = $this->getEntityManager()
 		->createQuery(
