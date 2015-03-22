@@ -422,12 +422,8 @@ class TransactionsController extends Controller
 	public function editBatchTransactionAction($period,$stage)
 	{
 		$em = $this->getDoctrine()->getManager();
-		
-		if($stage=='start') {
-			$journalentryupdate = $this->getMonthStartJournal($period);
-		} elseif($stage=='end') {
-			$journalentryupdate = $this->getMonthEndJournal($period);
-		}
+
+		$journalentryupdate = $this->getStandardMonthJournal($period,$stage);
 		$typeno 	= $journalentryupdate->getTypeno();
 		$trandate 	= $journalentryupdate->getTrandate();
 		$periodno 	= $journalentryupdate->getPeriodno();
