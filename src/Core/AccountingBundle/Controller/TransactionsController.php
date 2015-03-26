@@ -15,6 +15,7 @@ use Core\AccountingBundle\Entity\Periods;
 use Core\AccountingBundle\Entity\Chartmaster;
 use Core\AccountingBundle\Entity\Chartdetails;
 use Core\AccountingBundle\Entity\Tags;
+use Core\AccountingBundle\Entity\Document;
 
 // add forms
 use Core\AccountingBundle\Form\GltransType;
@@ -282,63 +283,54 @@ class TransactionsController extends Controller
 		$periodrangeend = $this->getBatchPeriods('end');
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrangestart' 	=> $periodrangestart,
-				'periodrangeend' 	=> $periodrangeend
+				'periodrangeend' 	=> $periodrangeend,
+				'periodrangebatch' 	=> $periodrangebatch
 		));
 	}
 	
-	protected function getMonthStartJournal($period)
+	public function uploadAction(Request $request)
 	{
-		$em = $this->getDoctrine()->getManager();
-		$accounts 			= $em	->getRepository('CoreAccountingBundle:Chartmaster')
-									->findAll();
-		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
-									->findnexttypeno();
-		$nextcounterindex 	= $em	->getRepository('CoreAccountingBundle:Gltrans')
-									->findnextcounterindex();
-		$transactiondate 	= $em	->getRepository('CoreAccountingBundle:Periods')
-									->findfirstdatewithperiodno($period);
-		$periodno		 	= $em	->getRepository('CoreAccountingBundle:Periods')
-									->findOneByperiodno($period);
+		$document = new Document();
+		$form = $this->createFormBuilder($document)
+				->add('filename','text',array('label' => 'File Name :'))
+				->add('attachment','file')
+				->add('accountname','entity',array(
+            		'class' => 'CoreAccountingBundle:Importtransdefn',
+            		'property' => 'accountname'
+            		))
+				->add('Confirm','submit')
+				->getForm();
 		
-		$newentry = new Journal();
+		$form->handleRequest($request);
 		
-		foreach ($accounts as $key => $account) {
-			$journalentry = new Gltrans();
-			if(is_numeric(substr($account->getAccountname(),-6))) {
-				$id = substr($account->getAccountname(),-6);
-				$accountchartdetails = $em	->getRepository('CoreAccountingBundle:Chartdetails')
-											->findBudgetbyaccountandperiod($id,$period);
+		if ($form->isValid()) {
+			$formData = $form->getData();
+			
+			\Doctrine\Common\Util\Debug::dump($formData);die();
+			
+			$importdefn = new Importtransdefn();
+			$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
+			
+			$document->processDataHeader($importdefnid);
+			$rowCount = $document->getFileLineCount();
+			
+			
+			$file = $document->getFile();
+			
+			
 				
-				$budget = $accountchartdetails->getBudget();
+			$session = $this->getRequest()->getSession();
+			$session->getFlashBag()->add('returnMessage','Account group added');
 				
-				$journalentry->setCounterindex($nextcounterindex);
-				$journalentry->setType(0);
-				$journalentry->setTypeno($nexttypeno);
-				$journalentry->setChequeno(0);
-				$journalentry->setTrandate($transactiondate);
-				$journalentry->setPeriodno($periodno);
-				$journalentry->setAccount($account);
-				$journalentry->setNarrative("Month Start");
-				$journalentry->setAmount($budget);
-				$journalentry->setPosted(0);
-				$journalentry->setJobref('_');
-				$journalentry->setTag(1);
-				$newentry->addJournalentries($journalentry);
-				$nextcounterindex++;
-			}
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
 		}
 		
-		// add balancing transaction from cash here
+		return array('form' => $form->createView());
+	}
+	
+	protected function getImporttransdefnbyaccountname($importObj,$accountname)
+	{
 		
-		
-		$journals =  $newentry->getJournalentries();
-		
-		$newentry->setTypeno($journals[0]->getTypeno());
-		$newentry->setTrandate($journals[0]->getTrandate());
-		$newentry->setPeriodno($journals[0]->getPeriodno());
-		$newentry->setTag($journals[0]->getTag());
-		
-		return $newentry;
 	}
 	
 	protected function getStandardMonthJournal($period,$stage)
