@@ -283,8 +283,7 @@ class TransactionsController extends Controller
 		$periodrangeend = $this->getBatchPeriods('end');
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrangestart' 	=> $periodrangestart,
-				'periodrangeend' 	=> $periodrangeend,
-				'periodrangebatch' 	=> $periodrangebatch
+				'periodrangeend' 	=> $periodrangeend
 		));
 	}
 	
