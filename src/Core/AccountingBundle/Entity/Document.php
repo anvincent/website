@@ -1,6 +1,6 @@
 <?php 
 // src/AppBundle/Entity/Document.php
-namespace AppBundle\Entity;
+namespace Core\AccountingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
