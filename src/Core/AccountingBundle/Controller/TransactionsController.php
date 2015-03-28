@@ -315,7 +315,7 @@ class TransactionsController extends Controller
 			
 //			$uploadfile = $request->files->get('file');
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($formData);echo"</br>";die();
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($formData->getFile());echo"</br>";die();
 			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
