@@ -301,13 +301,13 @@ class TransactionsController extends Controller
 	{
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
-				->add('filename','text',array('label' => 'File Name :'))
+//				->add('filename','text',array('label' => 'File Name :'))
 				->add('attachment','file')
-				->add('accountname','entity',array(
+/*				->add('accountname','entity',array(
             		'class' => 'CoreAccountingBundle:Importtransdefn',
             		'property' => 'accountname'
             		))
-				->add('Confirm','submit')
+*/				->add('Confirm','submit')
 				->getForm();
 		
 		$request = $this->getRequest();
