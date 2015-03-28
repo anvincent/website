@@ -49,7 +49,7 @@ CoreAccountingBundle_transactions_batch_edit:
 
 CoreAccountingBundle_transactions_batch_upload:
     pattern:	/accounting/transactions/journal/batch/upload/{id}
-    defaults:	{ _controller:CoreAccountingBundle:Transactions:uploadTransactionTransaction }
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:uploadTransaction }
     requirements:
         _method:  GET|POST
 
