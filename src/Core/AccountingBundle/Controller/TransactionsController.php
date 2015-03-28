@@ -313,6 +313,9 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$file = $form->getData()->getFile();
 			
+			
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($file);echo"</br>";
+			
 			$filedata = new \SplFileObject($file);
 			
 //			$uploadfile = $request->files->get('file');
