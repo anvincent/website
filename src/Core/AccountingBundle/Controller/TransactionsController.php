@@ -277,13 +277,26 @@ class TransactionsController extends Controller
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
+	protected function getImporttransdefin()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$definitions = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
+							->findAll();
+		
+		\Doctrine\Common\Util\Debug::dump($definitions);die();
+		
+		return $definitions;
+	}
+	
 	public function showBatchTransactionAction()
 	{
 		$periodrangestart = $this->getBatchPeriods('start');
 		$periodrangeend = $this->getBatchPeriods('end');
+		$importoptions = $this->getImporttransdefin();
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrangestart' 	=> $periodrangestart,
-				'periodrangeend' 	=> $periodrangeend
+				'periodrangeend' 	=> $periodrangeend,
+				'importoptions'		=> $importoptions
 		));
 	}
 	
