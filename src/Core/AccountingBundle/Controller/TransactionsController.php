@@ -336,7 +336,7 @@ class TransactionsController extends Controller
         	
         	}
         }
-		return $this->render('CoreAccountingBundle:Maintenance:batchupload.html.twig', array(
+		return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
 				'form'        => $form->createView()
 		));
 	}
