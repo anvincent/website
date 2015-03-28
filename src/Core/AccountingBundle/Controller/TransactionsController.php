@@ -305,6 +305,10 @@ class TransactionsController extends Controller
 	
 	public function uploadTransactionAction(Request $request,$id)
 	{
+		
+		echo"</br>";\Doctrine\Common\Util\Debug::dump($request);echo"</br>";
+		echo"</br>";\Doctrine\Common\Util\Debug::dump($id);echo"</br>";die();
+		
 		$document = new Document();
 		$importoption = $this->getImporttransdefin($id);
 		$form = $this->createForm(new DocumentType(), $document);
