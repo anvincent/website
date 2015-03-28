@@ -306,12 +306,9 @@ class TransactionsController extends Controller
 	{
 		$document = new Document();
 		$importoption = $this->getImporttransdefin($id);
-		$form = $this->createFormBuilder($document)
-				->add('file','file')
-				->add('Confirm','submit')
-				->getForm();
-		$form->handleRequest($request);
+		$form = $this->createForm(new DocumentType(), $document);
 		
+		$form->handleRequest($request);
 		if ($form->isValid()) {
 			\Doctrine\Common\Util\Debug::dump($form);die();
 			
