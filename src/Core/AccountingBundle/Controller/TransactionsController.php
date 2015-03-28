@@ -20,6 +20,7 @@ use Core\AccountingBundle\Entity\Document;
 // add forms
 use Core\AccountingBundle\Form\GltransType;
 use Core\AccountingBundle\Form\JournalsType;
+use Core\AccountingBundle\Form\DocumentType;
 
 
 class TransactionsController extends Controller
@@ -309,8 +310,11 @@ class TransactionsController extends Controller
 		$form = $this->createForm(new DocumentType(), $document);
 		
 		$form->handleRequest($request);
+		echo"</br>";\Doctrine\Common\Util\Debug::dump($form);echo"</br>";
+		
+		
 		if ($form->isValid()) {
-			\Doctrine\Common\Util\Debug::dump($form);die();
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($form);echo"</br>";die();
 			
 			$formData = $form->getData();
 			 
