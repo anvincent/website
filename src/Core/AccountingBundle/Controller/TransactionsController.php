@@ -302,7 +302,7 @@ class TransactionsController extends Controller
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
 //				->add('filename','text',array('label' => 'File Name :'))
-				->add('attachment','file')
+				->add('file','file')
 /*				->add('accountname','entity',array(
             		'class' => 'CoreAccountingBundle:Importtransdefn',
             		'property' => 'accountname'
