@@ -313,7 +313,7 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$file = $form->getData()->getFile();
 			
-			$filedata = new SplFileObject($file);
+			$filedata = new \SplFileObject($file);
 			
 //			$uploadfile = $request->files->get('file');
 			
