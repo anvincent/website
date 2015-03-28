@@ -277,11 +277,16 @@ class TransactionsController extends Controller
 	/* Adjust Journal Entries - gltrans
 	 *
 	*/
-	protected function getImporttransdefin()
+	protected function getImporttransdefin($id=null)
 	{
 		$em = $this->getDoctrine()->getManager();
-		$definitions = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
-							->findAll();
+		if(isset($id)) {
+			$definitions = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
+								->findByimportdefnid($id);
+		} else {
+			$definitions = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
+								->findAll();
+		}
 		return $definitions;
 	}
 	
@@ -300,6 +305,7 @@ class TransactionsController extends Controller
 	public function uploadTransactionAction(Request $request,$id)
 	{
 		$document = new Document();
+		$importoption = $this->getImporttransdefin($id);
 		$form = $this->createFormBuilder($document)
 				->add('file','file')
 				->add('Confirm','submit')
@@ -323,7 +329,7 @@ class TransactionsController extends Controller
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
 					'form'		=> $form->createView(),
-					'importname'=> $importname 
+					'importname'=> $importoption 
 			));
 		}
 	}
