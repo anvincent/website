@@ -282,9 +282,6 @@ class TransactionsController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$definitions = $em	->getRepository('CoreAccountingBundle:Importtransdefn')
 							->findAll();
-		
-		\Doctrine\Common\Util\Debug::dump($definitions);die();
-		
 		return $definitions;
 	}
 	
@@ -300,7 +297,7 @@ class TransactionsController extends Controller
 		));
 	}
 	
-	public function uploadAction(Request $request)
+	public function uploadTransactionAction($id)
 	{
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
@@ -313,31 +310,35 @@ class TransactionsController extends Controller
 				->add('Confirm','submit')
 				->getForm();
 		
-		$form->handleRequest($request);
-		
-		if ($form->isValid()) {
-			$formData = $form->getData();
-			
-			\Doctrine\Common\Util\Debug::dump($formData);die();
-			
-			$importdefn = new Importtransdefn();
-			$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
-			
-			$document->processDataHeader($importdefnid);
-			$rowCount = $document->getFileLineCount();
-			
-			
-			$file = $document->getFile();
-			
-			
-				
-			$session = $this->getRequest()->getSession();
-			$session->getFlashBag()->add('returnMessage','Account group added');
-				
-			return $this->redirect($this->generateUrl('CoreAccountingBundle_maintenance_accountgroups_show'),301);
-		}
-		
-		return array('form' => $form->createView());
+		$request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	
+        	if ($form->isValid()) {
+        		$formData = $form->getData();
+        			
+        		\Doctrine\Common\Util\Debug::dump($formData);die();
+        			
+        		$importdefn = new Importtransdefn();
+        		$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
+        			
+        		$document->processDataHeader($importdefnid);
+        		$rowCount = $document->getFileLineCount();
+        			
+        			
+        		$file = $document->getFile();
+        		
+        		// redirect to edit transactions
+        		
+        	} else {
+        		
+        		// error
+        	
+        	}
+        }
+		return $this->render('CoreAccountingBundle:Maintenance:batchupload.html.twig', array(
+				'form'        => $form->createView()
+		));
 	}
 	
 	protected function getImporttransdefnbyaccountname($importObj,$accountname)
