@@ -305,32 +305,18 @@ class TransactionsController extends Controller
 	
 	public function uploadTransactionAction(Request $request,$id)
 	{
-		
-		echo"</br>";\Doctrine\Common\Util\Debug::dump($request);echo"</br>";
-		echo"</br>";\Doctrine\Common\Util\Debug::dump($id);echo"</br>";die();
-		
 		$document = new Document();
 		$importoption = $this->getImporttransdefin($id);
 		$form = $this->createForm(new DocumentType(), $document);
-		
 		$form->handleRequest($request);
-		echo"</br>";\Doctrine\Common\Util\Debug::dump($form);echo"</br>";
 		
-		
-		if ($form->isValid()) {
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($form);echo"</br>";die();
-			
+		if ($request->getMethod() == 'POST') {
 			$formData = $form->getData();
-			 
-			 
-			$importdefn = new Importtransdefn();
-			$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
-			 
-			$document->processDataHeader($importdefnid);
-			$rowCount = $document->getFileLineCount();
-			 
-			 
-			$file = $document->getFile();
+			
+//			$uploadfile = $request->files->get('file');
+			
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($formData);echo"</br>";die();
+			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
 					'form'		=> $form->createView(),
