@@ -311,11 +311,11 @@ class TransactionsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
-			$formData = $form->getData();
+			$formData = $form->getData()->getFile();
 			
 //			$uploadfile = $request->files->get('file');
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($formData->getFile());echo"</br>";die();
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($formData);echo"</br>";die();
 			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
