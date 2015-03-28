@@ -297,48 +297,35 @@ class TransactionsController extends Controller
 		));
 	}
 	
-	public function uploadTransactionAction($id)
+	public function uploadTransactionAction(Request $request,$id)
 	{
 		$document = new Document();
 		$form = $this->createFormBuilder($document)
-//				->add('filename','text',array('label' => 'File Name :'))
 				->add('file','file')
-/*				->add('accountname','entity',array(
-            		'class' => 'CoreAccountingBundle:Importtransdefn',
-            		'property' => 'accountname'
-            		))
-*/				->add('Confirm','submit')
+				->add('Confirm','submit')
 				->getForm();
+		$form->handleRequest($request);
 		
-		$request = $this->getRequest();
-        if ($request->getMethod() == 'POST') {
-        	$form->bind($request);
-        	
-        	if ($form->isValid()) {
-        		$formData = $form->getData();
-        			
-        		\Doctrine\Common\Util\Debug::dump($formData);die();
-        			
-        		$importdefn = new Importtransdefn();
-        		$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
-        			
-        		$document->processDataHeader($importdefnid);
-        		$rowCount = $document->getFileLineCount();
-        			
-        			
-        		$file = $document->getFile();
-        		
-        		// redirect to edit transactions
-        		
-        	} else {
-        		
-        		// error
-        	
-        	}
-        }
-		return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
-				'form'        => $form->createView()
-		));
+		if ($form->isValid()) {
+			\Doctrine\Common\Util\Debug::dump($form);die();
+			
+			$formData = $form->getData();
+			 
+			 
+			$importdefn = new Importtransdefn();
+			$this->getImporttransdefnbyaccountname($importdefn,$formData['accountname']);
+			 
+			$document->processDataHeader($importdefnid);
+			$rowCount = $document->getFileLineCount();
+			 
+			 
+			$file = $document->getFile();
+		} else {
+			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
+					'form'		=> $form->createView(),
+					'importname'=> $importname 
+			));
+		}
 	}
 	
 	protected function getImporttransdefnbyaccountname($importObj,$accountname)
