@@ -307,6 +307,7 @@ class TransactionsController extends Controller
 	{
 		$document = new Document();
 		$importoption = $this->getImporttransdefin($id);
+							\Doctrine\Common\Util\Debug::dump($importoption);echo '</br>';die();
 		$form = $this->createForm(new DocumentType(), $document);
 		$form->handleRequest($request);
 		
