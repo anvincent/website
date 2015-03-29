@@ -314,7 +314,9 @@ class TransactionsController extends Controller
 			$fileObj = $form->getData()->getFile();
 			
 			while(!$fileObj->eof()) {
-				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";die();
+				
+				
+				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";
 			}
 			
 			$trimmedFile = $this->trimDatafilebyImportOption($importoption,$fileObj);
