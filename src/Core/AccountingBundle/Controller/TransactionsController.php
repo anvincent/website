@@ -311,16 +311,10 @@ class TransactionsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
+			$fileObj = $form->getData()->getFile();
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($form->getData());echo"</br>";
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj);echo"</br>";
 			
-//			$file = $form->getData()->getFile()->getRealPath();
-			
-//			$filedata = new \SplFileObject($form->getData()->getFile());
-			
-//			$uploadfile = $request->files->get('file');
-			
-//			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata->getSize());echo"</br>";
 			die();
 			
 		} else {
