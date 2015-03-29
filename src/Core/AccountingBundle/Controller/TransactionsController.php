@@ -314,13 +314,13 @@ class TransactionsController extends Controller
 			$file = $form->getData()->getFile()->getRealPath();
 			
 			
-//			echo"</br>";\Doctrine\Common\Util\Debug::dump($file);echo"</br>";
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($form->getData()->getFile());echo"</br>";
 			
 			$filedata = new \SplFileObject($file);
 			
 //			$uploadfile = $request->files->get('file');
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata->getExtension());echo"</br>";
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata->getSize());echo"</br>";
 			die();
 			
 		} else {
