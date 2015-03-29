@@ -307,13 +307,12 @@ class TransactionsController extends Controller
 	{
 		$document = new Document();
 		$importoption = $this->getImporttransdefin($id);
-							\Doctrine\Common\Util\Debug::dump($importoption);echo '</br>';die();
 		$form = $this->createForm(new DocumentType(), $document);
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
-			$dataheader = $importoption->getDataheaderdefn();
+			$dataheader = $importoption[0]->getDataheaderdefn();
 			$beginIndicator = FALSE;
 			
 			while(!$fileObj->eof()) {
