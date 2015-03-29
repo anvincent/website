@@ -314,10 +314,14 @@ class TransactionsController extends Controller
 			$fileObj = $form->getData()->getFile();
 			
 			while(!$fileObj->eof()) {
-				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";
+				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";die();
 			}
 			
-//			echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj);echo"</br>";
+			$trimmedFile = $this->trimDatafilebyImportOption($importoption,$fileObj);
+			
+			
+			
+//			extent of testing
 			
 			die();
 			
@@ -329,8 +333,11 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	protected function getImporttransdefnbyaccountname($importObj,$accountname)
+	protected function trimDatafilebyImportOption($importObj,$file)
 	{
+		
+		
+		
 		
 	}
 	
