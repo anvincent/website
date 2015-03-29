@@ -320,7 +320,7 @@ class TransactionsController extends Controller
 			
 //			$uploadfile = $request->files->get('file');
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata);echo"</br>";
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata->getExtension());echo"</br>";
 			die();
 			
 		} else {
