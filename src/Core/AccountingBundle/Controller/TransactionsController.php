@@ -306,14 +306,15 @@ class TransactionsController extends Controller
 	public function uploadTransactionAction(Request $request,$id)
 	{
 		$document = new Document();
-		$importoption = $this->getImporttransdefin($id);
-							\Doctrine\Common\Util\Debug::dump($importoption[0]);echo '</br>';die();
+		$tempimportoption = $this->getImporttransdefin($id);
+		$importoption = $tempimportoption[0];
+//							\Doctrine\Common\Util\Debug::dump($importoption[0]);echo '</br>';die();
 		$form = $this->createForm(new DocumentType(), $document);
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
-			$dataheader = $importoption[0]->getDataheaderdefn();
+			$dataheader = $importoption->getDataheaderdefn();
 			$beginIndicator = FALSE;
 			
 			while(!$fileObj->eof()) {
