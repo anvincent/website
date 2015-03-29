@@ -312,7 +312,7 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($form);echo"</br>";
+			echo"</br>";\Doctrine\Common\Util\Debug::dump($form->getData());echo"</br>";
 			
 //			$file = $form->getData()->getFile()->getRealPath();
 			
