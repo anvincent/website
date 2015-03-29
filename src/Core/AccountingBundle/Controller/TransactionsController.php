@@ -335,6 +335,7 @@ class TransactionsController extends Controller
 				}
 			}
 			
+			
 			die();
 			
 		} else {
