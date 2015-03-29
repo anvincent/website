@@ -313,7 +313,11 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj);echo"</br>";
+			while(!$fileObj->eof()) {
+				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";
+			}
+			
+//			echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj);echo"</br>";
 			
 			die();
 			
