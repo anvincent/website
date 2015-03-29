@@ -53,7 +53,7 @@ class Document
      *
      * @param UploadedFile $file
      */
-    public function setFile(\SplFileObject $file = null)
+    public function setFile(UploadedFile $file = null)
     {
     	$this->file = $file;
     }

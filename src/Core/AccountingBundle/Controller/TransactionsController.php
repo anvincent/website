@@ -311,7 +311,7 @@ class TransactionsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
-			$file = $form->getData()->getFile();
+			$file = $form->getData()->getFile()->getRealPath();
 			
 			
 			echo"</br>";\Doctrine\Common\Util\Debug::dump($file);echo"</br>";
