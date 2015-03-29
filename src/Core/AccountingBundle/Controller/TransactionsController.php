@@ -316,11 +316,12 @@ class TransactionsController extends Controller
 			
 			echo"</br>";\Doctrine\Common\Util\Debug::dump($file);echo"</br>";
 			
-			$filedata = new \SplFileObject($file);
+//			$filedata = new \SplFileObject($file);
 			
 //			$uploadfile = $request->files->get('file');
 			
-			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata);echo"</br>";die();
+//			echo"</br>";\Doctrine\Common\Util\Debug::dump($filedata);echo"</br>";
+			die();
 			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
