@@ -312,18 +312,28 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
+			$dataheader = $importoption->getDataheaderdefn();
+			$beginIndicator = FALSE;
 			
 			while(!$fileObj->eof()) {
-				
-				
-				echo"</br>";\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo"</br>";
+				foreach($fileObj->fgetcsv() AS $element) {
+					if($element!=NULL) {
+						if($beginIndicator) {
+							// read file as normal
+							echo 'beginindicator=true. element is</br>';
+							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+						} else {
+							
+							echo 'beginindicator=false. element is</br>';
+							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
+								$beginIndicator=TRUE;
+								echo 'found!</br>';
+							}
+						}
+					}
+				}
 			}
-			
-			$trimmedFile = $this->trimDatafilebyImportOption($importoption,$fileObj);
-			
-			
-			
-//			extent of testing
 			
 			die();
 			
