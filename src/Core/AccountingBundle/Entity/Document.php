@@ -55,7 +55,7 @@ class Document
      */
     public function setFile(UploadedFile $file = null)
     {
-    	$this->file = $file;
+    	$this->file = new \SplFileObject($file);
     }
     
     /**
