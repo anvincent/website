@@ -316,7 +316,7 @@ class TransactionsController extends Controller
 			
 			echo"</br>";\Doctrine\Common\Util\Debug::dump($form->getData()->getFile());echo"</br>";
 			
-			$filedata = new \SplFileObject($file);
+			$filedata = new \SplFileObject($form->getData()->getFile());
 			
 //			$uploadfile = $request->files->get('file');
 			
