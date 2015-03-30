@@ -26,7 +26,7 @@ class Importtransdefn
 	protected $accountname;
 	
 	/**
-	 * @ORM\Column(name="dataheader_defn", type="string", length=255)
+	 * @ORM\Column(name="dataheader_defn", type="blob", length=255)
 	 */
 	protected $dataheaderdefn;
 	
