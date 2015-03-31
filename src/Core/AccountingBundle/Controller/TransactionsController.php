@@ -318,7 +318,7 @@ class TransactionsController extends Controller
 			$testid = '1';
 			
 			echo 'dataheader</br>';
-			\Doctrine\Common\Util\Debug::dump($dataheader['search']['1']);echo '</br>';die();
+			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';die();
 //			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}->{'1'});echo '</br>';die();
 			
 			$beginIndicator = FALSE;
