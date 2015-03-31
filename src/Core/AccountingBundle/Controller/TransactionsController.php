@@ -336,7 +336,7 @@ class TransactionsController extends Controller
 							
 							foreach($dataheader->{'search'} AS $searchTermEvent) {
 								echo 'search term event</br>';
-								\Doctrine\Common\Util\Debug::dump($searchTermEvent);echo '</br>';die();
+								\Doctrine\Common\Util\Debug::dump(json_decode($searchTermEvent));echo '</br>';die();
 							}
 							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
