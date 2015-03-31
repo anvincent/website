@@ -315,9 +315,10 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
+			$testid = '1';
 			
 			echo 'dataheader</br>';
-			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';die();
+			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}->{$testid});echo '</br>';die();
 			
 			$beginIndicator = FALSE;
 			
