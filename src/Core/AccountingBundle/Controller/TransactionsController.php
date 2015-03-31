@@ -315,10 +315,9 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
-			$testid = '1';
 			
-			echo 'dataheader</br>';
-			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';die();
+//			echo 'dataheader</br>';
+//			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';die();
 //			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}->{'1'});echo '</br>';die();
 			
 			$beginIndicator = FALSE;
@@ -334,6 +333,11 @@ class TransactionsController extends Controller
 							
 							echo 'beginindicator=false. element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+							
+							foreach($dataheader->{'search'} AS $searchTermEvent) {
+								echo 'search term event</br>';
+								\Doctrine\Common\Util\Debug::dump($searchTermEvent);echo '</br>';die();
+							}
 							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
 								$beginIndicator=TRUE;
