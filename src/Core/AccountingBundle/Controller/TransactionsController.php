@@ -315,6 +315,10 @@ class TransactionsController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$fileObj = $form->getData()->getFile();
 			$dataheader = $importoption->getDataheaderdefn();
+			
+			echo 'dataheader</br>';
+			\Doctrine\Common\Util\Debug::dump($dataheader);echo '</br>';die();
+			
 			$beginIndicator = FALSE;
 			
 			while(!$fileObj->eof()) {
@@ -328,6 +332,7 @@ class TransactionsController extends Controller
 							
 							echo 'beginindicator=false. element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
 								$beginIndicator=TRUE;
 								echo 'found!</br>';
