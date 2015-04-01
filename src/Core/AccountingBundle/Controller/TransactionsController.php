@@ -319,7 +319,7 @@ class TransactionsController extends Controller
 			
 			
 			echo 'fileObj->current() is</br>';
-			\Doctrine\Common\Util\Debug::dump($fileObj->current());echo '</br>';
+			\Doctrine\Common\Util\Debug::dump($fileObj->key());echo '</br>';
 			
 			$beginIndicator = 0;
 			$searchCount = count($dataheader->{'search'});
