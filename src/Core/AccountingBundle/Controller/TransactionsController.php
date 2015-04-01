@@ -326,9 +326,13 @@ class TransactionsController extends Controller
 							echo 'beginindicator=true. element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 						} else {
+							// work on skipping data header
 							
 							echo 'beginindicator=false. element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+							
+							echo 'beginindicator=false. element is</br>';
+							\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';
 							
 							foreach($dataheader->{'search'} AS $searchTermEvent) {
 								echo 'search term event</br>';
