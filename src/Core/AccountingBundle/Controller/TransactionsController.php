@@ -323,6 +323,8 @@ class TransactionsController extends Controller
 			$searchCount = count($dataheader->{'search'});
 			
 			while(!$fileObj->eof()) {
+						echo 'fileObj is</br>';
+						\Doctrine\Common\Util\Debug::dump($fileObj);echo '</br>';
 				foreach($fileObj->fgetcsv() AS $element) {
 						echo 'element is</br>';
 						\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
