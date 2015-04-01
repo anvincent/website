@@ -326,34 +326,20 @@ class TransactionsController extends Controller
 			while(!$fileObj->eof()) {
 				foreach($fileObj->fgetcsv() AS $element) {
 					if($element!=NULL) {
-						if($beginIndicator) {
+						if($beginIndicator==$searchCount) {
 							// read file as normal
-							echo 'beginindicator=true. element is</br>';
+							echo 'beginindicator=searchCount'. $beginIndicator .'='. $searchCount .'</br>';
+							echo 'element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 						} else {
 							// work on skipping data header
-							
-							
-							
-							
-							echo 'beginindicator=false. element is</br>';
+							echo 'beginindicator=searchCount'. $beginIndicator .'='. $searchCount .'</br>';
+							echo 'element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 							
-							echo 'beginindicator=false. element is</br>';
-							\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';
-							
-							foreach($dataheader->{'search'} AS $searchTermEvent) {
-								echo 'search term event</br>';
-								\Doctrine\Common\Util\Debug::dump($searchTermEvent);echo '</br>';
-								echo 'search term event</br>';
-								\Doctrine\Common\Util\Debug::dump($searchTermEvent->{'1'});echo '</br>';
-							}
-							
-							die();
-							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
-								$beginIndicator=TRUE;
-								echo 'found!</br>';
+								$beginIndicator++;
+								echo '</br>found!</br></br>';
 							}
 						}
 					}
