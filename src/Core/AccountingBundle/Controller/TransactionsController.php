@@ -314,7 +314,7 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			$docObj = $form->getData();
-			$fileObj = $docObj->getFile();
+			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
 			$beginIndicator = 0;
