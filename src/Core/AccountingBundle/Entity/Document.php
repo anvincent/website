@@ -82,7 +82,7 @@ class Document
     	$i = 0;
     	while (!$file->eof()) {
     		$i++;
-    		$file->next();
+//    		$file->next();
     	}
     	$this->linecount = $i;
     }
