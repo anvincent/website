@@ -319,9 +319,6 @@ class TransactionsController extends Controller
 			
 			$beginIndicator = 0;
 			$searchCount = count($dataheader->{'search'});
-//			$foundIndicator = $docObj->getLinecount();
-			
-			\Doctrine\Common\Util\Debug::dump($searchCount);echo '</br>';die();
 			
 			while(!$fileObj->eof()) {
 				foreach($fileObj->fgetcsv() AS $element) {
