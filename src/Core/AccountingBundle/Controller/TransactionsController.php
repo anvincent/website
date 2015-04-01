@@ -322,18 +322,16 @@ class TransactionsController extends Controller
 			
 			while(!$fileObj->eof()) {
 				foreach($fileObj->fgetcsv() AS $element) {
-						echo 'element is</br>';
-						\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 					if($element!=NULL) {
 						if($beginIndicator==$searchCount) {
 							// read file as normal
-							echo 'beginindicator=searchCount'. $beginIndicator .'='. $searchCount .'</br>';
-							echo 'element is</br>';
+							echo 'normal file read</br>';
+							echo 'element is ';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 						} else {
 							// work on skipping data header
 							echo 'beginindicator=searchCount'. $beginIndicator .'='. $searchCount .'</br>';
-							echo 'element is</br>';
+							echo 'element is ';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
