@@ -316,10 +316,6 @@ class TransactionsController extends Controller
 			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
-//			echo 'dataheader</br>';
-//			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br>';die();
-//			\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}->{'1'});echo '</br>';die();
-			
 			$beginIndicator = FALSE;
 			
 			while(!$fileObj->eof()) {
@@ -336,8 +332,10 @@ class TransactionsController extends Controller
 							
 							foreach($dataheader->{'search'} AS $searchTermEvent) {
 								echo 'search term event</br>';
-								\Doctrine\Common\Util\Debug::dump($searchTermEvent->{'1'});echo '</br>';die();
+								\Doctrine\Common\Util\Debug::dump($searchTermEvent->{'1'});echo '</br>';
 							}
+							
+							die();
 							
 							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
 								$beginIndicator=TRUE;
