@@ -79,8 +79,10 @@ class Document
     protected function setLinecount()
     {
     	$file = $this->file;
+    	$file->seek($file->getSize());
+    	$linesTotal = $file->key();
     	
-    	\Doctrine\Common\Util\Debug::dump($file);echo '</br>';die();
+    	\Doctrine\Common\Util\Debug::dump($linesTotal);echo '</br>';die();
     	
     	$i = 0;
     	while (!$file->eof()) {
