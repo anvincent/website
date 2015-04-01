@@ -331,7 +331,7 @@ class TransactionsController extends Controller
 						} else {
 							// work on skipping data header
 							echo 'searched for :: ';
-							\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}[$beginIndicator]);echo '</br>';
+							\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}[$beginIndicator]->{'1'});echo '</br>';
 							
 							echo 'beginindicator=searchCount :: '. $beginIndicator .'='. $searchCount .'</br>';
 							echo 'element is ';
