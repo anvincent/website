@@ -80,16 +80,7 @@ class Document
     {
     	$file = $this->file;
     	$file->seek($file->getSize());
-    	$linesTotal = $file->key();
-    	
-    	\Doctrine\Common\Util\Debug::dump($linesTotal);echo '</br>';die();
-    	
-    	$i = 0;
-    	while (!$file->eof()) {
-    		$i++;
-//    		$file->next();
-    	}
-    	$this->linecount = $i;
+    	$this->linecount = $file->key();
     }
     
     /**
