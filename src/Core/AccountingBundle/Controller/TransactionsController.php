@@ -318,7 +318,8 @@ class TransactionsController extends Controller
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
 			$beginIndicator = 0;
-			$foundIndicator = $docObj->getLinecount();
+			$searchCount = // find how many search terms there are
+//			$foundIndicator = $docObj->getLinecount();
 			
 			\Doctrine\Common\Util\Debug::dump($foundIndicator);echo '</br>';die();
 			

@@ -79,6 +79,9 @@ class Document
     protected function setLinecount()
     {
     	$file = $this->file;
+    	
+    	\Doctrine\Common\Util\Debug::dump($file);echo '</br>';die();
+    	
     	$i = 0;
     	while (!$file->eof()) {
     		$i++;
