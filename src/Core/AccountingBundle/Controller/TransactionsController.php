@@ -317,10 +317,6 @@ class TransactionsController extends Controller
 			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
-			
-			echo 'fileObj->current() is</br>';
-			\Doctrine\Common\Util\Debug::dump($fileObj->key());echo '</br>';
-			
 			$beginIndicator = 0;
 			$searchCount = count($dataheader->{'search'});
 			

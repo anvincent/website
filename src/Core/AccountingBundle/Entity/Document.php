@@ -81,6 +81,8 @@ class Document
     	$file = $this->file;
     	$file->seek($file->getSize());
     	$this->linecount = $file->key();
+    	$file->rewind();
+//    	$this->file = $file;
     }
     
     /**
