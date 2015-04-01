@@ -317,14 +317,15 @@ class TransactionsController extends Controller
 			$fileObj = $form->getData()->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
-			echo 'fileObj is</br>';
-			\Doctrine\Common\Util\Debug::dump($fileObj);echo '</br>';
+			
 			
 			$beginIndicator = 0;
 			$searchCount = count($dataheader->{'search'});
 			
 			while(!$fileObj->eof()) {
 				foreach($fileObj->fgetcsv() AS $element) {
+						echo 'element is</br>';
+						\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 					if($element!=NULL) {
 						if($beginIndicator==$searchCount) {
 							// read file as normal
