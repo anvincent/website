@@ -313,10 +313,14 @@ class TransactionsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
-			$fileObj = $form->getData()->getFile();
+			$docObj = $form->getData();
+			$fileObj = $docObj->getFile();
 			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
-			$beginIndicator = FALSE;
+			$beginIndicator = 0;
+			$foundIndicator = $docObj->getLinecount();
+			
+			\Doctrine\Common\Util\Debug::dump($foundIndicator);echo '</br>';die();
 			
 			while(!$fileObj->eof()) {
 				foreach($fileObj->fgetcsv() AS $element) {
@@ -327,6 +331,9 @@ class TransactionsController extends Controller
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 						} else {
 							// work on skipping data header
+							
+							
+							
 							
 							echo 'beginindicator=false. element is</br>';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';

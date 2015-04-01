@@ -15,6 +15,8 @@ class Document
     public $name;
 
     public $path;
+
+    public $linecount;
     
     private $file;
 
@@ -56,6 +58,7 @@ class Document
     public function setFile(UploadedFile $file = null)
     {
     	$this->file = new \SplFileObject($file);
+    	$this->setLinecount();
     }
     
     /**
@@ -69,18 +72,30 @@ class Document
     }
     
     /**
+     * Set line count.
+     *
+     * @param UploadedFile $file
+     */
+    protected function setLinecount()
+    {
+    	$file = $this->file;
+    	$i = 0;
+    	while (!$file->eof()) {
+    		$i++;
+    		$file->next();
+    	}
+    	$this->linecount = $i;
+    }
+    
+    /**
      * Get line count.
      *
      * @return UploadedFile
      */
-    public function getFileLineCount()
+    public function getLinecount()
     {
-    	$file = $this->file;
-    	
-    	
+    	return $this->linecount;
     }
-    
-    
     
     /**
      * Process file based on transaction
