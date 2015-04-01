@@ -343,6 +343,8 @@ class TransactionsController extends Controller
 				}
 			}
 			
+			echo '</br>end of file</br>';
+			
 			
 			die();
 			
