@@ -336,6 +336,8 @@ class TransactionsController extends Controller
 							
 							foreach($dataheader->{'search'} AS $searchTermEvent) {
 								echo 'search term event</br>';
+								\Doctrine\Common\Util\Debug::dump($searchTermEvent);echo '</br>';
+								echo 'search term event</br>';
 								\Doctrine\Common\Util\Debug::dump($searchTermEvent->{'1'});echo '</br>';
 							}
 							
