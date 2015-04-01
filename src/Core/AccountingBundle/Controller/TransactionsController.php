@@ -337,7 +337,7 @@ class TransactionsController extends Controller
 							echo 'element is ';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 							
-							if(strpos($element,$importoption->getDataheaderdefn())!==false) {
+							if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
 								$beginIndicator++;
 								echo '</br>found!</br></br>';
 							}
