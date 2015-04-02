@@ -331,6 +331,7 @@ class TransactionsController extends Controller
 					} else {
 						// work on skipping data header
 						foreach($line AS $element) {
+							if($beginIndicator==$searchCount) break;
 							echo 'element is :: ';
 							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
 							if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
