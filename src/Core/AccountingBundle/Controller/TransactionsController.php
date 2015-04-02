@@ -321,26 +321,28 @@ class TransactionsController extends Controller
 			$searchCount = count($dataheader->{'search'});
 			
 			while(!$fileObj->eof()) {
-				
-				\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo '</br>';
-				
-//				if($beginIndicator==$searchCount) {
-					// read file as normal
-					
-//				} else {
-					// work on skipping data header
-					
-					
+				$line = $fileObj->fgetcsv();
+				if($line[0]!=NULL) {
+					if($beginIndicator==$searchCount) {
+						// read file as normal
+						echo 'read file as normal :: ';
+						echo 'beginIndicator='.$beginIndicator.' :: searchCount='.$searchCount.'</br>';
 						
-//					if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
-//						$beginIndicator++;
-//						echo '</br>found!</br></br>';
-//					}
-//				}
+					} else {
+						// work on skipping data header
+						foreach($line AS $element) {
+							echo 'element is :: ';
+							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
+							if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
+								$beginIndicator++;
+								echo '</br>found!</br></br>';
+							}
+						}
+					}
+				}
 				
-//				foreach($fileObj->fgetcsv() AS $element) {
-//					if($element!=NULL) {}
 				
+//				\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo '</br>';
 			} // end of while
 			
 			echo '</br>end of file</br>';
