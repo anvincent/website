@@ -308,7 +308,6 @@ class TransactionsController extends Controller
 		$document = new Document();
 		$tempimportoption = $this->getImporttransdefin($id);
 		$importoption = $tempimportoption[0];
-//							\Doctrine\Common\Util\Debug::dump($importoption[0]);echo '</br>';die();
 		$form = $this->createForm(new DocumentType(), $document);
 		$form->handleRequest($request);
 		
@@ -325,7 +324,8 @@ class TransactionsController extends Controller
 				if($line[0]!=NULL) {
 					if($beginIndicator==$searchCount) {
 						// read file as normal
-						echo 'read file as normal :: ';
+						echo 'read file as normal</br>';
+						\Doctrine\Common\Util\Debug::dump($line);
 						echo 'beginIndicator='.$beginIndicator.' :: searchCount='.$searchCount.'</br>';
 						
 					} else {
