@@ -321,30 +321,27 @@ class TransactionsController extends Controller
 			$searchCount = count($dataheader->{'search'});
 			
 			while(!$fileObj->eof()) {
-				foreach($fileObj->fgetcsv() AS $element) {
-					if($element!=NULL) {
-						if($beginIndicator==$searchCount) {
-							// read file as normal
-							echo 'normal file read</br>';
-							echo 'element is ';
-							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
-						} else {
-							// work on skipping data header
-							echo 'searched for :: ';
-							\Doctrine\Common\Util\Debug::dump($dataheader->{'search'}[$beginIndicator]->{$beginIndicator});echo '</br>';
-							
-							echo 'beginindicator=searchCount :: '. $beginIndicator .'='. $searchCount .'</br>';
-							echo 'element is ';
-							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
-							
-							if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
-								$beginIndicator++;
-								echo '</br>found!</br></br>';
-							}
-						}
-					}
-				}
-			}
+				
+				\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo '</br>';
+				
+//				if($beginIndicator==$searchCount) {
+					// read file as normal
+					
+//				} else {
+					// work on skipping data header
+					
+					
+						
+//					if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
+//						$beginIndicator++;
+//						echo '</br>found!</br></br>';
+//					}
+//				}
+				
+//				foreach($fileObj->fgetcsv() AS $element) {
+//					if($element!=NULL) {}
+				
+			} // end of while
 			
 			echo '</br>end of file</br>';
 			
