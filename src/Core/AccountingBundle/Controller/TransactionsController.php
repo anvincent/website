@@ -313,40 +313,8 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			$docObj = $form->getData();
-			$fileObj = $form->getData()->getFile();
-			$dataheader = json_decode($importoption->getDataheaderdefn());
 			
-			$beginIndicator = 0;
-			$searchCount = count($dataheader->{'search'});
-			
-			while(!$fileObj->eof()) {
-				$line = $fileObj->fgetcsv();
-				if($line[0]!=NULL) {
-					if($beginIndicator==$searchCount) {
-						// read file as normal
-						echo 'read file as normal</br>';
-						\Doctrine\Common\Util\Debug::dump($line);
-						echo 'beginIndicator='.$beginIndicator.' :: searchCount='.$searchCount.'</br>';
-						
-					} else {
-						// work on skipping data header
-						foreach($line AS $element) {
-							if($beginIndicator==$searchCount) break;
-							echo 'element is :: ';
-							\Doctrine\Common\Util\Debug::dump($element);echo '</br>';
-							if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
-								$beginIndicator++;
-								echo '</br>found!</br></br>';
-							}
-						}
-					}
-				}
-				
-				
-//				\Doctrine\Common\Util\Debug::dump($fileObj->fgetcsv());echo '</br>';
-			} // end of while
-			
-			echo '</br>end of file</br>';
+			\Doctrine\Common\Util\Debug::dump($docObj);
 			
 			
 			die();
