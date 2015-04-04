@@ -318,6 +318,8 @@ class TransactionsController extends Controller
 			if ($form->isValid()) {
 				$em = $this->getDoctrine()->getManager();
 				
+				$document->setId($id);
+				
 				$em->persist($document);
 				$em->flush();
 				$returnMessage = 'File successfully loaded.';
