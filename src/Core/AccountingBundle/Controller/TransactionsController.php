@@ -316,8 +316,11 @@ class TransactionsController extends Controller
 			
 			\Doctrine\Common\Util\Debug::dump($docObj);
 			
+			$docObj2 = serialize($docObj2);
 			
-			die();
+			\Doctrine\Common\Util\Debug::dump($docObj);die();
+
+			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_menu'),301);
 			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
@@ -327,7 +330,7 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	protected function trimDatafilebyImportOption($importObj,$file)
+	public function processTransactionAction()
 	{
 		
 		

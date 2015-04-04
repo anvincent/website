@@ -52,6 +52,12 @@ CoreAccountingBundle_transactions_batch_upload:
     defaults:	{ _controller:CoreAccountingBundle:Transactions:uploadTransaction }
     requirements:
         _method:  GET|POST
+        
+CoreAccountingBundle_transactions_batch_processing:
+    pattern:	/accounting/transactions/journal/batch/process
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:processTransaction }
+    requirements:
+        _method:  GET|POST
 
 
 ### Accounting Tools

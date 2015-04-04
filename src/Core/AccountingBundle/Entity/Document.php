@@ -15,7 +15,7 @@ class Document
 
     public $linecount;
     
-    protected $processedfile;
+    protected $processedlines;
     
     private $file;
 
@@ -73,14 +73,14 @@ class Document
     }
 	
 	/**
-	 * Set processedfile
+	 * Set processedlines
 	 *
-	 * @param array $processedfile
+	 * @param array $processedlines
 	 * @return array
 	 */
-	public function setProcessedfile($processedfile)
+	public function setProcessedlines($processedlines)
 	{
-		$this->processedfile = $processedfile;
+		$this->processedlines = $processedlines;
 
 		return $this;
 	}
@@ -91,10 +91,10 @@ class Document
 	 * @param array $processedfile
 	 * @return array
 	 */
-	public function addProcessedfile(array $processedfile)
+	public function addProcessedfile(array $processedlines)
 	{
-		if(!$this->getProcessedfile()->contains($processedfile)) {
-			$this->getProcessedfile()->add($processedfile);
+		if(!$this->getProcessedlines()->contains($processedlines)) {
+			$this->getProcessedlines()->add($processedlines);
 		}
 		
 		return $this;
@@ -105,25 +105,10 @@ class Document
 	 *
 	 * @return array
 	 */
-	public function getProcessedfile()
+	public function getProcessedlines()
 	{
-		return $this->journalentries;
+		return $this->processedlines;
 	}
-    
-    
-    
-    
-    
-    
-    /**
-     * Process file based on transaction
-     *
-     * @return boolean
-     */
-    public function getDataLine($line,$importdefnid)
-    {
-    	
-    }
     
     /**
      * process uploaded file based on search criteria
@@ -131,7 +116,7 @@ class Document
      * @param obj $importoption
      * @return boolean
      */
-    public function upload($importoption)
+    public function process($importoption)
     {
     	$fileObj = $this->file;
     	$dataheader = json_decode($importoption->getDataheaderdefn());
