@@ -316,9 +316,9 @@ class TransactionsController extends Controller
 			
 			\Doctrine\Common\Util\Debug::dump($docObj);
 			
-			$docObj2 = serialize($docObj2);
+			$docObj2 = serialize($docObj);
 			
-			\Doctrine\Common\Util\Debug::dump($docObj);die();
+			\Doctrine\Common\Util\Debug::dump($docObj2);die();
 
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_menu'),301);
 			
