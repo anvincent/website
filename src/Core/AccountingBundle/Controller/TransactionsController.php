@@ -318,7 +318,7 @@ class TransactionsController extends Controller
 				$document->setId($id);
 				$document->setName($document->getfile()->getClientOriginalName());
 				
-				\Doctrine\Common\Util\Debug::dump($document);die();
+//				\Doctrine\Common\Util\Debug::dump($document);die();
 				
 				$em->persist($document);
 				$em->flush();
