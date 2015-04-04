@@ -313,12 +313,13 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			
-//			$docObj = $form->getData();	\Doctrine\Common\Util\Debug::dump($document);die();
+			$docObj = $form->getData();	\Doctrine\Common\Util\Debug::dump($document);die();
 			
 			if ($form->isValid()) {
 				$em = $this->getDoctrine()->getManager();
 				
 				$document->setId($id);
+				$document->setName();
 				
 				$em->persist($document);
 				$em->flush();

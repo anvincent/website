@@ -53,6 +53,18 @@ class Document
     	return $this;
     }
     
+	/**
+	 * Set name
+	 *
+	 * @param integer $name
+	 */
+	public function setName($name)
+    {
+    	$this->name = $name;
+    	
+    	return $this;
+    }
+    
 	public function getAbsolutePath()
     {
         return null === $this->path
