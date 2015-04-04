@@ -6,24 +6,68 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\GltransRepository")
+ * @ORM\Table(name="document")
+ * @ORM\HasLifecycleCallbacks
+ */
 class Document
 {
 	// Properties
-
+	
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer", length=2)
+	 */
+    public $id;
+	
+	/**
+	 * @ORM\Column(type="string", length=200)
+	 */
     public $name;
-
-    public $linecount;
+	
+	/**
+	 * @ORM\Column(type="string", length=200)
+	 */
+    public $path ;
     
-    protected $processedlines;
+    private $temp;
     
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
     private $file;
 
 	// Methods
-
-    public function __construct()
+    
+	public function getAbsolutePath()
     {
-    	$this->processedfile = new ArrayCollection();
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->path
+    	? null
+    	: $this->getUploadDir().'/'.$this->path;
+    }
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded
+    	// documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw up
+    	// when displaying uploaded doc/image in the view.
+    	return 'uploads/documents';
     }
     
     /**
@@ -33,35 +77,16 @@ class Document
      */
     public function setFile(UploadedFile $file = null)
     {
-    	$uploadedfile = new \SplFileObject($file);
-    	$this->name = $uploadedfile->getFilename();
-    	$this->file = $uploadedfile;
-    	$this->setLinecount();
+	    $this->file = $file;
+    	// check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+        } else {
+            $this->path = 'initial';
+        }
     }
-    
-    /**
-     * Set line count.
-     *
-     * @param UploadedFile $file
-     */
-    protected function setLinecount()
-    {
-    	$file = $this->file;
-    	$file->seek($file->getSize());
-    	$this->linecount = $file->key();
-    	$file->rewind();
-    }
-    
-    /**
-     * Get line count.
-     *
-     * @return UploadedFile
-     */
-    public function getLinecount()
-    {
-    	return $this->linecount;
-    }
-    
+
     /**
      * Get file.
      *
@@ -69,79 +94,65 @@ class Document
      */
     public function getFile()
     {
-    	return $this->file;
+        return $this->file;
     }
-	
-	/**
-	 * Set processedlines
-	 *
-	 * @param array $processedlines
-	 * @return array
-	 */
-	public function setProcessedlines($processedlines)
-	{
-		$this->processedlines = $processedlines;
 
-		return $this;
-	}
-	
-	/**
-	 * Add processedfile
-	 *
-	 * @param array $processedfile
-	 * @return array
-	 */
-	public function addProcessedfile(array $processedlines)
-	{
-		if(!$this->getProcessedlines()->contains($processedlines)) {
-			$this->getProcessedlines()->add($processedlines);
-		}
-		
-		return $this;
-	}
-
-	/**
-	 * Get journalentries
-	 *
-	 * @return array
-	 */
-	public function getProcessedlines()
-	{
-		return $this->processedlines;
-	}
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+    	if (null !== $this->getFile()) {
+            $this->path = $this->getFile()->guessExtension();
+        }
+    }
     
     /**
-     * process uploaded file based on search criteria
-     *
-     * @param obj $importoption
-     * @return boolean
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
      */
-    public function process($importoption)
+   public function upload()
     {
-    	$fileObj = $this->file;
-    	$dataheader = json_decode($importoption->getDataheaderdefn());
+    	// the file property can be empty if the field is not required
+    	if (null === $this->getFile()) {
+    		return;
+    	}
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
     	
-    	$beginIndicator = 0;
-		$searchCount = count($dataheader->{'search'});
+    	// if there is an error when moving the file, an exception will
+    	// be automatically thrown by move(). This will properly prevent
+    	// the entity from being persisted to the database on error
+    	$this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->id.'.'.$this->getFile()->guessExtension()
+        );
     	
-		while(!$fileObj->eof()) {
-			$line = $fileObj->fgetcsv();
-			if($line[0]!=NULL) {
-				if($beginIndicator==$searchCount) {
-					// read file as normal
-					
-				} else {
-					foreach($line AS $element) {
-						if($beginIndicator==$searchCount) break;
-						if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
-							$beginIndicator++;
-						}
-					}
-				}
-			}
-		} // end of while
-		
-		
-    	
+    	$this->setFile(null);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
+    {
+        $this->temp = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
     }
 }

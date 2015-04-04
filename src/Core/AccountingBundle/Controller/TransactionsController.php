@@ -312,16 +312,23 @@ class TransactionsController extends Controller
 		$form->handleRequest($request);
 		
 		if ($request->getMethod() == 'POST') {
-			$docObj = $form->getData();
 			
-			\Doctrine\Common\Util\Debug::dump($docObj);
+			$docObj = $form->getData();	\Doctrine\Common\Util\Debug::dump($document);die();
 			
-			$docObj2 = serialize($docObj);
-			
-			\Doctrine\Common\Util\Debug::dump($docObj2);die();
-
+			if ($form->isValid()) {
+				$em = $this->getDoctrine()->getManager();
+				
+				
+				
+				$em->persist($document);
+				$em->flush();
+        		$returnMessage = 'File '. $document->getName() .' successfully loaded.';
+			} else {
+        		$returnMessage = 'An error occurred during the loading of the file.';
+			}
+        	$session = $this->getRequest()->getSession();
+        	$session->getFlashBag()->add('returnMessage',$returnMessage);
 			return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_menu'),301);
-			
 		} else {
 			return $this->render('CoreAccountingBundle:Transactions:batchupload.html.twig', array(
 					'form'		=> $form->createView(),
