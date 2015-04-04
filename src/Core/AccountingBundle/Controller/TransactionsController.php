@@ -321,7 +321,7 @@ class TransactionsController extends Controller
 				
 				\Doctrine\Common\Util\Debug::dump($document);
 				echo '</br>';echo '</br>';
-				\Doctrine\Common\Util\Debug::dump($document->getPath());
+				\Doctrine\Common\Util\Debug::dump($document->getFile()->getPath());
 				echo '</br>';
 				
 				die();
