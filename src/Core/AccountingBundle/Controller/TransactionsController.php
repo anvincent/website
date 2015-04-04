@@ -313,16 +313,15 @@ class TransactionsController extends Controller
 		
 		if ($request->getMethod() == 'POST') {
 			
-			$docObj = $form->getData();	\Doctrine\Common\Util\Debug::dump($document);die();
+//			$docObj = $form->getData();	\Doctrine\Common\Util\Debug::dump($document);die();
 			
 			if ($form->isValid()) {
 				$em = $this->getDoctrine()->getManager();
 				
-				
-				
 				$em->persist($document);
 				$em->flush();
-        		$returnMessage = 'File '. $document->getName() .' successfully loaded.';
+				$returnMessage = 'File successfully loaded.';
+//        		$returnMessage = 'File '. $document->getName() .' successfully loaded.';
 			} else {
         		$returnMessage = 'An error occurred during the loading of the file.';
 			}
