@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity(repositoryClass="Core\AccountingBundle\Entity\Repository\GltransRepository")
+ * @ORM\Entity
  * @ORM\Table(name="document")
  * @ORM\HasLifecycleCallbacks
  */
@@ -30,7 +30,7 @@ class Document
 	/**
 	 * @ORM\Column(type="string", length=200)
 	 */
-    public $path ;
+    public $path;
     
     private $temp;
     

@@ -317,10 +317,10 @@ class TransactionsController extends Controller
 				
 				$document->setId($id);
 				$document->setName($document->getfile()->getClientOriginalName());
-				
-//				\Doctrine\Common\Util\Debug::dump($document);die();
-				
 				$em->persist($document);
+				
+				\Doctrine\Common\Util\Debug::dump($document);die();
+				
 				$em->flush();
 				$returnMessage = 'File successfully loaded.';
 //        		$returnMessage = 'File '. $document->getName() .' successfully loaded.';
