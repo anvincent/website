@@ -16,17 +16,20 @@ class Document
 {
 	// Properties
 	
+	// ID of import type the file is matched to. this will also be file extension
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer", length=2)
 	 */
     public $id;
 	
+    // filename (not path)
 	/**
 	 * @ORM\Column(type="string", length=200)
 	 */
     public $name;
 	
+    // path (not including filename)
 	/**
 	 * @ORM\Column(type="string", length=200)
 	 */
@@ -127,8 +130,9 @@ class Document
     public function preUpload()
     {
     	if (null !== $this->getFile()) {
-            $this->path = $this->getFile()->guessExtension();
-        }
+//      	$this->path = $this->getFile()->guessExtension();
+    		$this->path = $this->getAbsolutePath();
+    	}
     }
     
     /**
@@ -155,7 +159,8 @@ class Document
     	// the entity from being persisted to the database on error
     	$this->getFile()->move(
             $this->getUploadRootDir(),
-            $this->id.'.'.$this->getFile()->guessExtension()
+    		$this->getFile()->getClientOriginalName()
+            .'.'.$this->id
         );
     	
     	$this->setFile(null);

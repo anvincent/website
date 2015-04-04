@@ -319,15 +319,7 @@ class TransactionsController extends Controller
 				$document->setName($document->getfile()->getClientOriginalName());
 				$em->persist($document);
 				$em->flush();
-				
-				\Doctrine\Common\Util\Debug::dump($document);
-				echo '</br>';echo '</br>';
-				\Doctrine\Common\Util\Debug::dump($document->getFile()->getPath());
-				echo '</br>';
-				
-				die();
 				$returnMessage = 'File successfully loaded.';
-//        		$returnMessage = 'File '. $document->getName() .' successfully loaded.';
 			} else {
         		$returnMessage = 'An error occurred during the loading of the file.';
 			}
