@@ -10,11 +10,7 @@ class Document
 {
 	// Properties
 
-    public $id;
-
     public $name;
-
-    public $path;
 
     public $linecount;
     
@@ -23,6 +19,11 @@ class Document
     private $file;
 
 	// Methods
+
+    public function __construct()
+    {
+    	$this->processedfile = new ArrayCollection();
+    }
     
     /**
      * Sets file.
@@ -31,18 +32,10 @@ class Document
      */
     public function setFile(UploadedFile $file = null)
     {
-    	$this->file = new \SplFileObject($file);
+    	$uploadedfile = new \SplFileObject($file);
+    	$this->name = $uploadedfile->getFilename();
+    	$this->file = $uploadedfile;
     	$this->setLinecount();
-    }
-    
-    /**
-     * Get file.
-     *
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-    	return $this->file;
     }
     
     /**
@@ -67,6 +60,59 @@ class Document
     {
     	return $this->linecount;
     }
+    
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+    	return $this->file;
+    }
+	
+	/**
+	 * Set processedfile
+	 *
+	 * @param array $processedfile
+	 * @return array
+	 */
+	public function setProcessedfile($processedfile)
+	{
+		$this->processedfile = $processedfile;
+
+		return $this;
+	}
+	
+	/**
+	 * Add processedfile
+	 *
+	 * @param array $processedfile
+	 * @return array
+	 */
+	public function addProcessedfile(array $processedfile)
+	{
+		if(!$this->getProcessedfile()->contains($processedfile)) {
+			$this->getProcessedfile()->add($processedfile);
+		}
+		
+		return $this;
+	}
+
+	/**
+	 * Get journalentries
+	 *
+	 * @return array
+	 */
+	public function getProcessedfile()
+	{
+		return $this->journalentries;
+	}
+    
+    
+    
+    
+    
     
     /**
      * Process file based on transaction
