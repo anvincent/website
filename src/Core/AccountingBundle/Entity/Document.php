@@ -132,6 +132,8 @@ class Document
     	if (null !== $this->getFile()) {
 //      	$this->path = $this->getFile()->guessExtension();
     		$this->path = $this->getAbsolutePath();
+    		
+    		\Doctrine\Common\Util\Debug::dump($this->path);die();
     	}
     }
     
