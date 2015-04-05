@@ -359,7 +359,11 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$document = $this->getDocuments($id);
-		$document[0]->removeFile();
+		
+		$em->remove($document[0]);
+		$em->flush();
+		
+//		$document[0]->removeFile();
 		
 //		echo '</br>';\Doctrine\Common\Util\Debug::dump($document);echo '</br>';die();
 		
