@@ -184,6 +184,14 @@ class Document
     	
     	$this->setFile(null);
     }
+    
+    public function removeFile()
+    {
+    	$this->temp = $this->path;
+    	if (isset($this->temp)) {
+    		unlink($this->temp);
+    	}
+    }
 
     /**
      * @ORM\PreRemove()
