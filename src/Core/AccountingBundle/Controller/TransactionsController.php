@@ -360,7 +360,7 @@ class TransactionsController extends Controller
 		
 		$dataheader = json_decode($importoption->getDataheaderdefn());
 		
-		echo 'dataheader</br>';\Doctrine\Common\Util\Debug::dump($dataheader);echo '</br></br>';die();
+		echo 'dataheader</br>';var_dump($dataheader);echo '</br></br>';die();
 		 
 		$beginIndicator = 0;
 		$searchCount = count($dataheader->{'search'});
