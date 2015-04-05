@@ -351,6 +351,22 @@ class TransactionsController extends Controller
 	
 	public function processTransactionAction($id)
 	{
+		$em = $this	->getDoctrine()
+					->getManager();
+		$documents = $this->getDocuments($id);
+		$tempimportoption = $this->getImporttransdefin($id);
+		$importoption = $tempimportoption[0];
+		
+		
+		echo 'Documents</br>';\Doctrine\Common\Util\Debug::dump($documents);echo '</br></br>';
+		echo 'tempimportoption</br>';\Doctrine\Common\Util\Debug::dump($tempimportoption);echo '</br></br>';
+		echo 'importoption</br>';\Doctrine\Common\Util\Debug::dump($importoption);echo '</br></br>';
+		
+		die();
+		
+		
+		
+		
 		
 	}
 	
@@ -362,13 +378,6 @@ class TransactionsController extends Controller
 		
 		$em->remove($document[0]);
 		$em->flush();
-		
-//		$document[0]->removeFile();
-		
-//		echo '</br>';\Doctrine\Common\Util\Debug::dump($document);echo '</br>';die();
-		
-		
-		
 		$returnMessage = 'File successfully removed.';
 		$session = $this->getRequest()->getSession();
 		$session->getFlashBag()->add('returnMessage',$returnMessage);
