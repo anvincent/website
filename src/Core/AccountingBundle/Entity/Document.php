@@ -73,7 +73,7 @@ class Document
         return null === $this->path
             ? null
 //			: $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
-        	: $this->getUploadRootDir().'/'.$this->id.'.'.$this->name;
+        	: $this->getUploadRootDir().'/'.$this->name.'.'.$this->id;
     }
     
     public function getWebPath()
