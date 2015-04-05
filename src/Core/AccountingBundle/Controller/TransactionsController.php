@@ -366,7 +366,7 @@ class TransactionsController extends Controller
 		} else {
 			$searchCount = count($dataheader->{'search'});
 		}
-		echo 'searchCount</br>';\Doctrine\Common\Util\Debug::dump($searchCount);echo '</br></br>';/*
+		echo 'searchCount</br>';\Doctrine\Common\Util\Debug::dump($searchCount);echo '</br></br>';
 		
 		while(!$fileObj->eof()) {
 			$line = $fileObj->fgetcsv();echo 'line</br>';\Doctrine\Common\Util\Debug::dump($line);echo '</br></br>';/*
