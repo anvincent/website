@@ -358,9 +358,9 @@ class TransactionsController extends Controller
 		$tempimportoption = $this->getImporttransdefin($id);
 		$importoption = $tempimportoption[0];
 		
-		echo 'file</br>';\Doctrine\Common\Util\Debug::dump($fileObj);echo '</br></br>';die();
-		
 		$dataheader = json_decode($importoption->getDataheaderdefn());
+		
+		echo 'dataheader</br>';\Doctrine\Common\Util\Debug::dump($dataheader);echo '</br></br>';die();
 		 
 		$beginIndicator = 0;
 		$searchCount = count($dataheader->{'search'});
