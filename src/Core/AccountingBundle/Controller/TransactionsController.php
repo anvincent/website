@@ -291,15 +291,30 @@ class TransactionsController extends Controller
 		return $definitions;
 	}
 	
+	protected function getDocuments($id=null)
+	{
+		$em = $this->getDoctrine()->getManager();
+		if(isset($id)) {
+			$documents = $em	->getRepository('CoreAccountingBundle:Document')
+								->findById($id);
+		} else {
+			$documents = $em	->getRepository('CoreAccountingBundle:Document')
+								->findAll();
+		}
+		return $documents;
+	}
+	
 	public function showBatchTransactionAction()
 	{
 		$periodrangestart = $this->getBatchPeriods('start');
 		$periodrangeend = $this->getBatchPeriods('end');
 		$importoptions = $this->getImporttransdefin();
+		$documents = $this->getDocuments();
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrangestart' 	=> $periodrangestart,
 				'periodrangeend' 	=> $periodrangeend,
-				'importoptions'		=> $importoptions
+				'importoptions'		=> $importoptions,
+				'documents'			=> $documents
 		));
 	}
 	

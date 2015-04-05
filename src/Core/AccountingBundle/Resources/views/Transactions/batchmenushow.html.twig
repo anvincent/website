@@ -38,9 +38,16 @@ Batch Journal Processing
 						{% for option in importoptions %}
 					    <tr>
 					    	<td>{{ option.accountname }}</td>
-					    	<td><a href="{{ path('CoreAccountingBundle_transactions_batch_upload',{'id':option.importdefnid}) }}">
-					    		<i class="fa fa-upload"></i>
-					    	</a></td>
+					    	<td>
+					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_upload',{'id':option.importdefnid}) }}">
+					    			<i class="fa fa-upload"></i>
+					    		</a>
+					    		{% if loop.index == documents.id %}
+					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':documents.id}) }}">
+					    			<i class="fa fa-file-text-o"></i>
+					    		</a>
+					    		{% endif %}
+					    	</td>
 					    </tr>
 					    {% else %}
 					        <p>There are no definitions within the environment</p>
