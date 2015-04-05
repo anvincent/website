@@ -49,10 +49,10 @@ Batch Journal Processing
 						    	{% for document in documents %}
 						    		{% if loop.index == document.id %}
 						    		<div class="btn-group" role="group">
-							    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':documents.id}) }}">
+							    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':document.id}) }}">
 							    			<i class="fa fa-file-text-o"></i>
 							    		</a>
-							    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_delete',{'id':documents.id}) }}">
+							    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_delete',{'id':document.id}) }}">
 							    			<i class="fa fa-trash"></i>
 							    		</a>
 							    	</div>
