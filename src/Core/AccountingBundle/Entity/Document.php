@@ -57,6 +57,16 @@ class Document
     }
     
 	/**
+	 * Get id
+	 *
+	 * @return integer $id
+	 */
+	public function getId()
+    {
+    	return $this->id;
+    }
+    
+	/**
 	 * Set name
 	 *
 	 * @param integer $name

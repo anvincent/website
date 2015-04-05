@@ -314,7 +314,7 @@ class TransactionsController extends Controller
 				'periodrangestart' 	=> $periodrangestart,
 				'periodrangeend' 	=> $periodrangeend,
 				'importoptions'		=> $importoptions,
-				'documents'			=> $documents
+				'documents'			=> $documents[0]
 		));
 	}
 	
