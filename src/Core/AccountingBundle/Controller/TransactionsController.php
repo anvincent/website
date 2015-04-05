@@ -360,13 +360,16 @@ class TransactionsController extends Controller
 		
 		$dataheader = json_decode($importoption->getDataheaderdefn());
 		
-		echo 'dataheader->search</br>';\Doctrine\Common\Util\Debug::dump(count($dataheader->{'search'}));echo '</br></br>';die();
-		 
 		$beginIndicator = 0;
-		$searchCount = count($dataheader->{'search'});
-		 
+		if($dataheader->{'search'}=="none") {
+			$searchCount = 0;
+		} else {
+			$searchCount = count($dataheader->{'search'});
+		}
+		echo 'searchCount</br>';\Doctrine\Common\Util\Debug::dump($searchCount);echo '</br></br>';/*
+		
 		while(!$fileObj->eof()) {
-			$line = $fileObj->fgetcsv();
+			$line = $fileObj->fgetcsv();echo 'line</br>';\Doctrine\Common\Util\Debug::dump($line);echo '</br></br>';/*
 			if($line[0]!=NULL) {
 				if($beginIndicator==$searchCount) {
 					// read file as normal
@@ -374,18 +377,18 @@ class TransactionsController extends Controller
 				} else {
 					foreach($line AS $element) {
 						if($beginIndicator==$searchCount) break;
-						if($dataheader->{'search'}==null) {
+						if($dataheader->{'search'}=="none") {
 							$beginIndicator = $searchCount;
 						} elseif(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
 							$beginIndicator++;
 						}
 					}
 				}
-			}
+			}*/
 		} // end of while
 		
 		
-		
+		die();
 		
 		
 		
