@@ -72,7 +72,6 @@ class Document
     {
         return null === $this->path
             ? null
-//			: $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
         	: $this->getUploadRootDir().'/'.$this->name.'.'.$this->id;
     }
     
@@ -131,10 +130,7 @@ class Document
     public function preUpload()
     {
     	if (null !== $this->getFile()) {
-//      	$this->path = $this->getFile()->guessExtension();
     		$this->path = $this->getAbsolutePath();
-    		
-    		\Doctrine\Common\Util\Debug::dump($this->path);die();
     	}
     }
     
