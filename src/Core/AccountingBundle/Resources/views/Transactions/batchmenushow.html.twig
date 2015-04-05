@@ -22,7 +22,7 @@ Batch Journal Processing
 {% endfor %}
 
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Batch Journal Processing Menu
@@ -38,22 +38,22 @@ Batch Journal Processing
 						{% for option in importoptions %}
 					    <tr>
 					    	<td>
-					    		<button type="button" class="btn btn-default">{{ option.accountname }}</button>
-					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_upload',{'id':option.importdefnid}) }}">
-					    			<i class="fa fa-upload"></i>
-					    		</a>
+					    		<div class="btn-group" role="group">
+						    		<button type="button" class="btn btn-default">{{ option.accountname }}</button>
+						    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_upload',{'id':option.importdefnid}) }}">
+						    			<i class="fa fa-upload"></i>
+						    		</a>
+						    	</div>
 					    		{% if loop.index == documents.id %}
-					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':documents.id}) }}">
-					    			<i class="fa fa-file-text-o"></i>
-					    		</a>
-					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_delete',{'id':documents.id}) }}">
-					    			<i class="fa fa-trash"></i>
-					    		</a>
+					    		<div class="btn-group" role="group">
+						    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':documents.id}) }}">
+						    			<i class="fa fa-file-text-o"></i>
+						    		</a>
+						    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_delete',{'id':documents.id}) }}">
+						    			<i class="fa fa-trash"></i>
+						    		</a>
+						    	</div>
 					    		{% endif %}
-					    	
-					    	</td>
-					    	<td>
-					    		
 					    	</td>
 					    </tr>
 					    {% else %}
