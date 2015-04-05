@@ -47,7 +47,7 @@ Batch Journal Processing
 						    </td>
 						    <td>
 						    	{% for document in documents %}
-						    		{% if loop.index == document.id %}
+						    		{% if loop.parent.loop.index == document.id %}
 						    		<div class="btn-group" role="group">
 							    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':document.id}) }}">
 							    			<i class="fa fa-file-text-o"></i>
