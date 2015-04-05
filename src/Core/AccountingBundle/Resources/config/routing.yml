@@ -60,8 +60,8 @@ CoreAccountingBundle_transactions_batch_processing:
         _method:  GET|POST
         
 CoreAccountingBundle_transactions_batch_delete:
-    pattern:	/accounting/transactions/journal/batch/process/{id}
-    defaults:	{ _controller:CoreAccountingBundle:Transactions:processTransaction }
+    pattern:	/accounting/transactions/journal/batch/delete/{id}
+    defaults:	{ _controller:CoreAccountingBundle:Transactions:deleteUpload }
     requirements:
         _method:  GET|POST
 

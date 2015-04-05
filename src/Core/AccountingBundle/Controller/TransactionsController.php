@@ -334,7 +334,6 @@ class TransactionsController extends Controller
 				$document->setName($document->getfile()->getClientOriginalName());
 				$em->persist($document);
 				$em->flush();
-				echo '</br>';\Doctrine\Common\Util\Debug::dump($document);echo '</br>';
 				$returnMessage = 'File successfully loaded.';
 			} else {
         		$returnMessage = 'An error occurred during the loading of the file.';
@@ -350,12 +349,26 @@ class TransactionsController extends Controller
 		}
 	}
 	
-	public function processTransactionAction()
+	public function processTransactionAction($id)
 	{
 		
+	}
+	
+	public function deleteUploadAction($id)
+	{
+		$em = $this	->getDoctrine()
+					->getManager();
+		$document = $this->getDocuments($id);
+		
+		
+		echo '</br>';\Doctrine\Common\Util\Debug::dump($document);echo '</br>';die();
 		
 		
 		
+		$returnMessage = 'File successfully removed.';
+		$session = $this->getRequest()->getSession();
+		$session->getFlashBag()->add('returnMessage',$returnMessage);
+		return $this->redirect($this->generateUrl('CoreAccountingBundle_transactions_batch_menu'),301);
 	}
 	
 	protected function getStandardMonthJournal($period,$stage)
