@@ -360,7 +360,7 @@ class TransactionsController extends Controller
 		
 		$dataheader = json_decode($importoption->getDataheaderdefn());
 		
-		echo 'dataheader</br>';var_dump($dataheader);echo '</br></br>';die();
+		echo 'dataheader->search</br>';\Doctrine\Common\Util\Debug::dump($dataheader->{'search'});echo '</br></br>';die();
 		 
 		$beginIndicator = 0;
 		$searchCount = count($dataheader->{'search'});
@@ -374,7 +374,9 @@ class TransactionsController extends Controller
 				} else {
 					foreach($line AS $element) {
 						if($beginIndicator==$searchCount) break;
-						if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
+						if($dataheader->{'search'}==null) {
+							$beginIndicator = $searchCount;
+						} elseif(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
 							$beginIndicator++;
 						}
 					}
