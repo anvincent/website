@@ -37,8 +37,8 @@ Batch Journal Processing
 						<tbody>
 						{% for option in importoptions %}
 					    <tr>
-					    	<td>{{ option.accountname }}</td>
 					    	<td>
+					    		<button type="button" class="btn btn-default">{{ option.accountname }}</button>
 					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_upload',{'id':option.importdefnid}) }}">
 					    			<i class="fa fa-upload"></i>
 					    		</a>
@@ -46,7 +46,14 @@ Batch Journal Processing
 					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_processing',{'id':documents.id}) }}">
 					    			<i class="fa fa-file-text-o"></i>
 					    		</a>
+					    		<a class="btn btn-default" role="button" href="{{ path('CoreAccountingBundle_transactions_batch_delete',{'id':documents.id}) }}">
+					    			<i class="fa fa-trash"></i>
+					    		</a>
 					    		{% endif %}
+					    	
+					    	</td>
+					    	<td>
+					    		
 					    	</td>
 					    </tr>
 					    {% else %}

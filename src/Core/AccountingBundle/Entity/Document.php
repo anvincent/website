@@ -78,6 +78,16 @@ class Document
     	return $this;
     }
     
+	/**
+	 * Get name
+	 *
+	 * @return string $name
+	 */
+	public function getName()
+    {
+    	return $this->name;
+    }
+    
 	public function getAbsolutePath()
     {
         return null === $this->path
