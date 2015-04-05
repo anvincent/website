@@ -95,12 +95,12 @@ class Document
         	: $this->getUploadRootDir().'/'.$this->name.'.'.$this->id;
     }
     
-    public function getWebPath()
-    {
-    	return null === $this->path
-    	? null
-    	: $this->getUploadDir().'/'.$this->path;
-    }
+//	public function getWebPath()
+//	{
+//		return null === $this->path
+//		? null
+//		: $this->getUploadDir().'/'.$this->path;
+//	}
     
     protected function getUploadRootDir()
     {
@@ -114,6 +114,13 @@ class Document
     	// get rid of the __DIR__ so it doesn't screw up
     	// when displaying uploaded doc/image in the view.
     	return 'uploads/documents';
+    }
+    
+    public function getPath()
+    {
+    	return null === $this->path
+    	? null
+    	: $this->path;
     }
     
     /**

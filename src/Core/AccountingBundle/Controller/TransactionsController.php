@@ -354,12 +354,40 @@ class TransactionsController extends Controller
 		$em = $this	->getDoctrine()
 					->getManager();
 		$documents = $this->getDocuments($id);
+		$fileObj = new \SplFileObject($documents[0]->getPath());
 		$tempimportoption = $this->getImporttransdefin($id);
 		$importoption = $tempimportoption[0];
 		
+		echo 'file</br>';\Doctrine\Common\Util\Debug::dump($fileObj);echo '</br></br>';die();
 		
-		echo 'Documents</br>';\Doctrine\Common\Util\Debug::dump($documents);echo '</br></br>';
-		echo 'tempimportoption</br>';\Doctrine\Common\Util\Debug::dump($tempimportoption);echo '</br></br>';
+		$dataheader = json_decode($importoption->getDataheaderdefn());
+		 
+		$beginIndicator = 0;
+		$searchCount = count($dataheader->{'search'});
+		 
+		while(!$fileObj->eof()) {
+			$line = $fileObj->fgetcsv();
+			if($line[0]!=NULL) {
+				if($beginIndicator==$searchCount) {
+					// read file as normal
+						
+				} else {
+					foreach($line AS $element) {
+						if($beginIndicator==$searchCount) break;
+						if(strpos($element,$dataheader->{'search'}[$beginIndicator]->{$beginIndicator})!==false) {
+							$beginIndicator++;
+						}
+					}
+				}
+			}
+		} // end of while
+		
+		
+		
+		
+		
+		
+		echo 'file</br>';\Doctrine\Common\Util\Debug::dump($file);echo '</br></br>';
 		echo 'importoption</br>';\Doctrine\Common\Util\Debug::dump($importoption);echo '</br></br>';
 		
 		die();
