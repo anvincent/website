@@ -309,12 +309,12 @@ class TransactionsController extends Controller
 		$periodrangestart = $this->getBatchPeriods('start');
 		$periodrangeend = $this->getBatchPeriods('end');
 		$importoptions = $this->getImporttransdefin();
-		$documents = $this->getDocuments(); \Doctrine\Common\Util\Debug::dump($documents);die();
+		$documents = $this->getDocuments();
 		return $this->render('CoreAccountingBundle:Transactions:batchmenushow.html.twig', array(
 				'periodrangestart' 	=> $periodrangestart,
 				'periodrangeend' 	=> $periodrangeend,
 				'importoptions'		=> $importoptions,
-				'documents'			=> $documents[0]
+				'documents'			=> $documents
 		));
 	}
 	
