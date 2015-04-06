@@ -366,14 +366,43 @@ class TransactionsController extends Controller
 		} else {
 			$searchCount = count($dataheader->{'search'});
 		}
-		echo 'searchCount</br>';\Doctrine\Common\Util\Debug::dump($searchCount);echo '</br></br>';
+		
+		$nexttypeno 		= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnexttypeno();
+		$nextcounterindex 	= $em	->getRepository('CoreAccountingBundle:Gltrans')
+									->findnextcounterindex();
+		
+		
 		
 		while(!$fileObj->eof()) {
-			$line = $fileObj->fgetcsv();echo 'line</br>';\Doctrine\Common\Util\Debug::dump($line);echo '</br></br>';/*
 			if($line[0]!=NULL) {
 				if($beginIndicator==$searchCount) {
-					// read file as normal
-						
+					// read file as normal into Gltrans object
+					$trandate = $line[$importoption->getDatalineaccount()];
+					$periodno = 0;
+					$account = 0;
+					$narrative = 0;
+					$amount = 0;
+					$tag = 0;
+					
+					$singlejournalentry = new Gltrans;
+					$singlejournalentry->setCounterindex($nextcounterindex);
+					$singlejournalentry->setType(0);
+					$singlejournalentry->setTypeno($nexttypeno);
+					$singlejournalentry->setChequeno(0);
+					$singlejournalentry->setTrandate($trandate);
+					$singlejournalentry->setPeriodno($periodno);
+					$singlejournalentry->setAccount($account);
+					$singlejournalentry->setNarrative($narrative);
+					$singlejournalentry->setAmount($amount);
+					$singlejournalentry->setPosted(0);
+					$singlejournalentry->setJobref('_');
+					$singlejournalentry->setTag($tag);
+					
+					
+					
+					
+					
 				} else {
 					foreach($line AS $element) {
 						if($beginIndicator==$searchCount) break;
@@ -384,21 +413,14 @@ class TransactionsController extends Controller
 						}
 					}
 				}
-			}*/
+			}
 		} // end of while
-		
-		
-		die();
-		
 		
 		
 		echo 'file</br>';\Doctrine\Common\Util\Debug::dump($file);echo '</br></br>';
 		echo 'importoption</br>';\Doctrine\Common\Util\Debug::dump($importoption);echo '</br></br>';
 		
 		die();
-		
-		
-		
 		
 		
 	}
